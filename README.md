@@ -2,10 +2,10 @@
 # WIP
 
 # Setup Instructions
--Install GitHub Desktop
+1. Install GitHub Desktop
 
--Create a GitHub Account
+2. Create a GitHub Account
 
--Do the GitHub Desktop Tutorial
+3. Do the GitHub Desktop Tutorial
 
--Open a branch with the project and call it <name>-Se7en (for example: Robbie-Se7en)
+4. Open a branch with the project and call it [name]-Se7en (for example: Robbie-Se7en)
