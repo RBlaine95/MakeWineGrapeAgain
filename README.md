@@ -2,7 +2,6 @@
 # WIP
 
 # How to Install Github
-=====================
 1) Run "GitHubSetup.exe" and wait for it to download and install.
 
 2) While you wait, go to www.github.com and create an account if you haven't already.
@@ -22,11 +21,5 @@
 
 9) YouTube and Google are your friends. Always.
 
-=====================
-
-Actually, go to https://guides.github.com/activities/hello-world/ any ways and read. It. Will. Help.
-
-=====================
-With regard to libraries and APIs
-=====================
+#With regard to libraries and APIs
 APIs and Libraries will be located in the APIs and Libraries Folders AS WELL AS inside the actual program so that we don't need to re-direct Netbeans to the APIs and Libraries the whole fucking time.
