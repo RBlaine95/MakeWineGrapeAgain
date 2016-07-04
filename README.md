@@ -9,8 +9,7 @@
 3) Also, go to https://github.com/RBlaine95/Project-Se7en and become a collaborator
 
 4) Once GitHub has installed, DO THE TUTORIAL!!!!
-			!!!!!!!!AND READ IT!!!!!!!
-			
+
 5) Once you've DONE THE TUTORIAL, create a clone of Project-Se7en (there's a button on the website)
 
 6) OPEN YOUR OWN BRANCH FOR PROJECT-SE7EN IN CASE YOU FUCK UP SOMETHING, IT WON'T BREAK THE MASTER BRANCH
