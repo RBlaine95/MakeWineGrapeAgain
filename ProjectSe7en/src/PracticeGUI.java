@@ -15,6 +15,7 @@ public class PracticeGUI extends javax.swing.JFrame {
     public PracticeGUI() {
         initComponents();
     }
+    //are we seriously going with this UI?
 
     /**
      * This method is called from within the constructor to initialize the form.
