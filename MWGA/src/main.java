@@ -90,6 +90,11 @@ public class main extends javax.swing.JFrame {
         jMenu1.setText("File");
 
         jMenuItem1.setText("Log Out");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem1);
 
         jMenuBar1.add(jMenu1);
@@ -140,6 +145,12 @@ public class main extends javax.swing.JFrame {
         BatchMaster bm = new BatchMaster();
         bm.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+      Login_UI log = new Login_UI();
+      this.dispose();
+      log.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     /**
      * @param args the command line arguments
