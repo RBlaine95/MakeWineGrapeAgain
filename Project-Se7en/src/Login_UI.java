@@ -33,10 +33,8 @@ public class Login_UI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setAlwaysOnTop(true);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setExtendedState(1);
-        setFocusable(false);
+        setState(0);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         loginBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/burntcoaltexturebutton.png"))); // NOI18N
@@ -68,7 +66,6 @@ public class Login_UI extends javax.swing.JFrame {
         jLabel1.setFocusable(false);
         jLabel1.setName(""); // NOI18N
         jLabel1.setOpaque(true);
-        jLabel1.setRequestFocusEnabled(false);
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
