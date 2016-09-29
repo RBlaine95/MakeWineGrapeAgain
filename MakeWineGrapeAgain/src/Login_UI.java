@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  * @author DV2014-0217
  */
 public class Login_UI extends javax.swing.JFrame {
-
+Engine e = new Engine();
     /**
      * Creates new form PracticeGUI
      */
@@ -78,7 +78,9 @@ public class Login_UI extends javax.swing.JFrame {
         
         if(password.equals(ps)){
             try {
-                main m = new main();
+                
+                e.connect();
+                main m = new main(e);
                 this.dispose();
                 m.setVisible(true);
             } catch (Exception e) {
