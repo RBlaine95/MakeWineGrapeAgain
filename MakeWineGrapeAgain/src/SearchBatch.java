@@ -13,7 +13,17 @@ public class SearchBatch extends javax.swing.JFrame {
     /**
      * Creates new form SearchBatch
      */
+    Engine e;
+
+    /**
+     * Creates new form main
+     */
     public SearchBatch() {
+        initComponents();
+    }
+
+    public SearchBatch(Engine e) {
+        this.e = e;
         initComponents();
     }
 
