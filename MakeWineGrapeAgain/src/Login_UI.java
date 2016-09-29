@@ -74,7 +74,7 @@ Engine e = new Engine();
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
        
         String password = passwordField.getText();
-        String ps = "admin";
+        String ps = "";
         
         if(password.equals(ps)){
             try {
