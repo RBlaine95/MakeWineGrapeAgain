@@ -1,3 +1,7 @@
+
+import java.sql.ResultSet;
+import javax.swing.DefaultComboBoxModel;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -14,6 +18,10 @@ public class SearchBatch extends javax.swing.JFrame {
      * Creates new form SearchBatch
      */
     Engine e;
+    String batchid;
+    String colour;
+    String type;
+    String stage;
 
     /**
      * Creates new form main
@@ -25,6 +33,8 @@ public class SearchBatch extends javax.swing.JFrame {
     public SearchBatch(Engine e) {
         this.e = e;
         initComponents();
+        this.colourBox.setModel(new DefaultComboBoxModel(e.getColour().toArray()));
+        this.typeBox.setModel(new DefaultComboBoxModel(e.getType().toArray()));
     }
 
     /**
@@ -62,6 +72,7 @@ public class SearchBatch extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jPanel1.setOpaque(false);
+        jPanel1.setPreferredSize(new java.awt.Dimension(1000, 270));
 
         batchTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -71,9 +82,26 @@ public class SearchBatch extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Batch ID", "Colour", "Type", "Stage"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        batchTbl.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        batchTbl.getTableHeader().setReorderingAllowed(false);
         batchTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 batchTblMouseClicked(evt);
@@ -89,6 +117,11 @@ public class SearchBatch extends javax.swing.JFrame {
         });
 
         searchBtn.setText("Search");
+        searchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchBtnActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Batch ID");
 
@@ -102,7 +135,7 @@ public class SearchBatch extends javax.swing.JFrame {
 
         jLabel7.setText("Stage");
 
-        stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Stroage" }));
 
         selectBtn.setText("Select");
         selectBtn.setEnabled(false);
@@ -119,7 +152,9 @@ public class SearchBatch extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 580, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 640, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(batchIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -137,11 +172,11 @@ public class SearchBatch extends javax.swing.JFrame {
                             .addComponent(jLabel7)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 70, Short.MAX_VALUE)
                                 .addComponent(selectBtn)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(searchBtn)))
-                        .addGap(10, 10, 10)
+                        .addGap(30, 30, 30)
                         .addComponent(exitBtn)))
                 .addContainerGap())
         );
@@ -149,8 +184,8 @@ public class SearchBatch extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -170,19 +205,19 @@ public class SearchBatch extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(searchBtn)
-                            .addComponent(exitBtn)
-                            .addComponent(selectBtn))))
-                .addGap(43, 43, 43))
+                            .addComponent(selectBtn)
+                            .addComponent(exitBtn))))
+                .addGap(10, 10, 10))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 600, 310);
+        jPanel1.setBounds(0, 0, 670, 270);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 600, 280);
+        jLabel1.setBounds(0, 0, 870, 310);
 
-        setSize(new java.awt.Dimension(616, 316));
+        setSize(new java.awt.Dimension(719, 345));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -191,19 +226,29 @@ public class SearchBatch extends javax.swing.JFrame {
     }//GEN-LAST:event_exitBtnActionPerformed
 
     private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
-        
+
     }//GEN-LAST:event_selectBtnActionPerformed
 
     private void batchTblMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batchTblMouseClicked
-        if(batchTbl.getSelectedRow()!=-1){
+        if (batchTbl.getSelectedRow() != -1) {
             this.selectBtn.setEnabled(true);
         }
     }//GEN-LAST:event_batchTblMouseClicked
 
+    private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        this.batchid = this.batchIdTxt.getText();
+        this.colour = this.colourBox.getSelectedItem().toString();
+        this.type = this.typeBox.getSelectedItem().toString();
+        this.stage = this.stageBox.getSelectedIndex() + "";
+        System.out.println(this.stage);
+        ResultSet rs;
+        String sql;
+        
+    }//GEN-LAST:event_searchBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
-   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField batchIdTxt;
