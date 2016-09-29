@@ -1,7 +1,17 @@
 
 public class BatchMaster extends javax.swing.JFrame {
     
+    Engine e;
+
+    /**
+     * Creates new form main
+     */
     public BatchMaster() {
+        initComponents();
+    }
+
+    public BatchMaster(Engine e) {
+        this.e = e;
         initComponents();
     }
     @SuppressWarnings("unchecked")

@@ -10,10 +10,17 @@
  */
 public class main extends javax.swing.JFrame {
 
+    Engine e;
+
     /**
      * Creates new form main
      */
     public main() {
+        initComponents();
+    }
+
+    public main(Engine e) {
+        this.e = e;
         initComponents();
     }
 
@@ -124,24 +131,23 @@ public class main extends javax.swing.JFrame {
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
         Login_UI log = new Login_UI();
-      this.dispose();
-      log.setVisible(true);
+        this.dispose();
+        log.setVisible(true);
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        SearchBatch sb = new SearchBatch();
+        SearchBatch sb = new SearchBatch(e);
         sb.setVisible(true);
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void managerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managerBtnActionPerformed
-        BatchMaster bm = new BatchMaster();
+        BatchMaster bm = new BatchMaster(e);
         bm.setVisible(true);
     }//GEN-LAST:event_managerBtnActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel appNameLbl;
