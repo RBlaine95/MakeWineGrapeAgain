@@ -9,33 +9,41 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 /**
  *
  * @author Matthew
  */
 public class Engine {
-
+    ArrayList<String> colour;
+    ArrayList<String> type;
     Statement s;
     Connection conn;
     ResultSet rs;
 
+    public Engine() {
+        this.colour = new ArrayList();
+        this.type = new ArrayList();
+    }
+
     public void connect() {
         try {
+            
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
             System.out.println("Driver loaded");
 
-            
             String url = "jdbc:ucanaccess://ccdb.accdb";
             conn = DriverManager.getConnection(url);
 
             System.out.println("Database Connected");
-            
-
+            System.out.println("Setting Coloumns");
+            this.setcols();
+            System.out.println("Coloumns Set");
         } catch (Exception ex) {
             System.out.println("Error");
         }
-        
+
     }
 
     public ResultSet query(String sql) throws SQLException {
@@ -55,6 +63,35 @@ public class Engine {
             delete = false;
             return delete;
         }
-        
+
     }
+
+    public void setcols() throws SQLException {
+        String sql = "SELECT DISTINCT colour FROM batch";
+        rs = this.query(sql);
+        while(rs.next()){
+            colour.add(rs.getNString(0));
+        }
+        sql = "SELECT DISTINCT type FROM batch";
+        rs = this.query(sql);
+        while(rs.next()){
+            type.add(rs.getNString(0));
+        }
+    }
+
+    public ArrayList<String> getColour() {
+        return colour;
+    }
+
+    public void setColour(ArrayList<String> colour) {
+        this.colour = colour;
+    }
+
+    public ArrayList<String> getType() {
+        return type;
+    }
+
+    public void setType(ArrayList<String> type) {
+        this.type = type;
+    } 
 }
