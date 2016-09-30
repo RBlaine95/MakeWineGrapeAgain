@@ -40,7 +40,6 @@ public class main extends javax.swing.JFrame {
         logo = new javax.swing.JLabel();
         logoutBtn = new javax.swing.JButton();
         searchBtn = new javax.swing.JButton();
-        managerBtn = new javax.swing.JButton();
         bground = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
@@ -70,13 +69,6 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        managerBtn.setText("Manager");
-        managerBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                managerBtnActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -92,8 +84,7 @@ public class main extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(searchBtn)
-                            .addComponent(appNameLbl)
-                            .addComponent(managerBtn))))
+                            .addComponent(appNameLbl))))
                 .addContainerGap())
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(240, 240, 240)
@@ -105,9 +96,7 @@ public class main extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addGap(136, 136, 136)
                 .addComponent(searchBtn)
-                .addGap(18, 18, 18)
-                .addComponent(managerBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addComponent(logo)
                 .addGap(208, 208, 208)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -140,11 +129,6 @@ public class main extends javax.swing.JFrame {
         sb.setVisible(true);
     }//GEN-LAST:event_searchBtnActionPerformed
 
-    private void managerBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_managerBtnActionPerformed
-        BatchMaster bm = new BatchMaster(e);
-        bm.setVisible(true);
-    }//GEN-LAST:event_managerBtnActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -156,7 +140,6 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel logo;
     private javax.swing.JButton logoutBtn;
-    private javax.swing.JButton managerBtn;
     private javax.swing.JButton searchBtn;
     private javax.swing.JLabel versionNumLbl;
     // End of variables declaration//GEN-END:variables
