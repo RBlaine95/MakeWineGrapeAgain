@@ -79,7 +79,7 @@ public class Engine {
         while(rs.next()){
             type.add(rs.getNString(1));
         }
-        sql = "SELECT DISTINCT supplierid FROM batch";
+        sql = "SELECT DISTINCT sname FROM supplier";
         rs = this.query(sql);
         while(rs.next()){
             supplier.add(rs.getNString(1));
