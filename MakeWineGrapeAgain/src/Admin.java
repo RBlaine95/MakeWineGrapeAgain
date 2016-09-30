@@ -160,7 +160,7 @@ public class Admin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        Promt p = new Promt(this.batch);
+        Prompt p = new Prompt(this.batch);
         p.setVisible(true);
         if (answer.equals(this.batch)) {
             System.out.println("deleted forever");
