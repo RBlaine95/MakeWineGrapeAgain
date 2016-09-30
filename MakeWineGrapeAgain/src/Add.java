@@ -12,6 +12,7 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class Add extends javax.swing.JFrame {
 
+    boolean colourOverride, colourbool, typeOverride, typebool;
     Eddi e;
     AddSupplier a = null;
 
@@ -48,11 +49,11 @@ public class Add extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         typeBox = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
-        typeBox1 = new javax.swing.JComboBox();
+        stageBox = new javax.swing.JComboBox();
         colourOverrideTxt = new javax.swing.JTextField();
         typeOverrideTxt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        massTxt = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         supplierBox = new javax.swing.JComboBox();
         okBtn = new javax.swing.JButton();
@@ -84,13 +85,29 @@ public class Add extends javax.swing.JFrame {
 
         jLabel4.setText("Stage");
 
-        typeBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
+        stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
 
         colourOverrideTxt.setEditable(false);
+        colourOverrideTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                colourOverrideTxtKeyReleased(evt);
+            }
+        });
 
         typeOverrideTxt.setEditable(false);
+        typeOverrideTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                typeOverrideTxtKeyReleased(evt);
+            }
+        });
 
         jLabel5.setText("Mass in tonnes");
+
+        massTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                massTxtKeyReleased(evt);
+            }
+        });
 
         jLabel6.setText("Supplier");
 
@@ -102,6 +119,7 @@ public class Add extends javax.swing.JFrame {
         });
 
         okBtn.setText("OK");
+        okBtn.setEnabled(false);
         okBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okBtnActionPerformed(evt);
@@ -154,9 +172,9 @@ public class Add extends javax.swing.JFrame {
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(supplierBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(typeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(typeBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(colourBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(massTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(typeOverrideTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -196,11 +214,11 @@ public class Add extends javax.swing.JFrame {
                         .addComponent(typeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(typeBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(massTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -213,6 +231,7 @@ public class Add extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void colourBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colourBoxActionPerformed
+        this.check();
         if (this.colourBox.getSelectedItem() == "Override") {
             this.colourOverrideTxt.setEditable(true);
             this.colourLbl.setEnabled(true);
@@ -223,6 +242,7 @@ public class Add extends javax.swing.JFrame {
     }//GEN-LAST:event_colourBoxActionPerformed
 
     private void typeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeBoxActionPerformed
+        this.check();
         if (this.typeBox.getSelectedItem() == "Override") {
             this.typeOverrideTxt.setEditable(true);
             this.typeLbl.setEnabled(true);
@@ -237,8 +257,7 @@ public class Add extends javax.swing.JFrame {
             if (a == null) {
                 a = new AddSupplier(e);
                 a.setVisible(true);
-            }
-            else{
+            } else {
                 a.requestFocus();
             }
         }
@@ -249,8 +268,31 @@ public class Add extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        // TODO add your handling code here:
+        String batch, colour, type, stage, mass, supplier, chemical;
+        if (this.colourOverride) {
+            colour = this.colourOverrideTxt.getText();
+        } else {
+            colour = this.colourBox.getSelectedItem() + "";
+        }
+        if (this.typeOverride) {
+            type = this.typeOverrideTxt.getText();
+        } else {
+            type = this.typeBox.getSelectedItem() + "";
+        }
+        stage = this.stageBox.getSelectedItem() + "";
     }//GEN-LAST:event_okBtnActionPerformed
+
+    private void massTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_massTxtKeyReleased
+        this.check();
+    }//GEN-LAST:event_massTxtKeyReleased
+
+    private void typeOverrideTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_typeOverrideTxtKeyReleased
+        this.check();
+    }//GEN-LAST:event_typeOverrideTxtKeyReleased
+
+    private void colourOverrideTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_colourOverrideTxtKeyReleased
+        this.check();
+    }//GEN-LAST:event_colourOverrideTxtKeyReleased
 
     /**
      * @param args the command line arguments
@@ -298,12 +340,23 @@ public class Add extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField massTxt;
     private javax.swing.JButton okBtn;
+    private javax.swing.JComboBox stageBox;
     private javax.swing.JComboBox supplierBox;
     private javax.swing.JComboBox typeBox;
-    private javax.swing.JComboBox typeBox1;
     private javax.swing.JLabel typeLbl;
     private javax.swing.JTextField typeOverrideTxt;
     // End of variables declaration//GEN-END:variables
+public void check() {
+        colourOverride = this.colourBox.getSelectedItem().equals("Override");
+        colourbool = !this.colourOverrideTxt.getText().equals("");
+        typeOverride = this.typeBox.getSelectedItem().equals("Override");
+        typebool = !this.typeOverrideTxt.getText().equals("");
+        if (!this.massTxt.getText().equals("") && ((colourbool && colourOverride) || (!colourOverride)) && ((typebool && typeOverride) || (!typeOverride))) {
+            this.okBtn.setEnabled(true);
+        } else {
+            this.okBtn.setEnabled(false);
+        }
+    }
 }

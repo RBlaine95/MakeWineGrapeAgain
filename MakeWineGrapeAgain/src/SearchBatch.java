@@ -299,29 +299,7 @@ public class SearchBatch extends javax.swing.JFrame {
                 for (int i = 0; i < 5; i++) {
                     list[i] = (rs.getString(i + 1));
                 }
-                switch ((String) list[3]) {
-                    case "1":
-                        list[3] = "Fermentation";
-                        break;
-                    case "2":
-                        list[3] = "Pressed";
-                        break;
-                    case "3":
-                        list[3] = "Maturation";
-                        break;
-                    case "4":
-                        list[3] = "Blending";
-                        break;
-                    case "5":
-                        list[3] = "Prep For Bottling";
-                        break;
-                    case "6":
-                        list[3] = "Bottling";
-                        break;
-                    case "7":
-                        list[3] = "Storage";
-                        break;
-                }
+                list[3] = e.stageGetWord(list[3] + "");
                 ((DefaultTableModel) this.batchTbl.getModel()).insertRow(count, list);
                 count++;
             }
