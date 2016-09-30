@@ -6,13 +6,13 @@
 
 /**
  *
- * @author Robbie
+ * @author Se7en
  */
 public class SubBatch extends javax.swing.JFrame {
 
     String batch;
     String[] data;
-    Engine e;
+    Eddi e;
     /**
      * Creates new form SubBatch
      */
@@ -20,7 +20,7 @@ public class SubBatch extends javax.swing.JFrame {
         initComponents();
     }
 
-    SubBatch(Engine e, String[] data) {
+    SubBatch(Eddi e, String[] data) {
         this.data = data;
         this.e = e;
         this.batch = this.data[0];

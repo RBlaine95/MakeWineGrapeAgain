@@ -6,11 +6,11 @@
 
 /**
  *
- * @author Matthew
+ * @author Se7en
  */
 public class Update extends javax.swing.JFrame {
 String batch;
-Engine e;
+Eddi e;
 String [] data;
     /**
      * Creates new form Update
@@ -18,7 +18,7 @@ String [] data;
     public Update() {
         initComponents();
     }
-    public Update(Engine e, String [] d) {
+    public Update(Eddi e, String [] d) {
         initComponents();
         this.data = d;
         batch = data[0];

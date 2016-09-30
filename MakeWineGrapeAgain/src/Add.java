@@ -8,11 +8,11 @@ import javax.swing.DefaultComboBoxModel;
  */
 /**
  *
- * @author Matthew
+ * @author Se7en
  */
 public class Add extends javax.swing.JFrame {
 
-    Engine e;
+    Eddi e;
     AddSupplier a = null;
 
     /**
@@ -22,7 +22,7 @@ public class Add extends javax.swing.JFrame {
         initComponents();
     }
 
-    public Add(Engine e) {
+    public Add(Eddi e) {
         initComponents();
         this.e = e;
         this.colourBox.setModel(new DefaultComboBoxModel(e.getColour().toArray()));

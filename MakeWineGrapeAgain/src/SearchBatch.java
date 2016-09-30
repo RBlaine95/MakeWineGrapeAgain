@@ -13,14 +13,14 @@ import javax.swing.table.DefaultTableModel;
  */
 /**
  *
- * @author MUFFIN
+ * @author Se7en
  */
 public class SearchBatch extends javax.swing.JFrame {
 
     /**
      * Creates new form SearchBatch
      */
-    Engine e;
+    Eddi e;
     String batchid;
     String colour;
     String type;
@@ -33,7 +33,7 @@ public class SearchBatch extends javax.swing.JFrame {
         initComponents();
     }
 
-    public SearchBatch(Engine e) {
+    public SearchBatch(Eddi e) {
         this.e = e;
         initComponents();
 
