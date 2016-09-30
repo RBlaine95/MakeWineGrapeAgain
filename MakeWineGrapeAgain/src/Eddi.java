@@ -16,6 +16,7 @@ import java.util.ArrayList;
  * @author Se7en
  */
 public class Eddi {
+
     ArrayList<String> colour;
     ArrayList<String> type;
     ArrayList<String> supplier;
@@ -31,7 +32,7 @@ public class Eddi {
 
     public void connect() {
         try {
-            
+
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
             System.out.println("Driver loaded");
 
@@ -71,17 +72,17 @@ public class Eddi {
     public void setcols() throws SQLException {
         String sql = "SELECT DISTINCT colour FROM batch";
         rs = this.query(sql);
-        while(rs.next()){
+        while (rs.next()) {
             colour.add(rs.getNString(1));
         }
         sql = "SELECT DISTINCT type FROM batch";
         rs = this.query(sql);
-        while(rs.next()){
+        while (rs.next()) {
             type.add(rs.getNString(1));
         }
         sql = "SELECT DISTINCT sname FROM supplier";
         rs = this.query(sql);
-        while(rs.next()){
+        while (rs.next()) {
             supplier.add(rs.getNString(1));
         }
     }
@@ -108,5 +109,58 @@ public class Eddi {
 
     public void setType(ArrayList<String> type) {
         this.type = type;
-    } 
+    }
+
+    public String stageGetWord(String s) {
+        switch (s) {
+            case "1":
+                s = "Fermentation";
+                break;
+            case "2":
+                s = "Pressed";
+                break;
+            case "3":
+                s = "Maturation";
+                break;
+            case "4":
+                s = "Blending";
+                break;
+            case "5":
+                s = "Prep For Bottling";
+                break;
+            case "6":
+                s = "Bottling";
+                break;
+            case "7":
+                s = "Storage";
+                break;
+        }
+        return s;
+    }
+    public String stageGetNo(String s) {
+        switch (s) {
+            case "Fermentation":
+                s = "1";
+                break;
+            case "Pressed":
+                s = "2";
+                break;
+            case "Maturation":
+                s = "3";
+                break;
+            case "Blending":
+                s = "4";
+                break;
+            case "Prep For Bottling":
+                s = "5";
+                break;
+            case "Bottling":
+                s = "6";
+                break;
+            case "Storage":
+                s = "7";
+                break;
+        }
+        return s;
+    }
 }

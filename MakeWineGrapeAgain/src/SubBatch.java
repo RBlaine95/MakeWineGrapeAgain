@@ -20,7 +20,7 @@ public class SubBatch extends javax.swing.JFrame {
         initComponents();
     }
 
-    SubBatch(Eddi e, String[] data) {
+     SubBatch(Eddi e, String[] data) {
         this.data = data;
         this.e = e;
         this.batch = this.data[0];
