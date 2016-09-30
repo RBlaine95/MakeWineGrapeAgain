@@ -109,6 +109,6 @@ public class Chemicals extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     
     private void runSelected() {
-        this.Selected.setText(batch);
+        this.selectedTxt.setText(batch);
     }
 }

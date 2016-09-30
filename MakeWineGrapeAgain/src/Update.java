@@ -11,16 +11,19 @@
 public class Update extends javax.swing.JFrame {
 String batch;
 Engine e;
+String [] data;
     /**
      * Creates new form Update
      */
     public Update() {
         initComponents();
     }
-    public Update(String s, Engine e) {
+    public Update(Engine e, String [] d) {
         initComponents();
-        batch = s;
+        this.data = d;
+        batch = data[0];
         this.e = e;
+        this.selectedTxt.setText(batch);
     }
 
     /**
@@ -33,7 +36,7 @@ Engine e;
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        batchTxt = new javax.swing.JTextField();
+        selectedTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         stageBox = new javax.swing.JComboBox();
@@ -45,7 +48,7 @@ Engine e;
 
         jLabel1.setText("Selected:");
 
-        batchTxt.setEditable(false);
+        selectedTxt.setEditable(false);
 
         jLabel2.setText("Stage");
 
@@ -69,7 +72,7 @@ Engine e;
                                 .addGap(104, 104, 104)
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(batchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -93,7 +96,7 @@ Engine e;
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(batchTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
@@ -149,12 +152,12 @@ Engine e;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JTextField batchTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField massTxt;
     private javax.swing.JButton okBtn;
+    private javax.swing.JTextField selectedTxt;
     private javax.swing.JComboBox stageBox;
     // End of variables declaration//GEN-END:variables
 }

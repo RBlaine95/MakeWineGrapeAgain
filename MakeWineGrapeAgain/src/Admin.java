@@ -1,8 +1,5 @@
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.JOptionPane;
 
 /*
@@ -19,7 +16,8 @@ public class Admin extends javax.swing.JFrame {
     String batch;
     Engine e;
     boolean checked = false;
-
+    String colour, type, stage, supplierid, mass, chem;
+    String [] data;
     /**
      * Creates new form Admin
      */
@@ -27,16 +25,20 @@ public class Admin extends javax.swing.JFrame {
         initComponents();
     }
 
-    public Admin(String s, Engine e) {
+    public Admin(Engine e, String [] d) {
         initComponents();
-        this.batch = s;
+        this.data = d;
+        this.batch = data[0];
         this.batchTxt.setText(batch);
         this.e = e;
-        try {
-            this.load();
-        } catch (SQLException ex) {
-            Logger.getLogger(Admin.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.batchTxt.setText(data[0]);
+        this.colourTxt.setText(data[1]);
+        this.typeTxt.setText(data[2]);
+        this.stageTxt.setText(data[3]);
+        this.massTxt.setText(data[4]);
+        this.supplierIDTxt.setText(data[5]);
+        this.chemTxt.setText(data[6]);
+        
     }
 
     /**
@@ -256,26 +258,15 @@ public class Admin extends javax.swing.JFrame {
     public void setChecked(boolean checked) {
         this.checked = checked;
     }
-
-    private void load() throws SQLException {
-        String sql = "SELECT batchid, colour, type, stage, mass, supplierid, chemical FROM batch WHERE batchid = '" + this.batch + "'";
-        ResultSet rs = e.query(sql);
-        rs.next();
-        this.batchTxt.setText(rs.getNString(1));
-        this.colourTxt.setText(rs.getNString(2));
-        this.typeTxt.setText(rs.getNString(3));
-        this.stageTxt.setText(rs.getNString(4));
-        this.massTxt.setText(rs.getNString(5));
-        this.supplierIDTxt.setText(rs.getNString(6));
-        this.chemTxt.setText(rs.getNString(7));
-    }
+    
+    
 
     void change() {
-            String sql = "UPDATE batch SET batchid = '" + this.batchTxt.getText() + "', colour = '" + this.colourTxt.getText() + "', type = '" + this.typeTxt.getText() + 
-                    "', stage = '" + this.stageTxt.getText() + "', mass = '" + this.massTxt.getText() + 
-                    "', supplierid = '" + this.supplierIDTxt.getText() + "', chemical = '" + this.chemTxt.getText() + "' WHERE batchid = '" + this.batch + "'";
-            e.update(sql);
-            JOptionPane.showMessageDialog(null, "Record Updated");
+        String sql = "UPDATE batch SET batchid = '" + this.batchTxt.getText() + "', colour = '" + this.colourTxt.getText() + "', type = '" + this.typeTxt.getText()
+                + "', stage = '" + this.stageTxt.getText() + "', mass = '" + this.massTxt.getText()
+                + "', supplierid = '" + this.supplierIDTxt.getText() + "', chemical = '" + this.chemTxt.getText() + "' WHERE batchid = '" + this.batch + "'";
+        e.update(sql);
+        JOptionPane.showMessageDialog(null, "Record Updated");
     }
 
 }

@@ -1,27 +1,41 @@
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author DV2014-0484
  */
 public class Edit extends javax.swing.JFrame {
-String batch;
-Engine e;
+
+    String batch;
+    Engine e;
+    String[] data = new String[7];
+
     /**
      * Creates new form Edit
      */
     public Edit() {
         initComponents();
     }
+
     public Edit(String s, Engine e) {
         initComponents();
         this.batch = s;
         this.e = e;
-        this.runSelected();
+        this.selectedTxt.setText(batch);
+        try {
+            this.load();
+        } catch (SQLException ex) {
+            Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -143,12 +157,12 @@ Engine e;
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void adminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtnActionPerformed
-        Admin a = new Admin(batch, e);
+        Admin a = new Admin(this.e, data);
         a.setVisible(true);
     }//GEN-LAST:event_adminBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        Update u = new Update(this.batch, this.e);
+        Update u = new Update(this.e, data);
         u.setVisible(true);
     }//GEN-LAST:event_updateBtnActionPerformed
 
@@ -207,8 +221,13 @@ Engine e;
     private javax.swing.JButton subBatchBtn;
     private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
+private void load() throws SQLException {
+        String sql = "SELECT batchid, colour, type, stage, mass, supplierid, chemical FROM batch WHERE batchid = '" + this.batch + "'";
+        ResultSet rs = e.query(sql);
+        rs.next();
+        for (int i = 0; i < 7; i++) {
+            data[i] = (rs.getNString(i + 1));
+        }
 
-    private void runSelected() {
-        this.selectedTxt.setText(batch);
     }
 }
