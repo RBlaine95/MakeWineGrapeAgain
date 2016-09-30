@@ -11,7 +11,7 @@
 public class Prompt extends javax.swing.JFrame {
 
     String batch;
-
+    Admin a;
     /**
      * Creates new form Promt
      */
@@ -19,9 +19,10 @@ public class Prompt extends javax.swing.JFrame {
         initComponents();
     }
 
-    public Prompt(String s) {
+    public Prompt(String s, Admin a) {
         initComponents();
         this.batch = s;
+        this.a = a;
     }
 
     /**
@@ -49,6 +50,11 @@ public class Prompt extends javax.swing.JFrame {
 
         jButton1.setText("OK");
         jButton1.setEnabled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -85,6 +91,11 @@ public class Prompt extends javax.swing.JFrame {
             this.jButton1.setEnabled(true);
         }
     }//GEN-LAST:event_jTextField1KeyReleased
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        a.change();
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

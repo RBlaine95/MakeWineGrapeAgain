@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -243,6 +244,7 @@ public class SearchBatch extends javax.swing.JFrame {
     }//GEN-LAST:event_batchTblMouseClicked
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        DefaultTableModel model = (DefaultTableModel) this.batchTbl.getModel(); model.setRowCount(0);
         ResultSet rs;
         String sql;
         this.batchid = this.batchIdTxt.getText();
@@ -292,13 +294,9 @@ public class SearchBatch extends javax.swing.JFrame {
             rs = e.query(sql);
             int count = 0;
             while (rs.next()) {
-
                 for (int i = 0; i < 5; i++) {
                     list[i] = (rs.getString(i + 1));
-
-
                 }
-                System.out.println(list[3]);
                 switch ((String) list[3]) {
                     case "1":
                         list[3] = "Fermentation";

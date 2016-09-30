@@ -47,6 +47,11 @@ Engine e;
         blendBtn.setText("Create Blend");
 
         updateBtn.setText("Update Batch");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("Selected:");
 
@@ -131,6 +136,11 @@ Engine e;
         Admin a = new Admin(batch, e);
         a.setVisible(true);
     }//GEN-LAST:event_adminBtnActionPerformed
+
+    private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
+        Update u = new Update(this.batch, this.e);
+        
+    }//GEN-LAST:event_updateBtnActionPerformed
 
     /**
      * @param args the command line arguments
