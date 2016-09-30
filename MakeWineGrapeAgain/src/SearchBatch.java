@@ -1,12 +1,9 @@
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /*
@@ -39,8 +36,12 @@ public class SearchBatch extends javax.swing.JFrame {
     public SearchBatch(Engine e) {
         this.e = e;
         initComponents();
+
         this.colourBox.setModel(new DefaultComboBoxModel(e.getColour().toArray()));
         this.typeBox.setModel(new DefaultComboBoxModel(e.getType().toArray()));
+        this.colourBox.addItem("All");
+        this.typeBox.addItem("All");
+
     }
 
     /**
@@ -141,7 +142,7 @@ public class SearchBatch extends javax.swing.JFrame {
 
         jLabel7.setText("Stage");
 
-        stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Stroage" }));
+        stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
 
         selectBtn.setText("Select");
         selectBtn.setEnabled(false);
@@ -244,7 +245,8 @@ public class SearchBatch extends javax.swing.JFrame {
     }//GEN-LAST:event_batchTblMouseClicked
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        DefaultTableModel model = (DefaultTableModel) this.batchTbl.getModel(); model.setRowCount(0);
+        DefaultTableModel model = (DefaultTableModel) this.batchTbl.getModel();
+        model.setRowCount(0);
         ResultSet rs;
         String sql;
         this.batchid = this.batchIdTxt.getText();
