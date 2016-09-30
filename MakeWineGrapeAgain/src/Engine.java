@@ -18,6 +18,7 @@ import java.util.ArrayList;
 public class Engine {
     ArrayList<String> colour;
     ArrayList<String> type;
+    ArrayList<String> supplier;
     Statement s;
     Connection conn;
     ResultSet rs;
@@ -25,6 +26,7 @@ public class Engine {
     public Engine() {
         this.colour = new ArrayList();
         this.type = new ArrayList();
+        this.supplier = new ArrayList();
     }
 
     public void connect() {
@@ -67,8 +69,6 @@ public class Engine {
     }
 
     public void setcols() throws SQLException {
-        this.colour.add("All");
-        this.type.add("All");
         String sql = "SELECT DISTINCT colour FROM batch";
         rs = this.query(sql);
         while(rs.next()){
@@ -79,6 +79,19 @@ public class Engine {
         while(rs.next()){
             type.add(rs.getNString(1));
         }
+        sql = "SELECT DISTINCT supplierid FROM batch";
+        rs = this.query(sql);
+        while(rs.next()){
+            supplier.add(rs.getNString(1));
+        }
+    }
+
+    public ArrayList<String> getSupplier() {
+        return supplier;
+    }
+
+    public void setSupplier(ArrayList<String> supplier) {
+        this.supplier = supplier;
     }
 
     public ArrayList<String> getColour() {
