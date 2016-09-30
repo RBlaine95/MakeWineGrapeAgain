@@ -21,6 +21,7 @@ public class SubBatch extends javax.swing.JFrame {
     private int subMass;
     private String un;
     private String stage;
+    private String sql;
 
     /**
      * Creates new form SubBatch
@@ -189,10 +190,27 @@ public class SubBatch extends javax.swing.JFrame {
             int count = rs.getInt(1);
 
             subID += (count + 1) + "";
+
+            sql = "INSERT INTO batch VALUES (" + subID + ", " + this.data[1] + ", " + this.data[2] + ", " + e.stageGetNo(stage)
+                    + ", " + subMass + ", " + this.data[5] + ", " + this.data[6] + ")"; //prep sub batch sql
+
+            e.update(sql); //insert new sub batch
+
+            //update main batch's mass
+            rs = e.query("SELECT mass FROM batch WHERE batchid = '" + batch + "'"); //get mass of batch
+            rs.next();
+            double massT = Double.parseDouble(rs.getString(1));
             
-            String sql = "INSERT INTO batch VALUES (" + subID + ", " + this.data[1] + ", " + this.data[2] + ", ";
+            //convert mass in ton to mass in kg
+            double massK = massT*1000;
+            //calculate new mass in Kg
+            massK = massK - subMass;
             
-            e.update(sql);
+            //convert back to mass in ton
+            massT = massK/1000;
+            
+            sql = "UPDATE batch SET mass = " + massT + " WHERE batchid = " + batch;
+            e.update(sql); //update main batch
 
         } catch (SQLException ex) {
             Logger.getLogger(SubBatch.class.getName()).log(Level.SEVERE, null, ex);
