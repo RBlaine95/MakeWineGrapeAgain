@@ -8,10 +8,10 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author DV2014-0217
+ * @author Se7en
  */
 public class Login_UI extends javax.swing.JFrame {
-Engine e = new Engine();
+Eddi e = new Eddi();
     /**
      * Creates new form PracticeGUI
      */

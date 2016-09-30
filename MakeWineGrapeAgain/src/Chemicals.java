@@ -6,12 +6,12 @@
 
 /**
  *
- * @author Robbie
+ * @author Se7en
  */
 public class Chemicals extends javax.swing.JFrame {
 
     String[] data;
-    Engine e;
+    Eddi e;
     String batch;
 
     /**
@@ -21,7 +21,7 @@ public class Chemicals extends javax.swing.JFrame {
         initComponents();
     }
 
-    Chemicals(Engine e, String[] data) {
+    Chemicals(Eddi e, String[] data) {
         this.e = e;
         this.batch = data[0];
         this.data = data;

@@ -9,11 +9,11 @@ import javax.swing.JOptionPane;
  */
 /**
  *
- * @author Matthew
+ * @author Se7en
  */
 public class AddSupplier extends javax.swing.JFrame {
 
-    Engine e;
+    Eddi e;
 
     /**
      * Creates new form AddSupplier
@@ -22,7 +22,7 @@ public class AddSupplier extends javax.swing.JFrame {
         initComponents();
     }
 
-    AddSupplier(Engine e) {
+    AddSupplier(Eddi e) {
         initComponents();
         this.e = e;
     }

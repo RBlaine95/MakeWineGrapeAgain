@@ -6,7 +6,7 @@
 
 /**
  *
- * @author DV2014-0484
+ * @author Se7en
  */
 public class Prompt extends javax.swing.JFrame {
 

@@ -6,11 +6,11 @@
 
 /**
  *
- * @author MUFFIN
+ * @author Se7en
  */
 public class main extends javax.swing.JFrame {
 
-    Engine e;
+    Eddi e;
 
     /**
      * Creates new form main
@@ -19,7 +19,7 @@ public class main extends javax.swing.JFrame {
         initComponents();
     }
 
-    public main(Engine e) {
+    public main(Eddi e) {
         this.e = e;
         initComponents();
     }

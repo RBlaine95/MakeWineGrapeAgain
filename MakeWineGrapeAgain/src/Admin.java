@@ -9,12 +9,12 @@ import javax.swing.JOptionPane;
  */
 /**
  *
- * @author DV2014-0484
+ * @author Se7en
  */
 public class Admin extends javax.swing.JFrame {
 
     String batch;
-    Engine e;
+    Eddi e;
     boolean checked = false;
     String colour, type, stage, supplierid, mass, chem;
     String [] data;
@@ -25,7 +25,7 @@ public class Admin extends javax.swing.JFrame {
         initComponents();
     }
 
-    public Admin(Engine e, String [] d) {
+    public Admin(Eddi e, String [] d) {
         initComponents();
         this.data = d;
         this.batch = data[0];
