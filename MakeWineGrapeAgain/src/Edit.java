@@ -11,12 +11,12 @@ import java.util.logging.Logger;
  */
 /**
  *
- * @author DV2014-0484
+ * @author Se7en
  */
 public class Edit extends javax.swing.JFrame {
 
     String batch;
-    Engine e;
+    Eddi e;
     String[] data = new String[7];
 
     /**
@@ -26,7 +26,7 @@ public class Edit extends javax.swing.JFrame {
         initComponents();
     }
 
-    public Edit(String s, Engine e) {
+    public Edit(String s, Eddi e) {
         initComponents();
         this.batch = s;
         this.e = e;

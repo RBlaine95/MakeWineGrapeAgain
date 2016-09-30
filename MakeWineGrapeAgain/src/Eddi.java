@@ -13,9 +13,9 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Matthew
+ * @author Se7en
  */
-public class Engine {
+public class Eddi {
     ArrayList<String> colour;
     ArrayList<String> type;
     ArrayList<String> supplier;
@@ -23,7 +23,7 @@ public class Engine {
     Connection conn;
     ResultSet rs;
 
-    public Engine() {
+    public Eddi() {
         this.colour = new ArrayList();
         this.type = new ArrayList();
         this.supplier = new ArrayList();

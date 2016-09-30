@@ -6,13 +6,13 @@
 
 /**
  *
- * @author Robbie
+ * @author Se7en
  */
 public class Blend extends javax.swing.JFrame {
 
     String batch;
     String[] data;
-    Engine e;
+    Eddi e;
     /**
      * Creates new form Blend
      */
@@ -20,7 +20,7 @@ public class Blend extends javax.swing.JFrame {
         initComponents();
     }
 
-    Blend(Engine e, String[] data) {
+    Blend(Eddi e, String[] data) {
         this.e = e;
         this.data = data;
         this.batch = this.data[0];
