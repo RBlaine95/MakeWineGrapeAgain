@@ -10,8 +10,9 @@
  */
 public class Chemicals extends javax.swing.JFrame {
 
-    String batch;
+    String[] data;
     Engine e;
+    String batch;
 
     /**
      * Creates new form Chemicals
@@ -20,10 +21,11 @@ public class Chemicals extends javax.swing.JFrame {
         initComponents();
     }
 
-    Chemicals(String batch, Engine e) {
+    Chemicals(Engine e, String[] data) {
         this.e = e;
-        this.batch = batch;
-        this.runSelected();
+        this.batch = data[0];
+        this.data = data;
+        this.selectedTxt.setText(batch);
     }
 
     /**
@@ -37,12 +39,20 @@ public class Chemicals extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         selectedTxt = new javax.swing.JTextField();
+        backBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel1.setText("Selected:");
 
         selectedTxt.setEditable(false);
+
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -54,6 +64,9 @@ public class Chemicals extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(193, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(backBtn))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -62,11 +75,16 @@ public class Chemicals extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(349, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 317, Short.MAX_VALUE)
+                .addComponent(backBtn))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_backBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -104,11 +122,8 @@ public class Chemicals extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField selectedTxt;
     // End of variables declaration//GEN-END:variables
-    
-    private void runSelected() {
-        this.selectedTxt.setText(batch);
-    }
 }
