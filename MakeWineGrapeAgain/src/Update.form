@@ -31,7 +31,7 @@
                               <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
                               <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="batchTxt" min="-2" pref="112" max="-2" attributes="0"/>
+                              <Component id="selectedTxt" min="-2" pref="112" max="-2" attributes="0"/>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
@@ -65,7 +65,7 @@
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                  <Component id="batchTxt" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="selectedTxt" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
@@ -93,7 +93,7 @@
         <Property name="text" type="java.lang.String" value="Selected:"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="batchTxt">
+    <Component class="javax.swing.JTextField" name="selectedTxt">
       <Properties>
         <Property name="editable" type="boolean" value="false"/>
       </Properties>
