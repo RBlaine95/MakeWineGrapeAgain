@@ -59,6 +59,11 @@ public class Edit extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         blendBtn.setText("Create Blend");
+        blendBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                blendBtnActionPerformed(evt);
+            }
+        });
 
         updateBtn.setText("Update Batch");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -167,14 +172,19 @@ public class Edit extends javax.swing.JFrame {
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void chemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chemBtnActionPerformed
-        Chemicals chem = new Chemicals(this.batch, this.e);
+        Chemicals chem = new Chemicals(this.e, this.data);
         chem.setVisible(true);
     }//GEN-LAST:event_chemBtnActionPerformed
 
     private void subBatchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subBatchBtnActionPerformed
-        SubBatch sub = new SubBatch(this. batch, this.e);
+        SubBatch sub = new SubBatch(this.e, this.data);
         sub.setVisible(true);
     }//GEN-LAST:event_subBatchBtnActionPerformed
+
+    private void blendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blendBtnActionPerformed
+        Blend b = new Blend(this.e, this.data);
+        b.setVisible(true);
+    }//GEN-LAST:event_blendBtnActionPerformed
 
     /**
      * @param args the command line arguments
