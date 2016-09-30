@@ -67,15 +67,17 @@ public class Engine {
     }
 
     public void setcols() throws SQLException {
+        this.colour.add("All");
+        this.type.add("All");
         String sql = "SELECT DISTINCT colour FROM batch";
         rs = this.query(sql);
         while(rs.next()){
-            colour.add(rs.getNString(0));
+            colour.add(rs.getNString(1));
         }
         sql = "SELECT DISTINCT type FROM batch";
         rs = this.query(sql);
         while(rs.next()){
-            type.add(rs.getNString(0));
+            type.add(rs.getNString(1));
         }
     }
 
