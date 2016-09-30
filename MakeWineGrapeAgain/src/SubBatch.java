@@ -1,18 +1,28 @@
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Se7en
  */
 public class SubBatch extends javax.swing.JFrame {
 
-    String batch;
-    String[] data;
-    Eddi e;
+    private String batch;
+    private String[] data;
+    private Eddi e;
+    private int subMass;
+    private String un;
+    private String stage;
+    private String sql;
+
     /**
      * Creates new form SubBatch
      */
@@ -20,11 +30,14 @@ public class SubBatch extends javax.swing.JFrame {
         initComponents();
     }
 
-     SubBatch(Eddi e, String[] data) {
+    public SubBatch(Eddi e, String[] data) {
+        initComponents();
         this.data = data;
         this.e = e;
         this.batch = this.data[0];
         this.selectedTxt.setText(batch);
+        this.subMassSlide.getModel().setMaximum(Integer.parseInt(this.data[4]));
+        subMassSlide.getValue();
     }
 
     /**
@@ -39,6 +52,13 @@ public class SubBatch extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         selectedTxt = new javax.swing.JTextField();
         backBtn = new javax.swing.JButton();
+        subMassSlide = new javax.swing.JSlider();
+        jLabel2 = new javax.swing.JLabel();
+        okBtn = new javax.swing.JButton();
+        massTxt = new javax.swing.JTextField();
+        unit = new javax.swing.JComboBox<>();
+        jLabel3 = new javax.swing.JLabel();
+        stageList = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,19 +73,76 @@ public class SubBatch extends javax.swing.JFrame {
             }
         });
 
+        subMassSlide.setValue(0);
+        subMassSlide.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                subMassSlideStateChanged(evt);
+            }
+        });
+
+        jLabel2.setText("Mass of Sub Batch");
+
+        okBtn.setText("OK");
+        okBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okBtnActionPerformed(evt);
+            }
+        });
+
+        massTxt.setText("0");
+        massTxt.setToolTipText("Sub Batch Mass");
+        massTxt.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                massTxtFocusLost(evt);
+            }
+        });
+        massTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                massTxtActionPerformed(evt);
+            }
+        });
+
+        unit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "G", "Kg", "T" }));
+
+        jLabel3.setText("Stage");
+
+        stageList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(110, 110, 110)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(134, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(110, 110, 110)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(backBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(okBtn))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel2)
+                        .addGap(12, 12, 12)
+                        .addComponent(subMassSlide, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)))
+                .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(backBtn))
+                .addComponent(massTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(unit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(79, 79, 79))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addGap(18, 18, 18)
+                .addComponent(stageList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -74,8 +151,23 @@ public class SubBatch extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
-                .addComponent(backBtn))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(subMassSlide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(massTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(unit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(stageList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backBtn)
+                    .addComponent(okBtn))
+                .addContainerGap())
         );
 
         pack();
@@ -84,6 +176,58 @@ public class SubBatch extends javax.swing.JFrame {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
+        subMass = Integer.parseInt(massTxt.getText());
+        stage = stageList.getSelectedItem() + "";
+        String subID = batch + "SB";
+
+        ResultSet rs;
+
+        try {
+            rs = e.query("SELECT COUNT (batchid) FROM batch WHERE batchid LIKE '" + batch + "SB%'");
+            rs.next();
+            int count = rs.getInt(1);
+
+            subID += (count + 1) + "";
+
+            sql = "INSERT INTO batch VALUES (" + subID + ", " + this.data[1] + ", " + this.data[2] + ", " + e.stageGetNo(stage)
+                    + ", " + subMass + ", " + this.data[5] + ", " + this.data[6] + ")"; //prep sub batch sql
+
+            e.update(sql); //insert new sub batch
+
+            //update main batch's mass
+            rs = e.query("SELECT mass FROM batch WHERE batchid = '" + batch + "'"); //get mass of batch
+            rs.next();
+            double massT = Double.parseDouble(rs.getString(1));
+            
+            //convert mass in ton to mass in kg
+            double massK = massT*1000;
+            //calculate new mass in Kg
+            massK = massK - subMass;
+            
+            //convert back to mass in ton
+            massT = massK/1000;
+            
+            sql = "UPDATE batch SET mass = " + massT + " WHERE batchid = " + batch;
+            e.update(sql); //update main batch
+
+        } catch (SQLException ex) {
+            Logger.getLogger(SubBatch.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_okBtnActionPerformed
+
+    private void subMassSlideStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_subMassSlideStateChanged
+        massTxt.setText(subMassSlide.getValue() + "");
+    }//GEN-LAST:event_subMassSlideStateChanged
+
+    private void massTxtFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_massTxtFocusLost
+        subMassSlide.setValue(Integer.parseInt(massTxt.getText()));
+    }//GEN-LAST:event_massTxtFocusLost
+
+    private void massTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_massTxtActionPerformed
+        subMassSlide.setValue(Integer.parseInt(massTxt.getText()));
+    }//GEN-LAST:event_massTxtActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,6 +267,13 @@ public class SubBatch extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JTextField massTxt;
+    private javax.swing.JButton okBtn;
     private javax.swing.JTextField selectedTxt;
+    private javax.swing.JComboBox<String> stageList;
+    private javax.swing.JSlider subMassSlide;
+    private javax.swing.JComboBox<String> unit;
     // End of variables declaration//GEN-END:variables
 }
