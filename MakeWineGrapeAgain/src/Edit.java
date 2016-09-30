@@ -40,7 +40,7 @@ Engine e;
         chemBtn = new javax.swing.JButton();
         subBatchBtn = new javax.swing.JButton();
         adminBtn = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,8 +58,18 @@ Engine e;
         selectedTxt.setEditable(false);
 
         chemBtn.setText("Add Chemicals");
+        chemBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chemBtnActionPerformed(evt);
+            }
+        });
 
         subBatchBtn.setText("Create Sub-Batch");
+        subBatchBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                subBatchBtnActionPerformed(evt);
+            }
+        });
 
         adminBtn.setText("Administrative Tools");
         adminBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -68,10 +78,10 @@ Engine e;
             }
         });
 
-        jButton3.setText("Back");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                backBtnActionPerformed(evt);
             }
         });
 
@@ -89,7 +99,7 @@ Engine e;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton3))
+                        .addComponent(backBtn))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -121,16 +131,16 @@ Engine e;
                 .addGap(18, 18, 18)
                 .addComponent(adminBtn)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-                .addComponent(jButton3)
+                .addComponent(backBtn)
                 .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_backBtnActionPerformed
 
     private void adminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtnActionPerformed
         Admin a = new Admin(batch, e);
@@ -139,8 +149,18 @@ Engine e;
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         Update u = new Update(this.batch, this.e);
-        
+        u.setVisible(true);
     }//GEN-LAST:event_updateBtnActionPerformed
+
+    private void chemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chemBtnActionPerformed
+        Chemicals chem = new Chemicals(this.batch, this.e);
+        chem.setVisible(true);
+    }//GEN-LAST:event_chemBtnActionPerformed
+
+    private void subBatchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subBatchBtnActionPerformed
+        SubBatch sub = new SubBatch(this. batch, this.e);
+        sub.setVisible(true);
+    }//GEN-LAST:event_subBatchBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,9 +199,9 @@ Engine e;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton adminBtn;
+    private javax.swing.JButton backBtn;
     private javax.swing.JButton blendBtn;
     private javax.swing.JButton chemBtn;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField selectedTxt;
     private javax.swing.JButton subBatchBtn;
