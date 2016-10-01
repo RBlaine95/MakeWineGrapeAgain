@@ -39,8 +39,13 @@ public class SearchBatch extends javax.swing.JFrame {
         this.e = e;
         initComponents();
 
-        this.colourBox.setModel(new DefaultComboBoxModel(e.getColour().toArray()));
-        this.typeBox.setModel(new DefaultComboBoxModel(e.getType().toArray()));
+        try {
+            this.colourBox.setModel(new DefaultComboBoxModel(e.getColour().toArray()));
+            this.typeBox.setModel(new DefaultComboBoxModel(e.getType().toArray()));
+        } catch (SQLException ex) {
+            Logger.getLogger(SearchBatch.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         this.colourBox.addItem("All");
         this.typeBox.addItem("All");
 

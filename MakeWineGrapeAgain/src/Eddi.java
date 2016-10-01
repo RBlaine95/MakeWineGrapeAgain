@@ -70,6 +70,9 @@ public class Eddi {
     }
 
     public void setcols() throws SQLException {
+        this.colour = new ArrayList();
+        this.type = new ArrayList();
+        this.supplier = new ArrayList();
         String sql = "SELECT DISTINCT colour FROM batch";
         rs = this.query(sql);
         while (rs.next()) {
@@ -87,7 +90,8 @@ public class Eddi {
         }
     }
 
-    public ArrayList<String> getSupplier() {
+    public ArrayList<String> getSupplier() throws SQLException {
+        this.setcols();
         return supplier;
     }
 
@@ -95,7 +99,8 @@ public class Eddi {
         this.supplier = supplier;
     }
 
-    public ArrayList<String> getColour() {
+    public ArrayList<String> getColour() throws SQLException {
+        this.setcols();
         return colour;
     }
 
@@ -103,7 +108,8 @@ public class Eddi {
         this.colour = colour;
     }
 
-    public ArrayList<String> getType() {
+    public ArrayList<String> getType() throws SQLException {
+        this.setcols();
         return type;
     }
 
@@ -137,6 +143,7 @@ public class Eddi {
         }
         return s;
     }
+
     public String stageGetNo(String s) {
         switch (s) {
             case "Fermentation":

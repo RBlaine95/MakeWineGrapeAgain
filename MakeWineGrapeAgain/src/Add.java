@@ -32,12 +32,11 @@ public class Add extends javax.swing.JFrame {
         initComponents();
         this.k = k;
         this.e = e;
-        this.colourBox.setModel(new DefaultComboBoxModel(e.getColour().toArray()));
-        this.typeBox.setModel(new DefaultComboBoxModel(e.getType().toArray()));
-        this.supplierBox.setModel(new DefaultComboBoxModel(e.getSupplier().toArray()));
-        this.colourBox.addItem("Override");
-        this.typeBox.addItem("Override");
-        this.supplierBox.addItem("New Supplier...");
+        try {
+            this.refresh();
+        } catch (SQLException ex) {
+            Logger.getLogger(Add.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -282,12 +281,11 @@ public class Add extends javax.swing.JFrame {
 
     private void supplierBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierBoxActionPerformed
         if (this.supplierBox.getSelectedItem() == "New Supplier...") {
-            if (as == null) {
-                as = new AddSupplier(e, k);
+            
+                as = new AddSupplier(e, k, this);
                 as.setVisible(true);
-            } else {
-                as.requestFocus();
-            }
+                this.dispose();
+            
         }
     }//GEN-LAST:event_supplierBoxActionPerformed
 
@@ -324,6 +322,7 @@ public class Add extends javax.swing.JFrame {
 
             sql = "INSERT INTO batch (batchid, colour, type, stage, mass, supplierid) VALUES('" + batch + "', '" + colour + "', '" + type + "', '" + stage + "', '" + mass + "', '" + supplier + "')";
             e.update(sql);
+            k.createChem(batch);
         } catch (SQLException ex) {
             Logger.getLogger(Add.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -413,5 +412,15 @@ public void check() {
         } else {
             this.okBtn.setEnabled(false);
         }
+    }
+
+    public void refresh() throws SQLException {
+        
+        this.colourBox.setModel(new DefaultComboBoxModel(e.getColour().toArray()));
+        this.typeBox.setModel(new DefaultComboBoxModel(e.getType().toArray()));
+        this.supplierBox.setModel(new DefaultComboBoxModel(e.getSupplier().toArray()));
+        this.colourBox.addItem("Override");
+        this.typeBox.addItem("Override");
+        this.supplierBox.addItem("New Supplier...");
     }
 }

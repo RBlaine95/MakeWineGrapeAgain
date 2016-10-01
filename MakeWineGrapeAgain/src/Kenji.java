@@ -36,8 +36,9 @@ public class Kenji {
     }
 
     public void createChem(String s) {
-        String sql = "CREATE TABLE '" + s + "'(chemical varchar(100), amount varchar(15), value varchar(20))";
+        String sql = "CREATE TABLE " + s + " (chemical varchar(100), amount varchar(15), value varchar(20))";
         this.update(sql);
+        
     }
     /*SELECT * FROM INFORMATION_SCHEMA.TABLES ----- FOR SEARCHING LATER
 WHERE TABLE_NAME LIKE '%%'*/
@@ -51,6 +52,7 @@ WHERE TABLE_NAME LIKE '%%'*/
         boolean delete;
         try {
             s = conn.createStatement();
+            
             s.executeUpdate(sql);
             delete = true;
             return delete;
@@ -60,4 +62,5 @@ WHERE TABLE_NAME LIKE '%%'*/
         }
 
     }
+    
 }

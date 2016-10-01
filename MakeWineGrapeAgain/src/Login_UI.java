@@ -81,6 +81,7 @@ Kenji k = new Kenji();
             try {
                 
                 e.connect();
+                k.connect();
                 main m = new main(e, k);
                 this.dispose();
                 m.setVisible(true);
