@@ -11,8 +11,7 @@ import javax.swing.JOptionPane;
  * @author Se7en
  */
 public class Login_UI extends javax.swing.JFrame {
-Eddi e = new Eddi();
-Kenji k = new Kenji();
+Pinwheel e = new Pinwheel();
     /**
      * Creates new form PracticeGUI
      */
@@ -80,9 +79,9 @@ Kenji k = new Kenji();
         if(password.equals(ps)){
             try {
                 
-                e.connect();
-                k.connect();
-                main m = new main(e, k);
+                e.connectCCDB();
+                e.connectChem();
+                main m = new main(e);
                 this.dispose();
                 m.setVisible(true);
             } catch (Exception e) {

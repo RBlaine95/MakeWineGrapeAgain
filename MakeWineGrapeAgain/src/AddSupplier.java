@@ -16,8 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class AddSupplier extends javax.swing.JFrame {
 
-    Eddi e;
-    Kenji k;
+    Pinwheel e;
     Add a;
 
     /**
@@ -27,7 +26,7 @@ public class AddSupplier extends javax.swing.JFrame {
         initComponents();
     }
 
-    AddSupplier(Eddi e, Kenji k, Add a) {
+    AddSupplier(Pinwheel e, Add a) {
         initComponents();
         this.a = a;
         this.e = e;
@@ -186,8 +185,8 @@ public class AddSupplier extends javax.swing.JFrame {
             String sql = "INSERT INTO supplier (sname, tel, email, liason) VALUES('" + this.nameTxt.getText() + "', '" + this.contactTxt.getText()
                     + "', '" + this.emailTxt.getText() + "', '" + this.liasonTxt.getText() + "')";
             System.out.println(sql);
-            e.update(sql);
-            Add ad = new Add(e, k);
+            e.updateCCDB(sql);
+            Add ad = new Add(e);
             ad.setVisible(true);
             this.dispose();
         }

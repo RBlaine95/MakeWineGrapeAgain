@@ -10,8 +10,7 @@
  */
 public class AdminMenu extends javax.swing.JFrame {
 
-    Eddi e;
-    Kenji k;
+    Pinwheel e;
 
     /**
      * Creates new form AdminMenu
@@ -20,10 +19,9 @@ public class AdminMenu extends javax.swing.JFrame {
         initComponents();
     }
 
-    public AdminMenu(Eddi e, Kenji k) {
+    public AdminMenu(Pinwheel e) {
         initComponents();
         this.e = e;
-        this.k = k;
     }
 
     /**
@@ -129,7 +127,7 @@ public class AdminMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void editBatchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBatchBtnActionPerformed
-        SearchBatch s = new SearchBatch(e, k, "batch", "admindit");
+        SearchBatch s = new SearchBatch(e, "batch", "admindit");
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_editBatchBtnActionPerformed
@@ -147,13 +145,13 @@ public class AdminMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_delSuppBtnActionPerformed
 
     private void editChemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editChemBtnActionPerformed
-        SearchBatch s = new SearchBatch(e, k, "chem", "adminedit");
+        SearchBatch s = new SearchBatch(e, "chem", "adminedit");
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_editChemBtnActionPerformed
 
     private void editSuppBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editSuppBtnActionPerformed
-        SearchBatch s = new SearchBatch(e, k, "supplier", "adminedit");
+        SearchBatch s = new SearchBatch(e, "supplier", "adminedit");
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_editSuppBtnActionPerformed

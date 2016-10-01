@@ -16,8 +16,7 @@ import java.util.logging.Logger;
 public class Edit extends javax.swing.JFrame {
 
     String batch;
-    Eddi e;
-    Kenji k;
+    Pinwheel e;
     String[] data = new String[7];
 
     /**
@@ -27,9 +26,8 @@ public class Edit extends javax.swing.JFrame {
         initComponents();
     }
 
-    public Edit(String s, Eddi e, Kenji k) {
+    public Edit(String s, Pinwheel e) {
         initComponents();
-        this.k = k;
         this.batch = s;
         this.e = e;
         this.selectedTxt.setText(batch);
@@ -153,22 +151,22 @@ public class Edit extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        Update u = new Update(this.e, data, k);
+        Update u = new Update(this.e, data);
         u.setVisible(true);
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void chemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chemBtnActionPerformed
-        Chemicals chem = new Chemicals(this.e, this.data, k);
+        Chemicals chem = new Chemicals(this.e, this.data);
         chem.setVisible(true);
     }//GEN-LAST:event_chemBtnActionPerformed
 
     private void subBatchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subBatchBtnActionPerformed
-        SubBatch sub = new SubBatch(this.e, this.data, k);
+        SubBatch sub = new SubBatch(this.e, this.data);
         sub.setVisible(true);
     }//GEN-LAST:event_subBatchBtnActionPerformed
 
     private void blendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blendBtnActionPerformed
-        Blend b = new Blend(this.e, this.data, k);
+        Blend b = new Blend(this.e, this.data);
         b.setVisible(true);
     }//GEN-LAST:event_blendBtnActionPerformed
 
@@ -218,7 +216,7 @@ public class Edit extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 private void load() throws SQLException {
         String sql = "SELECT batchid, colour, type, stage, mass, supplierid FROM batch WHERE batchid = '" + this.batch + "'";
-        ResultSet rs = e.query(sql);
+        ResultSet rs = e.queryCCDB(sql);
         rs.next();
         for (int i = 0; i < 6; i++) {
             data[i] = (rs.getNString(i + 1));

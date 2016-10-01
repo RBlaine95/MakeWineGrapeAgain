@@ -20,8 +20,7 @@ public class SearchBatch extends javax.swing.JFrame {
     /**
      * Creates new form SearchBatch
      */
-    Kenji k;
-    Eddi e;
+    Pinwheel e;
     String batchid;
     String colour;
     String type;
@@ -38,10 +37,9 @@ public class SearchBatch extends javax.swing.JFrame {
         initComponents();
     }
 
-    public SearchBatch(Eddi e, Kenji k, String s, String b) {
+    public SearchBatch(Pinwheel e, String s, String b) {
         this.bounce = b;
         typeofsearch = s;
-        this.k = k;
         this.e = e;
         initComponents();
         try {
@@ -96,7 +94,6 @@ public class SearchBatch extends javax.swing.JFrame {
         }
         this.colourBox.addItem("All");
         this.typeBox.addItem("All");
-
     }
 
     /**
@@ -303,7 +300,7 @@ public class SearchBatch extends javax.swing.JFrame {
         
         switch (bounce) {
             case "mainsearch":
-                Edit ed = new Edit(batch, e, k);
+                Edit ed = new Edit(batch, e);
                 ed.setVisible(true);
                 this.dispose();
                 break;
@@ -376,7 +373,7 @@ public class SearchBatch extends javax.swing.JFrame {
                     sql += " stage = '" + this.stage + "'";
                 }
                 try {
-                    rs = e.query(sql);
+                    rs = e.queryCCDB(sql);
                     int count = 0;
                     while (rs.next()) {
 
@@ -398,7 +395,7 @@ public class SearchBatch extends javax.swing.JFrame {
                     sql += "WHERE sname = '" + this.batchid + "'";
                 }
                 try {
-                    rs = e.query(sql);
+                    rs = e.queryCCDB(sql);
                     int count = 0;
                     while (rs.next()) {
 
