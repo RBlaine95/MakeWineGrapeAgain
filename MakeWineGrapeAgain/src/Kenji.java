@@ -36,11 +36,13 @@ public class Kenji {
     }
 
     public void createChem(String s) {
-        String sql = "CREATE TABLE '" + s + "'(chemical varchar(100), amount varchar(15), value varchar(20))";
+        String sql = "CREATE TABLE " + s + " (chemical varchar(100), amount varchar(15), value varchar(20))";
         this.update(sql);
+
     }
     /*SELECT * FROM INFORMATION_SCHEMA.TABLES ----- FOR SEARCHING LATER
-WHERE TABLE_NAME LIKE '%%'*/
+     WHERE TABLE_NAME LIKE '%%'*/
+
     public ResultSet query(String sql) throws SQLException {
         s = conn.createStatement();
         rs = s.executeQuery(sql);
@@ -51,6 +53,7 @@ WHERE TABLE_NAME LIKE '%%'*/
         boolean delete;
         try {
             s = conn.createStatement();
+
             s.executeUpdate(sql);
             delete = true;
             return delete;
@@ -59,5 +62,16 @@ WHERE TABLE_NAME LIKE '%%'*/
             return delete;
         }
 
+    }
+
+    public String[] getChemData(String chem) throws SQLException {
+        String[] data = new String[6];
+        String sql = "SELECT * FROM chemicaltbl WHERE chemical = '" + chem + "'";
+        rs = this.query(sql);
+        rs.next();
+        for (int i = 0; i < data.length; i++) {
+            data[i] = rs.getNString(i + 1);
+        }
+        return data;
     }
 }

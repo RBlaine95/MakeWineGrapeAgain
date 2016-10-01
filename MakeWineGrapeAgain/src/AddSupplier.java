@@ -1,5 +1,8 @@
 
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
@@ -15,6 +18,8 @@ public class AddSupplier extends javax.swing.JFrame {
 
     Eddi e;
     Kenji k;
+    Add a;
+
     /**
      * Creates new form AddSupplier
      */
@@ -22,8 +27,9 @@ public class AddSupplier extends javax.swing.JFrame {
         initComponents();
     }
 
-    AddSupplier(Eddi e, Kenji k) {
+    AddSupplier(Eddi e, Kenji k, Add a) {
         initComponents();
+        this.a = a;
         this.e = e;
     }
 
@@ -168,15 +174,22 @@ public class AddSupplier extends javax.swing.JFrame {
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
 
-        ArrayList arr = e.getSupplier();
+        ArrayList arr = null;
+        try {
+            arr = e.getSupplier();
+        } catch (SQLException ex) {
+            Logger.getLogger(AddSupplier.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (arr.contains(this.nameTxt.getText())) {
             JOptionPane.showMessageDialog(null, "Supplier Already Exists");
         } else {
-            String sql = "INSERT INTO supplier (sname, tel, email, liason) VALUES('" + this.nameTxt.getText() + "', '" + this.contactTxt.getText() + 
-                    "', '" + this.emailTxt.getText() + "', '" + this.liasonTxt.getText() + "')";
+            String sql = "INSERT INTO supplier (sname, tel, email, liason) VALUES('" + this.nameTxt.getText() + "', '" + this.contactTxt.getText()
+                    + "', '" + this.emailTxt.getText() + "', '" + this.liasonTxt.getText() + "')";
             System.out.println(sql);
             e.update(sql);
-            System.out.println("Created");
+            Add ad = new Add(e, k);
+            ad.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_okBtnActionPerformed
 
@@ -247,8 +260,7 @@ public class AddSupplier extends javax.swing.JFrame {
 public void check() {
         if (!this.nameTxt.getText().equals("") && !this.contactTxt.getText().equals("") && !this.emailTxt.getText().equals("") && !this.liasonTxt.getText().equals("")) {
             this.okBtn.setEnabled(true);
-        }
-        else{
+        } else {
             this.okBtn.setEnabled(false);
         }
     }

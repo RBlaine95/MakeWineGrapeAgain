@@ -11,7 +11,7 @@
 public class Prompt extends javax.swing.JFrame {
 
     String batch;
-    Admin a;
+    AdminEditBatch a;
     /**
      * Creates new form Promt
      */
@@ -19,7 +19,7 @@ public class Prompt extends javax.swing.JFrame {
         initComponents();
     }
 
-    public Prompt(String s, Admin a) {
+    public Prompt(String s, AdminEditBatch a) {
         initComponents();
         this.batch = s;
         this.a = a;
