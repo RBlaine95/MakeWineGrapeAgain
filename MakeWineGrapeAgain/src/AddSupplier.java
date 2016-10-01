@@ -14,7 +14,7 @@ import javax.swing.JOptionPane;
 public class AddSupplier extends javax.swing.JFrame {
 
     Eddi e;
-
+    Kenji k;
     /**
      * Creates new form AddSupplier
      */
@@ -22,7 +22,7 @@ public class AddSupplier extends javax.swing.JFrame {
         initComponents();
     }
 
-    AddSupplier(Eddi e) {
+    AddSupplier(Eddi e, Kenji k) {
         initComponents();
         this.e = e;
     }

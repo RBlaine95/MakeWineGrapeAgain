@@ -12,6 +12,7 @@ import javax.swing.JOptionPane;
  */
 public class Login_UI extends javax.swing.JFrame {
 Eddi e = new Eddi();
+Kenji k = new Kenji();
     /**
      * Creates new form PracticeGUI
      */
@@ -80,7 +81,7 @@ Eddi e = new Eddi();
             try {
                 
                 e.connect();
-                main m = new main(e);
+                main m = new main(e, k);
                 this.dispose();
                 m.setVisible(true);
             } catch (Exception e) {

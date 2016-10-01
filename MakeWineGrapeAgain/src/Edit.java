@@ -17,6 +17,7 @@ public class Edit extends javax.swing.JFrame {
 
     String batch;
     Eddi e;
+    Kenji k;
     String[] data = new String[7];
 
     /**
@@ -26,8 +27,9 @@ public class Edit extends javax.swing.JFrame {
         initComponents();
     }
 
-    public Edit(String s, Eddi e) {
+    public Edit(String s, Eddi e, Kenji k) {
         initComponents();
+        this.k = k;
         this.batch = s;
         this.e = e;
         this.selectedTxt.setText(batch);
@@ -162,27 +164,27 @@ public class Edit extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void adminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtnActionPerformed
-        Admin a = new Admin(this.e, data);
+        Admin a = new Admin(this.e, data, k);
         a.setVisible(true);
     }//GEN-LAST:event_adminBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        Update u = new Update(this.e, data);
+        Update u = new Update(this.e, data, k);
         u.setVisible(true);
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void chemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chemBtnActionPerformed
-        Chemicals chem = new Chemicals(this.e, this.data);
+        Chemicals chem = new Chemicals(this.e, this.data, k);
         chem.setVisible(true);
     }//GEN-LAST:event_chemBtnActionPerformed
 
     private void subBatchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subBatchBtnActionPerformed
-        SubBatch sub = new SubBatch(this.e, this.data);
+        SubBatch sub = new SubBatch(this.e, this.data, k);
         sub.setVisible(true);
     }//GEN-LAST:event_subBatchBtnActionPerformed
 
     private void blendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blendBtnActionPerformed
-        Blend b = new Blend(this.e, this.data);
+        Blend b = new Blend(this.e, this.data, k);
         b.setVisible(true);
     }//GEN-LAST:event_blendBtnActionPerformed
 

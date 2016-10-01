@@ -11,6 +11,7 @@
 public class main extends javax.swing.JFrame {
 
     Eddi e;
+    Kenji k;
 
     /**
      * Creates new form main
@@ -19,7 +20,8 @@ public class main extends javax.swing.JFrame {
         initComponents();
     }
 
-    public main(Eddi e) {
+    public main(Eddi e, Kenji k) {
+        this.k = k;
         this.e = e;
         initComponents();
     }
@@ -142,12 +144,12 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        SearchBatch sb = new SearchBatch(e);
+        SearchBatch sb = new SearchBatch(e, k);
         sb.setVisible(true);
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        Add a = new Add(e);
+        Add a = new Add(e, k);
         a.setVisible(true);
     }//GEN-LAST:event_addBtnActionPerformed
 

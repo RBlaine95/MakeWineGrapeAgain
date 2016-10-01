@@ -14,6 +14,7 @@ import javax.swing.JOptionPane;
 public class Admin extends javax.swing.JFrame {
 
     String batch;
+    Kenji k;
     Eddi e;
     boolean checked = false;
     String colour, type, stage, supplierid, mass, chem;
@@ -25,7 +26,7 @@ public class Admin extends javax.swing.JFrame {
         initComponents();
     }
 
-    public Admin(Eddi e, String [] d) {
+    public Admin(Eddi e, String [] d, Kenji k) {
         initComponents();
         this.data = d;
         this.batch = data[0];
