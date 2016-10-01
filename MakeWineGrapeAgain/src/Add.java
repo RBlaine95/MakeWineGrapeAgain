@@ -17,8 +17,7 @@ import javax.swing.DefaultComboBoxModel;
 public class Add extends javax.swing.JFrame {
 
     boolean colourOverride, colourbool, typeOverride, typebool;
-    Eddi e;
-    Kenji k;
+    Pinwheel e;
     AddSupplier as = null;
 
     /**
@@ -28,9 +27,8 @@ public class Add extends javax.swing.JFrame {
         initComponents();
     }
 
-    public Add(Eddi e, Kenji k) {
+    public Add(Pinwheel e) {
         initComponents();
-        this.k = k;
         this.e = e;
         try {
             this.refresh();
@@ -282,7 +280,7 @@ public class Add extends javax.swing.JFrame {
     private void supplierBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierBoxActionPerformed
         if (this.supplierBox.getSelectedItem() == "New Supplier...") {
             
-                as = new AddSupplier(e, k, this);
+                as = new AddSupplier(e, this);
                 as.setVisible(true);
                 this.dispose();
             
@@ -314,15 +312,15 @@ public class Add extends javax.swing.JFrame {
         String sql = "SELECT COUNT(*) FROM batch";
         ResultSet rs;
         try {
-            rs = e.query(sql);
+            rs = e.queryCCDB(sql);
             rs.next();
             int id = rs.getInt(1);
             batch = "" + code + year.substring(2) + type.substring(0, 3).toUpperCase() + (id + 1);
             System.out.println(batch);
 
             sql = "INSERT INTO batch (batchid, colour, type, stage, mass, supplierid) VALUES('" + batch + "', '" + colour + "', '" + type + "', '" + stage + "', '" + mass + "', '" + supplier + "')";
-            e.update(sql);
-            k.createChem(batch);
+            e.updateCCDB(sql);
+            e.createChem(batch);
         } catch (SQLException ex) {
             Logger.getLogger(Add.class.getName()).log(Level.SEVERE, null, ex);
         }

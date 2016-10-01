@@ -11,8 +11,8 @@
 public class Chemicals extends javax.swing.JFrame {
 
     String[] data;
-    Eddi e;
-    Kenji k;
+    Pinwheel e;
+
     String batch;
 
     /**
@@ -22,7 +22,7 @@ public class Chemicals extends javax.swing.JFrame {
         initComponents();
     }
 
-    Chemicals(Eddi e, String[] data, Kenji k) {
+    Chemicals(Pinwheel e, String[] data) {
         this.e = e;
         this.batch = data[0];
         this.data = data;

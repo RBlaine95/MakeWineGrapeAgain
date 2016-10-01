@@ -14,8 +14,7 @@ import javax.swing.JOptionPane;
 public class AdminEditBatch extends javax.swing.JFrame {
 
     String batch;
-    Kenji k;
-    Eddi e;
+    Pinwheel e;
     boolean checked = false;
     String colour, type, stage, supplierid, mass, chem;
     String [] data;
@@ -26,7 +25,7 @@ public class AdminEditBatch extends javax.swing.JFrame {
         initComponents();
     }
 
-    public AdminEditBatch(Eddi e, String [] d, Kenji k) {
+    public AdminEditBatch(Pinwheel e, String [] d) {
         initComponents();
         this.data = d;
         this.batch = data[0];
@@ -267,7 +266,7 @@ public class AdminEditBatch extends javax.swing.JFrame {
         String sql = "UPDATE batch SET batchid = '" + this.batchTxt.getText() + "', colour = '" + this.colourTxt.getText() + "', type = '" + this.typeTxt.getText()
                 + "', stage = '" + this.stageTxt.getText() + "', mass = '" + this.massTxt.getText()
                 + "', supplierid = '" + this.supplierIDTxt.getText() + "', chemical = '" + this.chemTxt.getText() + "' WHERE batchid = '" + this.batch + "'";
-        e.update(sql);
+        e.updateCCDB(sql);
         JOptionPane.showMessageDialog(null, "Record Updated");
     }
 

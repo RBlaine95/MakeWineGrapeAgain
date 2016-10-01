@@ -15,7 +15,7 @@ import java.util.ArrayList;
  *
  * @author Se7en
  */
-public class Eddi {
+public class Pinwheel {
 
     ArrayList<String> colour;
     ArrayList<String> type;
@@ -23,14 +23,74 @@ public class Eddi {
     Statement s;
     Connection conn;
     ResultSet rs;
+    Statement sChem;
+    Connection connChem;
+    ResultSet rsChem;
 
-    public Eddi() {
+    public Pinwheel() {
         this.colour = new ArrayList();
         this.type = new ArrayList();
         this.supplier = new ArrayList();
     }
 
-    public void connect() {
+    
+
+    public void connectChem() {
+        try {
+
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+            System.out.println("Driver loaded");
+
+            String url = "jdbc:ucanaccess://chemdb.accdb";
+            connChem = DriverManager.getConnection(url);
+            System.out.println("Database Connected");
+
+        } catch (Exception ex) {
+            System.out.println("Error");
+        }
+    }
+
+    public void createChem(String s) {
+        String sql = "CREATE TABLE " + s + " (chemical varchar(100), amount varchar(15), value varchar(20))";
+        this.updateChem(sql);
+
+    }
+    /*SELECT * FROM INFORMATION_SCHEMA.TABLES ----- FOR SEARCHING LATER
+     WHERE TABLE_NAME LIKE '%%'*/
+
+    public ResultSet queryChem(String sql) throws SQLException {
+        sChem = connChem.createStatement();
+        rsChem = sChem.executeQuery(sql);
+        return rsChem;
+    }
+
+    public boolean updateChem(String sql) {
+        boolean delete;
+        try {
+            sChem = connChem.createStatement();
+
+            sChem.executeUpdate(sql);
+            delete = true;
+            return delete;
+        } catch (SQLException ex) {
+            delete = false;
+            return delete;
+        }
+
+    }
+
+    public String[] getChemData(String chem) throws SQLException {
+        String[] data = new String[6];
+        String sql = "SELECT * FROM chemicaltbl WHERE chemical = '" + chem + "'";
+        rsChem = this.queryChem(sql);
+        rsChem.next();
+        for (int i = 0; i < data.length; i++) {
+            data[i] = rsChem.getNString(i + 1);
+        }
+        return data;
+    }
+
+    public void connectCCDB() {
         try {
 
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -49,13 +109,13 @@ public class Eddi {
 
     }
 
-    public ResultSet query(String sql) throws SQLException {
+    public ResultSet queryCCDB(String sql) throws SQLException {
         s = conn.createStatement();
         rs = s.executeQuery(sql);
         return rs;
     }
 
-    public boolean update(String sql) {
+    public boolean updateCCDB(String sql) {
         boolean delete;
         try {
             s = conn.createStatement();
@@ -74,17 +134,17 @@ public class Eddi {
         this.type = new ArrayList();
         this.supplier = new ArrayList();
         String sql = "SELECT DISTINCT colour FROM batch";
-        rs = this.query(sql);
+        rs = this.queryCCDB(sql);
         while (rs.next()) {
             colour.add(rs.getNString(1));
         }
         sql = "SELECT DISTINCT type FROM batch";
-        rs = this.query(sql);
+        rs = this.queryCCDB(sql);
         while (rs.next()) {
             type.add(rs.getNString(1));
         }
         sql = "SELECT DISTINCT sname FROM supplier";
-        rs = this.query(sql);
+        rs = this.queryCCDB(sql);
         while (rs.next()) {
             supplier.add(rs.getNString(1));
         }
@@ -172,24 +232,25 @@ public class Eddi {
     }
 
     public String[] getBatchData(String batch) throws SQLException {
-        String [] data = new String [6];
+        String[] data = new String[6];
         String sql = "SELECT * FROM batch WHERE batchid = '" + batch + "'";
-        rs = this.query(sql);
+        rs = this.queryCCDB(sql);
         rs.next();
         for (int i = 0; i < data.length; i++) {
-            data[i] = rs.getNString(i+1);
+            data[i] = rs.getNString(i + 1);
         }
         return data;
     }
+
     public String[] getSupplierData(String supplierid) throws SQLException {
-        String [] data = new String [4];
+        String[] data = new String[4];
         String sql = "SELECT * FROM supplier WHERE sname = '" + supplierid + "'";
-        rs = this.query(sql);
+        rs = this.queryCCDB(sql);
         rs.next();
         for (int i = 0; i < data.length; i++) {
-            data[i] = rs.getNString(i+1);
+            data[i] = rs.getNString(i + 1);
         }
         return data;
     }
-    
+
 }

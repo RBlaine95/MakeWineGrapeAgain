@@ -10,8 +10,8 @@
  */
 public class main extends javax.swing.JFrame {
 
-    Eddi e;
-    Kenji k;
+    Pinwheel e;
+
 
     /**
      * Creates new form main
@@ -20,8 +20,8 @@ public class main extends javax.swing.JFrame {
         initComponents();
     }
 
-    public main(Eddi e, Kenji k) {
-        this.k = k;
+    public main(Pinwheel e) {
+
         this.e = e;
         initComponents();
     }
@@ -152,17 +152,17 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        SearchBatch sb = new SearchBatch(e, k, "supplier", "mainsearch");
+        SearchBatch sb = new SearchBatch(e, "supplier", "mainsearch");
         sb.setVisible(true);
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        Add a = new Add(e, k);
+        Add a = new Add(e);
         a.setVisible(true);
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void adminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtnActionPerformed
-        AdminMenu am = new AdminMenu(e, k);
+        AdminMenu am = new AdminMenu(e);
         am.setVisible(true);
     }//GEN-LAST:event_adminBtnActionPerformed
 

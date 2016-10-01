@@ -17,8 +17,7 @@ public class SubBatch extends javax.swing.JFrame {
 
     private String batch;
     private String[] data;
-    private Eddi e;
-    private Kenji k;
+    private Pinwheel e;
     private int subMass;
     private String un;
     private String stage;
@@ -31,9 +30,8 @@ public class SubBatch extends javax.swing.JFrame {
         initComponents();
     }
 
-    public SubBatch(Eddi e, String[] data, Kenji k) {
+    public SubBatch(Pinwheel e, String[] data) {
         initComponents();
-        this.k = k;
         this.data = data;
         this.e = e;
         this.batch = this.data[0];
@@ -187,7 +185,7 @@ public class SubBatch extends javax.swing.JFrame {
         ResultSet rs;
 
         try {
-            rs = e.query("SELECT COUNT (batchid) FROM batch WHERE batchid LIKE '" + batch + "SB%'");
+            rs = e.queryCCDB("SELECT COUNT (batchid) FROM batch WHERE batchid LIKE '" + batch + "SB%'");
             rs.next();
             int count = rs.getInt(1);
 
@@ -196,10 +194,10 @@ public class SubBatch extends javax.swing.JFrame {
             sql = "INSERT INTO batch VALUES (" + subID + ", " + this.data[1] + ", " + this.data[2] + ", " + e.stageGetNo(stage)
                     + ", " + subMass + ", " + this.data[5] + ", " + this.data[6] + ")"; //prep sub batch sql
 
-            e.update(sql); //insert new sub batch
+            e.updateCCDB(sql); //insert new sub batch
 
             //update main batch's mass
-            rs = e.query("SELECT mass FROM batch WHERE batchid = '" + batch + "'"); //get mass of batch
+            rs = e.queryCCDB("SELECT mass FROM batch WHERE batchid = '" + batch + "'"); //get mass of batch
             rs.next();
             double massT = Double.parseDouble(rs.getString(1));
             
@@ -212,7 +210,7 @@ public class SubBatch extends javax.swing.JFrame {
             massT = massK/1000;
             
             sql = "UPDATE batch SET mass = " + massT + " WHERE batchid = " + batch;
-            e.update(sql); //update main batch
+            e.updateCCDB(sql); //update main batch
 
         } catch (SQLException ex) {
             Logger.getLogger(SubBatch.class.getName()).log(Level.SEVERE, null, ex);
