@@ -20,6 +20,7 @@ public class SearchBatch extends javax.swing.JFrame {
     /**
      * Creates new form SearchBatch
      */
+    Kenji k;
     Eddi e;
     String batchid;
     String colour;
@@ -33,7 +34,8 @@ public class SearchBatch extends javax.swing.JFrame {
         initComponents();
     }
 
-    public SearchBatch(Eddi e) {
+    public SearchBatch(Eddi e, Kenji k) {
+        this.k = k;
         this.e = e;
         initComponents();
 
@@ -234,7 +236,7 @@ public class SearchBatch extends javax.swing.JFrame {
 
     private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
         String batch = this.batchTbl.getValueAt(this.batchTbl.getSelectedRow(), 0) + "";
-        Edit ed = new Edit(batch, e);
+        Edit ed = new Edit(batch, e, k);
         ed.setVisible(true);
     }//GEN-LAST:event_selectBtnActionPerformed
 

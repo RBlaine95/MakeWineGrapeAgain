@@ -18,6 +18,7 @@ public class SubBatch extends javax.swing.JFrame {
     private String batch;
     private String[] data;
     private Eddi e;
+    private Kenji k;
     private int subMass;
     private String un;
     private String stage;
@@ -30,8 +31,9 @@ public class SubBatch extends javax.swing.JFrame {
         initComponents();
     }
 
-    public SubBatch(Eddi e, String[] data) {
+    public SubBatch(Eddi e, String[] data, Kenji k) {
         initComponents();
+        this.k = k;
         this.data = data;
         this.e = e;
         this.batch = this.data[0];

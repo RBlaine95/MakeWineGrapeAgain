@@ -13,6 +13,7 @@ public class Blend extends javax.swing.JFrame {
     String batch;
     String[] data;
     Eddi e;
+    Kenji k;
     /**
      * Creates new form Blend
      */
@@ -20,8 +21,9 @@ public class Blend extends javax.swing.JFrame {
         initComponents();
     }
 
-    Blend(Eddi e, String[] data) {
+    Blend(Eddi e, String[] data, Kenji k) {
         this.e = e;
+        this.k = k;
         this.data = data;
         this.batch = this.data[0];
         this.selectedTxt.setText(batch);

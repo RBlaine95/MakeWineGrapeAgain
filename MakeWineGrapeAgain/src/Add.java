@@ -18,6 +18,7 @@ public class Add extends javax.swing.JFrame {
 
     boolean colourOverride, colourbool, typeOverride, typebool;
     Eddi e;
+    Kenji k;
     AddSupplier as = null;
 
     /**
@@ -27,8 +28,9 @@ public class Add extends javax.swing.JFrame {
         initComponents();
     }
 
-    public Add(Eddi e) {
+    public Add(Eddi e, Kenji k) {
         initComponents();
+        this.k = k;
         this.e = e;
         this.colourBox.setModel(new DefaultComboBoxModel(e.getColour().toArray()));
         this.typeBox.setModel(new DefaultComboBoxModel(e.getType().toArray()));
@@ -281,7 +283,7 @@ public class Add extends javax.swing.JFrame {
     private void supplierBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierBoxActionPerformed
         if (this.supplierBox.getSelectedItem() == "New Supplier...") {
             if (as == null) {
-                as = new AddSupplier(e);
+                as = new AddSupplier(e, k);
                 as.setVisible(true);
             } else {
                 as.requestFocus();
@@ -317,7 +319,7 @@ public class Add extends javax.swing.JFrame {
             rs = e.query(sql);
             rs.next();
             int id = rs.getInt(1);
-            batch = "" + code + year.substring(2) + type.substring(0, 3).toUpperCase() + (id+1);
+            batch = "" + code + year.substring(2) + type.substring(0, 3).toUpperCase() + (id + 1);
             System.out.println(batch);
 
             sql = "INSERT INTO batch (batchid, colour, type, stage, mass, supplierid) VALUES('" + batch + "', '" + colour + "', '" + type + "', '" + stage + "', '" + mass + "', '" + supplier + "')";
