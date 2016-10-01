@@ -170,4 +170,26 @@ public class Eddi {
         }
         return s;
     }
+
+    public String[] getBatchData(String batch) throws SQLException {
+        String [] data = new String [6];
+        String sql = "SELECT * FROM batch WHERE batchid = '" + batch + "'";
+        rs = this.query(sql);
+        rs.next();
+        for (int i = 0; i < data.length; i++) {
+            data[i] = rs.getNString(i+1);
+        }
+        return data;
+    }
+    public String[] getSupplierData(String supplierid) throws SQLException {
+        String [] data = new String [4];
+        String sql = "SELECT * FROM supplier WHERE sname = '" + supplierid + "'";
+        rs = this.query(sql);
+        rs.next();
+        for (int i = 0; i < data.length; i++) {
+            data[i] = rs.getNString(i+1);
+        }
+        return data;
+    }
+    
 }

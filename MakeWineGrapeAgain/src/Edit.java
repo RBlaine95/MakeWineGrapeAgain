@@ -55,7 +55,6 @@ public class Edit extends javax.swing.JFrame {
         selectedTxt = new javax.swing.JTextField();
         chemBtn = new javax.swing.JButton();
         subBatchBtn = new javax.swing.JButton();
-        adminBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -92,13 +91,6 @@ public class Edit extends javax.swing.JFrame {
             }
         });
 
-        adminBtn.setText("Administrative Tools");
-        adminBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                adminBtnActionPerformed(evt);
-            }
-        });
-
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,9 +116,8 @@ public class Edit extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(adminBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(blendBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(subBatchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(subBatchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 88, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(updateBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -149,9 +140,7 @@ public class Edit extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(subBatchBtn)
                     .addComponent(chemBtn))
-                .addGap(18, 18, 18)
-                .addComponent(adminBtn)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                 .addComponent(backBtn)
                 .addContainerGap())
         );
@@ -162,11 +151,6 @@ public class Edit extends javax.swing.JFrame {
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
-
-    private void adminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtnActionPerformed
-        Admin a = new Admin(this.e, data, k);
-        a.setVisible(true);
-    }//GEN-LAST:event_adminBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         Update u = new Update(this.e, data, k);
@@ -224,7 +208,6 @@ public class Edit extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton adminBtn;
     private javax.swing.JButton backBtn;
     private javax.swing.JButton blendBtn;
     private javax.swing.JButton chemBtn;
@@ -234,10 +217,10 @@ public class Edit extends javax.swing.JFrame {
     private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
 private void load() throws SQLException {
-        String sql = "SELECT batchid, colour, type, stage, mass, supplierid, chemical FROM batch WHERE batchid = '" + this.batch + "'";
+        String sql = "SELECT batchid, colour, type, stage, mass, supplierid FROM batch WHERE batchid = '" + this.batch + "'";
         ResultSet rs = e.query(sql);
         rs.next();
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 6; i++) {
             data[i] = (rs.getNString(i + 1));
         }
 

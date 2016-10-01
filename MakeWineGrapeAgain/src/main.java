@@ -35,8 +35,8 @@ public class main extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
+        adminBtn = new javax.swing.JButton();
         versionNumLbl = new javax.swing.JLabel();
         appNameLbl = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
@@ -45,12 +45,17 @@ public class main extends javax.swing.JFrame {
         addBtn = new javax.swing.JButton();
         bground = new javax.swing.JLabel();
 
-        jButton1.setText("jButton1");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(null);
 
         jPanel2.setOpaque(false);
+
+        adminBtn.setText("Admin Control");
+        adminBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                adminBtnActionPerformed(evt);
+            }
+        });
 
         versionNumLbl.setText("Version xx.xx.xx");
 
@@ -98,10 +103,11 @@ public class main extends javax.swing.JFrame {
                                 .addComponent(logo)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(appNameLbl)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(adminBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(addBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(searchBtn, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(appNameLbl))))
+                                .addComponent(searchBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -117,7 +123,9 @@ public class main extends javax.swing.JFrame {
                         .addComponent(addBtn)
                         .addGap(18, 18, 18)
                         .addComponent(searchBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 165, Short.MAX_VALUE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(adminBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(appNameLbl)
                     .addComponent(logoutBtn))
@@ -144,7 +152,7 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        SearchBatch sb = new SearchBatch(e, k);
+        SearchBatch sb = new SearchBatch(e, k, "supplier", "mainsearch");
         sb.setVisible(true);
     }//GEN-LAST:event_searchBtnActionPerformed
 
@@ -153,15 +161,20 @@ public class main extends javax.swing.JFrame {
         a.setVisible(true);
     }//GEN-LAST:event_addBtnActionPerformed
 
+    private void adminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtnActionPerformed
+        AdminMenu am = new AdminMenu(e, k);
+        am.setVisible(true);
+    }//GEN-LAST:event_adminBtnActionPerformed
+
     /**
      * @param args the command line arguments
      */
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addBtn;
+    private javax.swing.JButton adminBtn;
     private javax.swing.JLabel appNameLbl;
     private javax.swing.JLabel bground;
-    private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel logo;
     private javax.swing.JButton logoutBtn;
