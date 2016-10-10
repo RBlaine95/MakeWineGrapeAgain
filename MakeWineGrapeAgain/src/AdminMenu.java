@@ -127,21 +127,27 @@ public class AdminMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void editBatchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBatchBtnActionPerformed
-        SearchBatch s = new SearchBatch(e, "batch", "admindit");
+        SearchBatch s = new SearchBatch(e, "batch", "adminedit");
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_editBatchBtnActionPerformed
 
     private void delBatchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBatchBtnActionPerformed
-        
+        SearchBatch s = new SearchBatch(e, "batch", "admindelete");
+        s.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_delBatchBtnActionPerformed
 
     private void delChemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delChemBtnActionPerformed
-        
+        SearchBatch s = new SearchBatch(e, "chem", "admindelete");
+        s.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_delChemBtnActionPerformed
 
     private void delSuppBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delSuppBtnActionPerformed
-        
+        SearchBatch s = new SearchBatch(e, "supplier", "admindelete");
+        s.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_delSuppBtnActionPerformed
 
     private void editChemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editChemBtnActionPerformed
