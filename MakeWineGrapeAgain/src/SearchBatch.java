@@ -32,13 +32,12 @@ public class SearchBatch extends javax.swing.JFrame {
     /**
      * Creates new form main
      */
-
     public SearchBatch() {
         initComponents();
     }
 
     public SearchBatch(Pinwheel e, String s, String b) {
-        this.bounce = b;
+        bounce = b;
         typeofsearch = s;
         this.e = e;
         initComponents();
@@ -47,6 +46,7 @@ public class SearchBatch extends javax.swing.JFrame {
                 case "batch":
                     this.colourBox.setModel(new DefaultComboBoxModel(e.getColour().toArray()));
                     this.typeBox.setModel(new DefaultComboBoxModel(e.getType().toArray()));
+                    data = new String[5];
                     break;
                 case "supplier":
                     batchTbl.getColumnModel().getColumn(0).setHeaderValue("Supplier name");
@@ -54,6 +54,8 @@ public class SearchBatch extends javax.swing.JFrame {
                     batchTbl.getColumnModel().getColumn(2).setHeaderValue("Email");
                     batchTbl.getColumnModel().getColumn(3).setHeaderValue("Contact Liason");
                     batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(4));
+
+                    data = new String[4];
 
                     this.batchLbl.setText("Supplier Name");
                     this.colourLbl.setText("");
@@ -74,6 +76,8 @@ public class SearchBatch extends javax.swing.JFrame {
                     batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
                     batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(3));
                     batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(4));
+
+                    data = new String[2];
 
                     this.batchLbl.setText("Chemical Name");
                     this.colourLbl.setText("");
@@ -135,10 +139,7 @@ public class SearchBatch extends javax.swing.JFrame {
 
         batchTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Batch ID", "Colour", "Type", "Stage", "Mass"
@@ -283,33 +284,25 @@ public class SearchBatch extends javax.swing.JFrame {
     }//GEN-LAST:event_exitBtnActionPerformed
 
     private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
-        String batch = this.batchTbl.getValueAt(this.batchTbl.getSelectedRow(), 0) + "";
-        try {
-            switch(this.typeofsearch){
-                case "batch":
-                    data = e.getBatchData(batch);
-                    break;
-                case "supplier":
-                    data = e.getSupplierData(batch);
-                case "chem":
-                    break;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(SearchBatch.class.getName()).log(Level.SEVERE, null, ex);
+
+        for (int i = 0; i < data.length; i++) {
+            data[i] = (String) this.batchTbl.getValueAt(this.batchTbl.getSelectedRow(), i);
         }
-        
+
         switch (bounce) {
             case "mainsearch":
-                Edit ed = new Edit(batch, e);
+                Edit ed = new Edit(data[0], e);
                 ed.setVisible(true);
                 this.dispose();
                 break;
             case "admindelete":
-
+                Prompt p = new Prompt(data[0], bounce);
+                p.setVisible(true);
                 this.dispose();
                 break;
             case "adminedit":
-                //NEEDS EDIT UI FOR EACH (BATCH, Suppliers and chems)
+                AdminEdit ae = new AdminEdit(e, data, typeofsearch);
+                ae.setVisible(true);
                 this.dispose();
         }
     }//GEN-LAST:event_selectBtnActionPerformed

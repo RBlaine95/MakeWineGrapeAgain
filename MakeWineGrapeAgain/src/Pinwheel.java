@@ -17,6 +17,7 @@ import java.util.ArrayList;
  */
 public class Pinwheel {
 
+    
     ArrayList<String> colour;
     ArrayList<String> type;
     ArrayList<String> supplier;
@@ -232,8 +233,8 @@ public class Pinwheel {
     }
 
     public String[] getBatchData(String batch) throws SQLException {
-        String[] data = new String[6];
-        String sql = "SELECT * FROM batch WHERE batchid = '" + batch + "'";
+        String[] data = new String[5];
+        String sql = "SELECT batchid, colour, type, stage, mass FROM batch WHERE batchid = '" + batch + "'";
         rs = this.queryCCDB(sql);
         rs.next();
         for (int i = 0; i < data.length; i++) {
@@ -244,7 +245,7 @@ public class Pinwheel {
 
     public String[] getSupplierData(String supplierid) throws SQLException {
         String[] data = new String[4];
-        String sql = "SELECT * FROM supplier WHERE sname = '" + supplierid + "'";
+        String sql = "SELECT sname, tel, email, liason FROM supplier WHERE sname = '" + supplierid + "'";
         rs = this.queryCCDB(sql);
         rs.next();
         for (int i = 0; i < data.length; i++) {
@@ -252,5 +253,14 @@ public class Pinwheel {
         }
         return data;
     }
-
+    public static void promptAction(String s){
+        switch(s){
+            case "":
+                
+                break;
+            case " ":
+                
+                break;
+        }
+    }
 }
