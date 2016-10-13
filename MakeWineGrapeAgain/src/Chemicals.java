@@ -26,11 +26,7 @@ public class Chemicals extends javax.swing.JFrame {
 
     public Chemicals() {
         initComponents();
-        try {
-            this.chemBox.setModel(new DefaultComboBoxModel(Pinwheel.getChem().toArray()));
-        } catch (SQLException ex) {
-            Logger.getLogger(Chemicals.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        this.chemBox.setModel(new DefaultComboBoxModel(Pinwheel.getChemicals().toArray()));
         
         this.chemBox.addItem("New Chemical...");
         this.data = Pinwheel.getData();
@@ -55,7 +51,7 @@ public class Chemicals extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         amountTxt = new javax.swing.JTextField();
         chemBox = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
+        okBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -75,11 +71,16 @@ public class Chemicals extends javax.swing.JFrame {
         jLabel3.setText("Amount Added");
 
         chemBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jButton1.setText("OK");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        chemBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                chemBoxActionPerformed(evt);
+            }
+        });
+
+        okBtn.setText("OK");
+        okBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okBtnActionPerformed(evt);
             }
         });
 
@@ -88,32 +89,29 @@ public class Chemicals extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(117, 117, 117)
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel3)
+                            .addComponent(jLabel2))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(chemBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(amountTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 115, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(backBtn)
+                        .addGap(18, 18, 18)
+                        .addComponent(okBtn)))
+                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(77, 77, 77)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel2)
-                                .addGap(18, 18, 18)
-                                .addComponent(chemBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(amountTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 115, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton1)))
-                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,7 +131,7 @@ public class Chemicals extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backBtn)
-                    .addComponent(jButton1))
+                    .addComponent(okBtn))
                 .addContainerGap())
         );
 
@@ -144,9 +142,19 @@ public class Chemicals extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
+        Pinwheel.insertChem(this.chemBox.getSelectedItem() + "", this.amountTxt.getText());
+        this.dispose();
+    }//GEN-LAST:event_okBtnActionPerformed
+
+    private void chemBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chemBoxActionPerformed
+        if (this.chemBox.getSelectedItem() == "New Chemical...") {
+                
+                AddChemical a = new AddChemical();
+                a.setVisible(true);
+                this.dispose();
+        }
+    }//GEN-LAST:event_chemBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -187,10 +195,10 @@ public class Chemicals extends javax.swing.JFrame {
     private javax.swing.JTextField amountTxt;
     private javax.swing.JButton backBtn;
     private javax.swing.JComboBox chemBox;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JButton okBtn;
     private javax.swing.JTextField selectedTxt;
     // End of variables declaration//GEN-END:variables
 }

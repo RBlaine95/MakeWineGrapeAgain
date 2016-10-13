@@ -308,6 +308,7 @@ public class SearchBatch extends javax.swing.JFrame {
     }//GEN-LAST:event_batchTblMouseClicked
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        this.selectBtn.setEnabled(false);
         DefaultTableModel model = (DefaultTableModel) this.batchTbl.getModel();
         model.setRowCount(0);
         ResultSet rs;
@@ -357,7 +358,7 @@ public class SearchBatch extends javax.swing.JFrame {
                     if (whered) {
                         sql += " AND ";
                     }
-                    sql += " stage = '" + this.stage + "'";
+                    sql += " stage = '" + Pinwheel.stageGetNo(this.stage) + "'";
                 }
                 try {
                     rs = Pinwheel.queryCCDB(sql);
