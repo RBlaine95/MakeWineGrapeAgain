@@ -10,18 +10,15 @@
  */
 public class AdminMenu extends javax.swing.JFrame {
 
-    Pinwheel e;
+
 
     /**
      * Creates new form AdminMenu
      */
+
     public AdminMenu() {
         initComponents();
-    }
-
-    public AdminMenu(Pinwheel e) {
-        initComponents();
-        this.e = e;
+        
     }
 
     /**
@@ -127,37 +124,37 @@ public class AdminMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void editBatchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBatchBtnActionPerformed
-        SearchBatch s = new SearchBatch(e, "batch", "adminedit");
+        SearchBatch s = new SearchBatch("batch", "adminedit");
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_editBatchBtnActionPerformed
 
     private void delBatchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBatchBtnActionPerformed
-        SearchBatch s = new SearchBatch(e, "batch", "admindelete");
+        SearchBatch s = new SearchBatch("batch", "admindelete");
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_delBatchBtnActionPerformed
 
     private void delChemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delChemBtnActionPerformed
-        SearchBatch s = new SearchBatch(e, "chem", "admindelete");
+        SearchBatch s = new SearchBatch("chem", "admindelete");
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_delChemBtnActionPerformed
 
     private void delSuppBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delSuppBtnActionPerformed
-        SearchBatch s = new SearchBatch(e, "supplier", "admindelete");
+        SearchBatch s = new SearchBatch("supplier", "admindelete");
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_delSuppBtnActionPerformed
 
     private void editChemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editChemBtnActionPerformed
-        SearchBatch s = new SearchBatch(e, "chem", "adminedit");
+        SearchBatch s = new SearchBatch("chem", "adminedit");
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_editChemBtnActionPerformed
 
     private void editSuppBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editSuppBtnActionPerformed
-        SearchBatch s = new SearchBatch(e, "supplier", "adminedit");
+        SearchBatch s = new SearchBatch("supplier", "adminedit");
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_editSuppBtnActionPerformed

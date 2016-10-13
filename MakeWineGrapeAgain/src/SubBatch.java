@@ -17,7 +17,6 @@ public class SubBatch extends javax.swing.JFrame {
 
     private String batch;
     private String[] data;
-    private Pinwheel e;
     private int subMass;
     private String un;
     private String stage;
@@ -30,10 +29,9 @@ public class SubBatch extends javax.swing.JFrame {
         initComponents();
     }
 
-    public SubBatch(Pinwheel e, String[] data) {
+    public SubBatch(String[] data) {
         initComponents();
         this.data = data;
-        this.e = e;
         this.batch = this.data[0];
         this.selectedTxt.setText(batch);
         this.subMassSlide.getModel().setMaximum(Integer.parseInt(this.data[4]));
@@ -185,19 +183,19 @@ public class SubBatch extends javax.swing.JFrame {
         ResultSet rs;
 
         try {
-            rs = e.queryCCDB("SELECT COUNT (batchid) FROM batch WHERE batchid LIKE '" + batch + "SB%'");
+            rs = Pinwheel.queryCCDB("SELECT COUNT (batchid) FROM batch WHERE batchid LIKE '" + batch + "SB%'");
             rs.next();
             int count = rs.getInt(1);
 
             subID += (count + 1) + "";
 
-            sql = "INSERT INTO batch VALUES (" + subID + ", " + this.data[1] + ", " + this.data[2] + ", " + e.stageGetNo(stage)
+            sql = "INSERT INTO batch VALUES (" + subID + ", " + this.data[1] + ", " + this.data[2] + ", " + Pinwheel.stageGetNo(stage)
                     + ", " + subMass + ", " + this.data[5] + ", " + this.data[6] + ")"; //prep sub batch sql
 
-            e.updateCCDB(sql); //insert new sub batch
+            Pinwheel.updateCCDB(sql); //insert new sub batch
 
             //update main batch's mass
-            rs = e.queryCCDB("SELECT mass FROM batch WHERE batchid = '" + batch + "'"); //get mass of batch
+            rs = Pinwheel.queryCCDB("SELECT mass FROM batch WHERE batchid = '" + batch + "'"); //get mass of batch
             rs.next();
             double massT = Double.parseDouble(rs.getString(1));
             
@@ -210,7 +208,7 @@ public class SubBatch extends javax.swing.JFrame {
             massT = massK/1000;
             
             sql = "UPDATE batch SET mass = " + massT + " WHERE batchid = " + batch;
-            e.updateCCDB(sql); //update main batch
+            Pinwheel.updateCCDB(sql); //update main batch
 
         } catch (SQLException ex) {
             Logger.getLogger(SubBatch.class.getName()).log(Level.SEVERE, null, ex);

@@ -10,7 +10,6 @@
  */
 public class main extends javax.swing.JFrame {
 
-    Pinwheel e;
 
 
     /**
@@ -20,11 +19,6 @@ public class main extends javax.swing.JFrame {
         initComponents();
     }
 
-    public main(Pinwheel e) {
-
-        this.e = e;
-        initComponents();
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -152,17 +146,17 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        SearchBatch sb = new SearchBatch(e, "batch", "mainsearch");
+        SearchBatch sb = new SearchBatch("batch", "mainsearch");
         sb.setVisible(true);
     }//GEN-LAST:event_searchBtnActionPerformed
 
     private void addBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addBtnActionPerformed
-        Add a = new Add(e);
+        Add a = new Add();
         a.setVisible(true);
     }//GEN-LAST:event_addBtnActionPerformed
 
     private void adminBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_adminBtnActionPerformed
-        AdminMenu am = new AdminMenu(e);
+        AdminMenu am = new AdminMenu();
         am.setVisible(true);
     }//GEN-LAST:event_adminBtnActionPerformed
 

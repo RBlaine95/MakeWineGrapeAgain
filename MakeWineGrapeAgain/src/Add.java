@@ -17,7 +17,6 @@ import javax.swing.DefaultComboBoxModel;
 public class Add extends javax.swing.JFrame {
 
     boolean colourOverride, colourbool, typeOverride, typebool;
-    Pinwheel e;
     AddSupplier as = null;
 
     /**
@@ -25,11 +24,7 @@ public class Add extends javax.swing.JFrame {
      */
     public Add() {
         initComponents();
-    }
 
-    public Add(Pinwheel e) {
-        initComponents();
-        this.e = e;
         try {
             this.refresh();
         } catch (SQLException ex) {
@@ -165,47 +160,38 @@ public class Add extends javax.swing.JFrame {
                         .addComponent(yearTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addComponent(jLabel5)
-                            .addGap(18, 18, 18)
                             .addGap(13, 13, 13)
                             .addComponent(massTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel7)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel7)
+                            .addComponent(jLabel6)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2))
+                        .addGap(57, 57, 57)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel6)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel2))
-                                .addGap(57, 57, 57)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel1)
+                                .addGap(13, 13, 13)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(cancelBtn)
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(13, 13, 13)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(cancelBtn)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(supplierBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(typeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(colourBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addComponent(typeOverrideTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                    .addComponent(colourOverrideTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(supplierBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(typeBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(colourBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(typeOverrideTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addComponent(colourOverrideTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(typeLbl)
-                            .addComponent(colourLbl))
-                        .addContainerGap(12, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(okBtn)
-                        .addGap(24, 24, 24))))
+                    .addComponent(colourLbl)
+                    .addComponent(typeLbl)
+                    .addComponent(okBtn))
+                .addContainerGap(57, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +202,9 @@ public class Add extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(colourOverrideTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(colourOverrideTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(colourLbl))
                             .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -235,10 +223,7 @@ public class Add extends javax.swing.JFrame {
                         .addGap(49, 49, 49)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(colourLbl)))
+                            .addComponent(jLabel4))))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(massTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -249,7 +234,7 @@ public class Add extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(cancelBtn)
                     .addComponent(okBtn))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         pack();
@@ -280,7 +265,7 @@ public class Add extends javax.swing.JFrame {
     private void supplierBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierBoxActionPerformed
         if (this.supplierBox.getSelectedItem() == "New Supplier...") {
             
-                as = new AddSupplier(e, this);
+                as = new AddSupplier(this);
                 as.setVisible(true);
                 this.dispose();
             
@@ -292,7 +277,7 @@ public class Add extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        String batch, colour, type, stage, mass, supplier, chemical, year;
+        String batch, colour, type, stage, mass, supplier, year;
         if (this.colourOverride) {
             colour = this.colourOverrideTxt.getText();
         } else {
@@ -305,22 +290,22 @@ public class Add extends javax.swing.JFrame {
         }
         year = this.yearTxt.getText();
         stage = this.stageBox.getSelectedItem() + "";
-        stage = e.stageGetNo(stage);
+        stage = Pinwheel.stageGetNo(stage);
         mass = this.massTxt.getText();
         supplier = this.supplierBox.getSelectedItem() + "";
         String code = colour.replaceAll("[^A-Z]", "");
         String sql = "SELECT COUNT(*) FROM batch";
         ResultSet rs;
         try {
-            rs = e.queryCCDB(sql);
+            rs = Pinwheel.queryCCDB(sql);
             rs.next();
             int id = rs.getInt(1);
             batch = "" + code + year.substring(2) + type.substring(0, 3).toUpperCase() + (id + 1);
             System.out.println(batch);
 
             sql = "INSERT INTO batch (batchid, colour, type, stage, mass, supplierid) VALUES('" + batch + "', '" + colour + "', '" + type + "', '" + stage + "', '" + mass + "', '" + supplier + "')";
-            e.updateCCDB(sql);
-            e.createChem(batch);
+            Pinwheel.updateCCDB(sql);
+            Pinwheel.createChem(batch);
         } catch (SQLException ex) {
             Logger.getLogger(Add.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -414,9 +399,9 @@ public void check() {
 
     public void refresh() throws SQLException {
         
-        this.colourBox.setModel(new DefaultComboBoxModel(e.getColour().toArray()));
-        this.typeBox.setModel(new DefaultComboBoxModel(e.getType().toArray()));
-        this.supplierBox.setModel(new DefaultComboBoxModel(e.getSupplier().toArray()));
+        this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColour().toArray()));
+        this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getType().toArray()));
+        this.supplierBox.setModel(new DefaultComboBoxModel(Pinwheel.getSupplier().toArray()));
         this.colourBox.addItem("Override");
         this.typeBox.addItem("Override");
         this.supplierBox.addItem("New Supplier...");
