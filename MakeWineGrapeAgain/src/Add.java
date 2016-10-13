@@ -265,7 +265,7 @@ public class Add extends javax.swing.JFrame {
     private void supplierBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierBoxActionPerformed
         if (this.supplierBox.getSelectedItem() == "New Supplier...") {
             
-                as = new AddSupplier(this);
+                as = new AddSupplier();
                 as.setVisible(true);
                 this.dispose();
             

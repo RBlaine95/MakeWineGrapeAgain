@@ -18,11 +18,7 @@ public class Blend extends javax.swing.JFrame {
      */
     public Blend() {
         initComponents();
-    }
-
-    Blend(String[] data) {
-
-        this.data = data;
+        this.data = Pinwheel.getData();
         this.batch = this.data[0];
         this.selectedTxt.setText(batch);
     }

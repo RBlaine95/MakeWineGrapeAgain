@@ -9,7 +9,6 @@ import javax.swing.DefaultComboBoxModel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Se7en
@@ -18,27 +17,25 @@ public class Chemicals extends javax.swing.JFrame {
 
     String[] data;
 
-
     String batch;
 
     /**
      * Creates new form Chemicals
      */
-    public Chemicals() {
-        initComponents();
-    }
 
-    public Chemicals(String[] data) {
+
+    public Chemicals() {
         initComponents();
         try {
             this.chemBox.setModel(new DefaultComboBoxModel(Pinwheel.getChem().toArray()));
         } catch (SQLException ex) {
             Logger.getLogger(Chemicals.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         this.chemBox.addItem("New Chemical...");
-
+        this.data = Pinwheel.getData();
         this.batch = data[0];
-        this.data = data;
+
         this.selectedTxt.setText(batch);
     }
 

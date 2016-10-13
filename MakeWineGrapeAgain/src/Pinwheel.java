@@ -10,6 +10,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -27,10 +29,35 @@ public final class Pinwheel {
     static Connection connChem;
     static ResultSet rsChem;
     static String sql;
+    static String[] data;
+    static String searchType;
+    static String bounce;
 
     public static void connect() {
         connectChem();
         connectCCDB();
+        try {
+            refreshColour();
+            refreshSupplier();
+            refreshType();
+        } catch (SQLException ex) {
+            Logger.getLogger(Pinwheel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    private static void connectCCDB() {
+        try {
+
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+            System.out.println("Driver loaded");
+
+            String url = "jdbc:ucanaccess://ccdb.accdb";
+            conn = DriverManager.getConnection(url);
+
+            System.out.println("Database Connected");
+        } catch (Exception ex) {
+            System.out.println("Error");
+        }
     }
 
     private static void connectChem() {
@@ -74,30 +101,14 @@ public final class Pinwheel {
     }
 
     public static String[] getChemData(String chem) throws SQLException {
-        String[] data = new String[6];
-        String sql = "SELECT * FROM chemicaltbl WHERE chemical = '" + chem + "'";
+        data = new String[6];
+        sql = "SELECT * FROM chemicaltbl WHERE chemical = '" + chem + "'";
         rsChem = queryChem(sql);
         rsChem.next();
         for (int i = 0; i < data.length; i++) {
             data[i] = rsChem.getNString(i + 1);
         }
         return data;
-    }
-
-    private static void connectCCDB() {
-        try {
-
-            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
-            System.out.println("Driver loaded");
-
-            String url = "jdbc:ucanaccess://ccdb.accdb";
-            conn = DriverManager.getConnection(url);
-
-            System.out.println("Database Connected");
-        } catch (Exception ex) {
-            System.out.println("Error");
-        }
-
     }
 
     public static ResultSet queryCCDB(String sql) throws SQLException {
@@ -121,13 +132,35 @@ public final class Pinwheel {
     }
 
     public static ArrayList<String> getSupplier() throws SQLException {
+        return supplier;
+    }
 
-        String sql = "SELECT DISTINCT sname FROM supplier";
+    public static void refreshSupplier() throws SQLException {
+        supplier = new ArrayList();
+        sql = "SELECT DISTINCT sname FROM supplier";
         rs = queryCCDB(sql);
         while (rs.next()) {
             supplier.add(rs.getNString(1));
         }
-        return supplier;
+    }
+
+    public static void refreshColour() throws SQLException {
+        colour = new ArrayList();
+        sql = "SELECT DISTINCT colour FROM batch";
+        rs = queryCCDB(sql);
+        while (rs.next()) {
+            colour.add(rs.getNString(1));
+        }
+    }
+
+    public static void refreshType() throws SQLException {
+
+        type = new ArrayList();
+        sql = "SELECT DISTINCT type FROM batch";
+        rs = queryCCDB(sql);
+        while (rs.next()) {
+            type.add(rs.getNString(1));
+        }
     }
 
     public static void setSupplier(ArrayList<String> supplier) {
@@ -135,12 +168,7 @@ public final class Pinwheel {
     }
 
     public static ArrayList<String> getColour() throws SQLException {
-        colour = new ArrayList();
-        String sql = "SELECT DISTINCT colour FROM batch";
-        rs = queryCCDB(sql);
-        while (rs.next()) {
-            colour.add(rs.getNString(1));
-        }
+
         return colour;
     }
 
@@ -149,11 +177,7 @@ public final class Pinwheel {
     }
 
     public static ArrayList<String> getType() throws SQLException {
-        String sql = "SELECT DISTINCT type FROM batch";
-        rs = queryCCDB(sql);
-        while (rs.next()) {
-            type.add(rs.getNString(1));
-        }
+
         return type;
     }
 
@@ -271,6 +295,14 @@ public final class Pinwheel {
         }
     }
 
+    public static String[] getData() {
+        return data;
+    }
+
+    public static void setData(String[] data) {
+        Pinwheel.data = data;
+    }
+
     public static ArrayList getChem() throws SQLException {
         ArrayList chem = new ArrayList();
         String sql = "SELECT DISTINCT chemical FROM chemicaltbl";
@@ -280,4 +312,21 @@ public final class Pinwheel {
         }
         return chem;
     }
+
+    public static String getSearchType() {
+        return searchType;
+    }
+
+    public static void setSearchType(String searchType) {
+        Pinwheel.searchType = searchType;
+    }
+
+    public static String getBounce() {
+        return bounce;
+    }
+
+    public static void setBounce(String bounce) {
+        Pinwheel.bounce = bounce;
+    }
+
 }

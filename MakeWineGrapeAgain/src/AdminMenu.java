@@ -124,37 +124,49 @@ public class AdminMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void editBatchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBatchBtnActionPerformed
-        SearchBatch s = new SearchBatch("batch", "adminedit");
+        Pinwheel.setBounce("adminedit");
+        Pinwheel.setSearchType("batch");
+        SearchBatch s = new SearchBatch();
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_editBatchBtnActionPerformed
 
     private void delBatchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBatchBtnActionPerformed
-        SearchBatch s = new SearchBatch("batch", "admindelete");
+        Pinwheel.setBounce("admindelete");
+        Pinwheel.setSearchType("batch");
+        SearchBatch s = new SearchBatch();
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_delBatchBtnActionPerformed
 
     private void delChemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delChemBtnActionPerformed
-        SearchBatch s = new SearchBatch("chem", "admindelete");
+        Pinwheel.setBounce("admindelete");
+        Pinwheel.setSearchType("chem");
+        SearchBatch s = new SearchBatch();
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_delChemBtnActionPerformed
 
     private void delSuppBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delSuppBtnActionPerformed
-        SearchBatch s = new SearchBatch("supplier", "admindelete");
+        Pinwheel.setBounce("admindelete");
+        Pinwheel.setSearchType("supplier");
+        SearchBatch s = new SearchBatch();
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_delSuppBtnActionPerformed
 
     private void editChemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editChemBtnActionPerformed
-        SearchBatch s = new SearchBatch("chem", "adminedit");
+       Pinwheel.setBounce("adminedit");
+        Pinwheel.setSearchType("chem");
+        SearchBatch s = new SearchBatch();
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_editChemBtnActionPerformed
 
     private void editSuppBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editSuppBtnActionPerformed
-        SearchBatch s = new SearchBatch("supplier", "adminedit");
+        Pinwheel.setBounce("adminedit");
+        Pinwheel.setSearchType("supplier");
+        SearchBatch s = new SearchBatch();
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_editSuppBtnActionPerformed

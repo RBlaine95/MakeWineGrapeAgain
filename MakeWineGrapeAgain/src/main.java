@@ -146,7 +146,9 @@ public class main extends javax.swing.JFrame {
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
-        SearchBatch sb = new SearchBatch("batch", "mainsearch");
+        Pinwheel.setBounce("mainsearch");
+        Pinwheel.setSearchType("batch");
+        SearchBatch sb = new SearchBatch();
         sb.setVisible(true);
     }//GEN-LAST:event_searchBtnActionPerformed
 

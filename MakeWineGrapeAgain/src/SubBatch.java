@@ -25,13 +25,10 @@ public class SubBatch extends javax.swing.JFrame {
     /**
      * Creates new form SubBatch
      */
+
     public SubBatch() {
         initComponents();
-    }
-
-    public SubBatch(String[] data) {
-        initComponents();
-        this.data = data;
+        this.data = Pinwheel.getData();
         this.batch = this.data[0];
         this.selectedTxt.setText(batch);
         this.subMassSlide.getModel().setMaximum(Integer.parseInt(this.data[4]));

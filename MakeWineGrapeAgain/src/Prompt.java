@@ -16,24 +16,13 @@ public class Prompt extends javax.swing.JFrame {
     /**
      * Creates new form Prompt
      */
+
     public Prompt() {
-
-    }
-
-    public Prompt(String s, String a) {
         initComponents();
-        this.id = s;
+        this.data = Pinwheel.getData();
         this.idLbl.setText("ID:" + this.id);
-        location = a;
     }
-    public Prompt(String s, String a, String [] d) {
-        initComponents();
-        this.id = s;
-        this.data=d;
-        this.idLbl.setText("ID:" + this.id);
-        this.location = a;
-    }
- 
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -101,8 +90,7 @@ public class Prompt extends javax.swing.JFrame {
     private void promptTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_promptTxtKeyReleased
         if (this.promptTxt.getText().equals(this.id)) {
             this.okBtn.setEnabled(true);
-        }
-        else{
+        } else {
             this.okBtn.setEnabled(false);
         }
     }//GEN-LAST:event_promptTxtKeyReleased
@@ -156,9 +144,9 @@ public class Prompt extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     private void promptAction(String location) {
-        switch(location){
+        switch (location) {
             case "admindelete":
-                
+
         }
     }
 }
