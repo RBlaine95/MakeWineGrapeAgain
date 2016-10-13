@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
 public class AdminEdit extends javax.swing.JFrame {
 
     String batch;
-    Pinwheel e;
+
     boolean checked = false;
     String[] data;
 
@@ -26,18 +26,14 @@ public class AdminEdit extends javax.swing.JFrame {
         initComponents();
     }
 
-    public AdminEdit(Pinwheel e, String[] d, String type) {
+    public AdminEdit(String[] d, String type) {
         initComponents();
         this.data = d;
-        this.e = e;
+
         this.batch = data[0];
         this.data = d;
-        this.e = e;
         this.batch = data[0];
         switch (type) {
-            case "batch":
-
-                break;
             case "supplier":
                 batchTbl.getColumnModel().getColumn(0).setHeaderValue("Supplier name");
                 batchTbl.getColumnModel().getColumn(1).setHeaderValue("Contact No");
@@ -56,8 +52,6 @@ public class AdminEdit extends javax.swing.JFrame {
                 batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(4));
                 this.chemTbl.setEnabled(false);
                 this.chemLbl.setEnabled(false);
-
-
                 break;
         }
         ((DefaultTableModel) this.batchTbl.getModel()).insertRow(0, data);
@@ -260,10 +254,8 @@ public class AdminEdit extends javax.swing.JFrame {
     }
 
     /*void change() {
-     String sql = "UPDATE batch SET batchid = '" + this.firstTxt.getText() + "', colour = '" + this.secondTxt.getText() + "', type = '" + this.thirdTxt.getText()
-     + "', stage = '" + this.forthTxt.getText() + "', mass = '" + this.fifthTxt.getText()
-     + "', supplierid = '" + this.sixthTxt.getText() + "', chemical = '" + this.seventhTxt.getText() + "' WHERE batchid = '" + this.batch + "'";
-     e.updateCCDB(sql);
+     
+     Pinwheel.updateCCDB(sql);
      JOptionPane.showMessageDialog(null, "Record Updated");
      }*/
 }

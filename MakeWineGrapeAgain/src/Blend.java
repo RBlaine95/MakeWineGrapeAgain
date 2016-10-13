@@ -12,7 +12,7 @@ public class Blend extends javax.swing.JFrame {
 
     String batch;
     String[] data;
-    Pinwheel e;
+
     /**
      * Creates new form Blend
      */
@@ -20,8 +20,8 @@ public class Blend extends javax.swing.JFrame {
         initComponents();
     }
 
-    Blend(Pinwheel e, String[] data) {
-        this.e = e;
+    Blend(String[] data) {
+
         this.data = data;
         this.batch = this.data[0];
         this.selectedTxt.setText(batch);

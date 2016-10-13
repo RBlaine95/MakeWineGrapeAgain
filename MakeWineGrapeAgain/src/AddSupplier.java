@@ -16,9 +16,8 @@ import javax.swing.JOptionPane;
  */
 public class AddSupplier extends javax.swing.JFrame {
 
-    Pinwheel e;
     Add a;
-
+    
     /**
      * Creates new form AddSupplier
      */
@@ -26,10 +25,9 @@ public class AddSupplier extends javax.swing.JFrame {
         initComponents();
     }
 
-    AddSupplier(Pinwheel e, Add a) {
+    AddSupplier(Add a) {
         initComponents();
         this.a = a;
-        this.e = e;
     }
 
     /**
@@ -175,7 +173,7 @@ public class AddSupplier extends javax.swing.JFrame {
 
         ArrayList arr = null;
         try {
-            arr = e.getSupplier();
+            arr = Pinwheel.getSupplier();
         } catch (SQLException ex) {
             Logger.getLogger(AddSupplier.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -185,8 +183,8 @@ public class AddSupplier extends javax.swing.JFrame {
             String sql = "INSERT INTO supplier (sname, tel, email, liason) VALUES('" + this.nameTxt.getText() + "', '" + this.contactTxt.getText()
                     + "', '" + this.emailTxt.getText() + "', '" + this.liasonTxt.getText() + "')";
             System.out.println(sql);
-            e.updateCCDB(sql);
-            Add ad = new Add(e);
+            Pinwheel.updateCCDB(sql);
+            Add ad = new Add();
             ad.setVisible(true);
             this.dispose();
         }

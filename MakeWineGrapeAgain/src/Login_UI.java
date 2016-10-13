@@ -11,7 +11,7 @@ import javax.swing.JOptionPane;
  * @author Se7en
  */
 public class Login_UI extends javax.swing.JFrame {
-Pinwheel e = new Pinwheel();
+
     /**
      * Creates new form PracticeGUI
      */
@@ -79,9 +79,8 @@ Pinwheel e = new Pinwheel();
         if(password.equals(ps)){
             try {
                 
-                e.connectCCDB();
-                e.connectChem();
-                main m = new main(e);
+                Pinwheel.connect();
+                main m = new main();
                 this.dispose();
                 m.setVisible(true);
             } catch (Exception e) {
