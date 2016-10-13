@@ -16,7 +16,7 @@ import java.util.logging.Logger;
 public class Edit extends javax.swing.JFrame {
 
     String batch;
-    Pinwheel e;
+
     String[] data = new String[7];
 
     /**
@@ -26,10 +26,10 @@ public class Edit extends javax.swing.JFrame {
         initComponents();
     }
 
-    public Edit(String s, Pinwheel e) {
+    public Edit(String s) {
         initComponents();
         this.batch = s;
-        this.e = e;
+
         this.selectedTxt.setText(batch);
         try {
             this.load();
@@ -151,22 +151,22 @@ public class Edit extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        Update u = new Update(this.e, data);
+        Update u = new Update(data);
         u.setVisible(true);
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void chemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chemBtnActionPerformed
-        Chemicals chem = new Chemicals(this.e, this.data);
+        Chemicals chem = new Chemicals(this.data);
         chem.setVisible(true);
     }//GEN-LAST:event_chemBtnActionPerformed
 
     private void subBatchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subBatchBtnActionPerformed
-        SubBatch sub = new SubBatch(this.e, this.data);
+        SubBatch sub = new SubBatch(this.data);
         sub.setVisible(true);
     }//GEN-LAST:event_subBatchBtnActionPerformed
 
     private void blendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blendBtnActionPerformed
-        Blend b = new Blend(this.e, this.data);
+        Blend b = new Blend(this.data);
         b.setVisible(true);
     }//GEN-LAST:event_blendBtnActionPerformed
 
@@ -216,7 +216,7 @@ public class Edit extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 private void load() throws SQLException {
         String sql = "SELECT batchid, colour, type, stage, mass, supplierid FROM batch WHERE batchid = '" + this.batch + "'";
-        ResultSet rs = e.queryCCDB(sql);
+        ResultSet rs = Pinwheel.queryCCDB(sql);
         rs.next();
         for (int i = 0; i < 6; i++) {
             data[i] = (rs.getNString(i + 1));

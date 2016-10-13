@@ -20,7 +20,6 @@ public class SearchBatch extends javax.swing.JFrame {
     /**
      * Creates new form SearchBatch
      */
-    Pinwheel e;
     String batchid;
     String colour;
     String type;
@@ -36,16 +35,15 @@ public class SearchBatch extends javax.swing.JFrame {
         initComponents();
     }
 
-    public SearchBatch(Pinwheel e, String s, String b) {
+    public SearchBatch(String s, String b) {
         bounce = b;
         typeofsearch = s;
-        this.e = e;
         initComponents();
         try {
             switch (typeofsearch) {
                 case "batch":
-                    this.colourBox.setModel(new DefaultComboBoxModel(e.getColour().toArray()));
-                    this.typeBox.setModel(new DefaultComboBoxModel(e.getType().toArray()));
+                    this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColour().toArray()));
+                    this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getType().toArray()));
                     data = new String[5];
                     break;
                 case "supplier":
@@ -291,7 +289,7 @@ public class SearchBatch extends javax.swing.JFrame {
 
         switch (bounce) {
             case "mainsearch":
-                Edit ed = new Edit(data[0], e);
+                Edit ed = new Edit(data[0]);
                 ed.setVisible(true);
                 this.dispose();
                 break;
@@ -301,7 +299,7 @@ public class SearchBatch extends javax.swing.JFrame {
                 this.dispose();
                 break;
             case "adminedit":
-                AdminEdit ae = new AdminEdit(e, data, typeofsearch);
+                AdminEdit ae = new AdminEdit(data, typeofsearch);
                 ae.setVisible(true);
                 this.dispose();
         }
@@ -366,14 +364,14 @@ public class SearchBatch extends javax.swing.JFrame {
                     sql += " stage = '" + this.stage + "'";
                 }
                 try {
-                    rs = e.queryCCDB(sql);
+                    rs = Pinwheel.queryCCDB(sql);
                     int count = 0;
                     while (rs.next()) {
 
                         for (int i = 0; i < list.length; i++) {
                             list[i] = (rs.getString(i + 1));
                         }
-                        list[3] = e.stageGetWord(list[3] + "");
+                        list[3] = Pinwheel.stageGetWord(list[3] + "");
                         ((DefaultTableModel) this.batchTbl.getModel()).insertRow(count, list);
                         count++;
                     }
@@ -388,7 +386,7 @@ public class SearchBatch extends javax.swing.JFrame {
                     sql += "WHERE sname = '" + this.batchid + "'";
                 }
                 try {
-                    rs = e.queryCCDB(sql);
+                    rs = Pinwheel.queryCCDB(sql);
                     int count = 0;
                     while (rs.next()) {
 

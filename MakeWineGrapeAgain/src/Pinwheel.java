@@ -15,28 +15,25 @@ import java.util.ArrayList;
  *
  * @author Se7en
  */
-public class Pinwheel {
+public final class Pinwheel {
 
-    
-    ArrayList<String> colour;
-    ArrayList<String> type;
-    ArrayList<String> supplier;
-    Statement s;
-    Connection conn;
-    ResultSet rs;
-    Statement sChem;
-    Connection connChem;
-    ResultSet rsChem;
+    static ArrayList<String> colour = new ArrayList();
+    static ArrayList<String> type = new ArrayList();
+    static ArrayList<String> supplier = new ArrayList();
+    static Statement s;
+    static Connection conn;
+    static ResultSet rs;
+    static Statement sChem;
+    static Connection connChem;
+    static ResultSet rsChem;
+    static String sql;
 
-    public Pinwheel() {
-        this.colour = new ArrayList();
-        this.type = new ArrayList();
-        this.supplier = new ArrayList();
+    public static void connect() {
+        connectChem();
+        connectCCDB();
     }
 
-    
-
-    public void connectChem() {
+    private static void connectChem() {
         try {
 
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -51,39 +48,35 @@ public class Pinwheel {
         }
     }
 
-    public void createChem(String s) {
-        String sql = "CREATE TABLE " + s + " (chemical varchar(100), amount varchar(15), value varchar(20))";
-        this.updateChem(sql);
+    public static void createChem(String s) {
+        sql = "CREATE TABLE " + s + " (chemical varchar(100), amount varchar(15), value varchar(20))";
+        updateChem(sql);
 
     }
     /*SELECT * FROM INFORMATION_SCHEMA.TABLES ----- FOR SEARCHING LATER
      WHERE TABLE_NAME LIKE '%%'*/
 
-    public ResultSet queryChem(String sql) throws SQLException {
+    public static ResultSet queryChem(String sql) throws SQLException {
         sChem = connChem.createStatement();
         rsChem = sChem.executeQuery(sql);
         return rsChem;
     }
 
-    public boolean updateChem(String sql) {
-        boolean delete;
+    public static void updateChem(String sql) {
+
         try {
             sChem = connChem.createStatement();
-
             sChem.executeUpdate(sql);
-            delete = true;
-            return delete;
         } catch (SQLException ex) {
-            delete = false;
-            return delete;
+
         }
 
     }
 
-    public String[] getChemData(String chem) throws SQLException {
+    public static String[] getChemData(String chem) throws SQLException {
         String[] data = new String[6];
         String sql = "SELECT * FROM chemicaltbl WHERE chemical = '" + chem + "'";
-        rsChem = this.queryChem(sql);
+        rsChem = queryChem(sql);
         rsChem.next();
         for (int i = 0; i < data.length; i++) {
             data[i] = rsChem.getNString(i + 1);
@@ -91,7 +84,7 @@ public class Pinwheel {
         return data;
     }
 
-    public void connectCCDB() {
+    private static void connectCCDB() {
         try {
 
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
@@ -101,22 +94,19 @@ public class Pinwheel {
             conn = DriverManager.getConnection(url);
 
             System.out.println("Database Connected");
-            System.out.println("Setting Coloumns");
-            this.setcols();
-            System.out.println("Coloumns Set");
         } catch (Exception ex) {
             System.out.println("Error");
         }
 
     }
 
-    public ResultSet queryCCDB(String sql) throws SQLException {
+    public static ResultSet queryCCDB(String sql) throws SQLException {
         s = conn.createStatement();
         rs = s.executeQuery(sql);
         return rs;
     }
 
-    public boolean updateCCDB(String sql) {
+    public static boolean updateCCDB(String sql) {
         boolean delete;
         try {
             s = conn.createStatement();
@@ -130,55 +120,48 @@ public class Pinwheel {
 
     }
 
-    public void setcols() throws SQLException {
-        this.colour = new ArrayList();
-        this.type = new ArrayList();
-        this.supplier = new ArrayList();
-        String sql = "SELECT DISTINCT colour FROM batch";
-        rs = this.queryCCDB(sql);
-        while (rs.next()) {
-            colour.add(rs.getNString(1));
-        }
-        sql = "SELECT DISTINCT type FROM batch";
-        rs = this.queryCCDB(sql);
-        while (rs.next()) {
-            type.add(rs.getNString(1));
-        }
-        sql = "SELECT DISTINCT sname FROM supplier";
-        rs = this.queryCCDB(sql);
+    public static ArrayList<String> getSupplier() throws SQLException {
+
+        String sql = "SELECT DISTINCT sname FROM supplier";
+        rs = queryCCDB(sql);
         while (rs.next()) {
             supplier.add(rs.getNString(1));
         }
-    }
-
-    public ArrayList<String> getSupplier() throws SQLException {
-        this.setcols();
         return supplier;
     }
 
-    public void setSupplier(ArrayList<String> supplier) {
-        this.supplier = supplier;
+    public static void setSupplier(ArrayList<String> supplier) {
+        supplier = supplier;
     }
 
-    public ArrayList<String> getColour() throws SQLException {
-        this.setcols();
+    public static ArrayList<String> getColour() throws SQLException {
+        colour = new ArrayList();
+        String sql = "SELECT DISTINCT colour FROM batch";
+        rs = queryCCDB(sql);
+        while (rs.next()) {
+            colour.add(rs.getNString(1));
+        }
         return colour;
     }
 
-    public void setColour(ArrayList<String> colour) {
-        this.colour = colour;
+    public static void setColour(ArrayList<String> colour) {
+        colour = colour;
     }
 
-    public ArrayList<String> getType() throws SQLException {
-        this.setcols();
+    public static ArrayList<String> getType() throws SQLException {
+        String sql = "SELECT DISTINCT type FROM batch";
+        rs = queryCCDB(sql);
+        while (rs.next()) {
+            type.add(rs.getNString(1));
+        }
         return type;
     }
 
-    public void setType(ArrayList<String> type) {
-        this.type = type;
+    public static void setType(ArrayList<String> type) {
+        type = type;
     }
 
-    public String stageGetWord(String s) {
+    public static String stageGetWord(String s) {
         switch (s) {
             case "1":
                 s = "Fermentation";
@@ -205,7 +188,7 @@ public class Pinwheel {
         return s;
     }
 
-    public String stageGetNo(String s) {
+    public static String stageGetNo(String s) {
         switch (s) {
             case "Fermentation":
                 s = "1";
@@ -232,10 +215,44 @@ public class Pinwheel {
         return s;
     }
 
-    public String[] getBatchData(String batch) throws SQLException {
-        String[] data = new String[5];
-        String sql = "SELECT batchid, colour, type, stage, mass FROM batch WHERE batchid = '" + batch + "'";
-        rs = this.queryCCDB(sql);
+    public static void updateAll(String[] data, String id) throws SQLException {
+        String sql = "";
+        if (data.length == 6) {
+            data[3] = stageGetNo(data[3]);
+            sql = "UPDATE batch SET batchid = '" + data[0] + "', colour = '" + data[1] + "', type = '" + data[2]
+                    + "', stage = '" + data[3] + "', mass = '" + data[4]
+                    + "', supplierid = '" + data[5] + "' WHERE batchid = '" + id + "'";
+            updateCCDB(sql);
+        } else if (data.length == 4) {
+            sql = "UPDATE supplier SET sname = '" + data[0] + "', tel = '" + data[1] + "', email = '" + data[2]
+                    + "', liason = '" + data[3] + "' WHERE sname = '" + id + "'";
+            updateCCDB(sql);
+        } else if (data.length == 2) {
+            sql = "UPDATE chemicaltbl SET chemical = '" + data[0] + "', chemvalue = '" + data[1] + "' WHERE chemical = '" + id + "'";
+            runChems(data, id);
+        }
+    }
+
+    public static void deleteAll(String[] data, String id) throws SQLException {
+        String sql = "";
+        if (data.length == 6) {
+            data[3] = stageGetNo(data[3]);
+            sql = "DELETE * FROM batch WHERE batchid = '" + data[0] + "'";
+            updateCCDB(sql);
+        } else if (data.length == 4) {
+            sql = sql = "DELETE * FROM supplier WHERE sname = '" + data[0] + "'";
+            updateCCDB(sql);
+        } else if (data.length == 2) {
+            sql = "DELETE * FROM chemicaltbl WHERE chemical = '" + data[0] + "'";
+            updateChem(sql);
+            runChems(data, id);
+        }
+    }
+
+    public static String[] getSupplierData(String supplierid) throws SQLException {
+        String[] data = new String[4];
+        String sql = "SELECT sname, tel, email, liason FROM supplier WHERE sname = '" + supplierid + "'";
+        rs = queryCCDB(sql);
         rs.next();
         for (int i = 0; i < data.length; i++) {
             data[i] = rs.getNString(i + 1);
@@ -243,24 +260,24 @@ public class Pinwheel {
         return data;
     }
 
-    public String[] getSupplierData(String supplierid) throws SQLException {
-        String[] data = new String[4];
-        String sql = "SELECT sname, tel, email, liason FROM supplier WHERE sname = '" + supplierid + "'";
-        rs = this.queryCCDB(sql);
-        rs.next();
-        for (int i = 0; i < data.length; i++) {
-            data[i] = rs.getNString(i + 1);
+    private static void runChems(String data[], String id) throws SQLException {
+        String sql = "SELECT * FROM information_schema.tables WHERE TABLE_TYPE='BASE TABLE'";
+        ResultSet tb = queryChem(sql);
+        tb.next();
+        while (tb.next()) {
+            String table = tb.getNString(1);
+            sql = "UPDATE " + table + " SET chemical = '" + data[0] + "' WHERE chemical = '" + id + "'";
+            updateChem(sql);
         }
-        return data;
     }
-    public static void promptAction(String s){
-        switch(s){
-            case "":
-                
-                break;
-            case " ":
-                
-                break;
+
+    public static ArrayList getChem() throws SQLException {
+        ArrayList chem = new ArrayList();
+        String sql = "SELECT DISTINCT chemical FROM chemicaltbl";
+        rs = queryChem(sql);
+        while (rs.next()) {
+            chem.add(rs.getNString(1));
         }
+        return chem;
     }
 }

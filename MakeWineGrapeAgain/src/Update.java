@@ -10,7 +10,6 @@
  */
 public class Update extends javax.swing.JFrame {
 String batch;
-Pinwheel e;
 String [] data;
     /**
      * Creates new form Update
@@ -18,11 +17,10 @@ String [] data;
     public Update() {
         initComponents();
     }
-    public Update(Pinwheel e, String [] d) {
+    public Update(String [] d) {
         initComponents();
         this.data = d;
         batch = data[0];
-        this.e = e;
         this.selectedTxt.setText(batch);
     }
 
