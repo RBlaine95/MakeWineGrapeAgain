@@ -22,18 +22,14 @@ public class AdminEdit extends javax.swing.JFrame {
     /**
      * Creates new form AdminEdit
      */
+
     public AdminEdit() {
         initComponents();
-    }
-
-    public AdminEdit(String[] d, String type) {
-        initComponents();
-        this.data = d;
-
+        this.data = Pinwheel.getData();
         this.batch = data[0];
-        this.data = d;
-        this.batch = data[0];
-        switch (type) {
+        
+        switch (Pinwheel.searchType) {
+            
             case "supplier":
                 batchTbl.getColumnModel().getColumn(0).setHeaderValue("Supplier name");
                 batchTbl.getColumnModel().getColumn(1).setHeaderValue("Contact No");
@@ -42,8 +38,8 @@ public class AdminEdit extends javax.swing.JFrame {
                 batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(4));
                 this.chemTbl.setEnabled(false);
                 this.chemLbl.setEnabled(false);
-
                 break;
+                
             case "chemical":
                 batchTbl.getColumnModel().getColumn(0).setHeaderValue("Chemical");
                 batchTbl.getColumnModel().getColumn(1).setHeaderValue("Value");
@@ -191,7 +187,7 @@ public class AdminEdit extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        Prompt p = new Prompt(this.batch, "adminedit");
+        Prompt p = new Prompt();
         p.setVisible(true);
     }//GEN-LAST:event_okBtnActionPerformed
 

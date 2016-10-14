@@ -1,8 +1,4 @@
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -24,18 +20,11 @@ public class Edit extends javax.swing.JFrame {
      */
     public Edit() {
         initComponents();
-    }
-
-    public Edit(String s) {
-        initComponents();
-        this.batch = s;
+        data = Pinwheel.getData();
+        this.batch = data[0];
 
         this.selectedTxt.setText(batch);
-        try {
-            this.load();
-        } catch (SQLException ex) {
-            Logger.getLogger(Edit.class.getName()).log(Level.SEVERE, null, ex);
-        }
+    
     }
 
     /**
@@ -151,22 +140,22 @@ public class Edit extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
-        Update u = new Update(data);
+        Update u = new Update();
         u.setVisible(true);
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void chemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chemBtnActionPerformed
-        Chemicals chem = new Chemicals(this.data);
+        Chemicals chem = new Chemicals();
         chem.setVisible(true);
     }//GEN-LAST:event_chemBtnActionPerformed
 
     private void subBatchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_subBatchBtnActionPerformed
-        SubBatch sub = new SubBatch(this.data);
+        SubBatch sub = new SubBatch();
         sub.setVisible(true);
     }//GEN-LAST:event_subBatchBtnActionPerformed
 
     private void blendBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_blendBtnActionPerformed
-        Blend b = new Blend(this.data);
+        Blend b = new Blend();
         b.setVisible(true);
     }//GEN-LAST:event_blendBtnActionPerformed
 
@@ -214,13 +203,4 @@ public class Edit extends javax.swing.JFrame {
     private javax.swing.JButton subBatchBtn;
     private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
-private void load() throws SQLException {
-        String sql = "SELECT batchid, colour, type, stage, mass, supplierid FROM batch WHERE batchid = '" + this.batch + "'";
-        ResultSet rs = Pinwheel.queryCCDB(sql);
-        rs.next();
-        for (int i = 0; i < 6; i++) {
-            data[i] = (rs.getNString(i + 1));
-        }
-
-    }
 }

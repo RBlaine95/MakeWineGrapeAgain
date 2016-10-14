@@ -16,10 +16,7 @@ String [] data;
      */
     public Update() {
         initComponents();
-    }
-    public Update(String [] d) {
-        initComponents();
-        this.data = d;
+        this.data = Pinwheel.getData();
         batch = data[0];
         this.selectedTxt.setText(batch);
     }

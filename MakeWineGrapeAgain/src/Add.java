@@ -67,7 +67,6 @@ public class Add extends javax.swing.JFrame {
 
         jLabel2.setText("Colour");
 
-        colourBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         colourBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 colourBoxActionPerformed(evt);
@@ -76,7 +75,6 @@ public class Add extends javax.swing.JFrame {
 
         jLabel3.setText("Type");
 
-        typeBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         typeBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 typeBoxActionPerformed(evt);
@@ -111,7 +109,6 @@ public class Add extends javax.swing.JFrame {
 
         jLabel6.setText("Supplier");
 
-        supplierBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         supplierBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 supplierBoxActionPerformed(evt);
@@ -264,11 +261,9 @@ public class Add extends javax.swing.JFrame {
 
     private void supplierBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierBoxActionPerformed
         if (this.supplierBox.getSelectedItem() == "New Supplier...") {
-            
-                as = new AddSupplier(this);
-                as.setVisible(true);
-                this.dispose();
-            
+            as = new AddSupplier();
+            as.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_supplierBoxActionPerformed
 
@@ -278,6 +273,7 @@ public class Add extends javax.swing.JFrame {
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
         String batch, colour, type, stage, mass, supplier, year;
+
         if (this.colourOverride) {
             colour = this.colourOverrideTxt.getText();
         } else {
@@ -290,22 +286,23 @@ public class Add extends javax.swing.JFrame {
         }
         year = this.yearTxt.getText();
         stage = this.stageBox.getSelectedItem() + "";
-        stage = Pinwheel.stageGetNo(stage);
         mass = this.massTxt.getText();
         supplier = this.supplierBox.getSelectedItem() + "";
+
         String code = colour.replaceAll("[^A-Z]", "");
+
         String sql = "SELECT COUNT(*) FROM batch";
-        ResultSet rs;
+
         try {
-            rs = Pinwheel.queryCCDB(sql);
+            ResultSet rs = Pinwheel.queryCCDB(sql);
             rs.next();
             int id = rs.getInt(1);
             batch = "" + code + year.substring(2) + type.substring(0, 3).toUpperCase() + (id + 1);
-            System.out.println(batch);
+            String[] temp = {batch, colour, type, stage, mass, supplier};
+            Pinwheel.setData(temp);
 
-            sql = "INSERT INTO batch (batchid, colour, type, stage, mass, supplierid) VALUES('" + batch + "', '" + colour + "', '" + type + "', '" + stage + "', '" + mass + "', '" + supplier + "')";
-            Pinwheel.updateCCDB(sql);
-            Pinwheel.createChem(batch);
+            Pinwheel.insertBatch();
+            Pinwheel.createChem();
         } catch (SQLException ex) {
             Logger.getLogger(Add.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -398,10 +395,12 @@ public void check() {
     }
 
     public void refresh() throws SQLException {
-        
+
         this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColour().toArray()));
         this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getType().toArray()));
         this.supplierBox.setModel(new DefaultComboBoxModel(Pinwheel.getSupplier().toArray()));
+
+        System.out.println("adds");
         this.colourBox.addItem("Override");
         this.typeBox.addItem("Override");
         this.supplierBox.addItem("New Supplier...");

@@ -16,18 +16,12 @@ import javax.swing.JOptionPane;
  */
 public class AddSupplier extends javax.swing.JFrame {
 
-    Add a;
     
     /**
      * Creates new form AddSupplier
      */
     public AddSupplier() {
         initComponents();
-    }
-
-    AddSupplier(Add a) {
-        initComponents();
-        this.a = a;
     }
 
     /**
@@ -182,8 +176,13 @@ public class AddSupplier extends javax.swing.JFrame {
         } else {
             String sql = "INSERT INTO supplier (sname, tel, email, liason) VALUES('" + this.nameTxt.getText() + "', '" + this.contactTxt.getText()
                     + "', '" + this.emailTxt.getText() + "', '" + this.liasonTxt.getText() + "')";
-            System.out.println(sql);
+            
             Pinwheel.updateCCDB(sql);
+            try {
+                Pinwheel.refreshSupplier();
+            } catch (SQLException ex) {
+                Logger.getLogger(AddSupplier.class.getName()).log(Level.SEVERE, null, ex);
+            }
             Add ad = new Add();
             ad.setVisible(true);
             this.dispose();
