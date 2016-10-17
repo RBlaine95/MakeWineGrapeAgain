@@ -156,7 +156,7 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void delChemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delChemBtnActionPerformed
         Pinwheel.setBounce("admindelete");
-        Pinwheel.setSearchType("chem");
+        Pinwheel.setSearchType("chemical");
         SearchBatch s = new SearchBatch();
         s.setVisible(true);
         this.dispose();
@@ -172,7 +172,7 @@ public class AdminMenu extends javax.swing.JFrame {
 
     private void editChemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editChemBtnActionPerformed
        Pinwheel.setBounce("adminedit");
-        Pinwheel.setSearchType("chem");
+        Pinwheel.setSearchType("chemical");
         SearchBatch s = new SearchBatch();
         s.setVisible(true);
         this.dispose();

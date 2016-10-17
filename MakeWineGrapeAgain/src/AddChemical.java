@@ -108,7 +108,7 @@ public class AddChemical extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        Pinwheel.insertNewChem(this.chemTxt.getText(), this.valueTxt.getText());
+        Pinwheel.insertChemical(this.chemTxt.getText(), this.valueTxt.getText());
         try {
             Pinwheel.refreshChemicals();
         } catch (SQLException ex) {

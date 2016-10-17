@@ -44,8 +44,8 @@ public class AdminEdit extends javax.swing.JFrame {
                 batchTbl.getColumnModel().getColumn(0).setHeaderValue("Chemical");
                 batchTbl.getColumnModel().getColumn(1).setHeaderValue("Value");
                 batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
-                batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(3));
-                batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(4));
+                batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
+                batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
                 this.chemTbl.setEnabled(false);
                 this.chemLbl.setEnabled(false);
                 break;
@@ -187,6 +187,7 @@ public class AdminEdit extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
+        Pinwheel.setBounce("edit");
         Prompt p = new Prompt();
         p.setVisible(true);
     }//GEN-LAST:event_okBtnActionPerformed

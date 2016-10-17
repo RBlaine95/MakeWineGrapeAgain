@@ -32,6 +32,7 @@ public final class Pinwheel {
     static String sql;
     static String[] data;
     static String searchType;
+    static String previousID;
     static String bounce;
 
     public static void connect() throws SQLException {
@@ -78,27 +79,33 @@ public final class Pinwheel {
         updateChem(sql);
     }
 
-    public static void insertNewChem(String c, String v) {
-        sql = "INSERT INTO chemicaltbl (chemical, value) VALUES('" + c + "', '" + v + "')";
-        updateChem(sql);
-    }
-
-    public static void insertChem(String c, String a) {
-        sql = "INSERT INTO " + data[0] + " (chemical, amount) VALUES('" + c + "', '" + a + "')";
-        System.out.println(sql);
-        updateChem(sql);
-    }
-
     public static void insertBatch() {
         data[3] = stageGetNo(data[3]);
         sql = "INSERT INTO batch (batchid, colour, type, stage, mass, supplierid) VALUES('" + data[0] + "', '" + data[1] + "', '" + data[2] + "', '" + data[3] + "', '" + data[4]
                 + "', '" + data[5] + "')";
-        System.out.println(data[3]);
         updateCCDB(sql);
+    }
+
+    public static void insertSupplier() {
+        data[3] = stageGetNo(data[3]);
+        sql = "INSERT INTO supplier (sname, tel, email, liason) VALUES('" + data[0] + "', '" + data[1] + "', '" + data[2] + "', '" + data[3] + "')";
+        updateCCDB(sql);
+    }
+
+    public static void insertChemical() {
+        data[3] = stageGetNo(data[3]);
+        sql = "INSERT INTO supplier (chemical, value) VALUES('" + data[0] + "', '" + data[1] + "')";
+        updateChem(sql);
+    }
+
+    public static void insertChemical(String c, String a) {
+        sql = "INSERT INTO " + data[0] + " (chemical, amount) VALUES('" + c + "', '" + a + "')";
+        updateChem(sql);
     }
 
     public static ResultSet queryChem(String sql) throws SQLException {
         sChem = connChem.createStatement();
+        System.out.println("Queries Chem");
         rsChem = sChem.executeQuery(sql);
         return rsChem;
     }
@@ -116,6 +123,7 @@ public final class Pinwheel {
 
     public static ResultSet queryCCDB(String sql) throws SQLException {
         s = conn.createStatement();
+        System.out.println("Queries Database, Not too many of these pls");
         rs = s.executeQuery(sql);
         return rs;
     }
@@ -174,7 +182,7 @@ public final class Pinwheel {
         sql = "SELECT DISTINCT colour FROM batch";
         rs = queryCCDB(sql);
         while (rs.next()) {
-            
+
             colour.add(rs.getNString(1));
         }
 
@@ -210,7 +218,7 @@ public final class Pinwheel {
         sql = "SELECT DISTINCT chemical FROM chemicaltbl";
         rs = queryChem(sql);
         while (rs.next()) {
-            
+
             chemicals.add(rs.getNString(1));
         }
 
@@ -303,6 +311,14 @@ public final class Pinwheel {
 
     public static void setBounce(String bounce) {
         Pinwheel.bounce = bounce;
+    }
+
+    public static String getPreviousID() {
+        return previousID;
+    }
+
+    public static void setPreviousID(String previousID) {
+        Pinwheel.previousID = previousID;
     }
 
 }
