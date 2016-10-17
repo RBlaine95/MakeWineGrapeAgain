@@ -36,6 +36,7 @@ public class AdminMenu extends javax.swing.JFrame {
         delSuppBtn = new javax.swing.JButton();
         delChemBtn = new javax.swing.JButton();
         delBatchBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,6 +82,13 @@ public class AdminMenu extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setText("Back");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -88,16 +96,21 @@ public class AdminMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(editSuppBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(editBatchBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(editChemBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(delSuppBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addComponent(delBatchBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(delChemBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(editSuppBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(editBatchBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(editChemBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(delSuppBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(delBatchBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(delChemBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -117,47 +130,65 @@ public class AdminMenu extends javax.swing.JFrame {
                         .addComponent(delChemBtn)
                         .addGap(18, 18, 18)
                         .addComponent(delSuppBtn)))
-                .addContainerGap(101, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void editBatchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBatchBtnActionPerformed
-        SearchBatch s = new SearchBatch("batch", "adminedit");
+        Pinwheel.setBounce("adminedit");
+        Pinwheel.setSearchType("batch");
+        SearchBatch s = new SearchBatch();
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_editBatchBtnActionPerformed
 
     private void delBatchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBatchBtnActionPerformed
-        SearchBatch s = new SearchBatch("batch", "admindelete");
+        Pinwheel.setBounce("admindelete");
+        Pinwheel.setSearchType("batch");
+        SearchBatch s = new SearchBatch();
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_delBatchBtnActionPerformed
 
     private void delChemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delChemBtnActionPerformed
-        SearchBatch s = new SearchBatch("chem", "admindelete");
+        Pinwheel.setBounce("admindelete");
+        Pinwheel.setSearchType("chemical");
+        SearchBatch s = new SearchBatch();
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_delChemBtnActionPerformed
 
     private void delSuppBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delSuppBtnActionPerformed
-        SearchBatch s = new SearchBatch("supplier", "admindelete");
+        Pinwheel.setBounce("admindelete");
+        Pinwheel.setSearchType("supplier");
+        SearchBatch s = new SearchBatch();
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_delSuppBtnActionPerformed
 
     private void editChemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editChemBtnActionPerformed
-        SearchBatch s = new SearchBatch("chem", "adminedit");
+       Pinwheel.setBounce("adminedit");
+        Pinwheel.setSearchType("chemical");
+        SearchBatch s = new SearchBatch();
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_editChemBtnActionPerformed
 
     private void editSuppBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editSuppBtnActionPerformed
-        SearchBatch s = new SearchBatch("supplier", "adminedit");
+        Pinwheel.setBounce("adminedit");
+        Pinwheel.setSearchType("supplier");
+        SearchBatch s = new SearchBatch();
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_editSuppBtnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -201,5 +232,6 @@ public class AdminMenu extends javax.swing.JFrame {
     private javax.swing.JButton editBatchBtn;
     private javax.swing.JButton editChemBtn;
     private javax.swing.JButton editSuppBtn;
+    private javax.swing.JButton jButton1;
     // End of variables declaration//GEN-END:variables
 }

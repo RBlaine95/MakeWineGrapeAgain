@@ -10,30 +10,18 @@
  */
 public class Prompt extends javax.swing.JFrame {
 
-    String id;
-    String location;
     String data[];
     /**
      * Creates new form Prompt
      */
+
     public Prompt() {
-
-    }
-
-    public Prompt(String s, String a) {
         initComponents();
-        this.id = s;
-        this.idLbl.setText("ID:" + this.id);
-        location = a;
+        this.data = Pinwheel.getData();
+        
+        this.idLbl.setText("ID:" + this.data[0]);
     }
-    public Prompt(String s, String a, String [] d) {
-        initComponents();
-        this.id = s;
-        this.data=d;
-        this.idLbl.setText("ID:" + this.id);
-        this.location = a;
-    }
- 
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -99,16 +87,25 @@ public class Prompt extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void promptTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_promptTxtKeyReleased
-        if (this.promptTxt.getText().equals(this.id)) {
+        if (this.promptTxt.getText().equals(this.data[0])) {
             this.okBtn.setEnabled(true);
-        }
-        else{
+        } else {
             this.okBtn.setEnabled(false);
         }
     }//GEN-LAST:event_promptTxtKeyReleased
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        this.promptAction(location);
+        if(Pinwheel.getBounce().equals("edit")){
+            if(Pinwheel.getSearchType().equals("batch")){
+                Pinwheel.insertBatch();
+            }
+            else{
+                if(Pinwheel.getSearchType().equals("supplier")){
+                    
+                }
+            }
+            
+        }
         this.dispose();
     }//GEN-LAST:event_okBtnActionPerformed
 
@@ -154,11 +151,4 @@ public class Prompt extends javax.swing.JFrame {
     private javax.swing.JTextField promptTxt;
     private javax.swing.JLabel txtLbl;
     // End of variables declaration//GEN-END:variables
-
-    private void promptAction(String location) {
-        switch(location){
-            case "admindelete":
-                
-        }
-    }
 }

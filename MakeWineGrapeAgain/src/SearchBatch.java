@@ -24,23 +24,19 @@ public class SearchBatch extends javax.swing.JFrame {
     String colour;
     String type;
     String stage;
-    String typeofsearch;
-    String bounce = "";
+
     String[] data;
 
     /**
      * Creates new form main
      */
-    public SearchBatch() {
-        initComponents();
-    }
 
-    public SearchBatch(String s, String b) {
-        bounce = b;
-        typeofsearch = s;
+    public SearchBatch() {
+        
         initComponents();
+        
         try {
-            switch (typeofsearch) {
+            switch (Pinwheel.getSearchType()) {
                 case "batch":
                     this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColour().toArray()));
                     this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getType().toArray()));
@@ -72,9 +68,9 @@ public class SearchBatch extends javax.swing.JFrame {
                     batchTbl.getColumnModel().getColumn(0).setHeaderValue("Chemical");
                     batchTbl.getColumnModel().getColumn(1).setHeaderValue("Value");
                     batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
-                    batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(3));
-                    batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(4));
-
+                    batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
+                    batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
+                    
                     data = new String[2];
 
                     this.batchLbl.setText("Chemical Name");
@@ -286,20 +282,20 @@ public class SearchBatch extends javax.swing.JFrame {
         for (int i = 0; i < data.length; i++) {
             data[i] = (String) this.batchTbl.getValueAt(this.batchTbl.getSelectedRow(), i);
         }
-
-        switch (bounce) {
+        Pinwheel.setData(data);
+        switch (Pinwheel.getBounce()) {
             case "mainsearch":
-                Edit ed = new Edit(data[0]);
+                Edit ed = new Edit();
                 ed.setVisible(true);
                 this.dispose();
                 break;
             case "admindelete":
-                Prompt p = new Prompt(data[0], bounce);
+                Prompt p = new Prompt();
                 p.setVisible(true);
                 this.dispose();
                 break;
             case "adminedit":
-                AdminEdit ae = new AdminEdit(data, typeofsearch);
+                AdminEdit ae = new AdminEdit();
                 ae.setVisible(true);
                 this.dispose();
         }
@@ -312,6 +308,7 @@ public class SearchBatch extends javax.swing.JFrame {
     }//GEN-LAST:event_batchTblMouseClicked
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
+        this.selectBtn.setEnabled(false);
         DefaultTableModel model = (DefaultTableModel) this.batchTbl.getModel();
         model.setRowCount(0);
         ResultSet rs;
@@ -329,7 +326,7 @@ public class SearchBatch extends javax.swing.JFrame {
         sql = "";
         Object[] list;
 
-        switch (typeofsearch) {
+        switch (Pinwheel.getSearchType()) {
             case "batch":
                 sql = "SELECT batchid, colour, type, stage, mass FROM batch";
                 list = new Object[5];
@@ -361,7 +358,7 @@ public class SearchBatch extends javax.swing.JFrame {
                     if (whered) {
                         sql += " AND ";
                     }
-                    sql += " stage = '" + this.stage + "'";
+                    sql += " stage = '" + Pinwheel.stageGetNo(this.stage) + "'";
                 }
                 try {
                     rs = Pinwheel.queryCCDB(sql);
@@ -402,7 +399,26 @@ public class SearchBatch extends javax.swing.JFrame {
                 }
                 break;
             case "chemical":
-                System.out.println("Not support yet");
+                sql = "SELECT chemical, value FROM chemicaltbl";
+                list = new Object[2];
+                if (batch) {
+                    sql += "WHERE chemical = '" + this.batchid + "'";
+                }
+                try {
+                    rs = Pinwheel.queryChem(sql);
+                    int count = 0;
+                    while (rs.next()) {
+
+                        for (int i = 0; i < list.length; i++) {
+                            list[i] = (rs.getString(i + 1));
+                        }
+
+                        ((DefaultTableModel) this.batchTbl.getModel()).insertRow(count, list);
+                        count++;
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(SearchBatch.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 break;
         }
 
