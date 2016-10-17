@@ -68,9 +68,9 @@ public class SearchBatch extends javax.swing.JFrame {
                     batchTbl.getColumnModel().getColumn(0).setHeaderValue("Chemical");
                     batchTbl.getColumnModel().getColumn(1).setHeaderValue("Value");
                     batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
-                    batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(3));
-                    batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(4));
-
+                    batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
+                    batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
+                    
                     data = new String[2];
 
                     this.batchLbl.setText("Chemical Name");
@@ -399,7 +399,26 @@ public class SearchBatch extends javax.swing.JFrame {
                 }
                 break;
             case "chemical":
-                System.out.println("Not support yet");
+                sql = "SELECT chemical, value FROM chemicaltbl";
+                list = new Object[2];
+                if (batch) {
+                    sql += "WHERE chemical = '" + this.batchid + "'";
+                }
+                try {
+                    rs = Pinwheel.queryChem(sql);
+                    int count = 0;
+                    while (rs.next()) {
+
+                        for (int i = 0; i < list.length; i++) {
+                            list[i] = (rs.getString(i + 1));
+                        }
+
+                        ((DefaultTableModel) this.batchTbl.getModel()).insertRow(count, list);
+                        count++;
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(SearchBatch.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 break;
         }
 

@@ -17,6 +17,9 @@ String [] data;
     public Update() {
         initComponents();
         this.data = Pinwheel.getData();
+        this.massTxt.setEnabled(false);
+            this.massTxt.setVisible(false);
+            this.massLbl.setVisible(false);
         batch = data[0];
         this.selectedTxt.setText(batch);
     }
@@ -33,11 +36,12 @@ String [] data;
         jLabel1 = new javax.swing.JLabel();
         selectedTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        massLbl = new javax.swing.JLabel();
         stageBox = new javax.swing.JComboBox();
         massTxt = new javax.swing.JTextField();
         okBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
+        spillBox = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -47,7 +51,7 @@ String [] data;
 
         jLabel2.setText("Stage");
 
-        jLabel3.setText("Mass");
+        massLbl.setText("New Mass");
 
         stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Stroage" }));
 
@@ -57,6 +61,13 @@ String [] data;
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
+            }
+        });
+
+        spillBox.setText("Spillage");
+        spillBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                spillBoxActionPerformed(evt);
             }
         });
 
@@ -74,20 +85,24 @@ String [] data;
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel3)
-                                    .addComponent(jLabel2))
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(massTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 99, Short.MAX_VALUE))
+                                .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(spillBox)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 66, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(backBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(okBtn)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(massLbl)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(massTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(backBtn)
+                                .addGap(18, 18, 18)
+                                .addComponent(okBtn)))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -100,10 +115,11 @@ String [] data;
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(spillBox))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
+                    .addComponent(massLbl)
                     .addComponent(massTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -118,6 +134,19 @@ String [] data;
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
+
+    private void spillBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spillBoxActionPerformed
+        if(spillBox.isSelected()){
+            this.massTxt.setVisible(true);
+            this.massTxt.setEnabled(true);
+            this.massLbl.setVisible(true);
+        }
+        else{
+            this.massTxt.setEnabled(false);
+            this.massTxt.setVisible(false);
+            this.massLbl.setVisible(false);
+        }
+    }//GEN-LAST:event_spillBoxActionPerformed
 
     /**
      * @param args the command line arguments
@@ -158,10 +187,11 @@ String [] data;
     private javax.swing.JButton backBtn;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel massLbl;
     private javax.swing.JTextField massTxt;
     private javax.swing.JButton okBtn;
     private javax.swing.JTextField selectedTxt;
+    private javax.swing.JCheckBox spillBox;
     private javax.swing.JComboBox stageBox;
     // End of variables declaration//GEN-END:variables
 }
