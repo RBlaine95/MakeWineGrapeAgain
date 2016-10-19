@@ -23,6 +23,10 @@ public final class Pinwheel {
     static ArrayList<String> chemicals = new ArrayList();
     static ArrayList<String> type = new ArrayList();
     static ArrayList<String> supplier = new ArrayList();
+    static ArrayList<String> colourAll = new ArrayList();
+    
+    static ArrayList<String> typeAll = new ArrayList();
+
     static Statement s;
     static Connection conn;
     static ResultSet rs;
@@ -38,6 +42,10 @@ public final class Pinwheel {
     public static void connect() throws SQLException {
         connectChem();
         connectCCDB();
+        colourAll.add("All");
+
+        typeAll.add("All");
+
         refreshChemicals();
         refreshColour();
         refreshSupplier();
@@ -143,6 +151,22 @@ public final class Pinwheel {
 
     }
 
+    public static ArrayList<String> getColourAll() {
+        return colourAll;
+    }
+
+    public static void setColourAll(ArrayList<String> colourAll) {
+        Pinwheel.colourAll = colourAll;
+    }
+
+    public static ArrayList<String> getTypeAll() {
+        return typeAll;
+    }
+
+    public static void setTypeAll(ArrayList<String> typeAll) {
+        Pinwheel.typeAll = typeAll;
+    }
+
     public static ArrayList<String> getSupplier() throws SQLException {
         return supplier;
     }
@@ -181,8 +205,10 @@ public final class Pinwheel {
         sql = "SELECT DISTINCT colour FROM batch";
         rs = queryCCDB(sql);
         while (rs.next()) {
-
             colour.add(rs.getNString(1));
+        }
+        for (int i = 0; i < colour.size(); i++) {
+            colourAll.add(colour.get(i));
         }
 
     }
@@ -193,8 +219,10 @@ public final class Pinwheel {
         sql = "SELECT DISTINCT type FROM batch";
         rs = queryCCDB(sql);
         while (rs.next()) {
-
             type.add(rs.getNString(1));
+        }
+        for (int i = 0; i < type.size(); i++) {
+            typeAll.add(type.get(i));
         }
 
     }
@@ -208,7 +236,6 @@ public final class Pinwheel {
 
             supplier.add(rs.getNString(1));
         }
-
     }
 
     public static void refreshChemicals() throws SQLException {

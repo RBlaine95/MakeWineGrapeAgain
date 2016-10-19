@@ -35,63 +35,57 @@ public class SearchBatch extends javax.swing.JFrame {
         
         initComponents();
         
-        try {
-            switch (Pinwheel.getSearchType()) {
-                case "batch":
-                    this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColour().toArray()));
-                    this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getType().toArray()));
-                    data = new String[5];
-                    break;
-                case "supplier":
-                    batchTbl.getColumnModel().getColumn(0).setHeaderValue("Supplier name");
-                    batchTbl.getColumnModel().getColumn(1).setHeaderValue("Contact No");
-                    batchTbl.getColumnModel().getColumn(2).setHeaderValue("Email");
-                    batchTbl.getColumnModel().getColumn(3).setHeaderValue("Contact Liason");
-                    batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(4));
-
-                    data = new String[4];
-
-                    this.batchLbl.setText("Supplier Name");
-                    this.colourLbl.setText("");
-                    this.typeLbl.setText("");
-                    this.stageLbl.setText("");
-
-                    this.stageBox.setVisible(false);
-                    this.colourBox.setVisible(false);
-                    this.typeBox.setVisible(false);
-
-                    this.stageBox.setEnabled(false);
-                    this.colourBox.setEnabled(false);
-                    this.typeBox.setEnabled(false);
-                    break;
-                case "chemical":
-                    batchTbl.getColumnModel().getColumn(0).setHeaderValue("Chemical");
-                    batchTbl.getColumnModel().getColumn(1).setHeaderValue("Value");
-                    batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
-                    batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
-                    batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
-                    
-                    data = new String[2];
-
-                    this.batchLbl.setText("Chemical Name");
-                    this.colourLbl.setText("");
-                    this.typeLbl.setText("");
-                    this.stageLbl.setText("");
-
-                    this.stageBox.setVisible(false);
-                    this.colourBox.setVisible(false);
-                    this.typeBox.setVisible(false);
-
-                    this.stageBox.setEnabled(false);
-                    this.colourBox.setEnabled(false);
-                    this.typeBox.setEnabled(false);
-                    break;
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(SearchBatch.class.getName()).log(Level.SEVERE, null, ex);
+        switch (Pinwheel.getSearchType()) {
+            case "batch":
+                this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColourAll().toArray()));
+                this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getTypeAll().toArray()));
+                data = new String[5];
+                break;
+            case "supplier":
+                batchTbl.getColumnModel().getColumn(0).setHeaderValue("Supplier name");
+                batchTbl.getColumnModel().getColumn(1).setHeaderValue("Contact No");
+                batchTbl.getColumnModel().getColumn(2).setHeaderValue("Email");
+                batchTbl.getColumnModel().getColumn(3).setHeaderValue("Contact Liason");
+                batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(4));
+                
+                data = new String[4];
+                
+                this.batchLbl.setText("Supplier Name");
+                this.colourLbl.setText("");
+                this.typeLbl.setText("");
+                this.stageLbl.setText("");
+                
+                this.stageBox.setVisible(false);
+                this.colourBox.setVisible(false);
+                this.typeBox.setVisible(false);
+                
+                this.stageBox.setEnabled(false);
+                this.colourBox.setEnabled(false);
+                this.typeBox.setEnabled(false);
+                break;
+            case "chemical":
+                batchTbl.getColumnModel().getColumn(0).setHeaderValue("Chemical");
+                batchTbl.getColumnModel().getColumn(1).setHeaderValue("Value");
+                batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
+                batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
+                batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
+                
+                data = new String[2];
+                
+                this.batchLbl.setText("Chemical Name");
+                this.colourLbl.setText("");
+                this.typeLbl.setText("");
+                this.stageLbl.setText("");
+                
+                this.stageBox.setVisible(false);
+                this.colourBox.setVisible(false);
+                this.typeBox.setVisible(false);
+                
+                this.stageBox.setEnabled(false);
+                this.colourBox.setEnabled(false);
+                this.typeBox.setEnabled(false);
+                break;
         }
-        this.colourBox.addItem("All");
-        this.typeBox.addItem("All");
     }
 
     /**
