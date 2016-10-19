@@ -11,14 +11,14 @@
 public class Prompt extends javax.swing.JFrame {
 
     String data[];
+
     /**
      * Creates new form Prompt
      */
-
     public Prompt() {
         initComponents();
         this.data = Pinwheel.getData();
-        
+
         this.idLbl.setText("ID:" + this.data[0]);
     }
 
@@ -107,16 +107,33 @@ public class Prompt extends javax.swing.JFrame {
     }//GEN-LAST:event_promptTxtKeyReleased
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        if(Pinwheel.getBounce().equals("edit")){
-            if(Pinwheel.getSearchType().equals("batch")){
-                Pinwheel.insertBatch();
-            }
-            else{
-                if(Pinwheel.getSearchType().equals("supplier")){
-                    
+        switch (Pinwheel.getBounce()) {
+            case "edit":
+                switch (Pinwheel.getSearchType()) {
+                    case "batch":
+                        Pinwheel.deleteBatch();
+                        Pinwheel.insertBatch();
+                        break;
+                    case "supplier":
+                        Pinwheel.deleteSupplier();
+                        Pinwheel.insertSupplier();
+                        break;
+                    case "chemical":
+                        Pinwheel.deleteChemical();
+                        Pinwheel.insertChemical();
+                        break;
                 }
-            }
-            
+            case "delete":
+                switch(Pinwheel.getSearchType()){
+                    case "batch":
+                        Pinwheel.deleteBatch();
+                        break;
+                    case "supplier":
+                        Pinwheel.deleteSupplier();
+                        break;
+                    case "chemical":
+                        Pinwheel.deleteChemical();
+                }
         }
         this.dispose();
     }//GEN-LAST:event_okBtnActionPerformed
@@ -139,16 +156,21 @@ public class Prompt extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Prompt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Prompt.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Prompt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Prompt.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Prompt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Prompt.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Prompt.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Prompt.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>

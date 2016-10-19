@@ -24,17 +24,16 @@ public class SearchBatch extends javax.swing.JFrame {
     String colour;
     String type;
     String stage;
-
+    boolean temp = false;
     String[] data;
 
     /**
      * Creates new form main
      */
-
     public SearchBatch() {
-        
+
         initComponents();
-        
+
         switch (Pinwheel.getSearchType()) {
             case "batch":
                 this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColourAll().toArray()));
@@ -47,18 +46,18 @@ public class SearchBatch extends javax.swing.JFrame {
                 batchTbl.getColumnModel().getColumn(2).setHeaderValue("Email");
                 batchTbl.getColumnModel().getColumn(3).setHeaderValue("Contact Liason");
                 batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(4));
-                
+
                 data = new String[4];
-                
+
                 this.batchLbl.setText("Supplier Name");
                 this.colourLbl.setText("");
                 this.typeLbl.setText("");
                 this.stageLbl.setText("");
-                
+
                 this.stageBox.setVisible(false);
                 this.colourBox.setVisible(false);
                 this.typeBox.setVisible(false);
-                
+
                 this.stageBox.setEnabled(false);
                 this.colourBox.setEnabled(false);
                 this.typeBox.setEnabled(false);
@@ -69,23 +68,32 @@ public class SearchBatch extends javax.swing.JFrame {
                 batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
                 batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
                 batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
-                
+
                 data = new String[2];
-                
+
                 this.batchLbl.setText("Chemical Name");
                 this.colourLbl.setText("");
                 this.typeLbl.setText("");
                 this.stageLbl.setText("");
-                
+
                 this.stageBox.setVisible(false);
                 this.colourBox.setVisible(false);
                 this.typeBox.setVisible(false);
-                
+
                 this.stageBox.setEnabled(false);
                 this.colourBox.setEnabled(false);
                 this.typeBox.setEnabled(false);
                 break;
         }
+    }
+    public SearchBatch(boolean a) {
+        
+        initComponents();
+        
+        temp = a;
+                this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColourAll().toArray()));
+                this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getTypeAll().toArray()));
+                data = new String[5];
     }
 
     /**
@@ -276,21 +284,30 @@ public class SearchBatch extends javax.swing.JFrame {
         for (int i = 0; i < data.length; i++) {
             data[i] = (String) this.batchTbl.getValueAt(this.batchTbl.getSelectedRow(), i);
         }
-        Pinwheel.setData(data);
+        if (this.temp) {
+            Pinwheel.setTempData(data);
+        } else {
+            Pinwheel.setData(data);
+        }
         switch (Pinwheel.getBounce()) {
             case "mainsearch":
                 Edit ed = new Edit();
                 ed.setVisible(true);
                 this.dispose();
                 break;
-            case "admindelete":
+            case "delete":
                 Prompt p = new Prompt();
                 p.setVisible(true);
                 this.dispose();
                 break;
-            case "adminedit":
+            case "edit":
                 AdminEdit ae = new AdminEdit();
                 ae.setVisible(true);
+                this.dispose();
+                break;
+            case "blend":
+                Blend b = new Blend();
+                b.setVisible(true);
                 this.dispose();
         }
     }//GEN-LAST:event_selectBtnActionPerformed

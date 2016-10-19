@@ -143,7 +143,11 @@ public class Chemicals extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        Pinwheel.insertChemicalAt(this.chemBox.getSelectedItem() + "", this.amountTxt.getText());
+        try {
+            Pinwheel.insertChemicalAt(this.chemBox.getSelectedItem() + "", this.amountTxt.getText());
+        } catch (SQLException ex) {
+            Logger.getLogger(Chemicals.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_okBtnActionPerformed
 
