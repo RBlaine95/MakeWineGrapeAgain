@@ -139,7 +139,7 @@ public class AdminMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void editBatchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBatchBtnActionPerformed
-        Pinwheel.setBounce("adminedit");
+        Pinwheel.setBounce("edit");
         Pinwheel.setSearchType("batch");
         SearchBatch s = new SearchBatch();
         s.setVisible(true);
@@ -147,7 +147,7 @@ public class AdminMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_editBatchBtnActionPerformed
 
     private void delBatchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delBatchBtnActionPerformed
-        Pinwheel.setBounce("admindelete");
+        Pinwheel.setBounce("delete");
         Pinwheel.setSearchType("batch");
         SearchBatch s = new SearchBatch();
         s.setVisible(true);
@@ -155,7 +155,7 @@ public class AdminMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_delBatchBtnActionPerformed
 
     private void delChemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delChemBtnActionPerformed
-        Pinwheel.setBounce("admindelete");
+        Pinwheel.setBounce("delete");
         Pinwheel.setSearchType("chemical");
         SearchBatch s = new SearchBatch();
         s.setVisible(true);
@@ -163,7 +163,7 @@ public class AdminMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_delChemBtnActionPerformed
 
     private void delSuppBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delSuppBtnActionPerformed
-        Pinwheel.setBounce("admindelete");
+        Pinwheel.setBounce("delete");
         Pinwheel.setSearchType("supplier");
         SearchBatch s = new SearchBatch();
         s.setVisible(true);
@@ -171,7 +171,7 @@ public class AdminMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_delSuppBtnActionPerformed
 
     private void editChemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editChemBtnActionPerformed
-       Pinwheel.setBounce("adminedit");
+       Pinwheel.setBounce("edit");
         Pinwheel.setSearchType("chemical");
         SearchBatch s = new SearchBatch();
         s.setVisible(true);
@@ -179,7 +179,7 @@ public class AdminMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_editChemBtnActionPerformed
 
     private void editSuppBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editSuppBtnActionPerformed
-        Pinwheel.setBounce("adminedit");
+        Pinwheel.setBounce("edit");
         Pinwheel.setSearchType("supplier");
         SearchBatch s = new SearchBatch();
         s.setVisible(true);
