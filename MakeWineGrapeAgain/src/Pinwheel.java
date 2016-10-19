@@ -87,19 +87,18 @@ public final class Pinwheel {
     }
 
     public static void insertSupplier() {
-        data[3] = stageGetNo(data[3]);
         sql = "INSERT INTO supplier (sname, tel, email, liason) VALUES('" + data[0] + "', '" + data[1] + "', '" + data[2] + "', '" + data[3] + "')";
         updateCCDB(sql);
     }
 
-    public static void insertChemical() {
-        data[3] = stageGetNo(data[3]);
-        sql = "INSERT INTO supplier (chemical, value) VALUES('" + data[0] + "', '" + data[1] + "')";
+    public static void insertChemical(String c, String a) {
+        sql = "INSERT INTO chemicaltbl (chemical, value) VALUES('" + c + "', '" + a + "')";
         updateChem(sql);
     }
 
-    public static void insertChemical(String c, String a) {
+    public static void insertChemicalAt(String c, String a) {
         sql = "INSERT INTO " + data[0] + " (chemical, amount) VALUES('" + c + "', '" + a + "')";
+        System.out.println(sql);
         updateChem(sql);
     }
 

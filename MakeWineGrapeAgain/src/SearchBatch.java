@@ -338,7 +338,7 @@ public class SearchBatch extends javax.swing.JFrame {
                         sql += " AND ";
                     }
                     whered = true;
-                    sql += " batchid = '" + this.batchid + "'";
+                    sql += " batchid LIKE '*" + this.batchid + "*'";
                 }
                 if (col) {
                     if (whered) {
