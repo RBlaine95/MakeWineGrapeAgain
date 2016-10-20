@@ -310,6 +310,12 @@ public class Add extends javax.swing.JFrame {
 
             Pinwheel.insertBatch();
             Pinwheel.createChem();
+//            if (this.colourOverride) {
+//                Pinwheel.refreshColour();
+//            }
+//            if (this.typeOverride) {
+//                Pinwheel.refreshType();
+//            }
             this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(Add.class.getName()).log(Level.SEVERE, null, ex);
