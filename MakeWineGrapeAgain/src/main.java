@@ -67,6 +67,7 @@ public class main extends javax.swing.JFrame {
         bground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("MAKE WINE GRAPE AGAIN");
         getContentPane().setLayout(null);
 
         jPanel2.setOpaque(false);
