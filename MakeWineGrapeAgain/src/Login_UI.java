@@ -20,38 +20,32 @@ public class Login_UI extends javax.swing.JFrame {
     public Login_UI() {
         initComponents();
         
-            loginBtn.addKeyListener(new KeyAdapter() {
-    public void keyPressed(KeyEvent e) {
-         if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-              onButtonPress();
-         }
-    } 
-    });
-            
-            passwordField.addKeyListener(new KeyAdapter() {
-    public void keyPressed(KeyEvent e) {
-         if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-              onButtonPress();
-         }
-    } 
-    });
-        
-                try {
-        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-                javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                break;
+        loginBtn.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                 if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                      onButtonPress();
+                 }
+            } 
+        });
+
+        passwordField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                 if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                      onButtonPress();
+                 }
             }
+        });
+
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Windows".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    } catch (ClassNotFoundException ex) {
-        java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (InstantiationException ex) {
-        java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (IllegalAccessException ex) {
-        java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-        java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
     }
 
     /**
@@ -69,6 +63,7 @@ public class Login_UI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("LOG IN");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(600, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
