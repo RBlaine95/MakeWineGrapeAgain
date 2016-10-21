@@ -185,10 +185,13 @@ public class SubBatch extends javax.swing.JFrame {
             int count = rs.getInt(1);
 
             subID += (count + 1) + "";
-
+            for (int i = 0; i < data.length; i++) {
+                            System.out.println(data[i]);
+            }
+            
             sql = "INSERT INTO batch VALUES (" + subID + ", " + this.data[1] + ", " + this.data[2] + ", " + Pinwheel.stageGetNo(stage)
-                    + ", " + subMass + ", " + this.data[5] + ", " + this.data[6] + ")"; //prep sub batch sql
-
+                    + ", " + subMass + ", " + this.data[5] + ")"; //prep sub batch sql
+            System.out.println(sql);
             Pinwheel.updateCCDB(sql); //insert new sub batch
 
             //update main batch's mass

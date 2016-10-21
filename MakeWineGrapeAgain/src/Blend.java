@@ -1,4 +1,9 @@
 
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -13,20 +18,29 @@ public class Blend extends javax.swing.JFrame {
 
     String batch;
     String[] data;
-    String [] temp;
+    String[] temp;
 
     /**
      * Creates new form Blend
      */
     public Blend() {
         initComponents();
+        this.check();
         this.data = Pinwheel.getData();
         this.batch = this.data[0];
         this.selectedTxt.setText(batch);
         this.temp = Pinwheel.getTempdata();
-        if (temp[0].length()>0) {
-            this.otherTxt.setText(temp[0]);
-        }
+
+        this.batch2Txt.setText(temp[0]);
+        this.batch3Txt.setText(temp[1]);
+        this.batch4Txt.setText(temp[2]);
+        this.batch5Txt.setText(temp[3]);
+        this.batch6Txt.setText(temp[4]);
+        this.batch7Txt.setText(temp[5]);
+        this.batch8Txt.setText(temp[6]);
+        this.batch9Txt.setText(temp[7]);
+
+        this.refresh();
     }
 
     /**
@@ -42,17 +56,75 @@ public class Blend extends javax.swing.JFrame {
         selectedTxt = new javax.swing.JTextField();
         backBtn = new javax.swing.JButton();
         okBtn = new javax.swing.JButton();
-        otherTxt = new javax.swing.JTextField();
+        batch2Txt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        selectBtn = new javax.swing.JButton();
+        select2Btn = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        select3Btn = new javax.swing.JButton();
+        batch3Txt = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        select4Btn = new javax.swing.JButton();
+        batch4Txt = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        batch5Txt = new javax.swing.JTextField();
+        select5Btn = new javax.swing.JButton();
+        select6Btn = new javax.swing.JButton();
+        select7Btn = new javax.swing.JButton();
+        batch7Txt = new javax.swing.JTextField();
+        batch6Txt = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        batch8Txt = new javax.swing.JTextField();
+        select8Btn = new javax.swing.JButton();
+        select9Btn = new javax.swing.JButton();
+        batch9Txt = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        per1Txt = new javax.swing.JTextField();
+        per2Txt = new javax.swing.JTextField();
+        per4Txt = new javax.swing.JTextField();
+        per7Txt = new javax.swing.JTextField();
+        per5Txt = new javax.swing.JTextField();
+        per6Txt = new javax.swing.JTextField();
+        per8Txt = new javax.swing.JTextField();
+        per9Txt = new javax.swing.JTextField();
+        select1Btn = new javax.swing.JButton();
+        per3Txt = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        volTxt = new javax.swing.JTextField();
+        jLabel20 = new javax.swing.JLabel();
+        stageBox = new javax.swing.JComboBox();
+        jLabel21 = new javax.swing.JLabel();
+        colTxt = new javax.swing.JTextField();
+        jLabel22 = new javax.swing.JLabel();
+        nameTxt = new javax.swing.JTextField();
+        clear3 = new javax.swing.JButton();
+        clear4 = new javax.swing.JButton();
+        clear5 = new javax.swing.JButton();
+        clear6 = new javax.swing.JButton();
+        clear7 = new javax.swing.JButton();
+        clear8 = new javax.swing.JButton();
+        clear9 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("Selected:");
+        jLabel1.setText("Batch 1");
 
         selectedTxt.setEditable(false);
+        selectedTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectedTxtActionPerformed(evt);
+            }
+        });
 
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -68,14 +140,14 @@ public class Blend extends javax.swing.JFrame {
             }
         });
 
-        otherTxt.setEditable(false);
+        batch2Txt.setEditable(false);
 
-        jLabel2.setText("Other");
+        jLabel2.setText("Batch 2");
 
-        selectBtn.setText("Select");
-        selectBtn.addActionListener(new java.awt.event.ActionListener() {
+        select2Btn.setText("Select");
+        select2Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectBtnActionPerformed(evt);
+                select2BtnActionPerformed(evt);
             }
         });
 
@@ -83,54 +155,484 @@ public class Blend extends javax.swing.JFrame {
 
         jLabel4.setText("Percentage");
 
+        select3Btn.setText("Select");
+        select3Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                select3BtnActionPerformed(evt);
+            }
+        });
+
+        batch3Txt.setEditable(false);
+
+        jLabel5.setText("Batch 3");
+
+        select4Btn.setText("Select");
+        select4Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                select4BtnActionPerformed(evt);
+            }
+        });
+
+        batch4Txt.setEditable(false);
+
+        jLabel6.setText("Batch 4");
+
+        jLabel7.setText("Batch 7");
+
+        jLabel8.setText("Batch 6");
+
+        jLabel9.setText("Batch 5");
+
+        batch5Txt.setEditable(false);
+
+        select5Btn.setText("Select");
+        select5Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                select5BtnActionPerformed(evt);
+            }
+        });
+
+        select6Btn.setText("Select");
+        select6Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                select6BtnActionPerformed(evt);
+            }
+        });
+
+        select7Btn.setText("Select");
+        select7Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                select7BtnActionPerformed(evt);
+            }
+        });
+
+        batch7Txt.setEditable(false);
+
+        batch6Txt.setEditable(false);
+
+        jLabel11.setText("Batch 9");
+
+        jLabel12.setText("Batch 8");
+
+        batch8Txt.setEditable(false);
+
+        select8Btn.setText("Select");
+        select8Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                select8BtnActionPerformed(evt);
+            }
+        });
+
+        select9Btn.setText("Select");
+        select9Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                select9BtnActionPerformed(evt);
+            }
+        });
+
+        batch9Txt.setEditable(false);
+
+        jLabel10.setText("Percentage");
+
+        jLabel13.setText("Percentage");
+
+        jLabel14.setText("Percentage");
+
+        jLabel15.setText("Percentage");
+
+        jLabel16.setText("Percentage");
+
+        jLabel17.setText("Percentage");
+
+        per1Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                per1TxtKeyReleased(evt);
+            }
+        });
+
+        per2Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                per2TxtKeyReleased(evt);
+            }
+        });
+
+        per4Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                per4TxtKeyReleased(evt);
+            }
+        });
+
+        per7Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                per7TxtKeyReleased(evt);
+            }
+        });
+
+        per5Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                per5TxtKeyReleased(evt);
+            }
+        });
+
+        per6Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                per6TxtKeyReleased(evt);
+            }
+        });
+
+        per8Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                per8TxtKeyReleased(evt);
+            }
+        });
+
+        per9Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                per9TxtKeyReleased(evt);
+            }
+        });
+
+        select1Btn.setText("Select");
+        select1Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                select1BtnActionPerformed(evt);
+            }
+        });
+
+        per3Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                per3TxtKeyReleased(evt);
+            }
+        });
+
+        jLabel18.setText("Percentage");
+
+        jLabel19.setText("Volume");
+
+        volTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                volTxtKeyReleased(evt);
+            }
+        });
+
+        jLabel20.setText("Stage");
+
+        stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please Select", "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
+        stageBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stageBoxActionPerformed(evt);
+            }
+        });
+
+        jLabel21.setText("Colour");
+
+        colTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                colTxtKeyReleased(evt);
+            }
+        });
+
+        jLabel22.setText("Name");
+
+        nameTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                nameTxtKeyReleased(evt);
+            }
+        });
+
+        clear3.setText("Clear");
+        clear3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clear3ActionPerformed(evt);
+            }
+        });
+
+        clear4.setText("Clear");
+        clear4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clear4ActionPerformed(evt);
+            }
+        });
+
+        clear5.setText("Clear");
+        clear5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clear5ActionPerformed(evt);
+            }
+        });
+
+        clear6.setText("Clear");
+        clear6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clear6ActionPerformed(evt);
+            }
+        });
+
+        clear7.setText("Clear");
+        clear7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clear7ActionPerformed(evt);
+            }
+        });
+
+        clear8.setText("Clear");
+        clear8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clear8ActionPerformed(evt);
+            }
+        });
+
+        clear9.setText("Clear");
+        clear9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clear9ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(backBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(okBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(selectedTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 91, Short.MAX_VALUE)
-                            .addComponent(otherTxt))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(133, 133, 133))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(select2Btn)
+                            .addComponent(select1Btn)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(batch2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(batch3Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(select3Btn)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(clear3))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel11)
+                                    .addGap(24, 24, 24)
+                                    .addComponent(batch9Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(select9Btn))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel12)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(batch8Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(select8Btn)))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel6)
+                                    .addGap(24, 24, 24)
+                                    .addComponent(batch4Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(select4Btn))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel8)
+                                    .addGap(24, 24, 24)
+                                    .addComponent(batch6Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(select6Btn))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel9)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(batch5Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(select5Btn))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel7)
+                                    .addGap(24, 24, 24)
+                                    .addComponent(batch7Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(select7Btn))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(clear6)
+                            .addComponent(clear5)
+                            .addComponent(clear8)
+                            .addComponent(clear7)
+                            .addComponent(clear9)
+                            .addComponent(clear4)))
+                    .addComponent(backBtn))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel15)
+                                .addGap(18, 18, 18)
+                                .addComponent(per7Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel13)
+                                .addGap(18, 18, 18)
+                                .addComponent(per5Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel16)
+                                .addGap(18, 18, 18)
+                                .addComponent(per8Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel17)
+                                .addGap(18, 18, 18)
+                                .addComponent(per9Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel14)
+                                .addGap(18, 18, 18)
+                                .addComponent(per6Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel18)
+                                .addGap(18, 18, 18)
+                                .addComponent(per3Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(18, 18, 18)
+                                .addComponent(per2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addGap(18, 18, 18)
+                                .addComponent(per1Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(290, 290, 290)
+                                .addComponent(okBtn))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(67, 67, 67)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel20)
+                                        .addGap(22, 22, 22)
+                                        .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel22)
+                                        .addGap(22, 22, 22)
+                                        .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addComponent(jLabel19)
+                                                .addGap(18, 18, 18))
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel21)
+                                                .addGap(24, 24, 24)))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(colTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+                                            .addComponent(volTxt)))))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel10)
                         .addGap(18, 18, 18)
-                        .addComponent(selectBtn)
-                        .addGap(0, 53, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(51, 51, 51))
+                        .addComponent(per4Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(92, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(select1Btn)
+                                .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel3)
+                                .addComponent(per1Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel19)
+                                .addComponent(volTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(batch2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(select2Btn)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jLabel4)
+                        .addComponent(per2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(otherTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(selectBtn))
-                .addGap(23, 23, 23)
+                    .addComponent(jLabel5)
+                    .addComponent(batch3Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(select3Btn)
+                    .addComponent(jLabel21)
+                    .addComponent(colTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(clear3)
+                    .addComponent(jLabel18)
+                    .addComponent(per3Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 156, Short.MAX_VALUE)
+                    .addComponent(jLabel6)
+                    .addComponent(batch4Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(select4Btn)
+                    .addComponent(clear4)
+                    .addComponent(jLabel10)
+                    .addComponent(per4Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(batch5Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(select5Btn))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(batch6Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(select6Btn))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(batch7Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(select7Btn))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(batch8Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(select8Btn)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(clear5)
+                            .addComponent(jLabel13)
+                            .addComponent(per5Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel20)
+                            .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(clear6)
+                            .addComponent(jLabel14)
+                            .addComponent(per6Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(clear7)
+                            .addComponent(jLabel15)
+                            .addComponent(per7Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel22)
+                            .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(clear8)
+                            .addComponent(jLabel16)
+                            .addComponent(per8Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(batch9Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(select9Btn)
+                    .addComponent(clear9)
+                    .addComponent(jLabel17)
+                    .addComponent(per9Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backBtn)
                     .addComponent(okBtn))
@@ -145,15 +647,332 @@ public class Blend extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        // TODO add your handling code here:
+        int percentcheck = Integer.parseInt(per1Txt.getText());
+
+        if (batch2Txt.getText().length() > 0) {
+            percentcheck += Integer.parseInt(per2Txt.getText());
+        }
+        if (batch3Txt.getText().length() > 0) {
+            percentcheck += Integer.parseInt(per3Txt.getText());
+        }
+        if (batch4Txt.getText().length() > 0) {
+            percentcheck += Integer.parseInt(per4Txt.getText());
+        }
+        if (batch5Txt.getText().length() > 0) {
+            percentcheck += Integer.parseInt(per5Txt.getText());
+        }
+        if (batch6Txt.getText().length() > 0) {
+            percentcheck += Integer.parseInt(per6Txt.getText());
+        }
+        if (batch7Txt.getText().length() > 0) {
+            percentcheck += Integer.parseInt(per7Txt.getText());
+        }
+        if (batch8Txt.getText().length() > 0) {
+            percentcheck += Integer.parseInt(per8Txt.getText());
+        }
+        if (batch9Txt.getText().length() > 0) {
+            percentcheck += Integer.parseInt(per9Txt.getText());
+        }
+        if (percentcheck == 100) {
+            String bid, name, colour, stage;
+            int volume = Integer.parseInt(volTxt.getText());
+            name = this.nameTxt.getText();
+            colour = this.colTxt.getText();
+            stage = (String) this.stageBox.getSelectedItem();
+
+            String sql = "SELECT COUNT(*) FROM blend";
+            ResultSet rs;
+            int id = 0;
+            try {
+                rs = Pinwheel.queryCCDB(sql);
+                if (rs.next()) {
+                    id = rs.getInt(1);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Blend.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            bid = "" + id;
+
+            sql = "INSERT INTO blend (bid, winename, colour, volume, stage, fid1, pid1, fid2, pid2";
+            if (batch3Txt.getText().length() > 0) {
+                sql += ", fid3, pid3";
+
+                if (batch4Txt.getText().length() > 0) {
+                    sql += ", fid4, pid4";
+
+                    if (batch5Txt.getText().length() > 0) {
+                        sql += ", fid5, pid5";
+
+                        if (batch6Txt.getText().length() > 0) {
+                            sql += ", fid6, pid6";
+
+                            if (batch7Txt.getText().length() > 0) {
+                                sql += ", fid7, pid7";
+                                if (batch8Txt.getText().length() > 0) {
+                                    sql += ", fid8, pid8";
+                                    if (batch9Txt.getText().length() > 0) {
+                                        sql += ", fid9, pid9";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            sql += ") VALUES('" + bid + "', '" + name + "', '" + colour + "', '" + volume + "', '" + stage
+                    + "', '" + this.selectedTxt.getText() + "', '" + Integer.parseInt(this.per1Txt.getText()) + "', '" + this.batch2Txt.getText() + "', '"
+                    + Integer.parseInt(this.per2Txt.getText()) + "'";
+
+            if (batch3Txt.getText().length() > 0) {
+                sql += ", '" + this.batch3Txt.getText() + "', '" + Integer.parseInt(this.per3Txt.getText()) + "'";
+
+                if (batch4Txt.getText().length() > 0) {
+                    sql += ", '" + this.batch4Txt.getText() + "', '" + Integer.parseInt(this.per4Txt.getText()) + "'";
+
+                    if (batch5Txt.getText().length() > 0) {
+                        sql += ", '" + this.batch5Txt.getText() + "', '" + Integer.parseInt(this.per5Txt.getText()) + "'";
+
+                        if (batch6Txt.getText().length() > 0) {
+                            sql += ", '" + this.batch6Txt.getText() + "', '" + Integer.parseInt(this.per6Txt.getText()) + "'";
+
+                            if (batch7Txt.getText().length() > 0) {
+                                sql += ", '" + this.batch7Txt.getText() + "', '" + Integer.parseInt(this.per7Txt.getText()) + "'";
+
+                                if (batch8Txt.getText().length() > 0) {
+                                    sql += ", '" + this.batch8Txt.getText() + "', '" + Integer.parseInt(this.per8Txt.getText()) + "'";
+
+                                    if (batch9Txt.getText().length() > 0) {
+                                        sql += ", '" + this.batch9Txt.getText() + "', '" + Integer.parseInt(this.per9Txt.getText()) + "'";
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            sql += ")";
+            Pinwheel.updateCCDB(sql);
+
+            String ID = ("Batch" + bid);
+            Pinwheel.createChem(ID);
+
+            this.chem(ID, this.selectedTxt.getText(), Integer.parseInt(per1Txt.getText()));
+            this.chem(ID, this.batch2Txt.getText(), Integer.parseInt(per2Txt.getText()));
+
+            if (batch3Txt.getText().length() > 0) {
+                this.chem(ID, this.batch3Txt.getText(), Integer.parseInt(per3Txt.getText()));
+
+                if (batch4Txt.getText().length() > 0) {
+                    this.chem(ID, this.batch4Txt.getText(), Integer.parseInt(per4Txt.getText()));
+
+                    if (batch5Txt.getText().length() > 0) {
+                        this.chem(ID, this.batch5Txt.getText(), Integer.parseInt(per5Txt.getText()));
+
+                        if (batch6Txt.getText().length() > 0) {
+                            this.chem(ID, this.batch6Txt.getText(), Integer.parseInt(per6Txt.getText()));
+
+                            if (batch7Txt.getText().length() > 0) {
+                                this.chem(ID, this.batch7Txt.getText(), Integer.parseInt(per7Txt.getText()));
+
+                                if (batch8Txt.getText().length() > 0) {
+                                    this.chem(ID, this.batch8Txt.getText(), Integer.parseInt(per8Txt.getText()));
+
+                                    if (batch9Txt.getText().length() > 0) {
+                                        this.chem(ID, this.batch9Txt.getText(), Integer.parseInt(per9Txt.getText()));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Total percentage does not equal 100%");
+        }
+
     }//GEN-LAST:event_okBtnActionPerformed
 
-    private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
+    private void select2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select2BtnActionPerformed
         Pinwheel.setBounce("blend");
-        SearchBatch s = new SearchBatch(true);
+        SearchBatch s = new SearchBatch(true, 0);
         s.setVisible(true);
         this.dispose();
-    }//GEN-LAST:event_selectBtnActionPerformed
+    }//GEN-LAST:event_select2BtnActionPerformed
+
+    private void select3BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select3BtnActionPerformed
+        Pinwheel.setBounce("blend");
+        SearchBatch s = new SearchBatch(true, 1);
+        s.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_select3BtnActionPerformed
+
+    private void select4BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select4BtnActionPerformed
+        Pinwheel.setBounce("blend");
+        SearchBatch s = new SearchBatch(true, 2);
+        s.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_select4BtnActionPerformed
+
+    private void select5BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select5BtnActionPerformed
+        Pinwheel.setBounce("blend");
+        SearchBatch s = new SearchBatch(true, 3);
+        s.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_select5BtnActionPerformed
+
+    private void select6BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select6BtnActionPerformed
+        Pinwheel.setBounce("blend");
+        SearchBatch s = new SearchBatch(true, 4);
+        s.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_select6BtnActionPerformed
+
+    private void select7BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select7BtnActionPerformed
+        Pinwheel.setBounce("blend");
+        SearchBatch s = new SearchBatch(true, 5);
+        s.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_select7BtnActionPerformed
+
+    private void select8BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select8BtnActionPerformed
+        Pinwheel.setBounce("blend");
+        SearchBatch s = new SearchBatch(true, 6);
+        s.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_select8BtnActionPerformed
+
+    private void select9BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select9BtnActionPerformed
+        Pinwheel.setBounce("blend");
+        SearchBatch s = new SearchBatch(true, 7);
+        s.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_select9BtnActionPerformed
+
+    private void select1BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select1BtnActionPerformed
+        Pinwheel.setBounce("blend");
+        SearchBatch s = new SearchBatch();
+        s.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_select1BtnActionPerformed
+
+    private void selectedTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectedTxtActionPerformed
+        this.check();
+    }//GEN-LAST:event_selectedTxtActionPerformed
+
+    private void stageBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stageBoxActionPerformed
+        this.check();
+    }//GEN-LAST:event_stageBoxActionPerformed
+
+    private void volTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_volTxtKeyReleased
+        this.volTxt.setText(this.volTxt.getText().replaceAll("[^\\d.]", ""));
+        this.check();
+    }//GEN-LAST:event_volTxtKeyReleased
+
+    private void colTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_colTxtKeyReleased
+        this.check();
+    }//GEN-LAST:event_colTxtKeyReleased
+
+    private void nameTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nameTxtKeyReleased
+        this.check();
+    }//GEN-LAST:event_nameTxtKeyReleased
+
+    private void per1TxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per1TxtKeyReleased
+        this.per1Txt.setText(this.per1Txt.getText().replaceAll("[^\\d.]", ""));
+        this.check();
+    }//GEN-LAST:event_per1TxtKeyReleased
+
+    private void per2TxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per2TxtKeyReleased
+        this.per2Txt.setText(this.per2Txt.getText().replaceAll("[^\\d.]", ""));
+        this.check();
+    }//GEN-LAST:event_per2TxtKeyReleased
+
+    private void per3TxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per3TxtKeyReleased
+        this.per3Txt.setText(this.per3Txt.getText().replaceAll("[^\\d.]", ""));
+        this.check();
+    }//GEN-LAST:event_per3TxtKeyReleased
+
+    private void per4TxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per4TxtKeyReleased
+        this.per4Txt.setText(this.per4Txt.getText().replaceAll("[^\\d.]", ""));
+        this.check();
+    }//GEN-LAST:event_per4TxtKeyReleased
+
+    private void per5TxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per5TxtKeyReleased
+        this.per5Txt.setText(this.per5Txt.getText().replaceAll("[^\\d.]", ""));
+        this.check();
+    }//GEN-LAST:event_per5TxtKeyReleased
+
+    private void per6TxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per6TxtKeyReleased
+        this.per6Txt.setText(this.per6Txt.getText().replaceAll("[^\\d.]", ""));
+        this.check();
+    }//GEN-LAST:event_per6TxtKeyReleased
+
+    private void per7TxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per7TxtKeyReleased
+        this.per7Txt.setText(this.per7Txt.getText().replaceAll("[^\\d.]", ""));
+        this.check();
+    }//GEN-LAST:event_per7TxtKeyReleased
+
+    private void per8TxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per8TxtKeyReleased
+        this.per8Txt.setText(this.per8Txt.getText().replaceAll("[^\\d.]", ""));
+        this.check();
+    }//GEN-LAST:event_per8TxtKeyReleased
+
+    private void per9TxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per9TxtKeyReleased
+        this.per9Txt.setText(this.per9Txt.getText().replaceAll("[^\\d.]", ""));
+        this.check();
+    }//GEN-LAST:event_per9TxtKeyReleased
+
+    private void clear3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear3ActionPerformed
+        this.temp[1] = "";
+
+        this.batch3Txt.setText("");
+
+        this.clear4.doClick();
+
+    }//GEN-LAST:event_clear3ActionPerformed
+
+    private void clear4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear4ActionPerformed
+        this.temp[2] = "";
+
+        this.batch4Txt.setText("");
+        this.clear5.doClick();
+    }//GEN-LAST:event_clear4ActionPerformed
+
+    private void clear5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear5ActionPerformed
+        this.temp[3] = "";
+
+        this.batch5Txt.setText("");
+        this.clear6.doClick();
+    }//GEN-LAST:event_clear5ActionPerformed
+
+    private void clear6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear6ActionPerformed
+        this.temp[4] = "";
+
+        this.batch6Txt.setText("");
+        this.clear7.doClick();
+    }//GEN-LAST:event_clear6ActionPerformed
+
+    private void clear7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear7ActionPerformed
+        this.temp[5] = "";
+
+        this.batch7Txt.setText("");
+        this.clear8.doClick();
+    }//GEN-LAST:event_clear7ActionPerformed
+
+    private void clear8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear8ActionPerformed
+        this.temp[6] = "";
+
+        this.batch8Txt.setText("");
+        this.clear9.doClick();
+    }//GEN-LAST:event_clear8ActionPerformed
+
+    private void clear9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear9ActionPerformed
+        this.temp[7] = "";
+        Pinwheel.setTempData(temp);
+        this.batch9Txt.setText("");
+        this.refresh();
+    }//GEN-LAST:event_clear9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -192,17 +1011,159 @@ public class Blend extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
+    private javax.swing.JTextField batch2Txt;
+    private javax.swing.JTextField batch3Txt;
+    private javax.swing.JTextField batch4Txt;
+    private javax.swing.JTextField batch5Txt;
+    private javax.swing.JTextField batch6Txt;
+    private javax.swing.JTextField batch7Txt;
+    private javax.swing.JTextField batch8Txt;
+    private javax.swing.JTextField batch9Txt;
+    private javax.swing.JButton clear3;
+    private javax.swing.JButton clear4;
+    private javax.swing.JButton clear5;
+    private javax.swing.JButton clear6;
+    private javax.swing.JButton clear7;
+    private javax.swing.JButton clear8;
+    private javax.swing.JButton clear9;
+    private javax.swing.JTextField colTxt;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JTextField nameTxt;
     private javax.swing.JButton okBtn;
-    private javax.swing.JTextField otherTxt;
-    private javax.swing.JButton selectBtn;
+    private javax.swing.JTextField per1Txt;
+    private javax.swing.JTextField per2Txt;
+    private javax.swing.JTextField per3Txt;
+    private javax.swing.JTextField per4Txt;
+    private javax.swing.JTextField per5Txt;
+    private javax.swing.JTextField per6Txt;
+    private javax.swing.JTextField per7Txt;
+    private javax.swing.JTextField per8Txt;
+    private javax.swing.JTextField per9Txt;
+    private javax.swing.JButton select1Btn;
+    private javax.swing.JButton select2Btn;
+    private javax.swing.JButton select3Btn;
+    private javax.swing.JButton select4Btn;
+    private javax.swing.JButton select5Btn;
+    private javax.swing.JButton select6Btn;
+    private javax.swing.JButton select7Btn;
+    private javax.swing.JButton select8Btn;
+    private javax.swing.JButton select9Btn;
     private javax.swing.JTextField selectedTxt;
+    private javax.swing.JComboBox stageBox;
+    private javax.swing.JTextField volTxt;
     // End of variables declaration//GEN-END:variables
 
-    private void refresh() {
+    private void check() {
+        okBtn.setEnabled(false);
+        if (selectedTxt.getText().length() > 0 && batch2Txt.getText().length() > 0 && volTxt.getText().length() > 0 && colTxt.getText().length() > 0 && nameTxt.getText().length() > 0 && stageBox.getSelectedIndex() != 0) {
+            if (!per1Txt.isEnabled() || !per1Txt.getText().isEmpty()) {
+                if (!per2Txt.isEnabled() || !per2Txt.getText().isEmpty()) {
+                    if (!per3Txt.isEnabled() || !per3Txt.getText().isEmpty()) {
+                        if (!per4Txt.isEnabled() || !per4Txt.getText().isEmpty()) {
+                            if (!per5Txt.isEnabled() || !per5Txt.getText().isEmpty()) {
+                                if (!per6Txt.isEnabled() || !per6Txt.getText().isEmpty()) {
+                                    if (!per7Txt.isEnabled() || !per7Txt.getText().isEmpty()) {
+                                        if (!per8Txt.isEnabled() || !per8Txt.getText().isEmpty()) {
+                                            if (!per9Txt.isEnabled() || !per9Txt.getText().isEmpty()) {
+                                                okBtn.setEnabled(true);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
+    private void refresh() {
+        this.select3Btn.setEnabled(false);
+        this.select4Btn.setEnabled(false);
+        this.select5Btn.setEnabled(false);
+        this.select6Btn.setEnabled(false);
+        this.select7Btn.setEnabled(false);
+        this.select8Btn.setEnabled(false);
+        this.select9Btn.setEnabled(false);
+
+        this.per2Txt.setEnabled(false);
+        this.per3Txt.setEnabled(false);
+        this.per4Txt.setEnabled(false);
+        this.per5Txt.setEnabled(false);
+        this.per6Txt.setEnabled(false);
+        this.per7Txt.setEnabled(false);
+        this.per8Txt.setEnabled(false);
+        this.per9Txt.setEnabled(false);
+
+        if (batch2Txt.getText().length() > 0) {
+            this.select3Btn.setEnabled(true);
+            this.per2Txt.setEnabled(true);
+            if (batch3Txt.getText().length() > 0) {
+                this.select4Btn.setEnabled(true);
+                this.per3Txt.setEnabled(true);
+                if (batch4Txt.getText().length() > 0) {
+                    this.select5Btn.setEnabled(true);
+                    this.per4Txt.setEnabled(true);
+                    if (batch5Txt.getText().length() > 0) {
+                        this.select6Btn.setEnabled(true);
+                        this.per5Txt.setEnabled(true);
+                        if (batch6Txt.getText().length() > 0) {
+                            this.select7Btn.setEnabled(true);
+                            this.per6Txt.setEnabled(true);
+                            if (batch7Txt.getText().length() > 0) {
+                                this.select8Btn.setEnabled(true);
+                                this.per7Txt.setEnabled(true);
+                                if (batch8Txt.getText().length() > 0) {
+                                    this.select9Btn.setEnabled(true);
+                                    this.per8Txt.setEnabled(true);
+                                    if (batch9Txt.getText().length() > 0) {
+                                        this.per9Txt.setEnabled(true);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private void chem(String bid, String batch, double percent) {
+        String sql = "SELECT * FROM " + batch;
+        System.out.println(batch);
+        double amount;
+        try {
+            ResultSet rs = Pinwheel.queryChem(sql);
+            while (rs.next()) {
+                String chem = rs.getNString(1);
+                amount = rs.getInt(2);
+                amount = amount * (percent / 100);
+                Pinwheel.insertCustomChemicalAt(bid, chem, amount + "");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Blend.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
