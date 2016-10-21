@@ -72,28 +72,41 @@ public class AdminEdit extends javax.swing.JFrame {
         typeTxt = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
         batchTbl = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMaximumSize(new java.awt.Dimension(673, 415));
+        setMinimumSize(new java.awt.Dimension(673, 415));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        warningLbl.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
         warningLbl.setForeground(new java.awt.Color(200, 0, 0));
         warningLbl.setText("WARNING: Changing these may corrupt the database");
+        getContentPane().add(warningLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 10, -1, -1));
 
+        chemLbl.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         chemLbl.setText("Chemicals");
+        getContentPane().add(chemLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 228, -1, -1));
 
+        okBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         okBtn.setText("OK");
         okBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(okBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 380, -1, -1));
 
+        backBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, -1, -1));
 
+        chemTbl.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         chemTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -112,8 +125,13 @@ public class AdminEdit extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(chemTbl);
 
-        typeTxt.setText("Batch");
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, 659, 114));
 
+        typeTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        typeTxt.setText("Batch");
+        getContentPane().add(typeTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 37, -1, -1));
+
+        batchTbl.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         batchTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -133,55 +151,11 @@ public class AdminEdit extends javax.swing.JFrame {
         batchTbl.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(batchTbl);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(backBtn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(okBtn))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(typeTxt))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 659, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(chemLbl))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(168, 168, 168)
-                                .addComponent(warningLbl)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(warningLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(typeTxt)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
-                .addComponent(chemLbl)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 18, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(okBtn)
-                    .addComponent(backBtn)))
-        );
+        getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 69, 653, 118));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -239,6 +213,7 @@ public class AdminEdit extends javax.swing.JFrame {
     private javax.swing.JTable batchTbl;
     private javax.swing.JLabel chemLbl;
     private javax.swing.JTable chemTbl;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JButton okBtn;
