@@ -37,105 +37,89 @@ public class AdminMenu extends javax.swing.JFrame {
         delChemBtn = new javax.swing.JButton();
         delBatchBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setMaximumSize(new java.awt.Dimension(400, 300));
+        setMinimumSize(new java.awt.Dimension(400, 300));
+        setPreferredSize(new java.awt.Dimension(300, 300));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        editBatchBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         editBatchBtn.setText("Edit Batch");
         editBatchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editBatchBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(editBatchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 140, -1));
 
+        editSuppBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         editSuppBtn.setText("Edit Suppliers");
         editSuppBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editSuppBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(editSuppBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 152, 140, -1));
 
+        editChemBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         editChemBtn.setText("Edit Chemicals");
         editChemBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editChemBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(editChemBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 109, 140, -1));
 
+        delSuppBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         delSuppBtn.setText("Delete Suppliers");
         delSuppBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 delSuppBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(delSuppBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 140, -1));
 
+        delChemBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         delChemBtn.setText("Delete Chemicals");
         delChemBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 delChemBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(delChemBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 140, -1));
 
+        delBatchBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         delBatchBtn.setText("Delete Batch");
         delBatchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 delBatchBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(delBatchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 140, -1));
 
+        jButton1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jButton1.setText("Back");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(editSuppBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(editBatchBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(editChemBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(delSuppBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(delBatchBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(delChemBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(editBatchBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(editChemBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(editSuppBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(delBatchBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(delChemBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(delSuppBtn)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addContainerGap())
-        );
+        jLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
+        jLabel1.setText("ADMIN MENU");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
+        jLabel2.setPreferredSize(new java.awt.Dimension(300, 300));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 630, 430));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void editBatchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editBatchBtnActionPerformed
@@ -233,5 +217,7 @@ public class AdminMenu extends javax.swing.JFrame {
     private javax.swing.JButton editChemBtn;
     private javax.swing.JButton editSuppBtn;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }
