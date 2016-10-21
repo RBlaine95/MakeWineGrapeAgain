@@ -24,7 +24,7 @@ public final class Pinwheel {
     static ArrayList<String> type = new ArrayList();
     static ArrayList<String> supplier = new ArrayList();
     static ArrayList<String> colourAll = new ArrayList();
-
+    static ArrayList<String> supplierAll = new ArrayList();
     static ArrayList<String> typeAll = new ArrayList();
     static Statement s;
     static Connection conn;
@@ -34,18 +34,21 @@ public final class Pinwheel {
     static ResultSet rsChem;
     static String sql;
     static String[] data;
-    static String[] tempdata = new String[5];
-    
+    static String[] tempdataId = new String[9];
+    static String[] tempdataMass = new String[9];
+
     static String searchType;
     static String previousID;
     static String bounce;
 
     public static void connect() throws SQLException {
-        tempdata[0] = "";
+        for (int i = 0; i < tempdataId.length; i++) {
+            tempdataId[i] = "";
+        }
         connectChem();
         connectCCDB();
         colourAll.add("All");
-
+        supplierAll.add("All");
         typeAll.add("All");
 
         refreshChemicals();
@@ -89,12 +92,18 @@ public final class Pinwheel {
         updateChem(sql);
     }
 
+    public static void createChem(String a) {
+        sql = "CREATE TABLE " + a + " (chemical varchar(100), amount FLOAT(15))";
+        updateChem(sql);
+    }
+
     public static void insertBatch() {
         data[3] = stageGetNo(data[3]);
         sql = "INSERT INTO batch (batchid, colour, type, stage, mass, supplierid) VALUES('" + data[0] + "', '" + data[1] + "', '" + data[2] + "', '" + data[3] + "', '" + data[4]
                 + "', '" + data[5] + "')";
         updateCCDB(sql);
     }
+
     public static void deleteBatch() {
         sql = "DELETE FROM batch WHERE batchid = '" + data[0] + "'";
         updateCCDB(sql);
@@ -106,6 +115,7 @@ public final class Pinwheel {
         sql = "INSERT INTO supplier (sname, tel, email, liason) VALUES('" + data[0] + "', '" + data[1] + "', '" + data[2] + "', '" + data[3] + "')";
         updateCCDB(sql);
     }
+
     public static void deleteSupplier() {
         sql = "DELETE FROM supplier WHERE sname = '" + data[0] + "'";
         updateCCDB(sql);
@@ -117,10 +127,11 @@ public final class Pinwheel {
         sql = "INSERT INTO chemicaltbl (chemical, value) VALUES('" + data[0] + "', '" + data[1] + "')";
         updateChem(sql);
     }
+
     public static void deleteChemical() {
         sql = "DELETE FROM chemicaltbl WHERE chemical = '" + data[0] + "'";
         updateChem(sql);
-        
+
     }
 
     public static void insertChemicalAt(String c, String a) throws SQLException {
@@ -131,6 +142,18 @@ public final class Pinwheel {
             sql = "UPDATE " + data[0] + " SET amount = amount + " + a + " WHERE chemical = '" + c + "'";
         } else {
             sql = "INSERT INTO " + data[0] + " (chemical, amount) VALUES('" + c + "', '" + a + "')";
+        }
+        updateChem(sql);
+    }
+
+    public static void insertCustomChemicalAt(String id, String c, String a) throws SQLException {
+        sql = "SELECT * FROM " + id + " WHERE chemical = '" + c + "'";
+        rs = queryChem(sql);
+
+        if (rs.next()) {
+            sql = "UPDATE " + id + " SET amount = amount + " + a + " WHERE chemical = '" + c + "'";
+        } else {
+            sql = "INSERT INTO " + id + " (chemical, amount) VALUES('" + c + "', '" + a + "')";
         }
         updateChem(sql);
     }
@@ -193,6 +216,14 @@ public final class Pinwheel {
         Pinwheel.typeAll = typeAll;
     }
 
+    public static ArrayList<String> getSupplierAll() {
+        return supplierAll;
+    }
+
+    public static void setSupplierAll(ArrayList<String> supplierAll) {
+        Pinwheel.supplierAll = supplierAll;
+    }
+
     public static ArrayList<String> getSupplier() throws SQLException {
         return supplier;
     }
@@ -226,7 +257,6 @@ public final class Pinwheel {
     }
 
     public static void refreshColour() throws SQLException {
-
         colour = new ArrayList();
         sql = "SELECT DISTINCT colour FROM batch";
         rs = queryCCDB(sql);
@@ -261,6 +291,9 @@ public final class Pinwheel {
         while (rs.next()) {
 
             supplier.add(rs.getNString(1));
+        }
+        for (int i = 0; i < supplier.size(); i++) {
+            supplierAll.add(supplier.get(i));
         }
     }
 
@@ -372,17 +405,29 @@ public final class Pinwheel {
     public static void setPreviousID(String previousID) {
         Pinwheel.previousID = previousID;
     }
-    
-    public static void blend(String a, String b, double b1, double b2) throws SQLException{
-        
-    }
 
     public static String[] getTempdata() {
-        return tempdata;
+        return tempdataId;
     }
-    
-    static void setTempData(String[] data) {
-        tempdata = data;
+
+    public static String[] getTempdataMass() {
+        return tempdataMass;
+    }
+
+    public static void setTempdataMass(String[] tempdataMass) {
+        Pinwheel.tempdataMass = tempdataMass;
+    }
+
+    public static void setSpecTempdataMass(String tempdataMass, int i) {
+        Pinwheel.tempdataMass[i] = tempdataMass;
+    }
+
+    static void setTempData(String data[]) {
+        tempdataId = data;
+    }
+
+    static void setSpecTempData(String data, int i) {
+        tempdataId[i] = data;
     }
 
 }
