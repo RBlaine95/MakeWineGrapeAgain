@@ -32,18 +32,32 @@ public class AddChemical extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel3 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         chemTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         valueTxt = new javax.swing.JTextField();
         okBtn = new javax.swing.JButton();
         cancelBtn = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
+        jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setMaximumSize(new java.awt.Dimension(300, 200));
+        setMinimumSize(new java.awt.Dimension(300, 200));
+        setPreferredSize(new java.awt.Dimension(300, 200));
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Chemical");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 49, -1, -1));
+        getContentPane().add(chemTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 46, 81, -1));
 
         jLabel2.setText("Value");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 87, -1, -1));
+        getContentPane().add(valueTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 84, 81, -1));
 
         okBtn.setText("OK");
         okBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -51,6 +65,7 @@ public class AddChemical extends javax.swing.JFrame {
                 okBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(okBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, -1, -1));
 
         cancelBtn.setText("Back");
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -58,45 +73,14 @@ public class AddChemical extends javax.swing.JFrame {
                 cancelBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(cancelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 130, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(valueTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(chemTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(151, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cancelBtn)
-                .addGap(18, 18, 18)
-                .addComponent(okBtn)
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(46, 46, 46)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(chemTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(valueTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(okBtn)
-                    .addComponent(cancelBtn))
-                .addContainerGap())
-        );
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
+        jLabel4.setText("jLabel4");
+        jLabel4.setMaximumSize(new java.awt.Dimension(300, 200));
+        jLabel4.setMinimumSize(new java.awt.Dimension(300, 200));
+        jLabel4.setPreferredSize(new java.awt.Dimension(300, 200));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 310));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -161,6 +145,8 @@ public class AddChemical extends javax.swing.JFrame {
     private javax.swing.JTextField chemTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton okBtn;
     private javax.swing.JTextField valueTxt;
     // End of variables declaration//GEN-END:variables
