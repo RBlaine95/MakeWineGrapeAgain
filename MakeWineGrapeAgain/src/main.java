@@ -1,3 +1,10 @@
+
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
+import javax.swing.AbstractAction;
+import javax.swing.KeyStroke;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -17,6 +24,26 @@ public class main extends javax.swing.JFrame {
      */
     public main() {
         initComponents();
+        
+    jPanel2.addKeyListener(new KeyAdapter() {
+    public void keyPressed(KeyEvent e) {
+         if(e.getKeyCode() == KeyEvent.VK_ESCAPE) {
+              onButtonlogoutBtnPressed();
+         }
+    } 
+    });
+        
+    getRootPane().getInputMap(jPanel2.WHEN_IN_FOCUSED_WINDOW).put(
+            KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "Cancel"); //$NON-NLS-1$
+        getRootPane().getActionMap().put("Cancel", new AbstractAction(){ //$NON-NLS-1$
+            public void actionPerformed(ActionEvent e)
+            {
+                onButtonlogoutBtnPressed();
+            }
+        });
+        
+        
+        
     }
 
 
@@ -31,19 +58,21 @@ public class main extends javax.swing.JFrame {
 
         jPanel2 = new javax.swing.JPanel();
         adminBtn = new javax.swing.JButton();
-        versionNumLbl = new javax.swing.JLabel();
-        appNameLbl = new javax.swing.JLabel();
         logo = new javax.swing.JLabel();
-        logoutBtn = new javax.swing.JButton();
         searchBtn = new javax.swing.JButton();
         addBtn = new javax.swing.JButton();
+        appNameLbl = new javax.swing.JLabel();
+        versionNumLbl = new javax.swing.JLabel();
+        logoutBtn = new javax.swing.JButton();
         bground = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("MAKE WINE GRAPE AGAIN");
         getContentPane().setLayout(null);
 
         jPanel2.setOpaque(false);
 
+        adminBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         adminBtn.setText("Admin Control");
         adminBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -51,19 +80,9 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        versionNumLbl.setText("Version xx.xx.xx");
+        logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/MWGA_png_transparent.png"))); // NOI18N
 
-        appNameLbl.setText("Make Wine Grape Again");
-
-        logo.setText("<<LOGO GOES HERE>>");
-
-        logoutBtn.setText("Logout");
-        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutBtnActionPerformed(evt);
-            }
-        });
-
+        searchBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         searchBtn.setText("Search Batches");
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -71,6 +90,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
+        addBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         addBtn.setText("Add New Batch");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,66 +103,64 @@ public class main extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(versionNumLbl))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(31, 31, 31)
-                                .addComponent(logoutBtn))
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(240, 240, 240)
-                                .addComponent(logo)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(appNameLbl)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(adminBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(addBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(searchBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap())
+                .addContainerGap(123, Short.MAX_VALUE)
+                .addComponent(logo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(addBtn, javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(searchBtn, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(adminBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(187, 187, 187)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(logo)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(logo)
-                        .addGap(208, 208, 208))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(173, 173, 173)
                         .addComponent(addBtn)
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(searchBtn)
-                        .addGap(18, 18, 18)
-                        .addComponent(adminBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)))
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(appNameLbl)
-                    .addComponent(logoutBtn))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(versionNumLbl)
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(adminBtn)))
+                .addContainerGap(251, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 0, 600, 480);
+        jPanel2.setBounds(0, 0, 610, 600);
+
+        appNameLbl.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        appNameLbl.setText("Make Wine Grape Again");
+        getContentPane().add(appNameLbl);
+        appNameLbl.setBounds(460, 550, 137, 17);
+
+        versionNumLbl.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        versionNumLbl.setText("Version 0.07.03");
+        getContentPane().add(versionNumLbl);
+        versionNumLbl.setBounds(510, 570, 88, 17);
+
+        logoutBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        logoutBtn.setText("Logout");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
+            }
+        });
+        getContentPane().add(logoutBtn);
+        logoutBtn.setBounds(10, 560, 71, 25);
 
         bground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
         getContentPane().add(bground);
-        bground.setBounds(0, 0, 600, 480);
+        bground.setBounds(0, 0, 620, 620);
 
-        setSize(new java.awt.Dimension(612, 516));
+        setSize(new java.awt.Dimension(617, 637));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void logoutBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logoutBtnActionPerformed
-        Login_UI log = new Login_UI();
-        this.dispose();
-        log.setVisible(true);
+        onButtonlogoutBtnPressed();
     }//GEN-LAST:event_logoutBtnActionPerformed
 
     private void searchBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchBtnActionPerformed
@@ -161,7 +179,13 @@ public class main extends javax.swing.JFrame {
         AdminMenu am = new AdminMenu();
         am.setVisible(true);
     }//GEN-LAST:event_adminBtnActionPerformed
-
+    
+    
+    public void onButtonlogoutBtnPressed(){
+        Login_UI log = new Login_UI();
+        this.dispose();
+        log.setVisible(true);
+    }
     /**
      * @param args the command line arguments
      */
