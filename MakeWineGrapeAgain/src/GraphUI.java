@@ -1,17 +1,22 @@
 
+import java.awt.BasicStroke;
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;
 import org.jfree.chart.JFreeChart;
+import org.jfree.chart.plot.XYPlot;
+import org.jfree.chart.renderer.xy.XYLineAndShapeRenderer;
 import org.jfree.data.xy.XYDataset;
 import org.jfree.data.xy.XYSeries;
 import org.jfree.data.xy.XYSeriesCollection;
@@ -25,23 +30,50 @@ import org.jfree.data.xy.XYSeriesCollection;
  *
  * @author Se7en
  */
-public class GraphUI extends javax.swing.JFrame {
+public class GraphUI extends JFrame {
 
     String batch;
     ResultSet rs;
     String[] data = new String[7];
-    ArrayList<String> graphData = new ArrayList<String>();
     JFreeChart chart;
+    ChartPanel cp;
 
     /**
      * Creates new form GraphUI
      */
     public GraphUI() {
-        initComponents();
-        data = Pinwheel.getData();
-        this.batch = data[0];
         try {
-            chartPanel = createChartPanel();
+            //graphPane is the jPanel in the jFrame
+            //cp is the ChartPanel that needs to be held inside graphPane
+            initComponents();
+            data = Pinwheel.getData();
+            this.batch = data[0];
+
+            graphPane = createChartPanel();
+
+            cp = new ChartPanel(chart);
+
+            graphPane.setLayout(new java.awt.BorderLayout());
+            graphPane.add(cp, BorderLayout.CENTER);
+            pack();
+
+            XYPlot plot = chart.getXYPlot();
+
+            XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer();
+
+            renderer.setSeriesStroke(0, new BasicStroke(3.0f));
+            renderer.setSeriesStroke(1, new BasicStroke(3.0f));
+
+            plot.setBackgroundPaint(Color.DARK_GRAY);
+
+            plot.setRangeGridlinesVisible(true);
+            plot.setRangeGridlinePaint(Color.BLACK);
+
+            plot.setDomainGridlinesVisible(true);
+            plot.setDomainGridlinePaint(Color.BLACK);
+
+            plot.setRenderer(renderer);
+
         } catch (SQLException ex) {
             Logger.getLogger(GraphUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -56,37 +88,35 @@ public class GraphUI extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        chartPanel = new javax.swing.JPanel();
-        updateBtn = new javax.swing.JButton();
         saveBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        updateBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
+        graphPane = new javax.swing.JPanel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(600, 600));
         setMinimumSize(new java.awt.Dimension(600, 600));
-
-        javax.swing.GroupLayout chartPanelLayout = new javax.swing.GroupLayout(chartPanel);
-        chartPanel.setLayout(chartPanelLayout);
-        chartPanelLayout.setHorizontalGroup(
-            chartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        chartPanelLayout.setVerticalGroup(
-            chartPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 448, Short.MAX_VALUE)
-        );
-
-        updateBtn.setText("Update Graph");
-        updateBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                updateBtnActionPerformed(evt);
-            }
-        });
+        setResizable(false);
 
         saveBtn.setText("Save Graph");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 saveBtnActionPerformed(evt);
+            }
+        });
+
+        jButton1.setText("Refresh Graph");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        updateBtn.setText("Update Graph");
+        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                updateBtnActionPerformed(evt);
             }
         });
 
@@ -97,6 +127,17 @@ public class GraphUI extends javax.swing.JFrame {
             }
         });
 
+        javax.swing.GroupLayout graphPaneLayout = new javax.swing.GroupLayout(graphPane);
+        graphPane.setLayout(graphPaneLayout);
+        graphPaneLayout.setHorizontalGroup(
+            graphPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        graphPaneLayout.setVerticalGroup(
+            graphPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 500, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -104,12 +145,14 @@ public class GraphUI extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(chartPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(updateBtn)
-                        .addGap(128, 128, 128)
+                    .addComponent(graphPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addGap(55, 55, 55)
                         .addComponent(saveBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 199, Short.MAX_VALUE)
+                        .addGap(56, 56, 56)
+                        .addComponent(updateBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                         .addComponent(backBtn)))
                 .addContainerGap())
         );
@@ -117,12 +160,13 @@ public class GraphUI extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(chartPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 108, Short.MAX_VALUE)
+                .addComponent(graphPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backBtn)
+                    .addComponent(jButton1)
                     .addComponent(saveBtn)
-                    .addComponent(updateBtn))
+                    .addComponent(updateBtn)
+                    .addComponent(backBtn))
                 .addContainerGap())
         );
 
@@ -135,23 +179,30 @@ public class GraphUI extends javax.swing.JFrame {
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         //bring popup to enter new Balling and or Temp
-        //run sql code to update tbl batch
-        //refresh graph
+        UpdateGraph up = new UpdateGraph();
+        up.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        String fileName = batch + ".png";
+        String fileName = "Balling and Temperature graph for Batch ID " + batch + ".png";
         File imageFile = new File(fileName);
         int width = 640;
         int height = 480;
 
         try {
             ChartUtilities.saveChartAsPNG(imageFile, chart, width, height);
-            JOptionPane.showMessageDialog(null, "Graph saved as " + batch + ".png");
+            JOptionPane.showMessageDialog(null, "Graph saved as " + fileName);
         } catch (IOException ex) {
             System.err.println(ex);
         }
+
     }//GEN-LAST:event_saveBtnActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        graphPane.setVisible(false);
+        graphPane.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -190,7 +241,8 @@ public class GraphUI extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JPanel chartPanel;
+    private javax.swing.JPanel graphPane;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
@@ -198,9 +250,9 @@ public class GraphUI extends javax.swing.JFrame {
     private JPanel createChartPanel() throws SQLException {
         String chartTitle = "Balling and Temperature graph for Batch ID " + batch;
         String xAxisLabel = "Days";
-        String yAxisLabel = "Y";
+        String yAxisLabel = "Balling and Temperature";
 
-        XYDataset dataset = createDataset(batch);
+        XYDataset dataset = createDataset();
 
         chart = ChartFactory.createXYLineChart(chartTitle,
                 xAxisLabel, yAxisLabel, dataset);
@@ -208,13 +260,13 @@ public class GraphUI extends javax.swing.JFrame {
         return new ChartPanel(chart);
     }
 
-    private XYDataset createDataset(String batch) throws SQLException {
+    private XYDataset createDataset() throws SQLException {
         //get data from table
         String sql = "SELECT * FROM " + batch;
         rs = Pinwheel.queryGraphDB(sql);
-        ResultSet rsC = Pinwheel.queryGraphDB("SELECT COUNT(*) FROM batch");
+        ResultSet rsC = Pinwheel.queryGraphDB("SELECT COUNT(*) FROM " + batch);
         rsC.next();
-        int days = rs.getInt(1);
+        int days = rsC.getInt(1);
         int count = 1;
 
         XYSeriesCollection dataset = new XYSeriesCollection();
@@ -223,8 +275,8 @@ public class GraphUI extends javax.swing.JFrame {
 
         while (rs.next() && count <= days) {
             //rows are Time (x), Balling (y1), Temp (y2)
-            balling.add(count, rs.getInt(2));
-            temp.add(count, rs.getInt(3));
+            balling.add(count, rs.getDouble(2));
+            temp.add(count, rs.getDouble(3));
             count++;
         }
 
@@ -234,6 +286,3 @@ public class GraphUI extends javax.swing.JFrame {
         return dataset;
     }
 }
-
-// 2015-09-28
-//    System.out.println(LocalDate.now(ZoneId.of("Africa/Harare")));

@@ -222,7 +222,7 @@ public final class Pinwheel {
     public static ResultSet queryGraphDB(String sql) throws SQLException {
         sGraph = connGraph.createStatement();
         System.out.println("Queries GraphDB");
-        rsGraph = s.executeQuery(sql);
+        rsGraph = sGraph.executeQuery(sql);
         return rsGraph;
     }
 
@@ -472,15 +472,20 @@ public final class Pinwheel {
         tempdataId[i] = data;
     }
 
-    public static void insertGraphAt(String date, int sugar, int temp) throws SQLException {
+    public static void insertGraphAt(String date, double sugar, double temp) throws SQLException {
         sql = "SELECT * FROM " + data[0] + " WHERE date = '" + date + "'"; //if date already exists in table
         rsGraph = queryGraphDB(sql);
 
         if (rsGraph.next()) { //if date already exists
             sql = "UPDATE " + data[0] + " SET balling = " + sugar + ", temperature = " + temp + " WHERE date = '" + date + "'"; //update
         } else {
-            sql = "INSERT INTO " + data[0] + " (date, balling, temp) VALUES('" + date + "', '" + sugar + "', " + temp +"')"; //insert
+            sql = "INSERT INTO " + data[0] + " (date, balling, temperature) VALUES ('" + date + "', '" + sugar + "', '" + temp + "')"; //insert
         }
+        updateGraphDB(sql);
+    }
+
+    public static void createGraph() {
+        sql = "CREATE TABLE " + data[0] + " (date TEXT(255), balling DECIMAL(5,2), temperature DECIMAL(5,2))";
         updateGraphDB(sql);
     }
 }
