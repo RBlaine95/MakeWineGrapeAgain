@@ -22,13 +22,7 @@ public class Edit extends javax.swing.JFrame {
         initComponents();
         data = Pinwheel.getData();
         this.batch = data[0];
-        
-        if(Pinwheel.queryGraph(batch) || this.data[3].equals("Fermentation")){
-            graphBtn.setEnabled(true);
-        }
-
         this.selectedTxt.setText(batch);
-    
     }
 
     /**
@@ -180,7 +174,8 @@ public class Edit extends javax.swing.JFrame {
     }//GEN-LAST:event_blendBtnActionPerformed
 
     private void graphBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_graphBtnActionPerformed
-        
+        GraphUI g = new GraphUI();
+        g.setVisible(true);
     }//GEN-LAST:event_graphBtnActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

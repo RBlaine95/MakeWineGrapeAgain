@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -465,24 +464,23 @@ public final class Pinwheel {
         Pinwheel.tempdataMass[i] = tempdataMass;
     }
 
-    static void setTempData(String data[]) {
+    public static void setTempData(String data[]) {
         tempdataId = data;
     }
 
-    static void setSpecTempData(String data, int i) {
+    public static void setSpecTempData(String data, int i) {
         tempdataId[i] = data;
     }
 
-    static boolean queryGraph(String id){
-        try {
-            String sql = "SELECT * FROM " + id;
-            rsGraph = Pinwheel.queryGraphDB(sql);
-            
-            return rsGraph.next();
-        } catch (SQLException e) {
-            System.out.println("Graph error");
-            return false;
-        }
-    }
+    public static void insertGraphAt(String date, int sugar, int temp) throws SQLException {
+        sql = "SELECT * FROM " + data[0] + " WHERE date = '" + date + "'"; //if date already exists in table
+        rsGraph = queryGraphDB(sql);
 
+        if (rsGraph.next()) { //if date already exists
+            sql = "UPDATE " + data[0] + " SET balling = " + sugar + ", temperature = " + temp + " WHERE date = '" + date + "'"; //update
+        } else {
+            sql = "INSERT INTO " + data[0] + " (date, balling, temp) VALUES('" + date + "', '" + sugar + "', " + temp +"')"; //insert
+        }
+        updateGraphDB(sql);
+    }
 }
