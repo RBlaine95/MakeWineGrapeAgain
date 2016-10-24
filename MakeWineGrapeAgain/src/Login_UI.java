@@ -87,11 +87,6 @@ public class Login_UI extends javax.swing.JFrame {
         passwordField.setToolTipText("Enter your password");
         passwordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         passwordField.setNextFocusableComponent(loginBtn);
-        passwordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFieldActionPerformed(evt);
-            }
-        });
         getContentPane().add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 390, 80));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/BarrelWoodFinish.jpg"))); // NOI18N
@@ -130,13 +125,6 @@ public class Login_UI extends javax.swing.JFrame {
             passwordField.setText(ps);
         } 
     }
-    
-    
-    
-    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFieldActionPerformed
-
     /**
      * @param args the command line arguments
      */

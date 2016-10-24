@@ -33,6 +33,9 @@ public final class Pinwheel {
     static Connection connChem;
     static ResultSet rsChem;
     static String sql;
+    static Connection connGraph;
+    static ResultSet rsGraph;
+    static Statement sGraph;
     static String[] data;
     static String[] tempdataId = new String[9];
     static String[] tempdataMass = new String[9];
@@ -47,6 +50,7 @@ public final class Pinwheel {
         }
         connectChem();
         connectCCDB();
+        connectGraphDB();
         colourAll.add("All");
         supplierAll.add("All");
         typeAll.add("All");
@@ -66,7 +70,7 @@ public final class Pinwheel {
             String url = "jdbc:ucanaccess://ccdb.accdb";
             conn = DriverManager.getConnection(url);
 
-            System.out.println("Database Connected");
+            System.out.println("Database Connected - CCDB");
         } catch (Exception ex) {
             System.out.println("Error");
         }
@@ -80,8 +84,23 @@ public final class Pinwheel {
 
             String url = "jdbc:ucanaccess://chemdb.accdb";
             connChem = DriverManager.getConnection(url);
-            System.out.println("Database Connected");
+            System.out.println("Database Connected - CHEMS");
 
+        } catch (Exception ex) {
+            System.out.println("Error");
+        }
+    }
+
+    private static void connectGraphDB() {
+        try {
+
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+            System.out.println("Driver loaded");
+
+            String url = "jdbc:ucanaccess://graphdb.accdb";
+            connGraph = DriverManager.getConnection(url);
+
+            System.out.println("Database Connected - GRAPH");
         } catch (Exception ex) {
             System.out.println("Error");
         }
@@ -193,6 +212,29 @@ public final class Pinwheel {
         }
         try {
             s.executeUpdate(sql);
+        } catch (SQLException ex) {
+            System.out.println("fails running sql");
+            Logger.getLogger(Pinwheel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    public static ResultSet queryGraphDB(String sql) throws SQLException {
+        sGraph = connGraph.createStatement();
+        System.out.println("Queries GraphDB");
+        rsGraph = sGraph.executeQuery(sql);
+        return rsGraph;
+    }
+
+    public static void updateGraphDB(String sql) {
+
+        try {
+            sGraph = connGraph.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(Pinwheel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            sGraph.executeUpdate(sql);
         } catch (SQLException ex) {
             System.out.println("fails running sql");
             Logger.getLogger(Pinwheel.class.getName()).log(Level.SEVERE, null, ex);
@@ -422,12 +464,28 @@ public final class Pinwheel {
         Pinwheel.tempdataMass[i] = tempdataMass;
     }
 
-    static void setTempData(String data[]) {
+    public static void setTempData(String data[]) {
         tempdataId = data;
     }
 
-    static void setSpecTempData(String data, int i) {
+    public static void setSpecTempData(String data, int i) {
         tempdataId[i] = data;
     }
 
+    public static void insertGraphAt(String date, double sugar, double temp) throws SQLException {
+        sql = "SELECT * FROM " + data[0] + " WHERE date = '" + date + "'"; //if date already exists in table
+        rsGraph = queryGraphDB(sql);
+
+        if (rsGraph.next()) { //if date already exists
+            sql = "UPDATE " + data[0] + " SET balling = " + sugar + ", temperature = " + temp + " WHERE date = '" + date + "'"; //update
+        } else {
+            sql = "INSERT INTO " + data[0] + " (date, balling, temperature) VALUES ('" + date + "', '" + sugar + "', '" + temp + "')"; //insert
+        }
+        updateGraphDB(sql);
+    }
+
+    public static void createGraph() {
+        sql = "CREATE TABLE " + data[0] + " (date TEXT(255), balling DECIMAL(5,2), temperature DECIMAL(5,2))";
+        updateGraphDB(sql);
+    }
 }
