@@ -1,6 +1,5 @@
 
 import java.awt.BasicStroke;
-import java.awt.BorderLayout;
 import java.awt.Color;
 import java.io.File;
 import java.io.IOException;
@@ -8,9 +7,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
 import org.jfree.chart.ChartUtilities;
@@ -37,6 +38,7 @@ public class GraphUI extends JFrame {
     String[] data = new String[7];
     JFreeChart chart;
     ChartPanel cp;
+    JFileChooser fc;
 
     /**
      * Creates new form GraphUI
@@ -44,18 +46,17 @@ public class GraphUI extends JFrame {
     public GraphUI() {
         try {
             //graphPane is the jPanel in the jFrame
-            //cp is the ChartPanel that needs to be held inside graphPane
+            //cp is the ChartPanel that needs to be held inside jPanel1
             initComponents();
             data = Pinwheel.getData();
             this.batch = data[0];
 
-            graphPane = createChartPanel();
+            //jPanel1 = createChartPanel();
+            cp = createChartPanel();
+            //cp = new ChartPanel(chart);
+            cp.setMouseWheelEnabled(true);
 
-            cp = new ChartPanel(chart);
-
-            graphPane.setLayout(new java.awt.BorderLayout());
-            graphPane.add(cp, BorderLayout.CENTER);
-            pack();
+            jPanel1.add(cp);
 
             XYPlot plot = chart.getXYPlot();
 
@@ -88,16 +89,18 @@ public class GraphUI extends JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         saveBtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        refreshBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
-        graphPane = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(600, 600));
         setMinimumSize(new java.awt.Dimension(600, 600));
         setResizable(false);
+
+        jPanel1.setLayout(new java.awt.BorderLayout());
 
         saveBtn.setText("Save Graph");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -106,10 +109,10 @@ public class GraphUI extends JFrame {
             }
         });
 
-        jButton1.setText("Refresh Graph");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        refreshBtn.setText("Refresh Graph");
+        refreshBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                refreshBtnActionPerformed(evt);
             }
         });
 
@@ -127,17 +130,6 @@ public class GraphUI extends JFrame {
             }
         });
 
-        javax.swing.GroupLayout graphPaneLayout = new javax.swing.GroupLayout(graphPane);
-        graphPane.setLayout(graphPaneLayout);
-        graphPaneLayout.setHorizontalGroup(
-            graphPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        graphPaneLayout.setVerticalGroup(
-            graphPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 500, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -145,9 +137,9 @@ public class GraphUI extends JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(graphPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
+                        .addComponent(refreshBtn)
                         .addGap(55, 55, 55)
                         .addComponent(saveBtn)
                         .addGap(56, 56, 56)
@@ -160,10 +152,10 @@ public class GraphUI extends JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(graphPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                    .addComponent(refreshBtn)
                     .addComponent(saveBtn)
                     .addComponent(updateBtn)
                     .addComponent(backBtn))
@@ -179,30 +171,46 @@ public class GraphUI extends JFrame {
 
     private void updateBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateBtnActionPerformed
         //bring popup to enter new Balling and or Temp
-        UpdateGraph up = new UpdateGraph();
+        UpdateGraph up = new UpdateGraph(this);
         up.setVisible(true);
-        this.dispose();
     }//GEN-LAST:event_updateBtnActionPerformed
 
     private void saveBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveBtnActionPerformed
-        String fileName = "Balling and Temperature graph for Batch ID " + batch + ".png";
-        File imageFile = new File(fileName);
         int width = 640;
         int height = 480;
+        fc = new JFileChooser();
+        fc.addChoosableFileFilter(new FileNameExtensionFilter("PNG (*.png)", "png"));
+        fc.setAcceptAllFileFilterUsed(false);
+        fc.showSaveDialog(null);
+        
+        String path = fc.getSelectedFile().getAbsolutePath() + ".png";
+        String filename = fc.getSelectedFile().getName() + ".png";
+        File imageFile = new File(path);
 
+        /*
+        System.out.println("getCurrentDirectory(): "
+                + f.getCurrentDirectory());
+        System.out.println("getSelectedFile() : "
+                + f.getSelectedFile());
+         */
         try {
             ChartUtilities.saveChartAsPNG(imageFile, chart, width, height);
-            JOptionPane.showMessageDialog(null, "Graph saved as " + fileName);
+            JOptionPane.showMessageDialog(null, "Graph saved as " + filename);
         } catch (IOException ex) {
             System.err.println(ex);
         }
 
     }//GEN-LAST:event_saveBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        graphPane.setVisible(false);
-        graphPane.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void refreshBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_refreshBtnActionPerformed
+        //graphPane.setVisible(false);
+
+        GraphUI g = new GraphUI();
+        g.setVisible(true);
+        this.dispose();
+
+        //graphPane.setVisible(true);
+    }//GEN-LAST:event_refreshBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -241,13 +249,13 @@ public class GraphUI extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JPanel graphPane;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton refreshBtn;
     private javax.swing.JButton saveBtn;
     private javax.swing.JButton updateBtn;
     // End of variables declaration//GEN-END:variables
 
-    private JPanel createChartPanel() throws SQLException {
+    private ChartPanel createChartPanel() throws SQLException {
         String chartTitle = "Balling and Temperature graph for Batch ID " + batch;
         String xAxisLabel = "Days";
         String yAxisLabel = "Balling and Temperature";
@@ -284,5 +292,13 @@ public class GraphUI extends JFrame {
         dataset.addSeries(balling);
         dataset.addSeries(temp);
         return dataset;
+    }
+    public void refesh(){
+        GraphUI g = new GraphUI();
+        g.setVisible(true);
+        this.dispose();
+    }
+    public void kill(){
+        this.dispose();
     }
 }
