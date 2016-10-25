@@ -16,15 +16,23 @@ import java.util.logging.Logger;
  */
 public class UpdateGraph extends javax.swing.JFrame {
 
-    GraphUI g;
+    
     String batch;
     String[] batchData = new String[7];
+    GraphUI gee;
 
     /**
      * Creates new form UpdateGraph
      */
     public UpdateGraph() {
         initComponents();
+        batchData = Pinwheel.getData();
+        this.batch = batchData[0];
+        idTxt.setText(batch);
+    }
+    public UpdateGraph(GraphUI gee) {
+        initComponents();
+        this.gee = gee;
         batchData = Pinwheel.getData();
         this.batch = batchData[0];
         idTxt.setText(batch);
@@ -126,13 +134,13 @@ public class UpdateGraph extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        g = new GraphUI();
+        GraphUI g = new GraphUI();
         g.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        g = new GraphUI();
+        GraphUI g = new GraphUI();
         double temp = 0, sugar = 0;
         String date;
 
@@ -146,8 +154,9 @@ public class UpdateGraph extends javax.swing.JFrame {
                 sugar = Double.parseDouble(balTxt.getText());
                 try {
                     Pinwheel.insertGraphAt(date, sugar, temp);
-                    g.setVisible(true);
-                    this.dispose();
+                    gee.kill();
+                    g.refesh();
+//                    this.dispose();
                 } catch (SQLException ex) {
                     Logger.getLogger(UpdateGraph.class.getName()).log(Level.SEVERE, null, ex);
                 }
