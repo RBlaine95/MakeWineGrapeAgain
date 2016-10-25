@@ -28,6 +28,7 @@ public class SearchBatch extends javax.swing.JFrame {
     boolean temp = false;
     String[] data;
     int num;
+
     /**
      * Creates new form main
      */
@@ -87,16 +88,20 @@ public class SearchBatch extends javax.swing.JFrame {
                 this.typeBox.setEnabled(false);
                 break;
         }
+        this.searchBtn.doClick();
     }
+
     public SearchBatch(boolean a, int i) {
-        
+
         initComponents();
         num = i;
         temp = a;
-                this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColourAll().toArray()));
-                this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getTypeAll().toArray()));
-                this.suppBox.setModel(new DefaultComboBoxModel(Pinwheel.getSupplierAll().toArray()));
-                data = new String[5];
+        this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColourAll().toArray()));
+        this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getTypeAll().toArray()));
+        this.suppBox.setModel(new DefaultComboBoxModel(Pinwheel.getSupplierAll().toArray()));
+        data = new String[5];
+
+        this.searchBtn.doClick();
     }
 
     /**
@@ -164,6 +169,9 @@ public class SearchBatch extends javax.swing.JFrame {
         batchTbl.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 batchTblMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                batchTblMousePressed(evt);
             }
         });
         jScrollPane1.setViewportView(batchTbl);
@@ -235,8 +243,8 @@ public class SearchBatch extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(typeLbl)
-                        .addGap(0, 16, Short.MAX_VALUE))
-                    .addComponent(typeBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(typeBox, 0, 1, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -461,6 +469,12 @@ public class SearchBatch extends javax.swing.JFrame {
 
 
     }//GEN-LAST:event_searchBtnActionPerformed
+
+    private void batchTblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batchTblMousePressed
+        if (batchTbl.getSelectedRow() != -1) {
+            this.selectBtn.setEnabled(true);
+        }
+    }//GEN-LAST:event_batchTblMousePressed
     /**
      * @param args the command line arguments
      */

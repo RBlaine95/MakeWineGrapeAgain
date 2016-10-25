@@ -156,7 +156,7 @@ public class UpdateGraph extends javax.swing.JFrame {
                     Pinwheel.insertGraphAt(date, sugar, temp);
                     gee.kill();
                     g.refesh();
-//                    this.dispose();
+                    this.dispose();
                 } catch (SQLException ex) {
                     Logger.getLogger(UpdateGraph.class.getName()).log(Level.SEVERE, null, ex);
                 }
