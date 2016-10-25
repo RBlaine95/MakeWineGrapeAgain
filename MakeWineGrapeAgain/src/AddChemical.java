@@ -10,7 +10,7 @@ import java.util.logging.Logger;
  */
 /**
  *
- * @author Matthew
+ * @author Se7en
  */
 public class AddChemical extends javax.swing.JFrame {
 

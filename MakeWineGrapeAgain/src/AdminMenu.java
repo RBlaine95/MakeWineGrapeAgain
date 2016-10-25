@@ -6,7 +6,7 @@
 
 /**
  *
- * @author Matthew
+ * @author Se7en
  */
 public class AdminMenu extends javax.swing.JFrame {
 
