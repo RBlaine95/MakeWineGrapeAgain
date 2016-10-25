@@ -16,7 +16,7 @@ import java.util.logging.Logger;
  */
 public class UpdateGraph extends javax.swing.JFrame {
 
-    GraphUI g;
+    
     String batch;
     String[] batchData = new String[7];
 
@@ -126,13 +126,13 @@ public class UpdateGraph extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
-        g = new GraphUI();
+        GraphUI g = new GraphUI();
         g.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        g = new GraphUI();
+        GraphUI g = new GraphUI();
         double temp = 0, sugar = 0;
         String date;
 
