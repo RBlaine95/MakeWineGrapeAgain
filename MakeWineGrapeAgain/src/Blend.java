@@ -31,6 +31,16 @@ public class Blend extends javax.swing.JFrame {
         this.selectedTxt.setText(batch);
         this.temp = Pinwheel.getTempdata();
 
+        for (int i = 0; i < temp.length; i++) {
+            if (Pinwheel.data[0].equals(temp[i])) {
+                Pinwheel.setSpecTempData("", i);
+            }
+            for (int j = 1; j < temp.length; j++) {
+                if (i != j && temp[i].equals(temp[j]) && !temp[i].equals("")) {
+                    Pinwheel.setSpecTempData("", j);
+                }
+            }
+        }
         this.batch2Txt.setText(temp[0]);
         this.batch3Txt.setText(temp[1]);
         this.batch4Txt.setText(temp[2]);
@@ -762,47 +772,46 @@ public class Blend extends javax.swing.JFrame {
                     }
                 }
             }
-            
+
             if (mass) {
-            String sql;
-                if(ready[0]){
+                String sql;
+                if (ready[0]) {
                     sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per1Txt.getText()) / 100) + " WHERE batchid = '" + selectedTxt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
-                if(ready[1]){
+                if (ready[1]) {
                     sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per2Txt.getText()) / 100) + " WHERE batchid = '" + batch2Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
-                if(ready[2]){
+                if (ready[2]) {
                     sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per3Txt.getText()) / 100) + " WHERE batchid = '" + batch3Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
-                if(ready[3]){
+                if (ready[3]) {
                     sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per4Txt.getText()) / 100) + " WHERE batchid = '" + batch4Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
-                if(ready[4]){
+                if (ready[4]) {
                     sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per5Txt.getText()) / 100) + " WHERE batchid = '" + batch5Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
-                if(ready[5]){
+                if (ready[5]) {
                     sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per6Txt.getText()) / 100) + " WHERE batchid = '" + batch6Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
-                if(ready[6]){
+                if (ready[6]) {
                     sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per7Txt.getText()) / 100) + " WHERE batchid = '" + batch7Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
-                if(ready[7]){
+                if (ready[7]) {
                     sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per8Txt.getText()) / 100) + " WHERE batchid = '" + batch8Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
-                if(ready[8]){
+                if (ready[8]) {
                     sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per9Txt.getText()) / 100) + " WHERE batchid = '" + batch9Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
-                
-                
+
                 String bid, name, colour, stage;
                 int volume = Integer.parseInt(volTxt.getText());
                 name = this.nameTxt.getText();
