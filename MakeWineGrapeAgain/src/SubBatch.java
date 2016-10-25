@@ -18,7 +18,6 @@ public class SubBatch extends javax.swing.JFrame {
     private String batch;
     private String[] data;
     private int subMass;
-    private String un;
     private String stage;
     private String sql;
 
@@ -51,9 +50,9 @@ public class SubBatch extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         okBtn = new javax.swing.JButton();
         massTxt = new javax.swing.JTextField();
-        unit = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        stageList = new javax.swing.JComboBox<>();
+        stageList = new javax.swing.JComboBox<String>();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Sub Batch");
@@ -98,11 +97,11 @@ public class SubBatch extends javax.swing.JFrame {
             }
         });
 
-        unit.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "G", "Kg", "T" }));
-
         jLabel3.setText("Stage");
 
-        stageList.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
+        stageList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
+
+        jLabel4.setText("KG");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,8 +130,8 @@ public class SubBatch extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(massTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(unit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(79, 79, 79))
+                .addComponent(jLabel4)
+                .addGap(83, 83, 83))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel3)
@@ -154,12 +153,12 @@ public class SubBatch extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(massTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(unit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(23, 23, 23)
+                    .addComponent(jLabel4))
+                .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(stageList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backBtn)
                     .addComponent(okBtn))
@@ -190,8 +189,8 @@ public class SubBatch extends javax.swing.JFrame {
                             System.out.println(data[i]);
             }
             
-            sql = "INSERT INTO batch VALUES (" + subID + ", " + this.data[1] + ", " + this.data[2] + ", " + Pinwheel.stageGetNo(stage)
-                    + ", " + subMass + ", " + this.data[5] + ")"; //prep sub batch sql
+            sql = "INSERT INTO batch (batchid, colour, type, stage, mass, supplierid ) VALUES ('" + subID + "', '" + this.data[1] + "', '" + this.data[2] + "', '" + Pinwheel.stageGetNo(stage)
+                    + "', " + subMass + ", '" + this.data[5] + "')"; //prep sub batch sql
             System.out.println(sql);
             Pinwheel.updateCCDB(sql); //insert new sub batch
 
@@ -200,15 +199,11 @@ public class SubBatch extends javax.swing.JFrame {
             rs.next();
             double massT = Double.parseDouble(rs.getString(1));
             
-            //convert mass in ton to mass in kg
-            double massK = massT*1000;
             //calculate new mass in Kg
-            massK = massK - subMass;
+            massT = massT - subMass;
+
             
-            //convert back to mass in ton
-            massT = massK/1000;
-            
-            sql = "UPDATE batch SET mass = " + massT + " WHERE batchid = " + batch;
+            sql = "UPDATE batch SET mass = " + massT + " WHERE batchid = '" + batch + "'";
             Pinwheel.updateCCDB(sql); //update main batch
 
         } catch (SQLException ex) {
@@ -234,11 +229,11 @@ public class SubBatch extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JTextField massTxt;
     private javax.swing.JButton okBtn;
     private javax.swing.JTextField selectedTxt;
     private javax.swing.JComboBox<String> stageList;
     private javax.swing.JSlider subMassSlide;
-    private javax.swing.JComboBox<String> unit;
     // End of variables declaration//GEN-END:variables
 }
