@@ -19,12 +19,20 @@ public class UpdateGraph extends javax.swing.JFrame {
     
     String batch;
     String[] batchData = new String[7];
+    GraphUI gee;
 
     /**
      * Creates new form UpdateGraph
      */
     public UpdateGraph() {
         initComponents();
+        batchData = Pinwheel.getData();
+        this.batch = batchData[0];
+        idTxt.setText(batch);
+    }
+    public UpdateGraph(GraphUI gee) {
+        initComponents();
+        this.gee = gee;
         batchData = Pinwheel.getData();
         this.batch = batchData[0];
         idTxt.setText(batch);
@@ -146,8 +154,9 @@ public class UpdateGraph extends javax.swing.JFrame {
                 sugar = Double.parseDouble(balTxt.getText());
                 try {
                     Pinwheel.insertGraphAt(date, sugar, temp);
-                    g.setVisible(true);
-                    this.dispose();
+                    gee.kill();
+                    g.refesh();
+//                    this.dispose();
                 } catch (SQLException ex) {
                     Logger.getLogger(UpdateGraph.class.getName()).log(Level.SEVERE, null, ex);
                 }
