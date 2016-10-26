@@ -25,7 +25,6 @@ public class SubBatch extends javax.swing.JFrame {
     /**
      * Creates new form SubBatch
      */
-
     public SubBatch() {
         initComponents();
         this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStages().toArray()));
@@ -188,9 +187,9 @@ public class SubBatch extends javax.swing.JFrame {
 
             subID += (count + 1) + "";
             for (int i = 0; i < data.length; i++) {
-                            System.out.println(data[i]);
+                System.out.println(data[i]);
             }
-            
+
             sql = "INSERT INTO batch (batchid, colour, type, stage, mass, supplierid ) VALUES ('" + subID + "', '" + this.data[1] + "', '" + this.data[2] + "', '" + Pinwheel.stageGetNo(stage)
                     + "', " + subMass + ", '" + this.data[5] + "')"; //prep sub batch sql
             System.out.println(sql);
@@ -200,13 +199,28 @@ public class SubBatch extends javax.swing.JFrame {
             rs = Pinwheel.queryCCDB("SELECT mass FROM batch WHERE batchid = '" + batch + "'"); //get mass of batch
             rs.next();
             double massT = Double.parseDouble(rs.getString(1));
-            
-            //calculate new mass in Kg
-            massT = massT - subMass;
 
-            
-            sql = "UPDATE batch SET mass = " + massT + " WHERE batchid = '" + batch + "'";
+            //calculate new mass in Kg
+
+            sql = "UPDATE batch SET mass = " + (massT - subMass) + " WHERE batchid = '" + batch + "'";
             Pinwheel.updateCCDB(sql); //update main batch
+
+            sql = "CREATE TABLE " + subID + " (chemical varchar(100), amount FLOAT(15))";
+            Pinwheel.updateChem(sql);
+
+            String sql = "SELECT * FROM " + batch;
+            double amount;
+            try {
+                rs = Pinwheel.queryChem(sql);
+                while (rs.next()) {
+                    String chem = rs.getNString(1);
+                    amount = rs.getInt(2);
+                    amount = amount * (subMass/massT / 100);
+                    Pinwheel.insertCustomChemicalAt(subID, chem, amount + "");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Blend.class.getName()).log(Level.SEVERE, null, ex);
+            }
 
         } catch (SQLException ex) {
             Logger.getLogger(SubBatch.class.getName()).log(Level.SEVERE, null, ex);
