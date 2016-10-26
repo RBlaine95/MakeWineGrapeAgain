@@ -66,6 +66,24 @@ public class UpdateGraph extends javax.swing.JFrame {
 
         jLabel3.setText("Balling:");
 
+        tempTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tempTxtKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tempTxtKeyReleased(evt);
+            }
+        });
+
+        balTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                balTxtKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                balTxtKeyReleased(evt);
+            }
+        });
+
         okBtn.setText("OK");
         okBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -163,6 +181,22 @@ public class UpdateGraph extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_okBtnActionPerformed
+
+    private void tempTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tempTxtKeyReleased
+        this.tempTxt.setText(this.tempTxt.getText().replaceAll("[^\\d.]", ""));
+    }//GEN-LAST:event_tempTxtKeyReleased
+
+    private void tempTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tempTxtKeyPressed
+        this.tempTxt.setText(this.tempTxt.getText().replaceAll("[^\\d.]", ""));
+    }//GEN-LAST:event_tempTxtKeyPressed
+
+    private void balTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_balTxtKeyPressed
+        this.balTxt.setText(this.balTxt.getText().replaceAll("[^\\d.]", ""));
+    }//GEN-LAST:event_balTxtKeyPressed
+
+    private void balTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_balTxtKeyReleased
+        this.balTxt.setText(this.balTxt.getText().replaceAll("[^\\d.]", ""));
+    }//GEN-LAST:event_balTxtKeyReleased
 
     /**
      * @param args the command line arguments
