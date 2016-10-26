@@ -1,4 +1,5 @@
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /*
@@ -20,12 +21,13 @@ public class Update extends javax.swing.JFrame {
      */
     public Update() {
         initComponents();
+        this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStages().toArray()));
         this.data = Pinwheel.getData();
         this.massTxt.setEnabled(false);
         this.massTxt.setVisible(false);
         this.massLbl.setVisible(false);
         batch = data[0];
-        this.stageBox.setSelectedIndex(Integer.parseInt(Pinwheel.stageGetNo(data[3])) - 1);
+        this.stageBox.setSelectedIndex(Pinwheel.stageGetNo(data[3]));
         this.selectedTxt.setText(batch);
     }
 
@@ -175,7 +177,7 @@ public class Update extends javax.swing.JFrame {
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
         int check = JOptionPane.YES_OPTION;
         int masscheck = 0;
-        if (this.stageBox.getSelectedIndex() < Integer.parseInt(Pinwheel.stageGetNo(data[3])) - 1) {
+        if (this.stageBox.getSelectedIndex() < Pinwheel.stageGetNo(data[3])) {
             check = JOptionPane.showConfirmDialog(null, "You are attempting to roll back stage/s\nPlease Confirm", "Warning: Rolling back stages", JOptionPane.OK_CANCEL_OPTION);
         }
 

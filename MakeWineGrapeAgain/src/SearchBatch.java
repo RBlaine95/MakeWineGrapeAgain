@@ -41,6 +41,7 @@ public class SearchBatch extends javax.swing.JFrame {
                 this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColourAll().toArray()));
                 this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getTypeAll().toArray()));
                 this.suppBox.setModel(new DefaultComboBoxModel(Pinwheel.getSupplierAll().toArray()));
+                this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStagesAll().toArray()));
                 data = new String[6];
                 break;
             case "supplier":
@@ -98,6 +99,9 @@ public class SearchBatch extends javax.swing.JFrame {
         this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColourAll().toArray()));
         this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getTypeAll().toArray()));
         this.suppBox.setModel(new DefaultComboBoxModel(Pinwheel.getSupplierAll().toArray()));
+        this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStagesAll().toArray()));
+        
+        
         data = new String[5];
 
         this.searchBtn.doClick();
@@ -204,11 +208,16 @@ public class SearchBatch extends javax.swing.JFrame {
         });
 
         suppBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        suppBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suppBoxActionPerformed(evt);
+            }
+        });
 
         typeLbl1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         typeLbl1.setText("Supplier");
 
-        stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
+        stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         stageLbl.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         stageLbl.setText("Stage");
@@ -412,7 +421,7 @@ public class SearchBatch extends javax.swing.JFrame {
                         for (int i = 0; i < list.length; i++) {
                             list[i] = (rs.getString(i + 1));
                         }
-                        list[3] = Pinwheel.stageGetWord(list[3] + "");
+                        list[3] = Pinwheel.stageGetWord(Integer.parseInt(list[3] + ""));
                         ((DefaultTableModel) this.batchTbl.getModel()).insertRow(count, list);
                         count++;
                     }
@@ -474,6 +483,10 @@ public class SearchBatch extends javax.swing.JFrame {
             this.selectBtn.setEnabled(true);
         }
     }//GEN-LAST:event_batchTblMousePressed
+
+    private void suppBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suppBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_suppBoxActionPerformed
     /**
      * @param args the command line arguments
      */

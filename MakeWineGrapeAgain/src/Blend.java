@@ -3,6 +3,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /*
@@ -25,6 +26,7 @@ public class Blend extends javax.swing.JFrame {
      */
     public Blend() {
         initComponents();
+        this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStages().toArray()));
         this.check();
         this.data = Pinwheel.getData();
         this.batch = this.data[0];

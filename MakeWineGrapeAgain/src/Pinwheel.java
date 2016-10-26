@@ -26,6 +26,9 @@ public final class Pinwheel {
     static ArrayList<String> colourAll = new ArrayList();
     static ArrayList<String> supplierAll = new ArrayList();
     static ArrayList<String> typeAll = new ArrayList();
+    static ArrayList<String> stages = new ArrayList();
+    static ArrayList<String> stagesAll = new ArrayList();
+    
     static Statement s;
     static Connection conn;
     static ResultSet rs;
@@ -45,20 +48,45 @@ public final class Pinwheel {
     static String bounce;
 
     public static void connect() throws SQLException {
-        for (int i = 0; i < tempdataId.length; i++) {
-            tempdataId[i] = "";
-        }
         connectChem();
         connectCCDB();
         connectGraphDB();
+        
+        
+              
+        for (int i = 0; i < tempdataId.length; i++) {
+            tempdataId[i] = "";
+        }
+        
         colourAll.add("All");
         supplierAll.add("All");
         typeAll.add("All");
-
+        stagesAll.add("All");
+        
         refreshChemicals();
         refreshColour();
         refreshSupplier();
         refreshType();
+        
+        
+
+        
+        stages.add("Fermentation");
+        stages.add("Pressed");
+        stages.add("Maturation");
+        stages.add("Blending");
+        stages.add("Prep for Bottling");
+        stages.add("Bottling");
+        stages.add("Storage");
+
+        
+        
+        for (int i = 0; i < stages.size(); i++) {
+            stagesAll.add(stages.get(i));
+            System.out.println(stagesAll.get(i));
+        }
+        
+        
     }
 
     private static void connectCCDB() {
@@ -117,7 +145,7 @@ public final class Pinwheel {
     }
 
     public static void insertBatch() {
-        data[3] = stageGetNo(data[3]);
+        data[3] = stageGetNo(data[3]) + "";
         sql = "INSERT INTO batch (batchid, colour, type, stage, mass, supplierid) VALUES('" + data[0] + "', '" + data[1] + "', '" + data[2] + "', '" + data[3] + "', '" + data[4]
                 + "', '" + data[5] + "')";
         updateCCDB(sql);
@@ -298,6 +326,13 @@ public final class Pinwheel {
         type = type;
     }
 
+    public static ArrayList<String> getStages() {
+        return stages;
+    }
+    public static ArrayList<String> getStagesAll() {
+        return stagesAll;
+    }
+
     public static void refreshColour() throws SQLException {
         colour = new ArrayList();
         sql = "SELECT DISTINCT colour FROM batch";
@@ -331,7 +366,6 @@ public final class Pinwheel {
         sql = "SELECT DISTINCT sname FROM supplier";
         rs = queryCCDB(sql);
         while (rs.next()) {
-
             supplier.add(rs.getNString(1));
         }
         for (int i = 0; i < supplier.size(); i++) {
@@ -345,64 +379,17 @@ public final class Pinwheel {
         sql = "SELECT DISTINCT chemical FROM chemicaltbl";
         rs = queryChem(sql);
         while (rs.next()) {
-
             chemicals.add(rs.getNString(1));
         }
 
     }
 
-    public static String stageGetWord(String s) {
-        switch (s) {
-            case "1":
-                s = "Fermentation";
-                break;
-            case "2":
-                s = "Pressed";
-                break;
-            case "3":
-                s = "Maturation";
-                break;
-            case "4":
-                s = "Blending";
-                break;
-            case "5":
-                s = "Prep For Bottling";
-                break;
-            case "6":
-                s = "Bottling";
-                break;
-            case "7":
-                s = "Storage";
-                break;
-        }
-        return s;
+    public static String stageGetWord(int s) {
+        return stages.get(s);
     }
 
-    public static String stageGetNo(String s) {
-        switch (s) {
-            case "Fermentation":
-                s = "1";
-                break;
-            case "Pressed":
-                s = "2";
-                break;
-            case "Maturation":
-                s = "3";
-                break;
-            case "Blending":
-                s = "4";
-                break;
-            case "Prep For Bottling":
-                s = "5";
-                break;
-            case "Bottling":
-                s = "6";
-                break;
-            case "Storage":
-                s = "7";
-                break;
-        }
-        return s;
+    public static int stageGetNo(String s) {
+        return stages.indexOf(s);
     }
 
     public static String[] getSupplierData(String supplierid) throws SQLException {
