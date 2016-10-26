@@ -163,7 +163,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="exitBtn" min="-2" pref="70" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="typeLbl1" min="-2" max="-2" attributes="0"/>
+                      <Component id="supplierLbl" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -176,7 +176,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="batchLbl" min="-2" max="-2" attributes="0"/>
-                              <Component id="typeLbl1" alignment="1" min="-2" max="-2" attributes="0"/>
+                              <Component id="supplierLbl" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -204,7 +204,7 @@
       <SubComponents>
         <Component class="javax.swing.JButton" name="exitBtn">
           <Properties>
-            <Property name="text" type="java.lang.String" value="Exit"/>
+            <Property name="text" type="java.lang.String" value="Back"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitBtnActionPerformed"/>
@@ -238,8 +238,11 @@
               </StringArray>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="suppBoxActionPerformed"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="typeLbl1">
+        <Component class="javax.swing.JLabel" name="supplierLbl">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Calibri" size="14" style="0"/>
@@ -250,15 +253,11 @@
         <Component class="javax.swing.JComboBox" name="stageBox">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="8">
-                <StringItem index="0" value="All"/>
-                <StringItem index="1" value="Fermentation"/>
-                <StringItem index="2" value="Pressed"/>
-                <StringItem index="3" value="Maturation"/>
-                <StringItem index="4" value="Blending"/>
-                <StringItem index="5" value="Prep for Bottling"/>
-                <StringItem index="6" value="Bottling"/>
-                <StringItem index="7" value="Storage"/>
+              <StringArray count="4">
+                <StringItem index="0" value="Item 1"/>
+                <StringItem index="1" value="Item 2"/>
+                <StringItem index="2" value="Item 3"/>
+                <StringItem index="3" value="Item 4"/>
               </StringArray>
             </Property>
           </Properties>

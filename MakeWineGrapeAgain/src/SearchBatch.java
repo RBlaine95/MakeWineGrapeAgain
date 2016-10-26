@@ -41,6 +41,7 @@ public class SearchBatch extends javax.swing.JFrame {
                 this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColourAll().toArray()));
                 this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getTypeAll().toArray()));
                 this.suppBox.setModel(new DefaultComboBoxModel(Pinwheel.getSupplierAll().toArray()));
+                this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStagesAll().toArray()));
                 data = new String[6];
                 break;
             case "supplier":
@@ -49,18 +50,21 @@ public class SearchBatch extends javax.swing.JFrame {
                 batchTbl.getColumnModel().getColumn(2).setHeaderValue("Email");
                 batchTbl.getColumnModel().getColumn(3).setHeaderValue("Contact Liason");
                 batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(4));
-
+                batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(4));
                 data = new String[4];
 
                 this.batchLbl.setText("Supplier Name");
                 this.colourLbl.setText("");
                 this.typeLbl.setText("");
                 this.stageLbl.setText("");
+                this.supplierLbl.setText("");
 
                 this.stageBox.setVisible(false);
                 this.colourBox.setVisible(false);
                 this.typeBox.setVisible(false);
+                this.suppBox.setVisible(false);
 
+                this.suppBox.setEnabled(false);
                 this.stageBox.setEnabled(false);
                 this.colourBox.setEnabled(false);
                 this.typeBox.setEnabled(false);
@@ -71,24 +75,27 @@ public class SearchBatch extends javax.swing.JFrame {
                 batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
                 batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
                 batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
-
+                batchTbl.getColumnModel().removeColumn(batchTbl.getColumnModel().getColumn(2));
                 data = new String[2];
 
                 this.batchLbl.setText("Chemical Name");
                 this.colourLbl.setText("");
                 this.typeLbl.setText("");
                 this.stageLbl.setText("");
+                this.supplierLbl.setText("");
 
                 this.stageBox.setVisible(false);
                 this.colourBox.setVisible(false);
                 this.typeBox.setVisible(false);
+                this.suppBox.setVisible(false);
 
+                this.suppBox.setEnabled(false);
                 this.stageBox.setEnabled(false);
                 this.colourBox.setEnabled(false);
                 this.typeBox.setEnabled(false);
+
                 break;
         }
-        this.searchBtn.doClick();
     }
 
     public SearchBatch(boolean a, int i) {
@@ -99,6 +106,8 @@ public class SearchBatch extends javax.swing.JFrame {
         this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColourAll().toArray()));
         this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getTypeAll().toArray()));
         this.suppBox.setModel(new DefaultComboBoxModel(Pinwheel.getSupplierAll().toArray()));
+        this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStagesAll().toArray()));
+
         data = new String[5];
 
         this.searchBtn.doClick();
@@ -122,7 +131,7 @@ public class SearchBatch extends javax.swing.JFrame {
         searchBtn = new javax.swing.JButton();
         selectBtn = new javax.swing.JButton();
         suppBox = new javax.swing.JComboBox();
-        typeLbl1 = new javax.swing.JLabel();
+        supplierLbl = new javax.swing.JLabel();
         stageBox = new javax.swing.JComboBox();
         stageLbl = new javax.swing.JLabel();
         typeBox = new javax.swing.JComboBox();
@@ -182,7 +191,7 @@ public class SearchBatch extends javax.swing.JFrame {
         jPanel1.setOpaque(false);
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 270));
 
-        exitBtn.setText("Exit");
+        exitBtn.setText("Back");
         exitBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 exitBtnActionPerformed(evt);
@@ -205,11 +214,16 @@ public class SearchBatch extends javax.swing.JFrame {
         });
 
         suppBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        suppBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                suppBoxActionPerformed(evt);
+            }
+        });
 
-        typeLbl1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        typeLbl1.setText("Supplier");
+        supplierLbl.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        supplierLbl.setText("Supplier");
 
-        stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "All", "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
+        stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         stageLbl.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         stageLbl.setText("Stage");
@@ -259,7 +273,7 @@ public class SearchBatch extends javax.swing.JFrame {
                         .addComponent(searchBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(typeLbl1)))
+                    .addComponent(supplierLbl)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,7 +283,7 @@ public class SearchBatch extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(batchLbl)
-                            .addComponent(typeLbl1, javax.swing.GroupLayout.Alignment.TRAILING))
+                            .addComponent(supplierLbl, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(batchIdTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -413,7 +427,7 @@ public class SearchBatch extends javax.swing.JFrame {
                         for (int i = 0; i < list.length; i++) {
                             list[i] = (rs.getString(i + 1));
                         }
-                        list[3] = Pinwheel.stageGetWord(list[3] + "");
+                        list[3] = Pinwheel.stageGetWord(Integer.parseInt(list[3] + ""));
                         ((DefaultTableModel) this.batchTbl.getModel()).insertRow(count, list);
                         count++;
                     }
@@ -425,7 +439,7 @@ public class SearchBatch extends javax.swing.JFrame {
                 sql = "SELECT sname, tel, email, liason FROM supplier";
                 list = new Object[4];
                 if (batch) {
-                    sql += "WHERE sname = '" + this.batchid + "'";
+                    sql += " WHERE sname LIKE '*" + this.batchid + "*'";
                 }
                 try {
                     rs = Pinwheel.queryCCDB(sql);
@@ -447,7 +461,7 @@ public class SearchBatch extends javax.swing.JFrame {
                 sql = "SELECT chemical, value FROM chemicaltbl";
                 list = new Object[2];
                 if (batch) {
-                    sql += "WHERE chemical = '" + this.batchid + "'";
+                    sql += " WHERE chemical LIKE '*" + this.batchid + "*'";
                 }
                 try {
                     rs = Pinwheel.queryChem(sql);
@@ -475,6 +489,10 @@ public class SearchBatch extends javax.swing.JFrame {
             this.selectBtn.setEnabled(true);
         }
     }//GEN-LAST:event_batchTblMousePressed
+
+    private void suppBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suppBoxActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_suppBoxActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -495,8 +513,8 @@ public class SearchBatch extends javax.swing.JFrame {
     private javax.swing.JComboBox stageBox;
     private javax.swing.JLabel stageLbl;
     private javax.swing.JComboBox suppBox;
+    private javax.swing.JLabel supplierLbl;
     private javax.swing.JComboBox typeBox;
     private javax.swing.JLabel typeLbl;
-    private javax.swing.JLabel typeLbl1;
     // End of variables declaration//GEN-END:variables
 }

@@ -390,7 +390,8 @@ public void check() {
         this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColour().toArray()));
         this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getType().toArray()));
         this.supplierBox.setModel(new DefaultComboBoxModel(Pinwheel.getSupplier().toArray()));
-
+        this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStages().toArray()));
+        
         System.out.println("adds");
         this.colourBox.addItem("Override");
         this.typeBox.addItem("Override");

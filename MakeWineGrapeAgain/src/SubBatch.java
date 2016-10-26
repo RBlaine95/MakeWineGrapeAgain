@@ -3,6 +3,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -27,6 +28,7 @@ public class SubBatch extends javax.swing.JFrame {
 
     public SubBatch() {
         initComponents();
+        this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStages().toArray()));
         this.data = Pinwheel.getData();
         this.batch = this.data[0];
         this.selectedTxt.setText(batch);
@@ -51,7 +53,7 @@ public class SubBatch extends javax.swing.JFrame {
         okBtn = new javax.swing.JButton();
         massTxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        stageList = new javax.swing.JComboBox<String>();
+        stageBox = new javax.swing.JComboBox<String>();
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -99,7 +101,7 @@ public class SubBatch extends javax.swing.JFrame {
 
         jLabel3.setText("Stage");
 
-        stageList.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
+        stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
 
         jLabel4.setText("KG");
 
@@ -136,7 +138,7 @@ public class SubBatch extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addGap(18, 18, 18)
-                .addComponent(stageList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -157,7 +159,7 @@ public class SubBatch extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(stageList, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backBtn)
@@ -174,7 +176,7 @@ public class SubBatch extends javax.swing.JFrame {
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
         subMass = Integer.parseInt(massTxt.getText());
-        stage = stageList.getSelectedItem() + "";
+        stage = stageBox.getSelectedItem() + "";
         String subID = batch + "SB";
 
         ResultSet rs;
@@ -233,7 +235,7 @@ public class SubBatch extends javax.swing.JFrame {
     private javax.swing.JTextField massTxt;
     private javax.swing.JButton okBtn;
     private javax.swing.JTextField selectedTxt;
-    private javax.swing.JComboBox<String> stageList;
+    private javax.swing.JComboBox<String> stageBox;
     private javax.swing.JSlider subMassSlide;
     // End of variables declaration//GEN-END:variables
 }
