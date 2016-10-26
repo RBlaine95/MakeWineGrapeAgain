@@ -98,6 +98,7 @@ public class GraphUI extends JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(600, 600));
         setMinimumSize(new java.awt.Dimension(600, 600));
+        setPreferredSize(new java.awt.Dimension(600, 600));
         setResizable(false);
 
         jPanel1.setLayout(new java.awt.BorderLayout());
@@ -144,7 +145,7 @@ public class GraphUI extends JFrame {
                         .addComponent(saveBtn)
                         .addGap(56, 56, 56)
                         .addComponent(updateBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
                         .addComponent(backBtn)))
                 .addContainerGap())
         );
