@@ -88,7 +88,6 @@ public class SearchBatch extends javax.swing.JFrame {
                 this.typeBox.setEnabled(false);
                 break;
         }
-        this.searchBtn.doClick();
     }
 
     public SearchBatch(boolean a, int i) {

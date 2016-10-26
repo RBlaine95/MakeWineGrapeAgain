@@ -1,16 +1,20 @@
+
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Se7en
  */
 public class Update extends javax.swing.JFrame {
-String batch;
-String [] data;
+
+    String batch;
+    String[] data;
+
     /**
      * Creates new form Update
      */
@@ -18,9 +22,10 @@ String [] data;
         initComponents();
         this.data = Pinwheel.getData();
         this.massTxt.setEnabled(false);
-            this.massTxt.setVisible(false);
-            this.massLbl.setVisible(false);
+        this.massTxt.setVisible(false);
+        this.massLbl.setVisible(false);
         batch = data[0];
+        this.stageBox.setSelectedIndex(Integer.parseInt(Pinwheel.stageGetNo(data[3])) - 1);
         this.selectedTxt.setText(batch);
     }
 
@@ -71,6 +76,11 @@ String [] data;
         stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Stroage" }));
 
         okBtn.setText("Update");
+        okBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okBtnActionPerformed(evt);
+            }
+        });
 
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -131,7 +141,7 @@ String [] data;
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(backBtn)
                     .addComponent(okBtn))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
@@ -150,17 +160,42 @@ String [] data;
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void spillBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_spillBoxActionPerformed
-        if(spillBox.isSelected()){
+        this.massTxt.setText("");
+        if (spillBox.isSelected()) {
             this.massTxt.setVisible(true);
             this.massTxt.setEnabled(true);
             this.massLbl.setVisible(true);
-        }
-        else{
+        } else {
             this.massTxt.setEnabled(false);
             this.massTxt.setVisible(false);
             this.massLbl.setVisible(false);
         }
     }//GEN-LAST:event_spillBoxActionPerformed
+
+    private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
+        int check = JOptionPane.YES_OPTION;
+        int masscheck = 0;
+        if (this.stageBox.getSelectedIndex() < Integer.parseInt(Pinwheel.stageGetNo(data[3])) - 1) {
+            check = JOptionPane.showConfirmDialog(null, "You are attempting to roll back stage/s\nPlease Confirm", "Warning: Rolling back stages", JOptionPane.OK_CANCEL_OPTION);
+        }
+
+        String sql;
+        if (check == JOptionPane.YES_OPTION) {
+            if (this.massTxt.getText().isEmpty()) {
+                sql = "UPDATE batch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedIndex() + 1 + "") + "' WHERE batchid = '" + data[0] + "'";
+                Pinwheel.updateCCDB(sql);
+            } else {
+                if (Double.parseDouble(this.massTxt.getText()) > Double.parseDouble(data[4])) {
+                    masscheck = JOptionPane.showConfirmDialog(null, "The new mass you have entered is more than the existing mass.\nPlease Confirm", "Warning: Added Mass", JOptionPane.OK_CANCEL_OPTION);
+                }
+                if (masscheck == JOptionPane.YES_OPTION) {
+                    sql = "UPDATE batch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedIndex() + 1 + "") + "', mass = " + Double.parseDouble(this.massTxt.getText()) + " WHERE batchid = '" + data[0] + "'";
+                    Pinwheel.updateCCDB(sql);
+                }
+            }
+            
+        }
+    }//GEN-LAST:event_okBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
