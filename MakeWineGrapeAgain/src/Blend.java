@@ -1066,7 +1066,7 @@ public class Blend extends javax.swing.JFrame {
 
     private void clear3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear3ActionPerformed
         this.temp[1] = "";
-
+        this.per3Txt.setText("");
         this.batch3Txt.setText("");
 
         this.clear4.doClick();
@@ -1075,41 +1075,42 @@ public class Blend extends javax.swing.JFrame {
 
     private void clear4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear4ActionPerformed
         this.temp[2] = "";
-
+        this.per4Txt.setText("");
         this.batch4Txt.setText("");
         this.clear5.doClick();
     }//GEN-LAST:event_clear4ActionPerformed
 
     private void clear5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear5ActionPerformed
         this.temp[3] = "";
-
+        this.per5Txt.setText("");
         this.batch5Txt.setText("");
         this.clear6.doClick();
     }//GEN-LAST:event_clear5ActionPerformed
 
     private void clear6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear6ActionPerformed
         this.temp[4] = "";
-
+        this.per6Txt.setText("");
         this.batch6Txt.setText("");
         this.clear7.doClick();
     }//GEN-LAST:event_clear6ActionPerformed
 
     private void clear7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear7ActionPerformed
         this.temp[5] = "";
-
+        this.per7Txt.setText("");
         this.batch7Txt.setText("");
         this.clear8.doClick();
     }//GEN-LAST:event_clear7ActionPerformed
 
     private void clear8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear8ActionPerformed
         this.temp[6] = "";
-
+        this.per8Txt.setText("");
         this.batch8Txt.setText("");
         this.clear9.doClick();
     }//GEN-LAST:event_clear8ActionPerformed
 
     private void clear9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear9ActionPerformed
         this.temp[7] = "";
+        this.per9Txt.setText("");
         Pinwheel.setTempData(temp);
         this.batch9Txt.setText("");
         this.refresh();
@@ -1182,7 +1183,8 @@ public class Blend extends javax.swing.JFrame {
 
     private void check() {
         okBtn.setEnabled(false);
-        if (selectedTxt.getText().length() > 0 && batch2Txt.getText().length() > 0 && volTxt.getText().length() > 0 && colTxt.getText().length() > 0 && nameTxt.getText().length() > 0 && stageBox.getSelectedIndex() != 0) {
+        System.out.println("check");
+        if (selectedTxt.getText().length() > 0 && batch2Txt.getText().length() > 0 && volTxt.getText().length() > 0 && colTxt.getText().length() > 0 && nameTxt.getText().length() > 0) {
             if (!per1Txt.isEnabled() || !per1Txt.getText().isEmpty()) {
                 if (!per2Txt.isEnabled() || !per2Txt.getText().isEmpty()) {
                     if (!per3Txt.isEnabled() || !per3Txt.getText().isEmpty()) {
