@@ -107,8 +107,16 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="tempTxt">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tempTxtKeyPressed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tempTxtKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="balTxt">
+      <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="balTxtKeyPressed"/>
+        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="balTxtKeyReleased"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="okBtn">
       <Properties>
