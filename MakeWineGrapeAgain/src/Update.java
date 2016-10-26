@@ -77,6 +77,17 @@ public class Update extends javax.swing.JFrame {
 
         stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Stroage" }));
 
+        massTxt.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                massTxtActionPerformed(evt);
+            }
+        });
+        massTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                massTxtKeyReleased(evt);
+            }
+        });
+
         okBtn.setText("Update");
         okBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,9 +206,17 @@ public class Update extends javax.swing.JFrame {
                     Pinwheel.updateCCDB(sql);
                 }
             }
-            
+
         }
     }//GEN-LAST:event_okBtnActionPerformed
+
+    private void massTxtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_massTxtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_massTxtActionPerformed
+
+    private void massTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_massTxtKeyReleased
+        this.massTxt.setText(this.massTxt.getText().replaceAll("[^\\d.]", ""));
+    }//GEN-LAST:event_massTxtKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

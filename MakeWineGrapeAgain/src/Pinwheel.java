@@ -72,13 +72,12 @@ public final class Pinwheel {
 
         
         stages.add("Fermentation");
-        stages.add("Pressed");
+        stages.add("Pressing");
         stages.add("Maturation");
         stages.add("Blending");
         stages.add("Prep for Bottling");
         stages.add("Bottling");
         stages.add("Storage");
-
         
         
         for (int i = 0; i < stages.size(); i++) {
