@@ -10,7 +10,7 @@ import java.util.logging.Logger;
  */
 /**
  *
- * @author Matthew
+ * @author Se7en
  */
 public class AddChemical extends javax.swing.JFrame {
 
@@ -46,16 +46,14 @@ public class AddChemical extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setAlwaysOnTop(true);
-        setMaximumSize(new java.awt.Dimension(300, 200));
         setMinimumSize(new java.awt.Dimension(300, 200));
-        setPreferredSize(new java.awt.Dimension(300, 200));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Chemical");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 49, -1, -1));
         getContentPane().add(chemTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 46, 81, -1));
 
-        jLabel2.setText("Value");
+        jLabel2.setText("Cost/mg");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 87, -1, -1));
         getContentPane().add(valueTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 84, 81, -1));
 
