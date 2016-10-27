@@ -26,6 +26,14 @@ public class Blend extends javax.swing.JFrame {
      */
     public Blend() {
         initComponents();
+        Pinwheel.setBounce("blend");
+        this.colTxt.setEnabled(false);
+        try {
+            this.colBox.setModel(new DefaultComboBoxModel(Pinwheel.getColour().toArray()));
+        } catch (SQLException ex) {
+            Logger.getLogger(Blend.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.colBox.addItem("Override");
         this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStages().toArray()));
         this.check();
         this.data = Pinwheel.getData();
@@ -126,11 +134,16 @@ public class Blend extends javax.swing.JFrame {
         clear7 = new javax.swing.JButton();
         clear8 = new javax.swing.JButton();
         clear9 = new javax.swing.JButton();
+        colBox = new javax.swing.JComboBox();
+        jLabel24 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Blend Batches");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel1.setText("Batch 1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
 
         selectedTxt.setEditable(false);
         selectedTxt.addActionListener(new java.awt.event.ActionListener() {
@@ -138,519 +151,386 @@ public class Blend extends javax.swing.JFrame {
                 selectedTxtActionPerformed(evt);
             }
         });
+        getContentPane().add(selectedTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 12, 91, -1));
 
+        backBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 449, -1, -1));
 
+        okBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         okBtn.setText("OK");
         okBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(okBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 449, -1, -1));
 
         batch2Txt.setEditable(false);
+        getContentPane().add(batch2Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 53, 91, -1));
 
+        jLabel2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel2.setText("Batch 2");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 56, -1, -1));
 
+        select2Btn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         select2Btn.setText("Select");
         select2Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 select2BtnActionPerformed(evt);
             }
         });
+        getContentPane().add(select2Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 52, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel3.setText("Percentage");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 15, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel4.setText("Percentage");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 55, -1, -1));
 
+        select3Btn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         select3Btn.setText("Select");
         select3Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 select3BtnActionPerformed(evt);
             }
         });
+        getContentPane().add(select3Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 93, -1, -1));
 
         batch3Txt.setEditable(false);
+        getContentPane().add(batch3Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 94, 91, -1));
 
+        jLabel5.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel5.setText("Batch 3");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 97, -1, -1));
 
+        select4Btn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         select4Btn.setText("Select");
         select4Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 select4BtnActionPerformed(evt);
             }
         });
+        getContentPane().add(select4Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 136, -1, -1));
 
         batch4Txt.setEditable(false);
+        getContentPane().add(batch4Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 137, 91, -1));
 
+        jLabel6.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel6.setText("Batch 4");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
+        jLabel7.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel7.setText("Batch 7");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 263, -1, -1));
 
+        jLabel8.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel8.setText("Batch 6");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 222, -1, -1));
 
+        jLabel9.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel9.setText("Batch 5");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 181, -1, -1));
 
         batch5Txt.setEditable(false);
+        getContentPane().add(batch5Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 178, 91, -1));
 
+        select5Btn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         select5Btn.setText("Select");
         select5Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 select5BtnActionPerformed(evt);
             }
         });
+        getContentPane().add(select5Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 177, -1, -1));
 
+        select6Btn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         select6Btn.setText("Select");
         select6Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 select6BtnActionPerformed(evt);
             }
         });
+        getContentPane().add(select6Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 218, -1, -1));
 
+        select7Btn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         select7Btn.setText("Select");
         select7Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 select7BtnActionPerformed(evt);
             }
         });
+        getContentPane().add(select7Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 259, -1, -1));
 
         batch7Txt.setEditable(false);
+        getContentPane().add(batch7Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 91, -1));
 
         batch6Txt.setEditable(false);
+        getContentPane().add(batch6Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 219, 91, -1));
 
+        jLabel11.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel11.setText("Batch 9");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 345, -1, -1));
 
+        jLabel12.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel12.setText("Batch 8");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 304, -1, -1));
 
         batch8Txt.setEditable(false);
+        getContentPane().add(batch8Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 301, 91, -1));
 
+        select8Btn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         select8Btn.setText("Select");
         select8Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 select8BtnActionPerformed(evt);
             }
         });
+        getContentPane().add(select8Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 300, -1, -1));
 
+        select9Btn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         select9Btn.setText("Select");
         select9Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 select9BtnActionPerformed(evt);
             }
         });
+        getContentPane().add(select9Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 341, -1, -1));
 
         batch9Txt.setEditable(false);
+        getContentPane().add(batch9Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 342, 91, -1));
 
+        jLabel10.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel10.setText("Percentage");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 140, -1, -1));
 
+        jLabel13.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel13.setText("Percentage");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 181, -1, -1));
 
+        jLabel14.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel14.setText("Percentage");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 222, -1, -1));
 
+        jLabel15.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel15.setText("Percentage");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 263, -1, -1));
 
+        jLabel16.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel16.setText("Percentage");
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 304, -1, -1));
 
+        jLabel17.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel17.setText("Percentage");
+        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 345, -1, -1));
 
         per1Txt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 per1TxtKeyReleased(evt);
             }
         });
+        getContentPane().add(per1Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 12, 50, -1));
 
         per2Txt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 per2TxtKeyReleased(evt);
             }
         });
+        getContentPane().add(per2Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 55, 50, -1));
 
         per4Txt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 per4TxtKeyReleased(evt);
             }
         });
+        getContentPane().add(per4Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 137, 50, -1));
 
         per7Txt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 per7TxtKeyReleased(evt);
             }
         });
+        getContentPane().add(per7Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 260, 50, -1));
 
         per5Txt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 per5TxtKeyReleased(evt);
             }
         });
+        getContentPane().add(per5Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 178, 50, -1));
 
         per6Txt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 per6TxtKeyReleased(evt);
             }
         });
+        getContentPane().add(per6Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 219, 50, -1));
 
         per8Txt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 per8TxtKeyReleased(evt);
             }
         });
+        getContentPane().add(per8Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 301, 50, -1));
 
         per9Txt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 per9TxtKeyReleased(evt);
             }
         });
+        getContentPane().add(per9Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 342, 50, -1));
 
+        select1Btn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         select1Btn.setText("Select");
         select1Btn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 select1BtnActionPerformed(evt);
             }
         });
+        getContentPane().add(select1Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 11, -1, -1));
 
         per3Txt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 per3TxtKeyReleased(evt);
             }
         });
+        getContentPane().add(per3Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 94, 50, -1));
 
+        jLabel18.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel18.setText("Percentage");
+        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 97, -1, -1));
 
+        jLabel19.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel19.setText("Volume");
+        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(514, 15, -1, -1));
 
+        volTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         volTxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 volTxtKeyReleased(evt);
             }
         });
+        getContentPane().add(volTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(566, 12, 100, -1));
 
+        jLabel20.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel20.setText("Stage");
+        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 181, -1, -1));
 
+        stageBox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please Select", "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
         stageBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stageBoxActionPerformed(evt);
             }
         });
+        getContentPane().add(stageBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(561, 178, -1, -1));
 
+        jLabel21.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel21.setText("Colour");
+        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 97, -1, -1));
 
+        colTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         colTxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 colTxtKeyReleased(evt);
             }
         });
+        getContentPane().add(colTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(679, 94, 100, -1));
 
+        jLabel22.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel22.setText("Name");
+        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 263, -1, -1));
 
+        nameTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         nameTxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 nameTxtKeyReleased(evt);
             }
         });
+        getContentPane().add(nameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, 100, -1));
 
+        clear3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         clear3.setText("Clear");
         clear3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clear3ActionPerformed(evt);
             }
         });
+        getContentPane().add(clear3, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 93, -1, -1));
 
+        clear4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         clear4.setText("Clear");
         clear4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clear4ActionPerformed(evt);
             }
         });
+        getContentPane().add(clear4, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 136, -1, -1));
 
+        clear5.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         clear5.setText("Clear");
         clear5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clear5ActionPerformed(evt);
             }
         });
+        getContentPane().add(clear5, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 177, -1, -1));
 
+        clear6.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         clear6.setText("Clear");
         clear6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clear6ActionPerformed(evt);
             }
         });
+        getContentPane().add(clear6, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 218, -1, -1));
 
+        clear7.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         clear7.setText("Clear");
         clear7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clear7ActionPerformed(evt);
             }
         });
+        getContentPane().add(clear7, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 259, -1, -1));
 
+        clear8.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         clear8.setText("Clear");
         clear8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clear8ActionPerformed(evt);
             }
         });
+        getContentPane().add(clear8, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 300, -1, -1));
 
+        clear9.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         clear9.setText("Clear");
         clear9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clear9ActionPerformed(evt);
             }
         });
+        getContentPane().add(clear9, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 341, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(133, 133, 133))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(select2Btn)
-                            .addComponent(select1Btn)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addGap(24, 24, 24)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(batch2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(batch3Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(select3Btn)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(clear3))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel11)
-                                    .addGap(24, 24, 24)
-                                    .addComponent(batch9Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(select9Btn))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel12)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(batch8Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(select8Btn)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel6)
-                                    .addGap(24, 24, 24)
-                                    .addComponent(batch4Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(select4Btn))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel8)
-                                    .addGap(24, 24, 24)
-                                    .addComponent(batch6Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(select6Btn))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel9)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(batch5Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(select5Btn))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel7)
-                                    .addGap(24, 24, 24)
-                                    .addComponent(batch7Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(select7Btn))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(clear6)
-                            .addComponent(clear5)
-                            .addComponent(clear8)
-                            .addComponent(clear7)
-                            .addComponent(clear9)
-                            .addComponent(clear4)))
-                    .addComponent(backBtn))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel15)
-                                .addGap(18, 18, 18)
-                                .addComponent(per7Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel13)
-                                .addGap(18, 18, 18)
-                                .addComponent(per5Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel16)
-                                .addGap(18, 18, 18)
-                                .addComponent(per8Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel17)
-                                .addGap(18, 18, 18)
-                                .addComponent(per9Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel14)
-                                .addGap(18, 18, 18)
-                                .addComponent(per6Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel18)
-                                .addGap(18, 18, 18)
-                                .addComponent(per3Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel4)
-                                .addGap(18, 18, 18)
-                                .addComponent(per2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel3)
-                                .addGap(18, 18, 18)
-                                .addComponent(per1Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(290, 290, 290)
-                                .addComponent(okBtn))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(67, 67, 67)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel20)
-                                        .addGap(22, 22, 22)
-                                        .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel22)
-                                        .addGap(22, 22, 22)
-                                        .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                                .addComponent(jLabel19)
-                                                .addGap(18, 18, 18))
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(jLabel21)
-                                                .addGap(24, 24, 24)))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(colTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                                            .addComponent(volTxt)))))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addGap(18, 18, 18)
-                        .addComponent(per4Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(92, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(select1Btn)
-                                .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel3)
-                                .addComponent(per1Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel19)
-                                .addComponent(volTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(batch2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(select2Btn)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel4)
-                        .addComponent(per2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(batch3Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(select3Btn)
-                    .addComponent(jLabel21)
-                    .addComponent(colTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(clear3)
-                    .addComponent(jLabel18)
-                    .addComponent(per3Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(batch4Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(select4Btn)
-                    .addComponent(clear4)
-                    .addComponent(jLabel10)
-                    .addComponent(per4Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel9)
-                            .addComponent(batch5Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(select5Btn))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(batch6Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(select6Btn))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(batch7Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(select7Btn))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12)
-                            .addComponent(batch8Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(select8Btn)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(clear5)
-                            .addComponent(jLabel13)
-                            .addComponent(per5Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel20)
-                            .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(clear6)
-                            .addComponent(jLabel14)
-                            .addComponent(per6Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(clear7)
-                            .addComponent(jLabel15)
-                            .addComponent(per7Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel22)
-                            .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(clear8)
-                            .addComponent(jLabel16)
-                            .addComponent(per8Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(batch9Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(select9Btn)
-                    .addComponent(clear9)
-                    .addComponent(jLabel17)
-                    .addComponent(per9Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backBtn)
-                    .addComponent(okBtn))
-                .addContainerGap())
-        );
+        colBox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        colBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        colBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                colBoxActionPerformed(evt);
+            }
+        });
+        getContentPane().add(colBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(566, 94, -1, -1));
+
+        jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
+        jLabel24.setText("jLabel24");
+        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 490));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -661,7 +541,7 @@ public class Blend extends javax.swing.JFrame {
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
         int percentcheck = Integer.parseInt(per1Txt.getText());
-
+        
         if (batch2Txt.getText().length() > 0) {
             percentcheck += Integer.parseInt(per2Txt.getText());
         }
@@ -778,46 +658,46 @@ public class Blend extends javax.swing.JFrame {
             if (mass) {
                 String sql;
                 if (ready[0]) {
-                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per1Txt.getText()) / 100) + " WHERE batchid = '" + selectedTxt.getText() + "'";
+                    sql = "UPDATE subbatch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per1Txt.getText()) / 100) + " WHERE subbatchid = '" + selectedTxt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
                 if (ready[1]) {
-                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per2Txt.getText()) / 100) + " WHERE batchid = '" + batch2Txt.getText() + "'";
+                    sql = "UPDATE subbatch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per2Txt.getText()) / 100) + " WHERE subbatchid = '" + batch2Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
                 if (ready[2]) {
-                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per3Txt.getText()) / 100) + " WHERE batchid = '" + batch3Txt.getText() + "'";
+                    sql = "UPDATE subbatch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per3Txt.getText()) / 100) + " WHERE subbatchid = '" + batch3Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
                 if (ready[3]) {
-                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per4Txt.getText()) / 100) + " WHERE batchid = '" + batch4Txt.getText() + "'";
+                    sql = "UPDATE subbatch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per4Txt.getText()) / 100) + " WHERE subbatchid = '" + batch4Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
                 if (ready[4]) {
-                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per5Txt.getText()) / 100) + " WHERE batchid = '" + batch5Txt.getText() + "'";
+                    sql = "UPDATE subbatch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per5Txt.getText()) / 100) + " WHERE subbatchid = '" + batch5Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
                 if (ready[5]) {
-                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per6Txt.getText()) / 100) + " WHERE batchid = '" + batch6Txt.getText() + "'";
+                    sql = "UPDATE subbatch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per6Txt.getText()) / 100) + " WHERE subbatchid = '" + batch6Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
                 if (ready[6]) {
-                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per7Txt.getText()) / 100) + " WHERE batchid = '" + batch7Txt.getText() + "'";
+                    sql = "UPDATE subbatch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per7Txt.getText()) / 100) + " WHERE subbatchid = '" + batch7Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
                 if (ready[7]) {
-                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per8Txt.getText()) / 100) + " WHERE batchid = '" + batch8Txt.getText() + "'";
+                    sql = "UPDATE subbatch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per8Txt.getText()) / 100) + " WHERE subbatchid = '" + batch8Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
                 if (ready[8]) {
-                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per9Txt.getText()) / 100) + " WHERE batchid = '" + batch9Txt.getText() + "'";
+                    sql = "UPDATE subbatch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per9Txt.getText()) / 100) + " WHERE subbatchid = '" + batch9Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
 
                 String bid, name, colour, stage;
                 int volume = Integer.parseInt(volTxt.getText());
                 name = this.nameTxt.getText();
-                colour = this.colTxt.getText();
+                colour = (this.colBox.getSelectedItem().equals("Override")) ? this.colTxt.getText() : this.colBox.getSelectedItem() + "";
                 stage = (String) this.stageBox.getSelectedItem();
 
                 sql = "SELECT COUNT(*) FROM blend";
@@ -860,7 +740,7 @@ public class Blend extends javax.swing.JFrame {
                         }
                     }
                 }
-                sql += ") VALUES('" + bid + "', '" + name + "', '" + colour + "', '" + volume + "', '" + stage
+                sql += ") VALUES('" + bid + "', '" + name + "', '" + colour + "', '" + volume + "', '" + Pinwheel.stageGetNo(stage)
                         + "', '" + this.selectedTxt.getText() + "', '" + Integer.parseInt(this.per1Txt.getText()) + "', '" + this.batch2Txt.getText() + "', '"
                         + Integer.parseInt(this.per2Txt.getText()) + "'";
 
@@ -894,7 +774,7 @@ public class Blend extends javax.swing.JFrame {
                 sql += ")";
                 Pinwheel.updateCCDB(sql);
 
-                String ID = ("Batch" + bid);
+                String ID = (bid);
                 Pinwheel.createChem(ID);
 
                 this.chem(ID, this.selectedTxt.getText(), Integer.parseInt(per1Txt.getText()));
@@ -936,63 +816,63 @@ public class Blend extends javax.swing.JFrame {
     }//GEN-LAST:event_okBtnActionPerformed
 
     private void select2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select2BtnActionPerformed
-        Pinwheel.setBounce("blend");
+        
         SearchBatch s = new SearchBatch(true, 0);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select2BtnActionPerformed
 
     private void select3BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select3BtnActionPerformed
-        Pinwheel.setBounce("blend");
+
         SearchBatch s = new SearchBatch(true, 1);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select3BtnActionPerformed
 
     private void select4BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select4BtnActionPerformed
-        Pinwheel.setBounce("blend");
+      
         SearchBatch s = new SearchBatch(true, 2);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select4BtnActionPerformed
 
     private void select5BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select5BtnActionPerformed
-        Pinwheel.setBounce("blend");
+   
         SearchBatch s = new SearchBatch(true, 3);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select5BtnActionPerformed
 
     private void select6BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select6BtnActionPerformed
-        Pinwheel.setBounce("blend");
+       
         SearchBatch s = new SearchBatch(true, 4);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select6BtnActionPerformed
 
     private void select7BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select7BtnActionPerformed
-        Pinwheel.setBounce("blend");
+    
         SearchBatch s = new SearchBatch(true, 5);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select7BtnActionPerformed
 
     private void select8BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select8BtnActionPerformed
-        Pinwheel.setBounce("blend");
+
         SearchBatch s = new SearchBatch(true, 6);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select8BtnActionPerformed
 
     private void select9BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select9BtnActionPerformed
-        Pinwheel.setBounce("blend");
+      
         SearchBatch s = new SearchBatch(true, 7);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select9BtnActionPerformed
 
     private void select1BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select1BtnActionPerformed
-        Pinwheel.setBounce("blend");
+        
         SearchBatch s = new SearchBatch();
         s.setVisible(true);
         this.dispose();
@@ -1116,6 +996,14 @@ public class Blend extends javax.swing.JFrame {
         this.refresh();
     }//GEN-LAST:event_clear9ActionPerformed
 
+    private void colBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colBoxActionPerformed
+        if (colBox.getSelectedItem().equals("Override")) {
+            colTxt.setEnabled(true);
+        } else {
+            colTxt.setEnabled(false);
+        }
+    }//GEN-LAST:event_colBoxActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JTextField batch2Txt;
@@ -1133,6 +1021,7 @@ public class Blend extends javax.swing.JFrame {
     private javax.swing.JButton clear7;
     private javax.swing.JButton clear8;
     private javax.swing.JButton clear9;
+    private javax.swing.JComboBox colBox;
     private javax.swing.JTextField colTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1149,6 +1038,7 @@ public class Blend extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1184,7 +1074,7 @@ public class Blend extends javax.swing.JFrame {
     private void check() {
         okBtn.setEnabled(false);
         System.out.println("check");
-        if (selectedTxt.getText().length() > 0 && batch2Txt.getText().length() > 0 && volTxt.getText().length() > 0 && colTxt.getText().length() > 0 && nameTxt.getText().length() > 0) {
+        if (selectedTxt.getText().length() > 0 && batch2Txt.getText().length() > 0 && volTxt.getText().length() > 0 && (colTxt.getText().length() > 0 || !colBox.getSelectedItem().equals("Override")) && nameTxt.getText().length() > 0) {
             if (!per1Txt.isEnabled() || !per1Txt.getText().isEmpty()) {
                 if (!per2Txt.isEnabled() || !per2Txt.getText().isEmpty()) {
                     if (!per3Txt.isEnabled() || !per3Txt.getText().isEmpty()) {
@@ -1267,8 +1157,10 @@ public class Blend extends javax.swing.JFrame {
             while (rs.next()) {
                 String chem = rs.getNString(1);
                 amount = rs.getInt(2);
-                amount = amount * (percent / 100);
-                Pinwheel.insertCustomChemicalAt(bid, chem, amount + "");
+                
+                double newamount = amount * ((percent / Double.parseDouble(this.volTxt.getText()))*100);
+                Pinwheel.insertCustomChemicalAt(bid, chem, newamount + "");
+                Pinwheel.insertCustomChemicalAt(batch, chem, -newamount + "");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Blend.class.getName()).log(Level.SEVERE, null, ex);

@@ -75,8 +75,6 @@ public class Update extends javax.swing.JFrame {
         massLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         massLbl.setText("New Mass");
 
-        stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Stroage" }));
-
         massTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 massTxtActionPerformed(evt);
@@ -192,21 +190,41 @@ public class Update extends javax.swing.JFrame {
             check = JOptionPane.showConfirmDialog(null, "You are attempting to roll back stage/s\nPlease Confirm", "Warning: Rolling back stages", JOptionPane.OK_CANCEL_OPTION);
         }
 
-        String sql;
+        String sql = "";
         if (check == JOptionPane.YES_OPTION) {
             if (this.massTxt.getText().isEmpty()) {
-                sql = "UPDATE batch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedIndex() + 1 + "") + "' WHERE batchid = '" + data[0] + "'";
+                switch (Pinwheel.getSearchType()) {
+                    case "batch":
+                        sql = "UPDATE batch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedItem()+ "") + "' WHERE batchid = '" + data[0] + "'";
+                        break;
+                    case "subbatch":
+                        sql = "UPDATE subbatch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedItem()+ "") + "' WHERE subbatchid = '" + data[0] + "'";
+                        break;
+                    case "blend":
+                        sql = "UPDATE blend SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedItem() + "") + "' WHERE bid = '" + data[0] + "'";
+                        break;
+                }
                 Pinwheel.updateCCDB(sql);
             } else {
                 if (Double.parseDouble(this.massTxt.getText()) > Double.parseDouble(data[4])) {
                     masscheck = JOptionPane.showConfirmDialog(null, "The new mass you have entered is more than the existing mass.\nPlease Confirm", "Warning: Added Mass", JOptionPane.OK_CANCEL_OPTION);
                 }
                 if (masscheck == JOptionPane.YES_OPTION) {
-                    sql = "UPDATE batch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedIndex() + 1 + "") + "', mass = " + Double.parseDouble(this.massTxt.getText()) + " WHERE batchid = '" + data[0] + "'";
+                    switch (Pinwheel.getSearchType()) {
+                        case "batch":
+                            sql = "UPDATE batch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedIndex() + "") + "', mass = " + Double.parseDouble(this.massTxt.getText()) + " WHERE batchid = '" + data[0] + "'";
+                            break;
+                        case "subbatch":
+                            sql = "UPDATE subbatch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedIndex() + "") + "', mass = " + Double.parseDouble(this.massTxt.getText()) + " WHERE subbatchid = '" + data[0] + "'";
+                            break;
+                        case "blend":
+                            sql = "UPDATE blend SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedIndex() + "") + "', mass = " + Double.parseDouble(this.massTxt.getText()) + " WHERE bid = '" + data[0] + "'";
+                            break;
+                    }
                     Pinwheel.updateCCDB(sql);
                 }
-            }
 
+            }
         }
     }//GEN-LAST:event_okBtnActionPerformed
 

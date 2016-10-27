@@ -19,7 +19,7 @@ public class Prompt extends javax.swing.JFrame {
         initComponents();
         this.data = Pinwheel.getData();
 
-        this.idLbl.setText("ID:" + this.data[0]);
+        this.txtLbl.setText("<html>" + this.txtLbl.getText() + "<br/>ID:" + this.data[0] + "</html>");
     }
 
     /**
@@ -36,18 +36,25 @@ public class Prompt extends javax.swing.JFrame {
         okBtn = new javax.swing.JButton();
         idLbl = new javax.swing.JLabel();
         cancelBtn = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("APPROVE?");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        txtLbl.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         txtLbl.setText("Please enter the ID of the batch you are trying to edit/delete");
+        getContentPane().add(txtLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 10, -1, -1));
 
+        promptTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         promptTxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 promptTxtKeyReleased(evt);
             }
         });
+        getContentPane().add(promptTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 72, 333, 30));
 
+        okBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         okBtn.setText("OK");
         okBtn.setEnabled(false);
         okBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -55,53 +62,22 @@ public class Prompt extends javax.swing.JFrame {
                 okBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(okBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 110, -1, -1));
+        getContentPane().add(idLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(347, 31, 99, 57));
 
+        cancelBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         cancelBtn.setText("Cancel");
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(cancelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(promptTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 333, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(idLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(cancelBtn)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(okBtn))
-                        .addComponent(txtLbl, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 333, Short.MAX_VALUE)))
-                .addContainerGap(40, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(txtLbl)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(idLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(72, 72, 72))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(promptTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(cancelBtn)
-                            .addComponent(okBtn))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-        );
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 160));
 
-        setSize(new java.awt.Dimension(366, 139));
+        setSize(new java.awt.Dimension(366, 199));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -131,9 +107,15 @@ public class Prompt extends javax.swing.JFrame {
                         break;
                 }
             case "delete":
-                switch(Pinwheel.getSearchType()){
+                switch (Pinwheel.getSearchType()) {
                     case "batch":
                         Pinwheel.deleteBatch();
+                        break;
+                    case "subbatch":
+                        Pinwheel.deleteSubBatch();
+                        break;
+                    case "blend":
+                        Pinwheel.deleteBlend();
                         break;
                     case "supplier":
                         Pinwheel.deleteSupplier();
@@ -152,6 +134,7 @@ public class Prompt extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;
     private javax.swing.JLabel idLbl;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton okBtn;
     private javax.swing.JTextField promptTxt;
     private javax.swing.JLabel txtLbl;

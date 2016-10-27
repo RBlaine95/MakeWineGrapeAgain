@@ -1,13 +1,19 @@
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
  * @author Se7en
@@ -19,20 +25,20 @@ public class Login_UI extends javax.swing.JFrame {
      */
     public Login_UI() {
         initComponents();
-        
+
         loginBtn.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
-                 if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-                      onButtonPress();
-                 }
-            } 
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    onButtonPress();
+                }
+            }
         });
 
         passwordField.addKeyListener(new KeyAdapter() {
             public void keyPressed(KeyEvent e) {
-                 if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-                      onButtonPress();
-                 }
+                if (e.getKeyCode() == KeyEvent.VK_ENTER) {
+                    onButtonPress();
+                }
             }
         });
 
@@ -103,32 +109,56 @@ public class Login_UI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void loginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loginBtnActionPerformed
+
         onButtonPress();
+
     }//GEN-LAST:event_loginBtnActionPerformed
-    
-    public void onButtonPress(){
+
+    public void onButtonPress() {
         String password = passwordField.getText();
-        String ps = "";
         
-        if(password.equals(ps)){
+
+        MessageDigest messageDigest;
+
+        try {
+            messageDigest = MessageDigest.getInstance("SHA-256");
+
+            messageDigest.update(password.getBytes());
+            String encryptedString = new String(messageDigest.digest());
+
+            Scanner sc;
             try {
-                
-                Pinwheel.connect();
-                main m = new main();
-                this.dispose();
-                m.setVisible(true);
-            } catch (Exception e) {
-                System.out.println(e);
+                sc = new Scanner(new File("pass.txt"));
+                if (sc.hasNextLine()) {
+
+                    if ((encryptedString).equals(sc.nextLine())||true) {
+                        try {
+
+                            Pinwheel.connect();
+                            main m = new main();
+                            this.dispose();
+                            m.setVisible(true);
+                        } catch (Exception e) {
+                            System.out.println(e);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Password incorrect");
+                        passwordField.setText("");
+                    }
+                    sc.close();
+                }
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(Login_UI.class.getName()).log(Level.SEVERE, null, ex);
             }
-        }else{
-            JOptionPane.showMessageDialog(null,"Password incorrect");
-            passwordField.setText(ps);
-        } 
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(Login_UI.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
+
     /**
      * @param args the command line arguments
      */
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
