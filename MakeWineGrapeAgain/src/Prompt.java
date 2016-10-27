@@ -36,25 +36,18 @@ public class Prompt extends javax.swing.JFrame {
         okBtn = new javax.swing.JButton();
         idLbl = new javax.swing.JLabel();
         cancelBtn = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("APPROVE?");
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtLbl.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         txtLbl.setText("Please enter the ID of the batch you are trying to edit/delete");
-        getContentPane().add(txtLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 10, -1, -1));
 
-        promptTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         promptTxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 promptTxtKeyReleased(evt);
             }
         });
-        getContentPane().add(promptTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 72, 333, 30));
 
-        okBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         okBtn.setText("OK");
         okBtn.setEnabled(false);
         okBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -62,22 +55,14 @@ public class Prompt extends javax.swing.JFrame {
                 okBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(okBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 110, -1, -1));
-        getContentPane().add(idLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(347, 31, 99, 57));
 
-        cancelBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         cancelBtn.setText("Cancel");
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(cancelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
-<<<<<<< HEAD
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 160));
-=======
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -116,7 +101,6 @@ public class Prompt extends javax.swing.JFrame {
                             .addComponent(okBtn))
                         .addGap(27, 27, 27))))
         );
->>>>>>> refs/remotes/origin/master
 
         setSize(new java.awt.Dimension(366, 199));
         setLocationRelativeTo(null);
@@ -175,7 +159,6 @@ public class Prompt extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;
     private javax.swing.JLabel idLbl;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton okBtn;
     private javax.swing.JTextField promptTxt;
     private javax.swing.JLabel txtLbl;
