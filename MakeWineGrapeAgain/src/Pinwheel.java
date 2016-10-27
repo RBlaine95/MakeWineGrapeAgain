@@ -177,9 +177,9 @@ public final class Pinwheel {
     }
 
     public static void deleteSupplier() {
-        sql = "DELETE FROM supplier WHERE sname = '" + data[0] + "'";
+        sql = "UPDATE batch SET supplierid = 'DELETED' WHERE supplierid = '" + data[0] + "'";
         updateCCDB(sql);
-        sql = "UPDATE batch SET supplierid = DELETED WHERE supplierid = '" + data[0] + "'";
+        sql = "DELETE FROM supplier WHERE sname = '" + data[0] + "'";
         updateCCDB(sql);
     }
 
