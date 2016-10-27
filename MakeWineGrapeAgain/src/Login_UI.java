@@ -116,7 +116,6 @@ public class Login_UI extends javax.swing.JFrame {
 
     public void onButtonPress() {
         String password = passwordField.getText();
-        
 
         MessageDigest messageDigest;
 
@@ -131,7 +130,7 @@ public class Login_UI extends javax.swing.JFrame {
                 sc = new Scanner(new File("pass.txt"));
                 if (sc.hasNextLine()) {
 
-                    if ((encryptedString).equals(sc.nextLine())||true) {
+                    if ((encryptedString).equals(sc.nextLine()) || true) {
                         try {
 
                             Pinwheel.connect();

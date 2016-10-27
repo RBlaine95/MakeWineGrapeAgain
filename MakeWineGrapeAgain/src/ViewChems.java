@@ -11,10 +11,9 @@ import javax.swing.table.DefaultTableModel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
- * @author Matthew
+ * @author Se7en
  */
 public class ViewChems extends javax.swing.JFrame {
 
@@ -25,23 +24,23 @@ public class ViewChems extends javax.swing.JFrame {
         initComponents();
         String batch = Pinwheel.data[0];
         this.selectedTxt.setText(batch);
-         String sql = "SELECT * from " + batch;
-                try {
-                    ResultSet rs = Pinwheel.queryChem(sql);
-                    ArrayList<String> chem = new ArrayList();
-                    ArrayList<Double> amount = new ArrayList();
-                    int count = 0;
-                    while (rs.next()) {
-                        chem.add(rs.getNString(1));
-                        amount.add(rs.getDouble(2));
-                        String[] arr = {chem.get(count), amount.get(count) + ""};
-                        ((DefaultTableModel) this.chemTbl.getModel()).insertRow(count, arr);
-                        count++;
-                    }
+        String sql = "SELECT * from " + batch;
+        try {
+            ResultSet rs = Pinwheel.queryChem(sql);
+            ArrayList<String> chem = new ArrayList();
+            ArrayList<Double> amount = new ArrayList();
+            int count = 0;
+            while (rs.next()) {
+                chem.add(rs.getNString(1));
+                amount.add(rs.getDouble(2));
+                String[] arr = {chem.get(count), amount.get(count) + ""};
+                ((DefaultTableModel) this.chemTbl.getModel()).insertRow(count, arr);
+                count++;
+            }
 
-                } catch (SQLException ex) {
-                    Logger.getLogger(AdminEdit.class.getName()).log(Level.SEVERE, null, ex);
-                }
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminEdit.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

@@ -165,7 +165,6 @@ public class SubBatch extends javax.swing.JFrame {
             double massT = Double.parseDouble(rs.getString(1));
 
             //calculate new mass in Kg
-
             sql = "UPDATE batch SET mass = " + (massT - subMass) + " WHERE batchid = '" + batch + "'";
             Pinwheel.updateCCDB(sql); //update main batch
 
@@ -179,7 +178,7 @@ public class SubBatch extends javax.swing.JFrame {
                 while (rs.next()) {
                     String chem = rs.getNString(1);
                     amount = rs.getInt(2);
-                    amount = amount * (subMass/massT / 100);
+                    amount = amount * (subMass / massT / 100);
                     Pinwheel.insertCustomChemicalAt(subID, chem, amount + "");
                 }
                 Pinwheel.createSpecGraph(subID);

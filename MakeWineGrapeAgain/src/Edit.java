@@ -20,7 +20,7 @@ public class Edit extends javax.swing.JFrame {
      */
     public Edit() {
         initComponents();
-        switch(Pinwheel.getSearchType()){
+        switch (Pinwheel.getSearchType()) {
             case "batch":
                 this.blendBtn.setEnabled(false);
                 break;
@@ -200,7 +200,7 @@ public class Edit extends javax.swing.JFrame {
     private void viewChemicalsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewChemicalsBtnActionPerformed
         ViewChems vc = new ViewChems();
         vc.setVisible(true);
-        
+
     }//GEN-LAST:event_viewChemicalsBtnActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

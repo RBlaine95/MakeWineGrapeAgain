@@ -22,12 +22,10 @@ public class Chemicals extends javax.swing.JFrame {
     /**
      * Creates new form Chemicals
      */
-
-
     public Chemicals() {
         initComponents();
         this.chemBox.setModel(new DefaultComboBoxModel(Pinwheel.getChemicals().toArray()));
-        
+
         this.chemBox.addItem("New Chemical...");
         this.data = Pinwheel.getData();
         this.batch = data[0];
@@ -126,10 +124,10 @@ public class Chemicals extends javax.swing.JFrame {
 
     private void chemBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chemBoxActionPerformed
         if (this.chemBox.getSelectedItem() == "New Chemical...") {
-                
-                AddChemical a = new AddChemical();
-                a.setVisible(true);
-                this.dispose();
+
+            AddChemical a = new AddChemical();
+            a.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_chemBoxActionPerformed
 

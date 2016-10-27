@@ -2,7 +2,6 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,13 +10,14 @@ import java.util.logging.Logger;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
- * @author Matthew
+ * @author Se7en
  */
 public class Value extends javax.swing.JFrame {
-DecimalFormat df = new DecimalFormat("0.00");
+
+    DecimalFormat df = new DecimalFormat("0.00");
+
     /**
      * Creates new form value
      */
@@ -165,7 +165,7 @@ DecimalFormat df = new DecimalFormat("0.00");
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void costPerBottleKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_costPerBottleKeyReleased
-         this.costPerBottle.setText(this.costPerBottle.getText().replaceAll("[^\\d.]", ""));
+        this.costPerBottle.setText(this.costPerBottle.getText().replaceAll("[^\\d.]", ""));
     }//GEN-LAST:event_costPerBottleKeyReleased
 
     private void costPerCorkKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_costPerCorkKeyReleased
@@ -241,7 +241,7 @@ private void recalculate() throws SQLException {
             double amount;
             String sql = "SELECT * FROM " + this.selectedTxt.getText();
             ResultSet rs = Pinwheel.queryChem(sql);
-            while(rs.next()){
+            while (rs.next()) {
                 System.out.println("found chem");
                 chemical = rs.getNString(1);
                 amount = rs.getDouble(2);
@@ -251,15 +251,15 @@ private void recalculate() throws SQLException {
                 rs1.next();
                 double value = rs1.getDouble(1);
                 System.out.println("Value:" + value);
-                chemvalue+=amount*value;
+                chemvalue += amount * value;
             }
             this.beforeBottling.setText(df.format(chemvalue) + "");
             double mass = Double.parseDouble(Pinwheel.data[4]);
-            int bottles = (int) (mass/apb);
-            double bottlevalue = (bottles*(cpb+cpc));
-            this.afterBottling.setText((df.format(chemvalue+bottlevalue)) + "");
-            
-            this.pricePerBottle.setText(df.format(Double.parseDouble(this.afterBottling.getText())/bottles) + "");
+            int bottles = (int) (mass / apb);
+            double bottlevalue = (bottles * (cpb + cpc));
+            this.afterBottling.setText((df.format(chemvalue + bottlevalue)) + "");
+
+            this.pricePerBottle.setText(df.format(Double.parseDouble(this.afterBottling.getText()) / bottles) + "");
         }
     }
 }
