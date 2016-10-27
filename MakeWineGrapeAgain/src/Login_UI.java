@@ -20,38 +20,32 @@ public class Login_UI extends javax.swing.JFrame {
     public Login_UI() {
         initComponents();
         
-            loginBtn.addKeyListener(new KeyAdapter() {
-    public void keyPressed(KeyEvent e) {
-         if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-              onButtonPress();
-         }
-    } 
-    });
-            
-            passwordField.addKeyListener(new KeyAdapter() {
-    public void keyPressed(KeyEvent e) {
-         if(e.getKeyCode() == KeyEvent.VK_ENTER) {
-              onButtonPress();
-         }
-    } 
-    });
-        
-                try {
-        for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-            if ("Nimbus".equals(info.getName())) {
-                javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                break;
+        loginBtn.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                 if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                      onButtonPress();
+                 }
+            } 
+        });
+
+        passwordField.addKeyListener(new KeyAdapter() {
+            public void keyPressed(KeyEvent e) {
+                 if(e.getKeyCode() == KeyEvent.VK_ENTER) {
+                      onButtonPress();
+                 }
             }
+        });
+
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-    } catch (ClassNotFoundException ex) {
-        java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (InstantiationException ex) {
-        java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (IllegalAccessException ex) {
-        java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-        java.util.logging.Logger.getLogger(main.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-    }
     }
 
     /**
@@ -69,6 +63,7 @@ public class Login_UI extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("LOG IN");
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(600, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -92,11 +87,6 @@ public class Login_UI extends javax.swing.JFrame {
         passwordField.setToolTipText("Enter your password");
         passwordField.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
         passwordField.setNextFocusableComponent(loginBtn);
-        passwordField.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passwordFieldActionPerformed(evt);
-            }
-        });
         getContentPane().add(passwordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 440, 390, 80));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/BarrelWoodFinish.jpg"))); // NOI18N
@@ -135,13 +125,6 @@ public class Login_UI extends javax.swing.JFrame {
             passwordField.setText(ps);
         } 
     }
-    
-    
-    
-    private void passwordFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passwordFieldActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_passwordFieldActionPerformed
-
     /**
      * @param args the command line arguments
      */

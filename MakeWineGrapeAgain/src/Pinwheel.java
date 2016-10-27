@@ -26,6 +26,9 @@ public final class Pinwheel {
     static ArrayList<String> colourAll = new ArrayList();
     static ArrayList<String> supplierAll = new ArrayList();
     static ArrayList<String> typeAll = new ArrayList();
+    static ArrayList<String> stages = new ArrayList();
+    static ArrayList<String> stagesAll = new ArrayList();
+    
     static Statement s;
     static Connection conn;
     static ResultSet rs;
@@ -33,6 +36,9 @@ public final class Pinwheel {
     static Connection connChem;
     static ResultSet rsChem;
     static String sql;
+    static Connection connGraph;
+    static ResultSet rsGraph;
+    static Statement sGraph;
     static String[] data;
     static String[] tempdataId = new String[9];
     static String[] tempdataMass = new String[9];
@@ -42,19 +48,44 @@ public final class Pinwheel {
     static String bounce;
 
     public static void connect() throws SQLException {
+        connectChem();
+        connectCCDB();
+        connectGraphDB();
+        
+        
+              
         for (int i = 0; i < tempdataId.length; i++) {
             tempdataId[i] = "";
         }
-        connectChem();
-        connectCCDB();
+        
         colourAll.add("All");
         supplierAll.add("All");
         typeAll.add("All");
-
+        stagesAll.add("All");
+        
         refreshChemicals();
         refreshColour();
         refreshSupplier();
         refreshType();
+        
+        
+
+        
+        stages.add("Fermentation");
+        stages.add("Pressing");
+        stages.add("Maturation");
+        stages.add("Blending");
+        stages.add("Prep for Bottling");
+        stages.add("Bottling");
+        stages.add("Storage");
+        
+        
+        for (int i = 0; i < stages.size(); i++) {
+            stagesAll.add(stages.get(i));
+            System.out.println(stagesAll.get(i));
+        }
+        
+        
     }
 
     private static void connectCCDB() {
@@ -66,7 +97,7 @@ public final class Pinwheel {
             String url = "jdbc:ucanaccess://ccdb.accdb";
             conn = DriverManager.getConnection(url);
 
-            System.out.println("Database Connected");
+            System.out.println("Database Connected - CCDB");
         } catch (Exception ex) {
             System.out.println("Error");
         }
@@ -80,8 +111,23 @@ public final class Pinwheel {
 
             String url = "jdbc:ucanaccess://chemdb.accdb";
             connChem = DriverManager.getConnection(url);
-            System.out.println("Database Connected");
+            System.out.println("Database Connected - CHEMS");
 
+        } catch (Exception ex) {
+            System.out.println("Error");
+        }
+    }
+
+    private static void connectGraphDB() {
+        try {
+
+            Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
+            System.out.println("Driver loaded");
+
+            String url = "jdbc:ucanaccess://graphdb.accdb";
+            connGraph = DriverManager.getConnection(url);
+
+            System.out.println("Database Connected - GRAPH");
         } catch (Exception ex) {
             System.out.println("Error");
         }
@@ -98,7 +144,7 @@ public final class Pinwheel {
     }
 
     public static void insertBatch() {
-        data[3] = stageGetNo(data[3]);
+        data[3] = stageGetNo(data[3]) + "";
         sql = "INSERT INTO batch (batchid, colour, type, stage, mass, supplierid) VALUES('" + data[0] + "', '" + data[1] + "', '" + data[2] + "', '" + data[3] + "', '" + data[4]
                 + "', '" + data[5] + "')";
         updateCCDB(sql);
@@ -200,6 +246,29 @@ public final class Pinwheel {
 
     }
 
+    public static ResultSet queryGraphDB(String sql) throws SQLException {
+        sGraph = connGraph.createStatement();
+        System.out.println("Queries GraphDB");
+        rsGraph = sGraph.executeQuery(sql);
+        return rsGraph;
+    }
+
+    public static void updateGraphDB(String sql) {
+
+        try {
+            sGraph = connGraph.createStatement();
+        } catch (SQLException ex) {
+            Logger.getLogger(Pinwheel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            sGraph.executeUpdate(sql);
+        } catch (SQLException ex) {
+            System.out.println("fails running sql");
+            Logger.getLogger(Pinwheel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
     public static ArrayList<String> getColourAll() {
         return colourAll;
     }
@@ -256,6 +325,13 @@ public final class Pinwheel {
         type = type;
     }
 
+    public static ArrayList<String> getStages() {
+        return stages;
+    }
+    public static ArrayList<String> getStagesAll() {
+        return stagesAll;
+    }
+
     public static void refreshColour() throws SQLException {
         colour = new ArrayList();
         sql = "SELECT DISTINCT colour FROM batch";
@@ -289,7 +365,6 @@ public final class Pinwheel {
         sql = "SELECT DISTINCT sname FROM supplier";
         rs = queryCCDB(sql);
         while (rs.next()) {
-
             supplier.add(rs.getNString(1));
         }
         for (int i = 0; i < supplier.size(); i++) {
@@ -303,64 +378,17 @@ public final class Pinwheel {
         sql = "SELECT DISTINCT chemical FROM chemicaltbl";
         rs = queryChem(sql);
         while (rs.next()) {
-
             chemicals.add(rs.getNString(1));
         }
 
     }
 
-    public static String stageGetWord(String s) {
-        switch (s) {
-            case "1":
-                s = "Fermentation";
-                break;
-            case "2":
-                s = "Pressed";
-                break;
-            case "3":
-                s = "Maturation";
-                break;
-            case "4":
-                s = "Blending";
-                break;
-            case "5":
-                s = "Prep For Bottling";
-                break;
-            case "6":
-                s = "Bottling";
-                break;
-            case "7":
-                s = "Storage";
-                break;
-        }
-        return s;
+    public static String stageGetWord(int s) {
+        return stages.get(s);
     }
 
-    public static String stageGetNo(String s) {
-        switch (s) {
-            case "Fermentation":
-                s = "1";
-                break;
-            case "Pressed":
-                s = "2";
-                break;
-            case "Maturation":
-                s = "3";
-                break;
-            case "Blending":
-                s = "4";
-                break;
-            case "Prep For Bottling":
-                s = "5";
-                break;
-            case "Bottling":
-                s = "6";
-                break;
-            case "Storage":
-                s = "7";
-                break;
-        }
-        return s;
+    public static int stageGetNo(String s) {
+        return stages.indexOf(s);
     }
 
     public static String[] getSupplierData(String supplierid) throws SQLException {
@@ -422,12 +450,28 @@ public final class Pinwheel {
         Pinwheel.tempdataMass[i] = tempdataMass;
     }
 
-    static void setTempData(String data[]) {
+    public static void setTempData(String data[]) {
         tempdataId = data;
     }
 
-    static void setSpecTempData(String data, int i) {
+    public static void setSpecTempData(String data, int i) {
         tempdataId[i] = data;
     }
 
+    public static void insertGraphAt(String date, double sugar, double temp) throws SQLException {
+        sql = "SELECT * FROM " + data[0] + " WHERE date = '" + date + "'"; //if date already exists in table
+        rsGraph = queryGraphDB(sql);
+
+        if (rsGraph.next()) { //if date already exists
+            sql = "UPDATE " + data[0] + " SET balling = " + sugar + ", temperature = " + temp + " WHERE date = '" + date + "'"; //update
+        } else {
+            sql = "INSERT INTO " + data[0] + " (date, balling, temperature) VALUES ('" + date + "', '" + sugar + "', '" + temp + "')"; //insert
+        }
+        updateGraphDB(sql);
+    }
+
+    public static void createGraph() {
+        sql = "CREATE TABLE " + data[0] + " (date TEXT(255), balling DECIMAL(5,2), temperature DECIMAL(5,2))";
+        updateGraphDB(sql);
+    }
 }

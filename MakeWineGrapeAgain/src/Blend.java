@@ -3,6 +3,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 
 /*
@@ -25,12 +26,23 @@ public class Blend extends javax.swing.JFrame {
      */
     public Blend() {
         initComponents();
+        this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStages().toArray()));
         this.check();
         this.data = Pinwheel.getData();
         this.batch = this.data[0];
         this.selectedTxt.setText(batch);
         this.temp = Pinwheel.getTempdata();
 
+        for (int i = 0; i < temp.length; i++) {
+            if (Pinwheel.data[0].equals(temp[i])) {
+                Pinwheel.setSpecTempData("", i);
+            }
+            for (int j = 1; j < temp.length; j++) {
+                if (i != j && temp[i].equals(temp[j]) && !temp[i].equals("")) {
+                    Pinwheel.setSpecTempData("", j);
+                }
+            }
+        }
         this.batch2Txt.setText(temp[0]);
         this.batch3Txt.setText(temp[1]);
         this.batch4Txt.setText(temp[2]);
@@ -115,7 +127,8 @@ public class Blend extends javax.swing.JFrame {
         clear8 = new javax.swing.JButton();
         clear9 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Blend Batches");
 
         jLabel1.setText("Batch 1");
 
@@ -674,112 +687,86 @@ public class Blend extends javax.swing.JFrame {
             percentcheck += Integer.parseInt(per9Txt.getText());
         }
         if (percentcheck == 100) {
-            String bid, name, colour, stage;
-            int volume = Integer.parseInt(volTxt.getText());
-            name = this.nameTxt.getText();
-            colour = this.colTxt.getText();
-            stage = (String) this.stageBox.getSelectedItem();
+            double masscheck;
+            boolean[] ready = new boolean[9];
+            for (int i = 0; i < ready.length; i++) {
+                ready[i] = false;
+            }
+            masscheck = Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per1Txt.getText()) / 100);
+            boolean mass = true;
 
-            String sql = "SELECT COUNT(*) FROM blend";
-            ResultSet rs;
-            int id = 0;
-            try {
-                rs = Pinwheel.queryCCDB(sql);
-                if (rs.next()) {
-                    id = rs.getInt(1);
-                }
-            } catch (SQLException ex) {
-                Logger.getLogger(Blend.class.getName()).log(Level.SEVERE, null, ex);
+            if (Double.parseDouble(Pinwheel.data[4]) < masscheck) {
+                mass = false;
+                JOptionPane.showMessageDialog(null, "Insufficient volume in batch " + selectedTxt.getText() + " to contribute " + per1Txt.getText());
+            } else {
+                ready[0] = true;
             }
 
-            bid = "" + id;
+            masscheck = Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per2Txt.getText()) / 100);
+            if (Double.parseDouble(Pinwheel.tempdataMass[0]) < masscheck) {
+                mass = false;
+                JOptionPane.showMessageDialog(null, "Insufficient volume in batch " + batch2Txt.getText() + " to contribute " + per2Txt.getText());
+            } else {
+                ready[1] = true;
+            }
 
-            sql = "INSERT INTO blend (bid, winename, colour, volume, stage, fid1, pid1, fid2, pid2";
             if (batch3Txt.getText().length() > 0) {
-                sql += ", fid3, pid3";
-
+                masscheck = Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per3Txt.getText()) / 100);
+                if (Double.parseDouble(Pinwheel.tempdataMass[1]) < masscheck) {
+                    mass = false;
+                    JOptionPane.showMessageDialog(null, "Insufficient volume in batch " + batch3Txt.getText() + " to contribute " + per3Txt.getText());
+                } else {
+                    ready[2] = true;
+                }
                 if (batch4Txt.getText().length() > 0) {
-                    sql += ", fid4, pid4";
-
-                    if (batch5Txt.getText().length() > 0) {
-                        sql += ", fid5, pid5";
-
-                        if (batch6Txt.getText().length() > 0) {
-                            sql += ", fid6, pid6";
-
-                            if (batch7Txt.getText().length() > 0) {
-                                sql += ", fid7, pid7";
-                                if (batch8Txt.getText().length() > 0) {
-                                    sql += ", fid8, pid8";
-                                    if (batch9Txt.getText().length() > 0) {
-                                        sql += ", fid9, pid9";
-                                    }
-                                }
-                            }
-                        }
+                    masscheck = Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per4Txt.getText()) / 100);
+                    if (Double.parseDouble(Pinwheel.tempdataMass[2]) < masscheck) {
+                        mass = false;
+                        JOptionPane.showMessageDialog(null, "Insufficient volume in batch " + batch4Txt.getText() + " to contribute " + per4Txt.getText());
+                    } else {
+                        ready[3] = true;
                     }
-                }
-            }
-            sql += ") VALUES('" + bid + "', '" + name + "', '" + colour + "', '" + volume + "', '" + stage
-                    + "', '" + this.selectedTxt.getText() + "', '" + Integer.parseInt(this.per1Txt.getText()) + "', '" + this.batch2Txt.getText() + "', '"
-                    + Integer.parseInt(this.per2Txt.getText()) + "'";
-
-            if (batch3Txt.getText().length() > 0) {
-                sql += ", '" + this.batch3Txt.getText() + "', '" + Integer.parseInt(this.per3Txt.getText()) + "'";
-
-                if (batch4Txt.getText().length() > 0) {
-                    sql += ", '" + this.batch4Txt.getText() + "', '" + Integer.parseInt(this.per4Txt.getText()) + "'";
-
                     if (batch5Txt.getText().length() > 0) {
-                        sql += ", '" + this.batch5Txt.getText() + "', '" + Integer.parseInt(this.per5Txt.getText()) + "'";
-
-                        if (batch6Txt.getText().length() > 0) {
-                            sql += ", '" + this.batch6Txt.getText() + "', '" + Integer.parseInt(this.per6Txt.getText()) + "'";
-
-                            if (batch7Txt.getText().length() > 0) {
-                                sql += ", '" + this.batch7Txt.getText() + "', '" + Integer.parseInt(this.per7Txt.getText()) + "'";
-
-                                if (batch8Txt.getText().length() > 0) {
-                                    sql += ", '" + this.batch8Txt.getText() + "', '" + Integer.parseInt(this.per8Txt.getText()) + "'";
-
-                                    if (batch9Txt.getText().length() > 0) {
-                                        sql += ", '" + this.batch9Txt.getText() + "', '" + Integer.parseInt(this.per9Txt.getText()) + "'";
-                                    }
-                                }
-                            }
+                        masscheck = Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per5Txt.getText()) / 100);
+                        if (Double.parseDouble(Pinwheel.tempdataMass[3]) < masscheck) {
+                            mass = false;
+                            JOptionPane.showMessageDialog(null, "Insufficient volume in batch " + batch5Txt.getText() + " to contribute " + per5Txt.getText());
+                        } else {
+                            ready[4] = true;
                         }
-                    }
-                }
-            }
-            sql += ")";
-            Pinwheel.updateCCDB(sql);
-
-            String ID = ("Batch" + bid);
-            Pinwheel.createChem(ID);
-
-            this.chem(ID, this.selectedTxt.getText(), Integer.parseInt(per1Txt.getText()));
-            this.chem(ID, this.batch2Txt.getText(), Integer.parseInt(per2Txt.getText()));
-
-            if (batch3Txt.getText().length() > 0) {
-                this.chem(ID, this.batch3Txt.getText(), Integer.parseInt(per3Txt.getText()));
-
-                if (batch4Txt.getText().length() > 0) {
-                    this.chem(ID, this.batch4Txt.getText(), Integer.parseInt(per4Txt.getText()));
-
-                    if (batch5Txt.getText().length() > 0) {
-                        this.chem(ID, this.batch5Txt.getText(), Integer.parseInt(per5Txt.getText()));
-
                         if (batch6Txt.getText().length() > 0) {
-                            this.chem(ID, this.batch6Txt.getText(), Integer.parseInt(per6Txt.getText()));
-
+                            masscheck = Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per6Txt.getText()) / 100);
+                            if (Double.parseDouble(Pinwheel.tempdataMass[4]) < masscheck) {
+                                mass = false;
+                                JOptionPane.showMessageDialog(null, "Insufficient volume in batch " + batch6Txt.getText() + " to contribute " + per6Txt.getText());
+                            } else {
+                                ready[5] = true;
+                            }
                             if (batch7Txt.getText().length() > 0) {
-                                this.chem(ID, this.batch7Txt.getText(), Integer.parseInt(per7Txt.getText()));
-
+                                masscheck = Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per7Txt.getText()) / 100);
+                                if (Double.parseDouble(Pinwheel.tempdataMass[5]) < masscheck) {
+                                    mass = false;
+                                    JOptionPane.showMessageDialog(null, "Insufficient volume in batch " + batch7Txt.getText() + " to contribute " + per7Txt.getText());
+                                } else {
+                                    ready[6] = true;
+                                }
                                 if (batch8Txt.getText().length() > 0) {
-                                    this.chem(ID, this.batch8Txt.getText(), Integer.parseInt(per8Txt.getText()));
+                                    masscheck = Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per8Txt.getText()) / 100);
+                                    if (Double.parseDouble(Pinwheel.tempdataMass[6]) < masscheck) {
 
+                                        JOptionPane.showMessageDialog(null, "Insufficient volume in batch " + batch8Txt.getText() + " to contribute " + per8Txt.getText());
+                                        mass = false;
+                                    } else {
+                                        ready[7] = true;
+                                    }
                                     if (batch9Txt.getText().length() > 0) {
-                                        this.chem(ID, this.batch9Txt.getText(), Integer.parseInt(per9Txt.getText()));
+                                        masscheck = Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per9Txt.getText()) / 100);
+                                        if (Double.parseDouble(Pinwheel.tempdataMass[7]) < masscheck) {
+                                            mass = false;
+                                            JOptionPane.showMessageDialog(null, "Insufficient volume in batch " + batch9Txt.getText() + " to contribute " + per9Txt.getText());
+                                        } else {
+                                            ready[8] = true;
+                                        }
                                     }
                                 }
                             }
@@ -788,6 +775,160 @@ public class Blend extends javax.swing.JFrame {
                 }
             }
 
+            if (mass) {
+                String sql;
+                if (ready[0]) {
+                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per1Txt.getText()) / 100) + " WHERE batchid = '" + selectedTxt.getText() + "'";
+                    Pinwheel.updateCCDB(sql);
+                }
+                if (ready[1]) {
+                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per2Txt.getText()) / 100) + " WHERE batchid = '" + batch2Txt.getText() + "'";
+                    Pinwheel.updateCCDB(sql);
+                }
+                if (ready[2]) {
+                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per3Txt.getText()) / 100) + " WHERE batchid = '" + batch3Txt.getText() + "'";
+                    Pinwheel.updateCCDB(sql);
+                }
+                if (ready[3]) {
+                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per4Txt.getText()) / 100) + " WHERE batchid = '" + batch4Txt.getText() + "'";
+                    Pinwheel.updateCCDB(sql);
+                }
+                if (ready[4]) {
+                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per5Txt.getText()) / 100) + " WHERE batchid = '" + batch5Txt.getText() + "'";
+                    Pinwheel.updateCCDB(sql);
+                }
+                if (ready[5]) {
+                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per6Txt.getText()) / 100) + " WHERE batchid = '" + batch6Txt.getText() + "'";
+                    Pinwheel.updateCCDB(sql);
+                }
+                if (ready[6]) {
+                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per7Txt.getText()) / 100) + " WHERE batchid = '" + batch7Txt.getText() + "'";
+                    Pinwheel.updateCCDB(sql);
+                }
+                if (ready[7]) {
+                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per8Txt.getText()) / 100) + " WHERE batchid = '" + batch8Txt.getText() + "'";
+                    Pinwheel.updateCCDB(sql);
+                }
+                if (ready[8]) {
+                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per9Txt.getText()) / 100) + " WHERE batchid = '" + batch9Txt.getText() + "'";
+                    Pinwheel.updateCCDB(sql);
+                }
+
+                String bid, name, colour, stage;
+                int volume = Integer.parseInt(volTxt.getText());
+                name = this.nameTxt.getText();
+                colour = this.colTxt.getText();
+                stage = (String) this.stageBox.getSelectedItem();
+
+                sql = "SELECT COUNT(*) FROM blend";
+                ResultSet rs;
+                int id = 0;
+                try {
+                    rs = Pinwheel.queryCCDB(sql);
+                    if (rs.next()) {
+                        id = rs.getInt(1);
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(Blend.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                bid = "" + id;
+
+                sql = "INSERT INTO blend (bid, winename, colour, volume, stage, fid1, pid1, fid2, pid2";
+                if (batch3Txt.getText().length() > 0) {
+                    sql += ", fid3, pid3";
+
+                    if (batch4Txt.getText().length() > 0) {
+                        sql += ", fid4, pid4";
+
+                        if (batch5Txt.getText().length() > 0) {
+                            sql += ", fid5, pid5";
+
+                            if (batch6Txt.getText().length() > 0) {
+                                sql += ", fid6, pid6";
+
+                                if (batch7Txt.getText().length() > 0) {
+                                    sql += ", fid7, pid7";
+                                    if (batch8Txt.getText().length() > 0) {
+                                        sql += ", fid8, pid8";
+                                        if (batch9Txt.getText().length() > 0) {
+                                            sql += ", fid9, pid9";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                sql += ") VALUES('" + bid + "', '" + name + "', '" + colour + "', '" + volume + "', '" + stage
+                        + "', '" + this.selectedTxt.getText() + "', '" + Integer.parseInt(this.per1Txt.getText()) + "', '" + this.batch2Txt.getText() + "', '"
+                        + Integer.parseInt(this.per2Txt.getText()) + "'";
+
+                if (batch3Txt.getText().length() > 0) {
+                    sql += ", '" + this.batch3Txt.getText() + "', '" + Integer.parseInt(this.per3Txt.getText()) + "'";
+
+                    if (batch4Txt.getText().length() > 0) {
+                        sql += ", '" + this.batch4Txt.getText() + "', '" + Integer.parseInt(this.per4Txt.getText()) + "'";
+
+                        if (batch5Txt.getText().length() > 0) {
+                            sql += ", '" + this.batch5Txt.getText() + "', '" + Integer.parseInt(this.per5Txt.getText()) + "'";
+
+                            if (batch6Txt.getText().length() > 0) {
+                                sql += ", '" + this.batch6Txt.getText() + "', '" + Integer.parseInt(this.per6Txt.getText()) + "'";
+
+                                if (batch7Txt.getText().length() > 0) {
+                                    sql += ", '" + this.batch7Txt.getText() + "', '" + Integer.parseInt(this.per7Txt.getText()) + "'";
+
+                                    if (batch8Txt.getText().length() > 0) {
+                                        sql += ", '" + this.batch8Txt.getText() + "', '" + Integer.parseInt(this.per8Txt.getText()) + "'";
+
+                                        if (batch9Txt.getText().length() > 0) {
+                                            sql += ", '" + this.batch9Txt.getText() + "', '" + Integer.parseInt(this.per9Txt.getText()) + "'";
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+                sql += ")";
+                Pinwheel.updateCCDB(sql);
+
+                String ID = ("Batch" + bid);
+                Pinwheel.createChem(ID);
+
+                this.chem(ID, this.selectedTxt.getText(), Integer.parseInt(per1Txt.getText()));
+                this.chem(ID, this.batch2Txt.getText(), Integer.parseInt(per2Txt.getText()));
+
+                if (batch3Txt.getText().length() > 0) {
+                    this.chem(ID, this.batch3Txt.getText(), Integer.parseInt(per3Txt.getText()));
+
+                    if (batch4Txt.getText().length() > 0) {
+                        this.chem(ID, this.batch4Txt.getText(), Integer.parseInt(per4Txt.getText()));
+
+                        if (batch5Txt.getText().length() > 0) {
+                            this.chem(ID, this.batch5Txt.getText(), Integer.parseInt(per5Txt.getText()));
+
+                            if (batch6Txt.getText().length() > 0) {
+                                this.chem(ID, this.batch6Txt.getText(), Integer.parseInt(per6Txt.getText()));
+
+                                if (batch7Txt.getText().length() > 0) {
+                                    this.chem(ID, this.batch7Txt.getText(), Integer.parseInt(per7Txt.getText()));
+
+                                    if (batch8Txt.getText().length() > 0) {
+                                        this.chem(ID, this.batch8Txt.getText(), Integer.parseInt(per8Txt.getText()));
+
+                                        if (batch9Txt.getText().length() > 0) {
+                                            this.chem(ID, this.batch9Txt.getText(), Integer.parseInt(per9Txt.getText()));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
         } else {
             JOptionPane.showMessageDialog(null, "Total percentage does not equal 100%");
         }
@@ -925,7 +1066,7 @@ public class Blend extends javax.swing.JFrame {
 
     private void clear3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear3ActionPerformed
         this.temp[1] = "";
-
+        this.per3Txt.setText("");
         this.batch3Txt.setText("");
 
         this.clear4.doClick();
@@ -934,80 +1075,46 @@ public class Blend extends javax.swing.JFrame {
 
     private void clear4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear4ActionPerformed
         this.temp[2] = "";
-
+        this.per4Txt.setText("");
         this.batch4Txt.setText("");
         this.clear5.doClick();
     }//GEN-LAST:event_clear4ActionPerformed
 
     private void clear5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear5ActionPerformed
         this.temp[3] = "";
-
+        this.per5Txt.setText("");
         this.batch5Txt.setText("");
         this.clear6.doClick();
     }//GEN-LAST:event_clear5ActionPerformed
 
     private void clear6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear6ActionPerformed
         this.temp[4] = "";
-
+        this.per6Txt.setText("");
         this.batch6Txt.setText("");
         this.clear7.doClick();
     }//GEN-LAST:event_clear6ActionPerformed
 
     private void clear7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear7ActionPerformed
         this.temp[5] = "";
-
+        this.per7Txt.setText("");
         this.batch7Txt.setText("");
         this.clear8.doClick();
     }//GEN-LAST:event_clear7ActionPerformed
 
     private void clear8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear8ActionPerformed
         this.temp[6] = "";
-
+        this.per8Txt.setText("");
         this.batch8Txt.setText("");
         this.clear9.doClick();
     }//GEN-LAST:event_clear8ActionPerformed
 
     private void clear9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clear9ActionPerformed
         this.temp[7] = "";
+        this.per9Txt.setText("");
         Pinwheel.setTempData(temp);
         this.batch9Txt.setText("");
         this.refresh();
     }//GEN-LAST:event_clear9ActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Blend.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Blend.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Blend.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Blend.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Blend().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
@@ -1076,7 +1183,8 @@ public class Blend extends javax.swing.JFrame {
 
     private void check() {
         okBtn.setEnabled(false);
-        if (selectedTxt.getText().length() > 0 && batch2Txt.getText().length() > 0 && volTxt.getText().length() > 0 && colTxt.getText().length() > 0 && nameTxt.getText().length() > 0 && stageBox.getSelectedIndex() != 0) {
+        System.out.println("check");
+        if (selectedTxt.getText().length() > 0 && batch2Txt.getText().length() > 0 && volTxt.getText().length() > 0 && colTxt.getText().length() > 0 && nameTxt.getText().length() > 0) {
             if (!per1Txt.isEnabled() || !per1Txt.getText().isEmpty()) {
                 if (!per2Txt.isEnabled() || !per2Txt.getText().isEmpty()) {
                     if (!per3Txt.isEnabled() || !per3Txt.getText().isEmpty()) {
