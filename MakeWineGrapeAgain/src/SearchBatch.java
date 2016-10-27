@@ -37,6 +37,26 @@ public class SearchBatch extends javax.swing.JFrame {
         initComponents();
 
         switch (Pinwheel.getSearchType()) {
+            case "blend":
+                batchTbl.getColumnModel().getColumn(0).setHeaderValue("Blend ID");
+                batchTbl.getColumnModel().getColumn(1).setHeaderValue("Name");
+                batchTbl.getColumnModel().getColumn(2).setHeaderValue("Colour");
+                batchTbl.getColumnModel().getColumn(3).setHeaderValue("Volume");
+                batchTbl.getColumnModel().getColumn(4).setHeaderValue("Stage");
+                batchTbl.getColumnModel().getColumn(5).setHeaderValue("Blend Of");
+                
+                data = new String[6];
+                break;
+            case "subbatch":
+                batchTbl.getColumnModel().getColumn(0).setHeaderValue("SubBatch ID");
+                this.batchLbl.setText("SubBatch ID");
+                this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColourAll().toArray()));
+                this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getTypeAll().toArray()));
+                this.suppBox.setModel(new DefaultComboBoxModel(Pinwheel.getSupplierAll().toArray()));
+                this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStagesAll().toArray()));
+                
+                data = new String[6];
+                break;
             case "batch":
                 this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColourAll().toArray()));
                 this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getTypeAll().toArray()));
@@ -381,6 +401,64 @@ public class SearchBatch extends javax.swing.JFrame {
         Object[] list;
 
         switch (Pinwheel.getSearchType()) {
+            case "subbatch":
+                sql = "SELECT subbatchid, colour, type, stage, mass, supplierid FROM subbatch";
+                list = new Object[6];
+                if (batch || col || wtype || wstage || supp) {
+                    sql += " WHERE ";
+                }
+                if (batch) {
+                    if (whered) {
+                        sql += " AND ";
+                    }
+                    whered = true;
+                    sql += " subbatchid LIKE '*" + this.batchid + "*'";
+                }
+                if (col) {
+                    if (whered) {
+                        sql += " AND ";
+                    }
+                    whered = true;
+                    sql += " colour = '" + this.colour + "'";
+                }
+                if (wtype) {
+                    if (whered) {
+                        sql += " AND ";
+                    }
+                    whered = true;
+                    sql += " type = '" + this.type + "'";
+                }
+                if (wstage) {
+                    if (whered) {
+                        sql += " AND ";
+                    }
+                    whered = true;
+                    sql += " stage = '" + Pinwheel.stageGetNo(this.stage) + "'";
+                }
+                if (supp) {
+                    if (whered) {
+                        sql += " AND ";
+                    }
+                    whered = true;
+                    sql += " supplierid = '" + this.supplier + "'";
+                }
+                try {
+                    rs = Pinwheel.queryCCDB(sql);
+                    int count = 0;
+                    while (rs.next()) {
+
+                        for (int i = 0; i < list.length; i++) {
+                            list[i] = (rs.getString(i + 1));
+                        }
+                        list[3] = Pinwheel.stageGetWord(Integer.parseInt(list[3] + ""));
+                        ((DefaultTableModel) this.batchTbl.getModel()).insertRow(count, list);
+                        count++;
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(SearchBatch.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                break;
+                
             case "batch":
                 sql = "SELECT batchid, colour, type, stage, mass, supplierid FROM batch";
                 list = new Object[6];
