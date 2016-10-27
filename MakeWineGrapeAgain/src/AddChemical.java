@@ -40,7 +40,7 @@ public class AddChemical extends javax.swing.JFrame {
         valueTxt = new javax.swing.JTextField();
         cancelBtn = new javax.swing.JButton();
         okBtn = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
@@ -74,7 +74,7 @@ public class AddChemical extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "g", "kg", "tonne" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mg", "g", "kg", "tonne" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

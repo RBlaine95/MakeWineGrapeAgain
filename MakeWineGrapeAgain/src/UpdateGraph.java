@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  */
 /**
  *
- * @author Robbie
+ * @author Se7en
  */
 public class UpdateGraph extends javax.swing.JFrame {
 
