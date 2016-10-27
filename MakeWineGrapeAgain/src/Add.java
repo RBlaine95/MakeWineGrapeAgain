@@ -1,6 +1,14 @@
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.Writer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -294,11 +302,13 @@ public class Add extends javax.swing.JFrame {
 
         if (this.colourOverride) {
             colour = this.colourOverrideTxt.getText();
+            Pinwheel.learnColour(colour);
         } else {
             colour = this.colourBox.getSelectedItem() + "";
         }
         if (this.typeOverride) {
             type = this.typeOverrideTxt.getText();
+            Pinwheel.learnType(type);
         } else {
             type = this.typeBox.getSelectedItem() + "";
         }
@@ -307,7 +317,7 @@ public class Add extends javax.swing.JFrame {
         mass = this.massTxt.getText();
         supplier = this.supplierBox.getSelectedItem() + "";
 
-        String code = colour.replaceAll("[^A-Z]", "");
+        String code = colour.substring(0, 2).toUpperCase();
 
         String sql = "SELECT COUNT(*) FROM batch";
 
