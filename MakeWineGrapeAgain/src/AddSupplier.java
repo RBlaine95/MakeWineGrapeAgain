@@ -16,7 +16,6 @@ import javax.swing.JOptionPane;
  */
 public class AddSupplier extends javax.swing.JFrame {
 
-    
     /**
      * Creates new form AddSupplier
      */
@@ -195,7 +194,7 @@ public class AddSupplier extends javax.swing.JFrame {
         } else {
             String sql = "INSERT INTO supplier (sname, tel, email, liason) VALUES('" + this.nameTxt.getText() + "', '" + this.contactTxt.getText()
                     + "', '" + this.emailTxt.getText() + "', '" + this.liasonTxt.getText() + "')";
-            
+
             Pinwheel.updateCCDB(sql);
             try {
                 Pinwheel.refreshSupplier();

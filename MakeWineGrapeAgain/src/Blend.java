@@ -541,7 +541,7 @@ public class Blend extends javax.swing.JFrame {
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
         int percentcheck = Integer.parseInt(per1Txt.getText());
-        
+
         if (batch2Txt.getText().length() > 0) {
             percentcheck += Integer.parseInt(per2Txt.getText());
         }
@@ -816,7 +816,7 @@ public class Blend extends javax.swing.JFrame {
     }//GEN-LAST:event_okBtnActionPerformed
 
     private void select2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select2BtnActionPerformed
-        
+
         SearchBatch s = new SearchBatch(true, 0);
         s.setVisible(true);
         this.dispose();
@@ -830,28 +830,28 @@ public class Blend extends javax.swing.JFrame {
     }//GEN-LAST:event_select3BtnActionPerformed
 
     private void select4BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select4BtnActionPerformed
-      
+
         SearchBatch s = new SearchBatch(true, 2);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select4BtnActionPerformed
 
     private void select5BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select5BtnActionPerformed
-   
+
         SearchBatch s = new SearchBatch(true, 3);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select5BtnActionPerformed
 
     private void select6BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select6BtnActionPerformed
-       
+
         SearchBatch s = new SearchBatch(true, 4);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select6BtnActionPerformed
 
     private void select7BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select7BtnActionPerformed
-    
+
         SearchBatch s = new SearchBatch(true, 5);
         s.setVisible(true);
         this.dispose();
@@ -865,14 +865,14 @@ public class Blend extends javax.swing.JFrame {
     }//GEN-LAST:event_select8BtnActionPerformed
 
     private void select9BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select9BtnActionPerformed
-      
+
         SearchBatch s = new SearchBatch(true, 7);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select9BtnActionPerformed
 
     private void select1BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select1BtnActionPerformed
-        
+
         SearchBatch s = new SearchBatch();
         s.setVisible(true);
         this.dispose();
@@ -1157,8 +1157,8 @@ public class Blend extends javax.swing.JFrame {
             while (rs.next()) {
                 String chem = rs.getNString(1);
                 amount = rs.getInt(2);
-                
-                double newamount = amount * ((percent / Double.parseDouble(this.volTxt.getText()))*100);
+
+                double newamount = amount * ((percent / Double.parseDouble(this.volTxt.getText())) * 100);
                 Pinwheel.insertCustomChemicalAt(bid, chem, newamount + "");
                 Pinwheel.insertCustomChemicalAt(batch, chem, -newamount + "");
             }

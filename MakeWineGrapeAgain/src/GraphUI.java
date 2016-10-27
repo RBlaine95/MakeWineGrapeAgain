@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -164,7 +163,7 @@ public class GraphUI extends JFrame {
         fc.addChoosableFileFilter(new FileNameExtensionFilter("PNG (*.png)", "png"));
         fc.setAcceptAllFileFilterUsed(false);
         fc.showSaveDialog(null);
-        
+
         String path = fc.getSelectedFile().getAbsolutePath() + ".png";
         String filename = fc.getSelectedFile().getName() + ".png";
         File imageFile = new File(path);
@@ -276,12 +275,14 @@ public class GraphUI extends JFrame {
         dataset.addSeries(temp);
         return dataset;
     }
-    public void refesh(){
+
+    public void refesh() {
         GraphUI g = new GraphUI();
         g.setVisible(true);
         this.dispose();
     }
-    public void kill(){
+
+    public void kill() {
         this.dispose();
     }
 }
