@@ -57,121 +57,77 @@ public class Edit extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         viewChemicalsBtn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-<<<<<<< HEAD
-        jLabel2 = new javax.swing.JLabel();
-=======
->>>>>>> refs/remotes/origin/master
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Edit Batch");
-        setMaximumSize(new java.awt.Dimension(370, 275));
-        setMinimumSize(new java.awt.Dimension(370, 275));
-        setPreferredSize(new java.awt.Dimension(370, 275));
-        setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        blendBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         blendBtn.setText("Create Blend");
         blendBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 blendBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(blendBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 129, -1));
 
-<<<<<<< HEAD
-        updateBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-=======
->>>>>>> refs/remotes/origin/master
         updateBtn.setText("Update Batch/Blend");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel1.setText("Selected:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, 20));
 
         selectedTxt.setEditable(false);
-        selectedTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        getContentPane().add(selectedTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 5, 220, 30));
 
-        chemBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         chemBtn.setText("Add Chemicals");
         chemBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chemBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(chemBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 147, -1));
 
-        subBatchBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         subBatchBtn.setText("Create Sub-Batch");
         subBatchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 subBatchBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(subBatchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
-        backBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         backBtn.setText("Close");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, -1, -1));
 
-        graphBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         graphBtn.setText("Graph Tools");
         graphBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 graphBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(graphBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 147, -1));
 
-        jButton1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jButton1.setText("Value Calculator");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 129, -1));
 
-<<<<<<< HEAD
-        viewChemicalsBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-=======
->>>>>>> refs/remotes/origin/master
         viewChemicalsBtn.setText("View Chemicals");
         viewChemicalsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewChemicalsBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(viewChemicalsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 147, -1));
 
-<<<<<<< HEAD
-        jButton2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-=======
->>>>>>> refs/remotes/origin/master
         jButton2.setText("Delete Selected");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 129, -1));
 
-<<<<<<< HEAD
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 260));
-=======
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -232,10 +188,8 @@ public class Edit extends javax.swing.JFrame {
                         .addComponent(jButton2)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
->>>>>>> refs/remotes/origin/master
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -293,7 +247,6 @@ public class Edit extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField selectedTxt;
     private javax.swing.JButton subBatchBtn;
     private javax.swing.JButton updateBtn;

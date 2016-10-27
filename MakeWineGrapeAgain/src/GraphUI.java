@@ -94,16 +94,12 @@ public class GraphUI extends JFrame {
         refreshBtn = new javax.swing.JButton();
         updateBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(600, 600));
         setMinimumSize(new java.awt.Dimension(600, 600));
         setResizable(false);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new java.awt.BorderLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -2, 600, 550));
 
         saveBtn.setText("Save Graph");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +107,6 @@ public class GraphUI extends JFrame {
                 saveBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(saveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 566, -1, -1));
 
         refreshBtn.setText("Refresh Graph");
         refreshBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +114,6 @@ public class GraphUI extends JFrame {
                 refreshBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 566, -1, -1));
 
         updateBtn.setText("Update Graph");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -127,7 +121,6 @@ public class GraphUI extends JFrame {
                 updateBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(313, 566, -1, -1));
 
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -135,16 +128,40 @@ public class GraphUI extends JFrame {
                 backBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(535, 566, -1, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
-        jLabel1.setMaximumSize(new java.awt.Dimension(600, 600));
-        jLabel1.setMinimumSize(new java.awt.Dimension(600, 600));
-        jLabel1.setPreferredSize(new java.awt.Dimension(600, 600));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 600));
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(refreshBtn)
+                        .addGap(55, 55, 55)
+                        .addComponent(saveBtn)
+                        .addGap(56, 56, 56)
+                        .addComponent(updateBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 104, Short.MAX_VALUE)
+                        .addComponent(backBtn)))
+                .addContainerGap())
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(refreshBtn)
+                    .addComponent(saveBtn)
+                    .addComponent(updateBtn)
+                    .addComponent(backBtn))
+                .addContainerGap())
+        );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -231,7 +248,6 @@ public class GraphUI extends JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton refreshBtn;
     private javax.swing.JButton saveBtn;
