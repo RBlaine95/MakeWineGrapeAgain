@@ -26,6 +26,13 @@ public class Blend extends javax.swing.JFrame {
      */
     public Blend() {
         initComponents();
+        this.colTxt.setEnabled(false);
+        try {
+            this.colBox.setModel(new DefaultComboBoxModel(Pinwheel.getColour().toArray()));
+        } catch (SQLException ex) {
+            Logger.getLogger(Blend.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        this.colBox.addItem("Override");
         this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStages().toArray()));
         this.check();
         this.data = Pinwheel.getData();
@@ -126,6 +133,7 @@ public class Blend extends javax.swing.JFrame {
         clear7 = new javax.swing.JButton();
         clear8 = new javax.swing.JButton();
         clear9 = new javax.swing.JButton();
+        colBox = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Blend Batches");
@@ -402,6 +410,13 @@ public class Blend extends javax.swing.JFrame {
             }
         });
 
+        colBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        colBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                colBoxActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -541,14 +556,17 @@ public class Blend extends javax.swing.JFrame {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel21)
                                                 .addGap(24, 24, 24)))
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                            .addComponent(colTxt, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-                                            .addComponent(volTxt)))))))
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(volTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(colBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(57, 57, 57)
+                                                .addComponent(colTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addGap(18, 18, 18)
                         .addComponent(per4Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(92, Short.MAX_VALUE))
+                .addContainerGap(79, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -582,7 +600,8 @@ public class Blend extends javax.swing.JFrame {
                     .addComponent(colTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(clear3)
                     .addComponent(jLabel18)
-                    .addComponent(per3Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(per3Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(colBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(20, 20, 20)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
@@ -661,7 +680,7 @@ public class Blend extends javax.swing.JFrame {
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
         int percentcheck = Integer.parseInt(per1Txt.getText());
-
+        
         if (batch2Txt.getText().length() > 0) {
             percentcheck += Integer.parseInt(per2Txt.getText());
         }
@@ -817,7 +836,7 @@ public class Blend extends javax.swing.JFrame {
                 String bid, name, colour, stage;
                 int volume = Integer.parseInt(volTxt.getText());
                 name = this.nameTxt.getText();
-                colour = this.colTxt.getText();
+                colour = (this.colBox.getSelectedItem().equals("Override")) ? this.colTxt.getText() : this.colBox.getSelectedItem() + "";
                 stage = (String) this.stageBox.getSelectedItem();
 
                 sql = "SELECT COUNT(*) FROM blend";
@@ -860,7 +879,7 @@ public class Blend extends javax.swing.JFrame {
                         }
                     }
                 }
-                sql += ") VALUES('" + bid + "', '" + name + "', '" + colour + "', '" + volume + "', '" + stage
+                sql += ") VALUES('" + bid + "', '" + name + "', '" + colour + "', '" + volume + "', '" + Pinwheel.stageGetNo(stage)
                         + "', '" + this.selectedTxt.getText() + "', '" + Integer.parseInt(this.per1Txt.getText()) + "', '" + this.batch2Txt.getText() + "', '"
                         + Integer.parseInt(this.per2Txt.getText()) + "'";
 
@@ -1116,6 +1135,14 @@ public class Blend extends javax.swing.JFrame {
         this.refresh();
     }//GEN-LAST:event_clear9ActionPerformed
 
+    private void colBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colBoxActionPerformed
+        if (colBox.getSelectedItem().equals("Override")) {
+            colTxt.setEnabled(true);
+        } else {
+            colTxt.setEnabled(false);
+        }
+    }//GEN-LAST:event_colBoxActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JTextField batch2Txt;
@@ -1133,6 +1160,7 @@ public class Blend extends javax.swing.JFrame {
     private javax.swing.JButton clear7;
     private javax.swing.JButton clear8;
     private javax.swing.JButton clear9;
+    private javax.swing.JComboBox colBox;
     private javax.swing.JTextField colTxt;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1184,7 +1212,7 @@ public class Blend extends javax.swing.JFrame {
     private void check() {
         okBtn.setEnabled(false);
         System.out.println("check");
-        if (selectedTxt.getText().length() > 0 && batch2Txt.getText().length() > 0 && volTxt.getText().length() > 0 && colTxt.getText().length() > 0 && nameTxt.getText().length() > 0) {
+        if (selectedTxt.getText().length() > 0 && batch2Txt.getText().length() > 0 && volTxt.getText().length() > 0 && (colTxt.getText().length() > 0 || !colBox.getSelectedItem().equals("Override")) && nameTxt.getText().length() > 0) {
             if (!per1Txt.isEnabled() || !per1Txt.getText().isEmpty()) {
                 if (!per2Txt.isEnabled() || !per2Txt.getText().isEmpty()) {
                     if (!per3Txt.isEnabled() || !per3Txt.getText().isEmpty()) {

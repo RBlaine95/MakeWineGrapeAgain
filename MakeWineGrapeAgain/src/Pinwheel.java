@@ -4,12 +4,19 @@
  * and open the template in the editor.
  */
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -47,7 +54,7 @@ public final class Pinwheel {
     static String previousID;
     static String bounce;
 
-    public static void connect() throws SQLException {
+    public static void connect() throws SQLException, FileNotFoundException {
         connectChem();
         connectCCDB();
         connectGraphDB();
@@ -332,31 +339,27 @@ public final class Pinwheel {
         return stagesAll;
     }
 
-    public static void refreshColour() throws SQLException {
-        colour = new ArrayList();
-        sql = "SELECT DISTINCT colour FROM batch";
-        rs = queryCCDB(sql);
-        while (rs.next()) {
-            colour.add(rs.getNString(1));
+    public static void refreshColour() throws SQLException, FileNotFoundException {
+        Scanner sc = new Scanner(new File("colour.txt"));
+        while (sc.hasNextLine()) {
+            colour.add(sc.nextLine());
         }
         for (int i = 0; i < colour.size(); i++) {
             colourAll.add(colour.get(i));
         }
-
+        sc.close();
     }
 
-    public static void refreshType() throws SQLException {
+    public static void refreshType() throws SQLException, FileNotFoundException {
 
-        type = new ArrayList();
-        sql = "SELECT DISTINCT type FROM batch";
-        rs = queryCCDB(sql);
-        while (rs.next()) {
-            type.add(rs.getNString(1));
+        Scanner sc = new Scanner(new File("type.txt"));
+        while (sc.hasNextLine()) {
+            type.add(sc.nextLine());
         }
         for (int i = 0; i < type.size(); i++) {
             typeAll.add(type.get(i));
         }
-
+sc.close();
     }
 
     public static void refreshSupplier() throws SQLException {
@@ -471,7 +474,32 @@ public final class Pinwheel {
     }
 
     public static void createGraph() {
+        System.out.println(data[0]);
         sql = "CREATE TABLE " + data[0] + " (date TEXT(255), balling DECIMAL(5,2), temperature DECIMAL(5,2))";
         updateGraphDB(sql);
+    }
+    public static void createSpecGraph(String a) {
+        System.out.println(data[0]);
+        sql = "CREATE TABLE " + a + " (date TEXT(255), balling DECIMAL(5,2), temperature DECIMAL(5,2))";
+        updateGraphDB(sql);
+    }
+    
+    public static void learnColour(String c){
+        try (FileWriter fw = new FileWriter("colour.txt", true);
+                    BufferedWriter bw = new BufferedWriter(fw);
+                    PrintWriter out = new PrintWriter(bw)) {
+                out.println(c);
+            } catch (IOException ex) {
+                
+            }
+    }
+    public static void learnType(String c){
+        try (FileWriter fw = new FileWriter("type.txt", true);
+                    BufferedWriter bw = new BufferedWriter(fw);
+                    PrintWriter out = new PrintWriter(bw)) {
+                out.println(c);
+            } catch (IOException ex) {
+                
+            }
     }
 }

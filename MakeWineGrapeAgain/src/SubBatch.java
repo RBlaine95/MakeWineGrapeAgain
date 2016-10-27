@@ -190,7 +190,7 @@ public class SubBatch extends javax.swing.JFrame {
                 System.out.println(data[i]);
             }
 
-            sql = "INSERT INTO batch (batchid, colour, type, stage, mass, supplierid ) VALUES ('" + subID + "', '" + this.data[1] + "', '" + this.data[2] + "', '" + Pinwheel.stageGetNo(stage)
+            sql = "INSERT INTO subbatch (subbatchid, colour, type, stage, mass, supplierid ) VALUES ('" + subID + "', '" + this.data[1] + "', '" + this.data[2] + "', '" + Pinwheel.stageGetNo(stage)
                     + "', " + subMass + ", '" + this.data[5] + "')"; //prep sub batch sql
             System.out.println(sql);
             Pinwheel.updateCCDB(sql); //insert new sub batch
@@ -218,6 +218,8 @@ public class SubBatch extends javax.swing.JFrame {
                     amount = amount * (subMass/massT / 100);
                     Pinwheel.insertCustomChemicalAt(subID, chem, amount + "");
                 }
+                Pinwheel.createSpecGraph(subID);
+                this.dispose();
             } catch (SQLException ex) {
                 Logger.getLogger(Blend.class.getName()).log(Level.SEVERE, null, ex);
             }
