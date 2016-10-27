@@ -142,8 +142,6 @@ public class SearchBatch extends javax.swing.JFrame {
         this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStagesAll().toArray()));
 
         data = new String[5];
-
-        this.searchBtn.doClick();
     }
 
     /**
