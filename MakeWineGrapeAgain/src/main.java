@@ -2,7 +2,17 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.BufferedWriter;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.AbstractAction;
+import javax.swing.JOptionPane;
 import javax.swing.KeyStroke;
 
 /*
@@ -56,6 +66,7 @@ public class main extends javax.swing.JFrame {
         addBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         appNameLbl = new javax.swing.JLabel();
         versionNumLbl = new javax.swing.JLabel();
         logoutBtn = new javax.swing.JButton();
@@ -101,6 +112,18 @@ public class main extends javax.swing.JFrame {
         });
 
         jButton2.setText("Search Blends");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Reset Password");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -117,6 +140,10 @@ public class main extends javax.swing.JFrame {
                     .addComponent(searchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(adminBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton3)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -134,7 +161,9 @@ public class main extends javax.swing.JFrame {
                         .addComponent(jButton2)))
                 .addGap(24, 24, 24)
                 .addComponent(adminBtn)
-                .addContainerGap(178, Short.MAX_VALUE))
+                .addGap(61, 61, 61)
+                .addComponent(jButton3)
+                .addContainerGap(85, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel2);
@@ -196,6 +225,40 @@ public class main extends javax.swing.JFrame {
         sb.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Pinwheel.setSearchType("blend");
+        Pinwheel.setBounce("mainsearch");
+        SearchBatch sb = new SearchBatch();
+        sb.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+
+        String pass = JOptionPane.showInputDialog(null, "Please Enter new password");
+
+        MessageDigest messageDigest;
+        try {
+            messageDigest = MessageDigest.getInstance("SHA-256");
+
+            messageDigest.update(pass.getBytes());
+            String encryptedString = new String(messageDigest.digest());
+
+            PrintWriter writer;
+            try {
+                writer = new PrintWriter("pass.txt");
+                writer.println(encryptedString);
+            writer.close();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+
+        } catch (NoSuchAlgorithmException ex) {
+            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     public void onButtonlogoutBtnPressed() {
         Login_UI log = new Login_UI();
         this.dispose();
@@ -212,6 +275,7 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JLabel bground;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel logo;
     private javax.swing.JButton logoutBtn;

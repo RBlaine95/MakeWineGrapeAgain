@@ -163,6 +163,18 @@ public final class Pinwheel {
         sql = "DROP TABLE " + data[0];
         updateChem(sql);
     }
+    public static void deleteSubBatch() {
+        sql = "DELETE FROM subbatch WHERE subbatchid = '" + data[0] + "'";
+        updateCCDB(sql);
+        sql = "DROP TABLE " + data[0];
+        updateChem(sql);
+    }
+    public static void deleteBlend() {
+        sql = "DELETE FROM blend WHERE bid = '" + data[0] + "'";
+        updateCCDB(sql);
+        sql = "DROP TABLE " + data[0];
+        updateChem(sql);
+    }
 
     public static void insertSupplier() {
         sql = "INSERT INTO supplier (sname, tel, email, liason) VALUES('" + data[0] + "', '" + data[1] + "', '" + data[2] + "', '" + data[3] + "')";

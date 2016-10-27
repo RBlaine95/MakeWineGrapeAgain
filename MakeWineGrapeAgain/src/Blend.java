@@ -26,6 +26,7 @@ public class Blend extends javax.swing.JFrame {
      */
     public Blend() {
         initComponents();
+        Pinwheel.setBounce("blend");
         this.colTxt.setEnabled(false);
         try {
             this.colBox.setModel(new DefaultComboBoxModel(Pinwheel.getColour().toArray()));
@@ -797,39 +798,39 @@ public class Blend extends javax.swing.JFrame {
             if (mass) {
                 String sql;
                 if (ready[0]) {
-                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per1Txt.getText()) / 100) + " WHERE batchid = '" + selectedTxt.getText() + "'";
+                    sql = "UPDATE subbatch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per1Txt.getText()) / 100) + " WHERE subbatchid = '" + selectedTxt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
                 if (ready[1]) {
-                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per2Txt.getText()) / 100) + " WHERE batchid = '" + batch2Txt.getText() + "'";
+                    sql = "UPDATE subbatch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per2Txt.getText()) / 100) + " WHERE subbatchid = '" + batch2Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
                 if (ready[2]) {
-                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per3Txt.getText()) / 100) + " WHERE batchid = '" + batch3Txt.getText() + "'";
+                    sql = "UPDATE subbatch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per3Txt.getText()) / 100) + " WHERE subbatchid = '" + batch3Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
                 if (ready[3]) {
-                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per4Txt.getText()) / 100) + " WHERE batchid = '" + batch4Txt.getText() + "'";
+                    sql = "UPDATE subbatch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per4Txt.getText()) / 100) + " WHERE subbatchid = '" + batch4Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
                 if (ready[4]) {
-                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per5Txt.getText()) / 100) + " WHERE batchid = '" + batch5Txt.getText() + "'";
+                    sql = "UPDATE subbatch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per5Txt.getText()) / 100) + " WHERE subbatchid = '" + batch5Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
                 if (ready[5]) {
-                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per6Txt.getText()) / 100) + " WHERE batchid = '" + batch6Txt.getText() + "'";
+                    sql = "UPDATE subbatch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per6Txt.getText()) / 100) + " WHERE subbatchid = '" + batch6Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
                 if (ready[6]) {
-                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per7Txt.getText()) / 100) + " WHERE batchid = '" + batch7Txt.getText() + "'";
+                    sql = "UPDATE subbatch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per7Txt.getText()) / 100) + " WHERE subbatchid = '" + batch7Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
                 if (ready[7]) {
-                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per8Txt.getText()) / 100) + " WHERE batchid = '" + batch8Txt.getText() + "'";
+                    sql = "UPDATE subbatch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per8Txt.getText()) / 100) + " WHERE subbatchid = '" + batch8Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
                 if (ready[8]) {
-                    sql = "UPDATE batch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per9Txt.getText()) / 100) + " WHERE batchid = '" + batch9Txt.getText() + "'";
+                    sql = "UPDATE subbatch SET mass = mass - " + Double.parseDouble(volTxt.getText()) * (Double.parseDouble(per9Txt.getText()) / 100) + " WHERE subbatchid = '" + batch9Txt.getText() + "'";
                     Pinwheel.updateCCDB(sql);
                 }
 
@@ -913,7 +914,7 @@ public class Blend extends javax.swing.JFrame {
                 sql += ")";
                 Pinwheel.updateCCDB(sql);
 
-                String ID = ("Batch" + bid);
+                String ID = (bid);
                 Pinwheel.createChem(ID);
 
                 this.chem(ID, this.selectedTxt.getText(), Integer.parseInt(per1Txt.getText()));
@@ -955,63 +956,63 @@ public class Blend extends javax.swing.JFrame {
     }//GEN-LAST:event_okBtnActionPerformed
 
     private void select2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select2BtnActionPerformed
-        Pinwheel.setBounce("blend");
+        
         SearchBatch s = new SearchBatch(true, 0);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select2BtnActionPerformed
 
     private void select3BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select3BtnActionPerformed
-        Pinwheel.setBounce("blend");
+
         SearchBatch s = new SearchBatch(true, 1);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select3BtnActionPerformed
 
     private void select4BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select4BtnActionPerformed
-        Pinwheel.setBounce("blend");
+      
         SearchBatch s = new SearchBatch(true, 2);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select4BtnActionPerformed
 
     private void select5BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select5BtnActionPerformed
-        Pinwheel.setBounce("blend");
+   
         SearchBatch s = new SearchBatch(true, 3);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select5BtnActionPerformed
 
     private void select6BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select6BtnActionPerformed
-        Pinwheel.setBounce("blend");
+       
         SearchBatch s = new SearchBatch(true, 4);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select6BtnActionPerformed
 
     private void select7BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select7BtnActionPerformed
-        Pinwheel.setBounce("blend");
+    
         SearchBatch s = new SearchBatch(true, 5);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select7BtnActionPerformed
 
     private void select8BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select8BtnActionPerformed
-        Pinwheel.setBounce("blend");
+
         SearchBatch s = new SearchBatch(true, 6);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select8BtnActionPerformed
 
     private void select9BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select9BtnActionPerformed
-        Pinwheel.setBounce("blend");
+      
         SearchBatch s = new SearchBatch(true, 7);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select9BtnActionPerformed
 
     private void select1BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select1BtnActionPerformed
-        Pinwheel.setBounce("blend");
+        
         SearchBatch s = new SearchBatch();
         s.setVisible(true);
         this.dispose();
@@ -1295,8 +1296,10 @@ public class Blend extends javax.swing.JFrame {
             while (rs.next()) {
                 String chem = rs.getNString(1);
                 amount = rs.getInt(2);
-                amount = amount * (percent / 100);
-                Pinwheel.insertCustomChemicalAt(bid, chem, amount + "");
+                
+                double newamount = amount * ((percent / Double.parseDouble(this.volTxt.getText()))*100);
+                Pinwheel.insertCustomChemicalAt(bid, chem, newamount + "");
+                Pinwheel.insertCustomChemicalAt(batch, chem, -newamount + "");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Blend.class.getName()).log(Level.SEVERE, null, ex);
