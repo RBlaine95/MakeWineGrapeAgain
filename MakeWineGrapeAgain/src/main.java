@@ -101,6 +101,11 @@ public class main extends javax.swing.JFrame {
         });
 
         jButton2.setText("Search Blends");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -195,6 +200,13 @@ public class main extends javax.swing.JFrame {
         SearchBatch sb = new SearchBatch();
         sb.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        Pinwheel.setSearchType("blend");
+        Pinwheel.setBounce("mainsearch");
+        SearchBatch sb = new SearchBatch();
+        sb.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public void onButtonlogoutBtnPressed() {
         Login_UI log = new Login_UI();

@@ -20,6 +20,18 @@ public class Edit extends javax.swing.JFrame {
      */
     public Edit() {
         initComponents();
+        switch(Pinwheel.getSearchType()){
+            case "batch":
+                this.blendBtn.setEnabled(false);
+                break;
+            case "subbatch":
+                this.subBatchBtn.setEnabled(false);
+                break;
+            case "blend":
+                this.subBatchBtn.setEnabled(false);
+                this.blendBtn.setEnabled(false);
+                break;
+        }
         data = Pinwheel.getData();
         this.batch = data[0];
         this.selectedTxt.setText(batch);
@@ -43,7 +55,6 @@ public class Edit extends javax.swing.JFrame {
         backBtn = new javax.swing.JButton();
         graphBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        changeBtn = new javax.swing.JButton();
         viewChemicalsBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -56,7 +67,7 @@ public class Edit extends javax.swing.JFrame {
             }
         });
 
-        updateBtn.setText("Update Batch");
+        updateBtn.setText("Update Batch/Blend");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateBtnActionPerformed(evt);
@@ -102,13 +113,6 @@ public class Edit extends javax.swing.JFrame {
             }
         });
 
-        changeBtn.setText("Change");
-        changeBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changeBtnActionPerformed(evt);
-            }
-        });
-
         viewChemicalsBtn.setText("View Chemicals");
         viewChemicalsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -127,8 +131,6 @@ public class Edit extends javax.swing.JFrame {
                         .addComponent(jLabel1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(changeBtn)
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGap(19, 19, 19)
@@ -136,10 +138,10 @@ public class Edit extends javax.swing.JFrame {
                             .addComponent(subBatchBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                             .addComponent(blendBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 85, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(updateBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(chemBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                            .addComponent(chemBtn, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(viewChemicalsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(graphBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -149,12 +151,11 @@ public class Edit extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(1, 1, 1)
+                .addGap(5, 5, 5)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(changeBtn))
-                .addGap(47, 47, 47)
+                    .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(51, 51, 51)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(blendBtn)
                     .addComponent(updateBtn))
@@ -210,14 +211,6 @@ public class Edit extends javax.swing.JFrame {
         v.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void changeBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_changeBtnActionPerformed
-        Pinwheel.setBounce("mainsearch");
-        Pinwheel.setSearchType("batch");
-        SearchBatch sb = new SearchBatch();
-        sb.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_changeBtnActionPerformed
-
     private void viewChemicalsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewChemicalsBtnActionPerformed
         ViewChems vc = new ViewChems();
         vc.setVisible(true);
@@ -227,7 +220,6 @@ public class Edit extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;
     private javax.swing.JButton blendBtn;
-    private javax.swing.JButton changeBtn;
     private javax.swing.JButton chemBtn;
     private javax.swing.JButton graphBtn;
     private javax.swing.JButton jButton1;

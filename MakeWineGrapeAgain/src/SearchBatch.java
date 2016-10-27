@@ -45,7 +45,20 @@ public class SearchBatch extends javax.swing.JFrame {
                 batchTbl.getColumnModel().getColumn(4).setHeaderValue("Stage");
                 batchTbl.getColumnModel().getColumn(5).setHeaderValue("Blend Of");
                 
+                this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColourAll().toArray()));
+                this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getTypeAll().toArray()));
+                this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStagesAll().toArray()));
+                
+                
+                
                 data = new String[6];
+                
+                this.batchLbl.setText("Blend Name");
+                this.supplierLbl.setText("");
+                
+                this.suppBox.setVisible(false);
+                
+                this.suppBox.setEnabled(false);
                 break;
             case "subbatch":
                 batchTbl.getColumnModel().getColumn(0).setHeaderValue("SubBatch ID");
@@ -206,7 +219,7 @@ public class SearchBatch extends javax.swing.JFrame {
         jScrollPane1.setViewportView(batchTbl);
 
         getContentPane().add(jScrollPane1);
-        jScrollPane1.setBounds(10, 10, 680, 210);
+        jScrollPane1.setBounds(10, 10, 1070, 550);
 
         jPanel1.setOpaque(false);
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 270));
@@ -321,17 +334,17 @@ public class SearchBatch extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(typeLbl)
                         .addComponent(colourLbl)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(10, 220, 680, 80);
+        jPanel1.setBounds(240, 560, 680, 80);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 990, 310);
+        jLabel1.setBounds(0, 0, 1090, 660);
 
-        setSize(new java.awt.Dimension(716, 339));
+        setSize(new java.awt.Dimension(1101, 692));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -435,14 +448,9 @@ public class SearchBatch extends javax.swing.JFrame {
                     whered = true;
                     sql += " stage = '" + Pinwheel.stageGetNo(this.stage) + "'";
                 }
-                if (supp) {
-                    if (whered) {
-                        sql += " AND ";
-                    }
-                    whered = true;
-                    sql += " supplierid = '" + this.supplier + "'";
-                }
+               
                 try {
+                    System.out.println(sql);
                     rs = Pinwheel.queryCCDB(sql);
                     int count = 0;
                     while (rs.next()) {
@@ -451,6 +459,69 @@ public class SearchBatch extends javax.swing.JFrame {
                             list[i] = (rs.getString(i + 1));
                         }
                         list[3] = Pinwheel.stageGetWord(Integer.parseInt(list[3] + ""));
+                        
+                        
+                        
+                        
+                        ((DefaultTableModel) this.batchTbl.getModel()).insertRow(count, list);
+                        count++;
+                    }
+                } catch (SQLException ex) {
+                    Logger.getLogger(SearchBatch.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                break;
+            case "blend":
+                sql = "SELECT bid, winename, colour, volume, stage, fid1, fid2, fid3, fid4, fid5, fid6, fid7, fid8, fid9 FROM blend";
+                list = new Object[6];
+                if (batch || col || wtype || wstage) {
+                    sql += " WHERE ";
+                }
+                if (batch) {
+                    if (whered) {
+                        sql += " AND ";
+                    }
+                    whered = true;
+                    sql += " winename LIKE '*" + this.batchid + "*'";
+                }
+                if (col) {
+                    if (whered) {
+                        sql += " AND ";
+                    }
+                    whered = true;
+                    sql += " colour = '" + this.colour + "'";
+                }
+                if (wtype) {
+                    if (whered) {
+                        sql += " AND ";
+                    }
+                    whered = true;
+                    sql += " type = '" + this.type + "'";
+                }
+                if (wstage) {
+                    if (whered) {
+                        sql += " AND ";
+                    }
+                    whered = true;
+                    sql += " stage = '" + Pinwheel.stageGetNo(this.stage) + "'";
+                }
+                
+                try {
+                    rs = Pinwheel.queryCCDB(sql);
+                    int count = 0;
+                    while (rs.next()) {
+                        for (int i = 0; i < list.length-1; i++) {
+                            list[i] = (rs.getString(i + 1));
+                        }
+                        String combine = "";
+                        for (int i = 6; i < 14; i++) {
+                            String buffer = rs.getNString(i);
+                            
+                            combine += (buffer == (null))?"":buffer + ", ";
+                        }
+                        list[5] = combine;
+  
+                        list[4] = Pinwheel.stageGetWord(Integer.parseInt(list[4] + ""));
                         ((DefaultTableModel) this.batchTbl.getModel()).insertRow(count, list);
                         count++;
                     }

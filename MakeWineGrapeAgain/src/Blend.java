@@ -955,63 +955,63 @@ public class Blend extends javax.swing.JFrame {
     }//GEN-LAST:event_okBtnActionPerformed
 
     private void select2BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select2BtnActionPerformed
-        Pinwheel.setBounce("blend");
+        Pinwheel.setBounce("subbatch");
         SearchBatch s = new SearchBatch(true, 0);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select2BtnActionPerformed
 
     private void select3BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select3BtnActionPerformed
-        Pinwheel.setBounce("blend");
+        Pinwheel.setBounce("subbatch");
         SearchBatch s = new SearchBatch(true, 1);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select3BtnActionPerformed
 
     private void select4BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select4BtnActionPerformed
-        Pinwheel.setBounce("blend");
+        Pinwheel.setBounce("subbatch");
         SearchBatch s = new SearchBatch(true, 2);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select4BtnActionPerformed
 
     private void select5BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select5BtnActionPerformed
-        Pinwheel.setBounce("blend");
+        Pinwheel.setBounce("subbatch");
         SearchBatch s = new SearchBatch(true, 3);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select5BtnActionPerformed
 
     private void select6BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select6BtnActionPerformed
-        Pinwheel.setBounce("blend");
+        Pinwheel.setBounce("subbatch");
         SearchBatch s = new SearchBatch(true, 4);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select6BtnActionPerformed
 
     private void select7BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select7BtnActionPerformed
-        Pinwheel.setBounce("blend");
+        Pinwheel.setBounce("subbatch");
         SearchBatch s = new SearchBatch(true, 5);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select7BtnActionPerformed
 
     private void select8BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select8BtnActionPerformed
-        Pinwheel.setBounce("blend");
+        Pinwheel.setBounce("subbatch");
         SearchBatch s = new SearchBatch(true, 6);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select8BtnActionPerformed
 
     private void select9BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select9BtnActionPerformed
-        Pinwheel.setBounce("blend");
+        Pinwheel.setBounce("subbatch");
         SearchBatch s = new SearchBatch(true, 7);
         s.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_select9BtnActionPerformed
 
     private void select1BtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_select1BtnActionPerformed
-        Pinwheel.setBounce("blend");
+        Pinwheel.setBounce("subbatch");
         SearchBatch s = new SearchBatch();
         s.setVisible(true);
         this.dispose();
