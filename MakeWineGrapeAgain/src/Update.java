@@ -195,10 +195,10 @@ public class Update extends javax.swing.JFrame {
             if (this.massTxt.getText().isEmpty()) {
                 switch (Pinwheel.getSearchType()) {
                     case "batch":
-                        sql = "UPDATE batch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedItem()+ "") + "' WHERE batchid = '" + data[0] + "'";
+                        sql = "UPDATE batch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedItem() + "") + "' WHERE batchid = '" + data[0] + "'";
                         break;
                     case "subbatch":
-                        sql = "UPDATE subbatch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedItem()+ "") + "' WHERE subbatchid = '" + data[0] + "'";
+                        sql = "UPDATE subbatch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedItem() + "") + "' WHERE subbatchid = '" + data[0] + "'";
                         break;
                     case "blend":
                         sql = "UPDATE blend SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedItem() + "") + "' WHERE bid = '" + data[0] + "'";

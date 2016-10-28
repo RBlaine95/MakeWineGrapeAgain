@@ -1,14 +1,6 @@
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.io.Writer;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
@@ -32,12 +24,6 @@ public class Add extends javax.swing.JFrame {
      */
     public Add() {
         initComponents();
-
-        try {
-            this.refresh();
-        } catch (SQLException ex) {
-            Logger.getLogger(Add.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /**
@@ -72,6 +58,11 @@ public class Add extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         getContentPane().setLayout(null);
 
         jPanel1.setOpaque(false);
@@ -98,11 +89,6 @@ public class Add extends javax.swing.JFrame {
         jLabel4.setText("Stage");
 
         stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
-        stageBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                stageBoxActionPerformed(evt);
-            }
-        });
 
         colourOverrideTxt.setEditable(false);
         colourOverrideTxt.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -286,7 +272,7 @@ public class Add extends javax.swing.JFrame {
     }//GEN-LAST:event_typeBoxActionPerformed
 
     private void supplierBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierBoxActionPerformed
-        if (this.supplierBox.getSelectedItem() == "New Supplier...") {
+        if (this.supplierBox.getSelectedItem().equals("New Supplier...")) {
             as = new AddSupplier();
             as.setVisible(true);
             this.dispose();
@@ -311,6 +297,9 @@ public class Add extends javax.swing.JFrame {
             Pinwheel.learnType(type);
         } else {
             type = this.typeBox.getSelectedItem() + "";
+        }
+        if (this.supplierBox.getSelectedIndex() == 0) {
+            System.out.println("hdauhidilhajh");
         }
         year = this.yearTxt.getText();
         stage = this.stageBox.getSelectedItem() + "";
@@ -356,9 +345,13 @@ public class Add extends javax.swing.JFrame {
         this.check();
     }//GEN-LAST:event_yearTxtKeyReleased
 
-    private void stageBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stageBoxActionPerformed
-        //Mass in litres or kg
-    }//GEN-LAST:event_stageBoxActionPerformed
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        try {
+            this.refresh();
+        } catch (SQLException ex) {
+            Logger.getLogger(Add.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_formComponentShown
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;

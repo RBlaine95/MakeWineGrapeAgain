@@ -10,15 +10,12 @@
  */
 public class AdminMenu extends javax.swing.JFrame {
 
-
-
     /**
      * Creates new form AdminMenu
      */
-
     public AdminMenu() {
         initComponents();
-        
+
     }
 
     /**
@@ -156,7 +153,7 @@ public class AdminMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_delSuppBtnActionPerformed
 
     private void editChemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editChemBtnActionPerformed
-       Pinwheel.setBounce("edit");
+        Pinwheel.setBounce("edit");
         Pinwheel.setSearchType("chemical");
         SearchBatch s = new SearchBatch();
         s.setVisible(true);

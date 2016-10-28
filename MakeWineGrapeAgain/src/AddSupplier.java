@@ -16,7 +16,6 @@ import javax.swing.JOptionPane;
  */
 public class AddSupplier extends javax.swing.JFrame {
 
-    
     /**
      * Creates new form AddSupplier
      */
@@ -48,7 +47,7 @@ public class AddSupplier extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMinimumSize(null);
+        setAlwaysOnTop(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setOpaque(false);
@@ -195,7 +194,7 @@ public class AddSupplier extends javax.swing.JFrame {
         } else {
             String sql = "INSERT INTO supplier (sname, tel, email, liason) VALUES('" + this.nameTxt.getText() + "', '" + this.contactTxt.getText()
                     + "', '" + this.emailTxt.getText() + "', '" + this.liasonTxt.getText() + "')";
-            
+
             Pinwheel.updateCCDB(sql);
             try {
                 Pinwheel.refreshSupplier();

@@ -20,7 +20,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="true"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -147,10 +147,11 @@
         <Component class="javax.swing.JComboBox" name="jComboBox1">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="3">
-                <StringItem index="0" value="g"/>
-                <StringItem index="1" value="kg"/>
-                <StringItem index="2" value="tonne"/>
+              <StringArray count="4">
+                <StringItem index="0" value="mg"/>
+                <StringItem index="1" value="g"/>
+                <StringItem index="2" value="kg"/>
+                <StringItem index="3" value="tonne"/>
               </StringArray>
             </Property>
           </Properties>

@@ -12,11 +12,10 @@ import java.util.logging.Logger;
  */
 /**
  *
- * @author Robbie
+ * @author Se7en
  */
 public class UpdateGraph extends javax.swing.JFrame {
 
-    
     String batch;
     String[] batchData = new String[7];
     GraphUI gee;
@@ -30,6 +29,7 @@ public class UpdateGraph extends javax.swing.JFrame {
         this.batch = batchData[0];
         idTxt.setText(batch);
     }
+
     public UpdateGraph(GraphUI gee) {
         initComponents();
         this.gee = gee;
@@ -55,17 +55,28 @@ public class UpdateGraph extends javax.swing.JFrame {
         balTxt = new javax.swing.JTextField();
         okBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel1.setText("Selected Batch:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 14, -1, -1));
 
         idTxt.setEditable(false);
+        idTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        getContentPane().add(idTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(102, 11, 180, -1));
 
+        jLabel2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel2.setText("Temperature:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, -1));
 
+        jLabel3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel3.setText("Balling:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 138, -1, -1));
 
+        tempTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         tempTxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tempTxtKeyPressed(evt);
@@ -74,7 +85,9 @@ public class UpdateGraph extends javax.swing.JFrame {
                 tempTxtKeyReleased(evt);
             }
         });
+        getContentPane().add(tempTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 97, 175, -1));
 
+        balTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         balTxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 balTxtKeyPressed(evt);
@@ -83,77 +96,38 @@ public class UpdateGraph extends javax.swing.JFrame {
                 balTxtKeyReleased(evt);
             }
         });
+        getContentPane().add(balTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(107, 138, 175, -1));
 
+        okBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         okBtn.setText("OK");
         okBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(okBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 253, -1, -1));
 
+        backBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(223, 253, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel2)
-                                    .addComponent(jLabel3))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(tempTxt)
-                                    .addComponent(balTxt))))
-                        .addGap(0, 46, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(okBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backBtn)))
-                .addContainerGap())
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(idTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(63, 63, 63)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(tempTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(balTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 103, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(okBtn)
-                    .addComponent(backBtn))
-                .addContainerGap())
-        );
+        jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 290));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         GraphUI g = new GraphUI();
         g.setVisible(true);
+        gee.kill();
         this.dispose();
     }//GEN-LAST:event_backBtnActionPerformed
 
@@ -164,8 +138,7 @@ public class UpdateGraph extends javax.swing.JFrame {
 
         date = LocalDate.now(ZoneId.of("Africa/Harare")) + "";
         System.out.println("Current date " + date);
-        
-        
+
         if (!tempTxt.getText().isEmpty()) {
             temp = Double.parseDouble(tempTxt.getText());
             if (!balTxt.getText().isEmpty()) {
@@ -240,6 +213,7 @@ public class UpdateGraph extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JButton okBtn;
     private javax.swing.JTextField tempTxt;
     // End of variables declaration//GEN-END:variables

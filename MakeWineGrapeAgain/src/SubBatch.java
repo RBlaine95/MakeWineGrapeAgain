@@ -54,37 +54,52 @@ public class SubBatch extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         stageBox = new javax.swing.JComboBox<String>();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Sub Batch");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel1.setText("Selected:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 14, -1, -1));
 
         selectedTxt.setEditable(false);
+        selectedTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        getContentPane().add(selectedTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 11, 210, -1));
 
+        backBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 200, -1, -1));
 
+        subMassSlide.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         subMassSlide.setValue(0);
         subMassSlide.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 subMassSlideStateChanged(evt);
             }
         });
+        getContentPane().add(subMassSlide, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 52, 256, -1));
 
+        jLabel2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel2.setText("Mass of Sub Batch");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 55, -1, 20));
 
+        okBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         okBtn.setText("OK");
         okBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okBtnActionPerformed(evt);
             }
         });
+        getContentPane().add(okBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(331, 200, -1, -1));
 
+        massTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         massTxt.setText("0");
         massTxt.setToolTipText("Sub Batch Mass");
         massTxt.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -97,76 +112,25 @@ public class SubBatch extends javax.swing.JFrame {
                 massTxtActionPerformed(evt);
             }
         });
+        getContentPane().add(massTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 84, 72, -1));
 
+        jLabel3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel3.setText("Stage");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 134, -1, -1));
 
+        stageBox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
+        getContentPane().add(stageBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 131, -1, -1));
 
+        jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel4.setText("KG");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 87, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(110, 110, 110)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(backBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(okBtn))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addGap(12, 12, 12)
-                        .addComponent(subMassSlide, javax.swing.GroupLayout.DEFAULT_SIZE, 270, Short.MAX_VALUE)))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(massTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4)
-                .addGap(83, 83, 83))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addGap(18, 18, 18)
-                .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(subMassSlide, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(massTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel4))
-                .addGap(24, 24, 24)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(backBtn)
-                    .addComponent(okBtn))
-                .addContainerGap())
-        );
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 240));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -201,7 +165,6 @@ public class SubBatch extends javax.swing.JFrame {
             double massT = Double.parseDouble(rs.getString(1));
 
             //calculate new mass in Kg
-
             sql = "UPDATE batch SET mass = " + (massT - subMass) + " WHERE batchid = '" + batch + "'";
             Pinwheel.updateCCDB(sql); //update main batch
 
@@ -215,7 +178,7 @@ public class SubBatch extends javax.swing.JFrame {
                 while (rs.next()) {
                     String chem = rs.getNString(1);
                     amount = rs.getInt(2);
-                    amount = amount * (subMass/massT / 100);
+                    amount = amount * (subMass / massT / 100);
                     Pinwheel.insertCustomChemicalAt(subID, chem, amount + "");
                 }
                 Pinwheel.createSpecGraph(subID);
@@ -248,6 +211,7 @@ public class SubBatch extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JTextField massTxt;
     private javax.swing.JButton okBtn;
     private javax.swing.JTextField selectedTxt;

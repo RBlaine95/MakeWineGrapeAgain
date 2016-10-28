@@ -35,7 +35,7 @@ public final class Pinwheel {
     static ArrayList<String> typeAll = new ArrayList();
     static ArrayList<String> stages = new ArrayList();
     static ArrayList<String> stagesAll = new ArrayList();
-    
+
     static Statement s;
     static Connection conn;
     static ResultSet rs;
@@ -58,26 +58,21 @@ public final class Pinwheel {
         connectChem();
         connectCCDB();
         connectGraphDB();
-        
-        
-              
+
         for (int i = 0; i < tempdataId.length; i++) {
             tempdataId[i] = "";
         }
-        
+
         colourAll.add("All");
         supplierAll.add("All");
         typeAll.add("All");
         stagesAll.add("All");
-        
+
         refreshChemicals();
         refreshColour();
         refreshSupplier();
         refreshType();
-        
-        
 
-        
         stages.add("Fermentation");
         stages.add("Pressing");
         stages.add("Maturation");
@@ -85,14 +80,12 @@ public final class Pinwheel {
         stages.add("Prep for Bottling");
         stages.add("Bottling");
         stages.add("Storage");
-        
-        
+
         for (int i = 0; i < stages.size(); i++) {
             stagesAll.add(stages.get(i));
             System.out.println(stagesAll.get(i));
         }
-        
-        
+
     }
 
     private static void connectCCDB() {
@@ -163,12 +156,14 @@ public final class Pinwheel {
         sql = "DROP TABLE " + data[0];
         updateChem(sql);
     }
+
     public static void deleteSubBatch() {
         sql = "DELETE FROM subbatch WHERE subbatchid = '" + data[0] + "'";
         updateCCDB(sql);
         sql = "DROP TABLE " + data[0];
         updateChem(sql);
     }
+
     public static void deleteBlend() {
         sql = "DELETE FROM blend WHERE bid = '" + data[0] + "'";
         updateCCDB(sql);
@@ -182,9 +177,9 @@ public final class Pinwheel {
     }
 
     public static void deleteSupplier() {
-        sql = "DELETE FROM supplier WHERE sname = '" + data[0] + "'";
+        sql = "UPDATE batch SET supplierid = 'DELETED' WHERE supplierid = '" + data[0] + "'";
         updateCCDB(sql);
-        sql = "UPDATE batch SET supplierid = DELETED WHERE supplierid = '" + data[0] + "'";
+        sql = "DELETE FROM supplier WHERE sname = '" + data[0] + "'";
         updateCCDB(sql);
     }
 
@@ -347,6 +342,7 @@ public final class Pinwheel {
     public static ArrayList<String> getStages() {
         return stages;
     }
+
     public static ArrayList<String> getStagesAll() {
         return stagesAll;
     }
@@ -371,7 +367,7 @@ public final class Pinwheel {
         for (int i = 0; i < type.size(); i++) {
             typeAll.add(type.get(i));
         }
-sc.close();
+        sc.close();
     }
 
     public static void refreshSupplier() throws SQLException {
@@ -490,28 +486,30 @@ sc.close();
         sql = "CREATE TABLE " + data[0] + " (date TEXT(255), balling DECIMAL(5,2), temperature DECIMAL(5,2))";
         updateGraphDB(sql);
     }
+
     public static void createSpecGraph(String a) {
         System.out.println(data[0]);
         sql = "CREATE TABLE " + a + " (date TEXT(255), balling DECIMAL(5,2), temperature DECIMAL(5,2))";
         updateGraphDB(sql);
     }
-    
-    public static void learnColour(String c){
+
+    public static void learnColour(String c) {
         try (FileWriter fw = new FileWriter("colour.txt", true);
-                    BufferedWriter bw = new BufferedWriter(fw);
-                    PrintWriter out = new PrintWriter(bw)) {
-                out.println(c);
-            } catch (IOException ex) {
-                
-            }
+                BufferedWriter bw = new BufferedWriter(fw);
+                PrintWriter out = new PrintWriter(bw)) {
+            out.println(c);
+        } catch (IOException ex) {
+
+        }
     }
-    public static void learnType(String c){
+
+    public static void learnType(String c) {
         try (FileWriter fw = new FileWriter("type.txt", true);
-                    BufferedWriter bw = new BufferedWriter(fw);
-                    PrintWriter out = new PrintWriter(bw)) {
-                out.println(c);
-            } catch (IOException ex) {
-                
-            }
+                BufferedWriter bw = new BufferedWriter(fw);
+                PrintWriter out = new PrintWriter(bw)) {
+            out.println(c);
+        } catch (IOException ex) {
+
+        }
     }
 }

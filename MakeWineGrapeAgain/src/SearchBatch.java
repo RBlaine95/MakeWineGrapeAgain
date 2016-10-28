@@ -44,20 +44,18 @@ public class SearchBatch extends javax.swing.JFrame {
                 batchTbl.getColumnModel().getColumn(3).setHeaderValue("Volume");
                 batchTbl.getColumnModel().getColumn(4).setHeaderValue("Stage");
                 batchTbl.getColumnModel().getColumn(5).setHeaderValue("Blend Of");
-                
+
                 this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColourAll().toArray()));
                 this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getTypeAll().toArray()));
                 this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStagesAll().toArray()));
-                
-                
-                
+
                 data = new String[6];
-                
+
                 this.batchLbl.setText("Blend Name");
                 this.supplierLbl.setText("");
-                
+
                 this.suppBox.setVisible(false);
-                
+
                 this.suppBox.setEnabled(false);
                 break;
             case "subbatch":
@@ -67,7 +65,7 @@ public class SearchBatch extends javax.swing.JFrame {
                 this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getTypeAll().toArray()));
                 this.suppBox.setModel(new DefaultComboBoxModel(Pinwheel.getSupplierAll().toArray()));
                 this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStagesAll().toArray()));
-                
+
                 data = new String[6];
                 break;
             case "batch":
@@ -446,7 +444,7 @@ public class SearchBatch extends javax.swing.JFrame {
                     whered = true;
                     sql += " stage = '" + Pinwheel.stageGetNo(this.stage) + "'";
                 }
-               
+
                 try {
                     System.out.println(sql);
                     rs = Pinwheel.queryCCDB(sql);
@@ -457,10 +455,7 @@ public class SearchBatch extends javax.swing.JFrame {
                             list[i] = (rs.getString(i + 1));
                         }
                         list[3] = Pinwheel.stageGetWord(Integer.parseInt(list[3] + ""));
-                        
-                        
-                        
-                        
+
                         ((DefaultTableModel) this.batchTbl.getModel()).insertRow(count, list);
                         count++;
                     }
@@ -503,22 +498,22 @@ public class SearchBatch extends javax.swing.JFrame {
                     whered = true;
                     sql += " stage = '" + Pinwheel.stageGetNo(this.stage) + "'";
                 }
-                
+
                 try {
                     rs = Pinwheel.queryCCDB(sql);
                     int count = 0;
                     while (rs.next()) {
-                        for (int i = 0; i < list.length-1; i++) {
+                        for (int i = 0; i < list.length - 1; i++) {
                             list[i] = (rs.getString(i + 1));
                         }
                         String combine = "";
                         for (int i = 6; i < 14; i++) {
                             String buffer = rs.getNString(i);
-                            
-                            combine += (buffer == (null))?"":buffer + ", ";
+
+                            combine += (buffer == (null)) ? "" : buffer + ", ";
                         }
                         list[5] = combine;
-  
+
                         list[4] = Pinwheel.stageGetWord(Integer.parseInt(list[4] + ""));
                         ((DefaultTableModel) this.batchTbl.getModel()).insertRow(count, list);
                         count++;
@@ -527,7 +522,7 @@ public class SearchBatch extends javax.swing.JFrame {
                     Logger.getLogger(SearchBatch.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
-                
+
             case "batch":
                 sql = "SELECT batchid, colour, type, stage, mass, supplierid FROM batch";
                 list = new Object[6];
