@@ -212,16 +212,19 @@ public class Update extends javax.swing.JFrame {
                 if (masscheck == JOptionPane.YES_OPTION) {
                     switch (Pinwheel.getSearchType()) {
                         case "batch":
-                            sql = "UPDATE batch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedIndex() + "") + "', mass = " + Double.parseDouble(this.massTxt.getText()) + " WHERE batchid = '" + data[0] + "'";
+                            sql = "UPDATE batch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedItem() + "") + "', mass = " + Double.parseDouble(this.massTxt.getText()) + " WHERE batchid = '" + data[0] + "'";
                             break;
                         case "subbatch":
-                            sql = "UPDATE subbatch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedIndex() + "") + "', mass = " + Double.parseDouble(this.massTxt.getText()) + " WHERE subbatchid = '" + data[0] + "'";
+                            sql = "UPDATE subbatch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedItem() + "") + "', mass = " + Double.parseDouble(this.massTxt.getText()) + " WHERE subbatchid = '" + data[0] + "'";
                             break;
                         case "blend":
-                            sql = "UPDATE blend SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedIndex() + "") + "', mass = " + Double.parseDouble(this.massTxt.getText()) + " WHERE bid = '" + data[0] + "'";
+                            sql = "UPDATE blend SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedItem() + "") + "', mass = " + Double.parseDouble(this.massTxt.getText()) + " WHERE bid = '" + data[0] + "'";
                             break;
                     }
                     Pinwheel.updateCCDB(sql);
+                    Pinwheel.updateBatch();
+                    
+                    this.dispose();
                 }
 
             }
