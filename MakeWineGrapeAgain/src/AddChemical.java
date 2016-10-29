@@ -56,7 +56,9 @@ public class AddChemical extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
+        setMaximumSize(new java.awt.Dimension(300, 200));
         setMinimumSize(new java.awt.Dimension(300, 200));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setOpaque(false);

@@ -47,13 +47,6 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        this.addWindowListener(new java.awt.event.WindowAdapter() {
-            @Override
-            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
-                logoutBtn.doClick();
-            }
-        });
-
     }
 
     /**
@@ -78,7 +71,7 @@ public class main extends javax.swing.JFrame {
         logoutBtn = new javax.swing.JButton();
         bground = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("MAKE WINE GRAPE AGAIN");
         getContentPane().setLayout(null);
 

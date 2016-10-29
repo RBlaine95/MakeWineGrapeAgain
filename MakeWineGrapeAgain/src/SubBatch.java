@@ -59,12 +59,13 @@ public class SubBatch extends javax.swing.JFrame {
         okBtn = new javax.swing.JButton();
         massTxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        stageBox = new javax.swing.JComboBox<String>();
+        stageBox = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Sub Batch");
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -126,7 +127,7 @@ public class SubBatch extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 134, -1, -1));
 
         stageBox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
+        stageBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
         getContentPane().add(stageBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 131, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N

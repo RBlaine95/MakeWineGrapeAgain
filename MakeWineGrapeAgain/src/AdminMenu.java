@@ -47,6 +47,7 @@ public class AdminMenu extends javax.swing.JFrame {
         setTitle("Administrator");
         setAlwaysOnTop(true);
         setMinimumSize(new java.awt.Dimension(400, 300));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         editBatchBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N

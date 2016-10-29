@@ -47,6 +47,7 @@ public class Prompt extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("APPROVE?");
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtLbl.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
