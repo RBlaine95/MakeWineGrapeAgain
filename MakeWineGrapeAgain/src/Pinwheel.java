@@ -150,6 +150,26 @@ public final class Pinwheel {
         updateCCDB(sql);
     }
 
+    public static void updateBatch() {
+
+        sql = "SELECT * FROM batch WHERE batchid = '" + data[0] + "'";
+        try {
+            rs = Pinwheel.queryCCDB(sql);
+            while (rs.next()) {
+                data[0] = rs.getNString(1);
+                data[1] = rs.getNString(2);
+                data[2] = rs.getNString(3);
+                data[3] = rs.getNString(4);
+                data[4] = rs.getInt(5) + "";
+                data[5] = rs.getNString(6);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(Pinwheel.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
     public static void deleteBatch() {
         sql = "DELETE FROM batch WHERE batchid = '" + data[0] + "'";
         updateCCDB(sql);

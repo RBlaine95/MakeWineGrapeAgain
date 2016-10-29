@@ -1158,9 +1158,10 @@ public class Blend extends javax.swing.JFrame {
                 String chem = rs.getNString(1);
                 amount = rs.getInt(2);
 
-                double newamount = amount * ((percent / Double.parseDouble(this.volTxt.getText())) * 100);
+                double newamount = amount * ((percent/100) * Double.parseDouble(volTxt.getText()));
                 Pinwheel.insertCustomChemicalAt(bid, chem, newamount + "");
-                Pinwheel.insertCustomChemicalAt(batch, chem, -newamount + "");
+                newamount = -newamount;
+                Pinwheel.insertCustomChemicalAt(batch, chem, newamount +  "");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Blend.class.getName()).log(Level.SEVERE, null, ex);
