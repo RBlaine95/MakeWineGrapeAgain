@@ -74,6 +74,7 @@ public class AdminEdit extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(673, 415));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         warningLbl.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
