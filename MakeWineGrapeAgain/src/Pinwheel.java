@@ -533,4 +533,8 @@ public final class Pinwheel {
 
         }
     }
+
+    public static String numEx(String s) {
+        return s.replaceAll("[^\\d.]", "");
+    }
 }
