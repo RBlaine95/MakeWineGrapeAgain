@@ -184,6 +184,7 @@ public class SearchBatch extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Search Batches");
+        setResizable(false);
         getContentPane().setLayout(null);
 
         batchTbl.setModel(new javax.swing.table.DefaultTableModel(

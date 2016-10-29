@@ -62,6 +62,7 @@ public class Update extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Update Batch");
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jLabel4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
