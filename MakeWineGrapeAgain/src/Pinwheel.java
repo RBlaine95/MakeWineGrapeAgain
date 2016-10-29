@@ -242,7 +242,7 @@ public final class Pinwheel {
     public static ResultSet queryChem(String sql) throws SQLException {
         sChem = connChem.createStatement();
         System.out.println("Queries Chem");
-        rsChem = sChem.executeQuery(sql);
+        rsChem = sChem.executeQuery(clean(sql));
         return rsChem;
     }
 
@@ -250,7 +250,7 @@ public final class Pinwheel {
 
         try {
             sChem = connChem.createStatement();
-            sChem.executeUpdate(sql);
+            sChem.executeUpdate(clean(sql));
             return true;
         } catch (SQLException ex) {
             return false;
@@ -261,7 +261,7 @@ public final class Pinwheel {
     public static ResultSet queryCCDB(String sql) throws SQLException {
         s = conn.createStatement();
         System.out.println("Queries Database, Not too many of these pls");
-        rs = s.executeQuery(sql);
+        rs = s.executeQuery(clean(sql));
         return rs;
     }
 
@@ -273,7 +273,7 @@ public final class Pinwheel {
             Logger.getLogger(Pinwheel.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            s.executeUpdate(sql);
+            s.executeUpdate(clean(sql));
         } catch (SQLException ex) {
             System.out.println("fails running sql");
             Logger.getLogger(Pinwheel.class.getName()).log(Level.SEVERE, null, ex);
@@ -284,7 +284,7 @@ public final class Pinwheel {
     public static ResultSet queryGraphDB(String sql) throws SQLException {
         sGraph = connGraph.createStatement();
         System.out.println("Queries GraphDB");
-        rsGraph = sGraph.executeQuery(sql);
+        rsGraph = sGraph.executeQuery(clean(sql));
         return rsGraph;
     }
 
@@ -296,7 +296,7 @@ public final class Pinwheel {
             Logger.getLogger(Pinwheel.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            sGraph.executeUpdate(sql);
+            sGraph.executeUpdate(clean(sql));
         } catch (SQLException ex) {
             System.out.println("fails running sql");
             Logger.getLogger(Pinwheel.class.getName()).log(Level.SEVERE, null, ex);
@@ -536,5 +536,10 @@ public final class Pinwheel {
 
     public static String numEx(String s) {
         return s.replaceAll("[^\\d.]", "");
+    }
+
+    public static String clean(String s) {
+//        return s.replaceAll("/\\*.*?\\*/", "");
+        return s.replace("'", "''");
     }
 }
