@@ -260,6 +260,14 @@ public class main extends javax.swing.JFrame {
         this.dispose();
         log.setVisible(true);
     }
+    
+    public int exitButtonPressed(){
+        Login_UI log = new Login_UI();
+        this.dispose();
+        log.setVisible(true);
+        
+        return 1;
+    }
     /**
      * @param args the command line arguments
      */
