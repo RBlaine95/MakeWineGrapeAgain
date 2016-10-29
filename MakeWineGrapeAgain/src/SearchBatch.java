@@ -127,6 +127,13 @@ public class SearchBatch extends javax.swing.JFrame {
 
                 break;
         }
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                backBtn.doClick();
+            }
+        });
     }
 
     public SearchBatch(boolean a, int i) {
@@ -156,7 +163,7 @@ public class SearchBatch extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         batchTbl = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        exitBtn = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
         searchBtn = new javax.swing.JButton();
         selectBtn = new javax.swing.JButton();
         suppBox = new javax.swing.JComboBox();
@@ -220,10 +227,10 @@ public class SearchBatch extends javax.swing.JFrame {
         jPanel1.setOpaque(false);
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 270));
 
-        exitBtn.setText("Back");
-        exitBtn.addActionListener(new java.awt.event.ActionListener() {
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitBtnActionPerformed(evt);
+                backBtnActionPerformed(evt);
             }
         });
 
@@ -303,7 +310,7 @@ public class SearchBatch extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -326,7 +333,7 @@ public class SearchBatch extends javax.swing.JFrame {
                             .addComponent(suppBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(selectBtn)
                             .addComponent(searchBtn)
-                            .addComponent(exitBtn)))
+                            .addComponent(backBtn)))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(typeLbl)
                         .addComponent(colourLbl)))
@@ -344,9 +351,9 @@ public class SearchBatch extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         this.dispose();
-    }//GEN-LAST:event_exitBtnActionPerformed
+    }//GEN-LAST:event_backBtnActionPerformed
 
     private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
 
@@ -642,12 +649,12 @@ public class SearchBatch extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JTextField batchIdTxt;
     private javax.swing.JLabel batchLbl;
     private javax.swing.JTable batchTbl;
     private javax.swing.JComboBox colourBox;
     private javax.swing.JLabel colourLbl;
-    private javax.swing.JButton exitBtn;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;

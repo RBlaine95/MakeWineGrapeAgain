@@ -21,6 +21,13 @@ public class AddSupplier extends javax.swing.JFrame {
      */
     public AddSupplier() {
         initComponents();
+        
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                cancelBtn.doClick();
+            }
+        });
     }
 
     /**

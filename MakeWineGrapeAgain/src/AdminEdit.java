@@ -46,6 +46,13 @@ public class AdminEdit extends javax.swing.JFrame {
         }
         ((DefaultTableModel) this.batchTbl.getModel()).insertRow(0, data);
 
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                backBtn.doClick();
+            }
+        });
+        
     }
 
     /**

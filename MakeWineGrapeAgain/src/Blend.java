@@ -61,6 +61,13 @@ public class Blend extends javax.swing.JFrame {
         this.batch9Txt.setText(temp[7]);
 
         this.refresh();
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                backBtn.doClick();
+            }
+        });
     }
 
     /**
@@ -1158,10 +1165,10 @@ public class Blend extends javax.swing.JFrame {
                 String chem = rs.getNString(1);
                 amount = rs.getInt(2);
 
-                double newamount = amount * ((percent/100) * Double.parseDouble(volTxt.getText()));
+                double newamount = amount * ((percent / 100) * Double.parseDouble(volTxt.getText()));
                 Pinwheel.insertCustomChemicalAt(bid, chem, newamount + "");
                 newamount = -newamount;
-                Pinwheel.insertCustomChemicalAt(batch, chem, newamount +  "");
+                Pinwheel.insertCustomChemicalAt(batch, chem, newamount + "");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Blend.class.getName()).log(Level.SEVERE, null, ex);

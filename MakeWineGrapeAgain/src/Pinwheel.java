@@ -73,6 +73,7 @@ public final class Pinwheel {
         refreshSupplier();
         refreshType();
 
+        stages.add("Crushing");
         stages.add("Fermentation");
         stages.add("Pressing");
         stages.add("Maturation");
