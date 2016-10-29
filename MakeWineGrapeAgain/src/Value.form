@@ -100,11 +100,11 @@
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Calibri" size="14" style="0"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Cost per Cork"/>
+        <Property name="text" type="java.lang.String" value="Cost per Cork/Screw cap"/>
       </Properties>
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="56" y="128" width="-1" height="-1"/>
+          <AbsoluteConstraints x="0" y="130" width="-1" height="-1"/>
         </Constraint>
       </Constraints>
     </Component>

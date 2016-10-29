@@ -29,6 +29,13 @@ public class Update extends javax.swing.JFrame {
         batch = data[0];
         this.stageBox.setSelectedIndex(Pinwheel.stageGetNo(data[3]));
         this.selectedTxt.setText(batch);
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                backBtn.doClick();
+            }
+        });
     }
 
     /**
@@ -223,7 +230,7 @@ public class Update extends javax.swing.JFrame {
                     }
                     Pinwheel.updateCCDB(sql);
                     Pinwheel.updateBatch();
-                    
+
                     this.dispose();
                 }
 

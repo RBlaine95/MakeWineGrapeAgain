@@ -2,6 +2,8 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
@@ -45,6 +47,13 @@ public class main extends javax.swing.JFrame {
             }
         });
 
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                logoutBtn.doClick();
+            }
+        });
+
     }
 
     /**
@@ -63,13 +72,13 @@ public class main extends javax.swing.JFrame {
         addBtn = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        resetBtn = new javax.swing.JButton();
         appNameLbl = new javax.swing.JLabel();
         versionNumLbl = new javax.swing.JLabel();
         logoutBtn = new javax.swing.JButton();
         bground = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("MAKE WINE GRAPE AGAIN");
         getContentPane().setLayout(null);
 
@@ -115,10 +124,10 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Reset Password");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        resetBtn.setText("Reset Password");
+        resetBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                resetBtnActionPerformed(evt);
             }
         });
 
@@ -139,7 +148,7 @@ public class main extends javax.swing.JFrame {
                 .addGap(18, 18, 18))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton3)
+                .addComponent(resetBtn)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -159,7 +168,7 @@ public class main extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addComponent(adminBtn)
                 .addGap(61, 61, 61)
-                .addComponent(jButton3)
+                .addComponent(resetBtn)
                 .addContainerGap(85, Short.MAX_VALUE))
         );
 
@@ -229,45 +238,40 @@ public class main extends javax.swing.JFrame {
         sb.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void resetBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetBtnActionPerformed
 
         String pass = JOptionPane.showInputDialog(null, "Please Enter new password");
 
-        MessageDigest messageDigest;
-        try {
-            messageDigest = MessageDigest.getInstance("SHA-256");
-
-            messageDigest.update(pass.getBytes());
-            String encryptedString = new String(messageDigest.digest());
-
-            PrintWriter writer;
+        if (pass != null) {
+            MessageDigest messageDigest;
             try {
-                writer = new PrintWriter("pass.txt");
-                writer.println(encryptedString);
-                writer.close();
-            } catch (FileNotFoundException ex) {
+                messageDigest = MessageDigest.getInstance("SHA-256");
+
+                messageDigest.update(pass.getBytes());
+                String encryptedString = new String(messageDigest.digest());
+
+                PrintWriter writer;
+                try {
+                    writer = new PrintWriter("pass.txt");
+                    writer.println(encryptedString);
+                    writer.close();
+                } catch (FileNotFoundException ex) {
+                    Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            } catch (NoSuchAlgorithmException ex) {
                 Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
             }
-
-        } catch (NoSuchAlgorithmException ex) {
-            Logger.getLogger(main.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_resetBtnActionPerformed
 
     public void onButtonlogoutBtnPressed() {
         Login_UI log = new Login_UI();
         this.dispose();
         log.setVisible(true);
     }
-    
-    public int exitButtonPressed(){
-        Login_UI log = new Login_UI();
-        this.dispose();
-        log.setVisible(true);
-        
-        return 1;
-    }
+
     /**
      * @param args the command line arguments
      */
@@ -279,10 +283,10 @@ public class main extends javax.swing.JFrame {
     private javax.swing.JLabel bground;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JLabel logo;
     private javax.swing.JButton logoutBtn;
+    private javax.swing.JButton resetBtn;
     private javax.swing.JButton searchBtn;
     private javax.swing.JLabel versionNumLbl;
     // End of variables declaration//GEN-END:variables

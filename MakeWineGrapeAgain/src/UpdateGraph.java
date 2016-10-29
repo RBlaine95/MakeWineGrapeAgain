@@ -28,6 +28,13 @@ public class UpdateGraph extends javax.swing.JFrame {
         batchData = Pinwheel.getData();
         this.batch = batchData[0];
         idTxt.setText(batch);
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                backBtn.doClick();
+            }
+        });
     }
 
     public UpdateGraph(GraphUI gee) {
@@ -36,6 +43,13 @@ public class UpdateGraph extends javax.swing.JFrame {
         batchData = Pinwheel.getData();
         this.batch = batchData[0];
         idTxt.setText(batch);
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                backBtn.doClick();
+            }
+        });
     }
 
     /**

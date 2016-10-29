@@ -74,6 +74,13 @@ public class GraphUI extends JFrame {
 
             plot.setRenderer(renderer);
 
+            this.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                    backBtn.doClick();
+                }
+            });
+
         } catch (SQLException ex) {
             Logger.getLogger(GraphUI.class.getName()).log(Level.SEVERE, null, ex);
         }

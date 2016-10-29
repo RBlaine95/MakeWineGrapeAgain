@@ -31,6 +31,13 @@ public class Chemicals extends javax.swing.JFrame {
         this.batch = data[0];
 
         this.selectedTxt.setText(batch);
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                backBtn.doClick();
+            }
+        });
     }
 
     /**

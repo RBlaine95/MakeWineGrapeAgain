@@ -20,6 +20,13 @@ public class Prompt extends javax.swing.JFrame {
         this.data = Pinwheel.getData();
 
         this.txtLbl.setText("<html>" + this.txtLbl.getText() + "<br/>ID:" + this.data[0] + "</html>");
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                cancelBtn.doClick();
+            }
+        });
     }
 
     /**

@@ -33,6 +33,13 @@ public class SubBatch extends javax.swing.JFrame {
         this.selectedTxt.setText(batch);
         this.subMassSlide.getModel().setMaximum(Integer.parseInt(this.data[4]));
         subMassSlide.getValue();
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                backBtn.doClick();
+            }
+        });
     }
 
     /**

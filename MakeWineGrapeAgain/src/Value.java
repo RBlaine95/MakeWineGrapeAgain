@@ -25,6 +25,13 @@ public class Value extends javax.swing.JFrame {
         initComponents();
         this.amountPerBottle.setText("750");
         this.selectedTxt.setText(Pinwheel.data[0]);
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                backBtn.doClick();
+            }
+        });
     }
 
     /**
@@ -87,8 +94,8 @@ public class Value extends javax.swing.JFrame {
         getContentPane().add(costPerCork, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 125, 70, -1));
 
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel3.setText("Cost per Cork");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 128, -1, -1));
+        jLabel3.setText("Cost per Cork/Screw cap");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel4.setText("After Bottling");
