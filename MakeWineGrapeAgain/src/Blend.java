@@ -340,6 +340,9 @@ public class Blend extends javax.swing.JFrame {
         getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 345, -1, -1));
 
         per1Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                per1TxtKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 per1TxtKeyReleased(evt);
             }
@@ -347,6 +350,9 @@ public class Blend extends javax.swing.JFrame {
         getContentPane().add(per1Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 12, 50, -1));
 
         per2Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                per2TxtKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 per2TxtKeyReleased(evt);
             }
@@ -354,6 +360,9 @@ public class Blend extends javax.swing.JFrame {
         getContentPane().add(per2Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 55, 50, -1));
 
         per4Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                per4TxtKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 per4TxtKeyReleased(evt);
             }
@@ -361,6 +370,9 @@ public class Blend extends javax.swing.JFrame {
         getContentPane().add(per4Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 137, 50, -1));
 
         per7Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                per7TxtKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 per7TxtKeyReleased(evt);
             }
@@ -368,6 +380,9 @@ public class Blend extends javax.swing.JFrame {
         getContentPane().add(per7Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 260, 50, -1));
 
         per5Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                per5TxtKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 per5TxtKeyReleased(evt);
             }
@@ -375,6 +390,9 @@ public class Blend extends javax.swing.JFrame {
         getContentPane().add(per5Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 178, 50, -1));
 
         per6Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                per6TxtKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 per6TxtKeyReleased(evt);
             }
@@ -382,6 +400,9 @@ public class Blend extends javax.swing.JFrame {
         getContentPane().add(per6Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 219, 50, -1));
 
         per8Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                per8TxtKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 per8TxtKeyReleased(evt);
             }
@@ -389,6 +410,9 @@ public class Blend extends javax.swing.JFrame {
         getContentPane().add(per8Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 301, 50, -1));
 
         per9Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                per9TxtKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 per9TxtKeyReleased(evt);
             }
@@ -405,6 +429,9 @@ public class Blend extends javax.swing.JFrame {
         getContentPane().add(select1Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 11, -1, -1));
 
         per3Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                per3TxtKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 per3TxtKeyReleased(evt);
             }
@@ -421,6 +448,9 @@ public class Blend extends javax.swing.JFrame {
 
         volTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         volTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                volTxtKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 volTxtKeyReleased(evt);
             }
@@ -895,7 +925,7 @@ public class Blend extends javax.swing.JFrame {
     }//GEN-LAST:event_stageBoxActionPerformed
 
     private void volTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_volTxtKeyReleased
-        this.volTxt.setText(this.volTxt.getText().replaceAll("[^\\d.]", ""));
+        volTxt.setText(Pinwheel.numEx(volTxt.getText()));
         this.check();
     }//GEN-LAST:event_volTxtKeyReleased
 
@@ -908,47 +938,47 @@ public class Blend extends javax.swing.JFrame {
     }//GEN-LAST:event_nameTxtKeyReleased
 
     private void per1TxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per1TxtKeyReleased
-        this.per1Txt.setText(this.per1Txt.getText().replaceAll("[^\\d.]", ""));
+        per1Txt.setText(Pinwheel.numEx(per1Txt.getText()));
         this.check();
     }//GEN-LAST:event_per1TxtKeyReleased
 
     private void per2TxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per2TxtKeyReleased
-        this.per2Txt.setText(this.per2Txt.getText().replaceAll("[^\\d.]", ""));
+        per2Txt.setText(Pinwheel.numEx(per2Txt.getText()));
         this.check();
     }//GEN-LAST:event_per2TxtKeyReleased
 
     private void per3TxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per3TxtKeyReleased
-        this.per3Txt.setText(this.per3Txt.getText().replaceAll("[^\\d.]", ""));
+        per3Txt.setText(Pinwheel.numEx(per3Txt.getText()));
         this.check();
     }//GEN-LAST:event_per3TxtKeyReleased
 
     private void per4TxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per4TxtKeyReleased
-        this.per4Txt.setText(this.per4Txt.getText().replaceAll("[^\\d.]", ""));
+        per4Txt.setText(Pinwheel.numEx(per4Txt.getText()));
         this.check();
     }//GEN-LAST:event_per4TxtKeyReleased
 
     private void per5TxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per5TxtKeyReleased
-        this.per5Txt.setText(this.per5Txt.getText().replaceAll("[^\\d.]", ""));
+        per5Txt.setText(Pinwheel.numEx(per5Txt.getText()));
         this.check();
     }//GEN-LAST:event_per5TxtKeyReleased
 
     private void per6TxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per6TxtKeyReleased
-        this.per6Txt.setText(this.per6Txt.getText().replaceAll("[^\\d.]", ""));
+        per6Txt.setText(Pinwheel.numEx(per6Txt.getText()));
         this.check();
     }//GEN-LAST:event_per6TxtKeyReleased
 
     private void per7TxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per7TxtKeyReleased
-        this.per7Txt.setText(this.per7Txt.getText().replaceAll("[^\\d.]", ""));
+        per7Txt.setText(Pinwheel.numEx(per7Txt.getText()));
         this.check();
     }//GEN-LAST:event_per7TxtKeyReleased
 
     private void per8TxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per8TxtKeyReleased
-        this.per8Txt.setText(this.per8Txt.getText().replaceAll("[^\\d.]", ""));
+        per8Txt.setText(Pinwheel.numEx(per8Txt.getText()));
         this.check();
     }//GEN-LAST:event_per8TxtKeyReleased
 
     private void per9TxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per9TxtKeyReleased
-        this.per9Txt.setText(this.per9Txt.getText().replaceAll("[^\\d.]", ""));
+        per9Txt.setText(Pinwheel.numEx(per9Txt.getText()));
         this.check();
     }//GEN-LAST:event_per9TxtKeyReleased
 
@@ -1011,6 +1041,46 @@ public class Blend extends javax.swing.JFrame {
             colTxt.setEnabled(false);
         }
     }//GEN-LAST:event_colBoxActionPerformed
+
+    private void per1TxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per1TxtKeyPressed
+        per1Txt.setText(Pinwheel.numEx(per1Txt.getText()));
+    }//GEN-LAST:event_per1TxtKeyPressed
+
+    private void per2TxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per2TxtKeyPressed
+        per2Txt.setText(Pinwheel.numEx(per2Txt.getText()));
+    }//GEN-LAST:event_per2TxtKeyPressed
+
+    private void per3TxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per3TxtKeyPressed
+        per3Txt.setText(Pinwheel.numEx(per3Txt.getText()));
+    }//GEN-LAST:event_per3TxtKeyPressed
+
+    private void per4TxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per4TxtKeyPressed
+        per4Txt.setText(Pinwheel.numEx(per4Txt.getText()));
+    }//GEN-LAST:event_per4TxtKeyPressed
+
+    private void per5TxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per5TxtKeyPressed
+        per5Txt.setText(Pinwheel.numEx(per5Txt.getText()));
+    }//GEN-LAST:event_per5TxtKeyPressed
+
+    private void per6TxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per6TxtKeyPressed
+        per6Txt.setText(Pinwheel.numEx(per6Txt.getText()));
+    }//GEN-LAST:event_per6TxtKeyPressed
+
+    private void per7TxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per7TxtKeyPressed
+        per7Txt.setText(Pinwheel.numEx(per7Txt.getText()));
+    }//GEN-LAST:event_per7TxtKeyPressed
+
+    private void per8TxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per8TxtKeyPressed
+        per8Txt.setText(Pinwheel.numEx(per8Txt.getText()));
+    }//GEN-LAST:event_per8TxtKeyPressed
+
+    private void per9TxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_per9TxtKeyPressed
+        per9Txt.setText(Pinwheel.numEx(per9Txt.getText()));
+    }//GEN-LAST:event_per9TxtKeyPressed
+
+    private void volTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_volTxtKeyPressed
+        volTxt.setText(Pinwheel.numEx(volTxt.getText()));
+    }//GEN-LAST:event_volTxtKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton backBtn;

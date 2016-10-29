@@ -90,6 +90,14 @@ public class Chemicals extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 125, -1, -1));
 
         amountTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        amountTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                amountTxtKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                amountTxtKeyReleased(evt);
+            }
+        });
         getContentPane().add(amountTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 88, -1));
 
         chemBox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -138,6 +146,14 @@ public class Chemicals extends javax.swing.JFrame {
             this.dispose();
         }
     }//GEN-LAST:event_chemBoxActionPerformed
+
+    private void amountTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountTxtKeyPressed
+        amountTxt.setText(Pinwheel.numEx(amountTxt.getText()));
+    }//GEN-LAST:event_amountTxtKeyPressed
+
+    private void amountTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountTxtKeyReleased
+        amountTxt.setText(Pinwheel.numEx(amountTxt.getText()));
+    }//GEN-LAST:event_amountTxtKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amountTxt;

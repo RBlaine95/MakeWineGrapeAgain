@@ -172,19 +172,19 @@ public class UpdateGraph extends javax.swing.JFrame {
     }//GEN-LAST:event_okBtnActionPerformed
 
     private void tempTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tempTxtKeyReleased
-        this.tempTxt.setText(this.tempTxt.getText().replaceAll("[^\\d.]", ""));
+        tempTxt.setText(Pinwheel.numEx(tempTxt.getText()));
     }//GEN-LAST:event_tempTxtKeyReleased
 
     private void tempTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tempTxtKeyPressed
-        this.tempTxt.setText(this.tempTxt.getText().replaceAll("[^\\d.]", ""));
+        tempTxt.setText(Pinwheel.numEx(tempTxt.getText()));
     }//GEN-LAST:event_tempTxtKeyPressed
 
     private void balTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_balTxtKeyPressed
-        this.balTxt.setText(this.balTxt.getText().replaceAll("[^\\d.]", ""));
+        balTxt.setText(Pinwheel.numEx(balTxt.getText()));
     }//GEN-LAST:event_balTxtKeyPressed
 
     private void balTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_balTxtKeyReleased
-        this.balTxt.setText(this.balTxt.getText().replaceAll("[^\\d.]", ""));
+        balTxt.setText(Pinwheel.numEx(balTxt.getText()));
     }//GEN-LAST:event_balTxtKeyReleased
 
     /**

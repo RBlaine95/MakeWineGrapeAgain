@@ -80,6 +80,9 @@ public class Value extends javax.swing.JFrame {
 
         costPerBottle.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         costPerBottle.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                costPerBottleKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 costPerBottleKeyReleased(evt);
             }
@@ -88,6 +91,9 @@ public class Value extends javax.swing.JFrame {
 
         costPerCork.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         costPerCork.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                costPerCorkKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 costPerCorkKeyReleased(evt);
             }
@@ -129,6 +135,9 @@ public class Value extends javax.swing.JFrame {
 
         amountPerBottle.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         amountPerBottle.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                amountPerBottleKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 amountPerBottleKeyReleased(evt);
             }
@@ -174,16 +183,28 @@ public class Value extends javax.swing.JFrame {
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void costPerBottleKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_costPerBottleKeyReleased
-        this.costPerBottle.setText(this.costPerBottle.getText().replaceAll("[^\\d.]", ""));
+        costPerBottle.setText(Pinwheel.numEx(costPerBottle.getText()));
     }//GEN-LAST:event_costPerBottleKeyReleased
 
     private void costPerCorkKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_costPerCorkKeyReleased
-        this.costPerCork.setText(this.costPerCork.getText().replaceAll("[^\\d.]", ""));
+        costPerCork.setText(Pinwheel.numEx(costPerCork.getText()));
     }//GEN-LAST:event_costPerCorkKeyReleased
 
     private void amountPerBottleKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountPerBottleKeyReleased
-        this.amountPerBottle.setText(this.amountPerBottle.getText().replaceAll("[^\\d.]", ""));
+        amountPerBottle.setText(Pinwheel.numEx(amountPerBottle.getText()));
     }//GEN-LAST:event_amountPerBottleKeyReleased
+
+    private void costPerBottleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_costPerBottleKeyPressed
+        costPerBottle.setText(Pinwheel.numEx(costPerBottle.getText()));
+    }//GEN-LAST:event_costPerBottleKeyPressed
+
+    private void costPerCorkKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_costPerCorkKeyPressed
+        costPerCork.setText(Pinwheel.numEx(costPerCork.getText()));
+    }//GEN-LAST:event_costPerCorkKeyPressed
+
+    private void amountPerBottleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountPerBottleKeyPressed
+        amountPerBottle.setText(Pinwheel.numEx(amountPerBottle.getText()));
+    }//GEN-LAST:event_amountPerBottleKeyPressed
 
     /**
      * @param args the command line arguments

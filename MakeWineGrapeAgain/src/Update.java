@@ -89,6 +89,9 @@ public class Update extends javax.swing.JFrame {
             }
         });
         massTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                massTxtKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 massTxtKeyReleased(evt);
             }
@@ -244,8 +247,12 @@ public class Update extends javax.swing.JFrame {
     }//GEN-LAST:event_massTxtActionPerformed
 
     private void massTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_massTxtKeyReleased
-        this.massTxt.setText(this.massTxt.getText().replaceAll("[^\\d.]", ""));
+        massTxt.setText(Pinwheel.numEx(massTxt.getText()));
     }//GEN-LAST:event_massTxtKeyReleased
+
+    private void massTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_massTxtKeyPressed
+        massTxt.setText(Pinwheel.numEx(massTxt.getText()));
+    }//GEN-LAST:event_massTxtKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -503,6 +503,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="per1Txt">
       <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="per1TxtKeyPressed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="per1TxtKeyReleased"/>
       </Events>
       <Constraints>
@@ -513,6 +514,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="per2Txt">
       <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="per2TxtKeyPressed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="per2TxtKeyReleased"/>
       </Events>
       <Constraints>
@@ -523,6 +525,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="per4Txt">
       <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="per4TxtKeyPressed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="per4TxtKeyReleased"/>
       </Events>
       <Constraints>
@@ -533,6 +536,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="per7Txt">
       <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="per7TxtKeyPressed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="per7TxtKeyReleased"/>
       </Events>
       <Constraints>
@@ -543,6 +547,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="per5Txt">
       <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="per5TxtKeyPressed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="per5TxtKeyReleased"/>
       </Events>
       <Constraints>
@@ -553,6 +558,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="per6Txt">
       <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="per6TxtKeyPressed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="per6TxtKeyReleased"/>
       </Events>
       <Constraints>
@@ -563,6 +569,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="per8Txt">
       <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="per8TxtKeyPressed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="per8TxtKeyReleased"/>
       </Events>
       <Constraints>
@@ -573,6 +580,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="per9Txt">
       <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="per9TxtKeyPressed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="per9TxtKeyReleased"/>
       </Events>
       <Constraints>
@@ -599,6 +607,7 @@
     </Component>
     <Component class="javax.swing.JTextField" name="per3Txt">
       <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="per3TxtKeyPressed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="per3TxtKeyReleased"/>
       </Events>
       <Constraints>
@@ -640,6 +649,7 @@
         </Property>
       </Properties>
       <Events>
+        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="volTxtKeyPressed"/>
         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="volTxtKeyReleased"/>
       </Events>
       <Constraints>

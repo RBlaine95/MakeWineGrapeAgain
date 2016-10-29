@@ -24,14 +24,14 @@ public class Add extends javax.swing.JFrame {
      */
     public Add() {
         initComponents();
-        
+
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
                 cancelBtn.doClick();
             }
         });
-        
+
     }
 
     /**
@@ -101,6 +101,9 @@ public class Add extends javax.swing.JFrame {
 
         colourOverrideTxt.setEditable(false);
         colourOverrideTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                colourOverrideTxtKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 colourOverrideTxtKeyReleased(evt);
             }
@@ -117,6 +120,9 @@ public class Add extends javax.swing.JFrame {
         jLabel5.setText("Mass in Litres");
 
         massTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                massTxtKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 massTxtKeyReleased(evt);
             }
@@ -158,6 +164,9 @@ public class Add extends javax.swing.JFrame {
         jLabel7.setText("Vintage");
 
         yearTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                yearTxtKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 yearTxtKeyReleased(evt);
             }
@@ -339,6 +348,7 @@ public class Add extends javax.swing.JFrame {
     }//GEN-LAST:event_okBtnActionPerformed
 
     private void massTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_massTxtKeyReleased
+        massTxt.setText(Pinwheel.numEx(massTxt.getText()));
         this.check();
     }//GEN-LAST:event_massTxtKeyReleased
 
@@ -351,6 +361,7 @@ public class Add extends javax.swing.JFrame {
     }//GEN-LAST:event_colourOverrideTxtKeyReleased
 
     private void yearTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_yearTxtKeyReleased
+        yearTxt.setText(Pinwheel.numEx(yearTxt.getText()));
         this.check();
     }//GEN-LAST:event_yearTxtKeyReleased
 
@@ -361,6 +372,18 @@ public class Add extends javax.swing.JFrame {
             Logger.getLogger(Add.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_formComponentShown
+
+    private void yearTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_yearTxtKeyPressed
+        yearTxt.setText(Pinwheel.numEx(yearTxt.getText()));
+    }//GEN-LAST:event_yearTxtKeyPressed
+
+    private void massTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_massTxtKeyPressed
+        massTxt.setText(Pinwheel.numEx(massTxt.getText()));
+    }//GEN-LAST:event_massTxtKeyPressed
+
+    private void colourOverrideTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_colourOverrideTxtKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_colourOverrideTxtKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;

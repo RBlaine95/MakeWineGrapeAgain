@@ -135,25 +135,33 @@ public final class Pinwheel {
     }
 
     public static void createChem() {
-        sql = "CREATE TABLE " + data[0] + " (chemical varchar(100), amount FLOAT(15))";
+        sql = "CREATE TABLE " 
+                + data[0] + " (chemical varchar(100), amount FLOAT(15))";
         updateChem(sql);
     }
 
     public static void createChem(String a) {
-        sql = "CREATE TABLE " + a + " (chemical varchar(100), amount FLOAT(15))";
+        sql = "CREATE TABLE " 
+                + clean(a) + " (chemical varchar(100), amount FLOAT(15))";
         updateChem(sql);
     }
 
     public static void insertBatch() {
         data[3] = stageGetNo(data[3]) + "";
-        sql = "INSERT INTO batch (batchid, colour, type, stage, mass, supplierid) VALUES('" + data[0] + "', '" + data[1] + "', '" + data[2] + "', '" + data[3] + "', '" + data[4]
-                + "', '" + data[5] + "')";
+        sql = "INSERT INTO batch (batchid, colour, type, stage, mass, supplierid) VALUES('" 
+                + data[0] + "', '"
+                + data[1] + "', '"
+                + data[2] + "', '"
+                + data[3] + "', '"
+                + data[4] + "', '"
+                + data[5] + "')";
         updateCCDB(sql);
     }
 
     public static void updateBatch() {
 
-        sql = "SELECT * FROM batch WHERE batchid = '" + data[0] + "'";
+        sql = "SELECT * FROM batch WHERE batchid = '"
+                + data[0] + "'";
         try {
             rs = Pinwheel.queryCCDB(sql);
             while (rs.next()) {
@@ -172,69 +180,100 @@ public final class Pinwheel {
     }
 
     public static void deleteBatch() {
-        sql = "DELETE FROM batch WHERE batchid = '" + data[0] + "'";
+        sql = "DELETE FROM batch WHERE batchid = '"
+                + data[0] + "'";
         updateCCDB(sql);
-        sql = "DROP TABLE " + data[0];
+        sql = "DROP TABLE "
+                + data[0];
         updateChem(sql);
     }
 
     public static void deleteSubBatch() {
-        sql = "DELETE FROM subbatch WHERE subbatchid = '" + data[0] + "'";
+        sql = "DELETE FROM subbatch WHERE subbatchid = '"
+                + data[0] + "'";
         updateCCDB(sql);
-        sql = "DROP TABLE " + data[0];
+        sql = "DROP TABLE "
+                + data[0];
         updateChem(sql);
     }
 
     public static void deleteBlend() {
-        sql = "DELETE FROM blend WHERE bid = '" + data[0] + "'";
+        sql = "DELETE FROM blend WHERE bid = '"
+                + data[0] + "'";
         updateCCDB(sql);
-        sql = "DROP TABLE " + data[0];
+        sql = "DROP TABLE "
+                + data[0];
         updateChem(sql);
     }
 
     public static void insertSupplier() {
-        sql = "INSERT INTO supplier (sname, tel, email, liason) VALUES('" + data[0] + "', '" + data[1] + "', '" + data[2] + "', '" + data[3] + "')";
+        sql = "INSERT INTO supplier (sname, tel, email, liason) VALUES('"
+                + data[0] + "', '"
+                + data[1] + "', '"
+                + data[2] + "', '"
+                + data[3] + "')";
         updateCCDB(sql);
     }
 
     public static void deleteSupplier() {
-        sql = "UPDATE batch SET supplierid = 'DELETED' WHERE supplierid = '" + data[0] + "'";
+        sql = "UPDATE batch SET supplierid = 'DELETED' WHERE supplierid = '"
+                + data[0] + "'";
         updateCCDB(sql);
-        sql = "DELETE FROM supplier WHERE sname = '" + data[0] + "'";
+        sql = "DELETE FROM supplier WHERE sname = '"
+                + data[0] + "'";
         updateCCDB(sql);
     }
 
     public static void insertChemical() {
-        sql = "INSERT INTO chemicaltbl (chemical, value) VALUES('" + data[0] + "', '" + data[1] + "')";
+        sql = "INSERT INTO chemicaltbl (chemical, value) VALUES('"
+                + data[0] + "', '"
+                + data[1] + "')";
         updateChem(sql);
     }
 
     public static void deleteChemical() {
-        sql = "DELETE FROM chemicaltbl WHERE chemical = '" + data[0] + "'";
+        sql = "DELETE FROM chemicaltbl WHERE chemical = '"
+                + data[0] + "'";
         updateChem(sql);
 
     }
 
     public static void insertChemicalAt(String c, String a) throws SQLException {
-        sql = "SELECT * FROM " + data[0] + " WHERE chemical = '" + c + "'";
+        sql = "SELECT * FROM "
+                + data[0] + " WHERE chemical = '"
+                + clean(c) + "'";
         rs = queryChem(sql);
 
         if (rs.next()) {
-            sql = "UPDATE " + data[0] + " SET amount = amount + " + a + " WHERE chemical = '" + c + "'";
+            sql = "UPDATE "
+                    + data[0] + " SET amount = amount + "
+                    + clean(a) + " WHERE chemical = '"
+                    + clean(c) + "'";
         } else {
-            sql = "INSERT INTO " + data[0] + " (chemical, amount) VALUES('" + c + "', '" + a + "')";
+            sql = "INSERT INTO "
+                    + data[0] + " (chemical, amount) VALUES('"
+                    + clean(c) + "', '"
+                    + clean(a) + "')";
         }
         updateChem(sql);
     }
 
     public static void insertCustomChemicalAt(String id, String c, String a) throws SQLException {
-        sql = "SELECT * FROM " + id + " WHERE chemical = '" + c + "'";
+        sql = "SELECT * FROM "
+                + clean(id) + " WHERE chemical = '"
+                + clean(c) + "'";
         rs = queryChem(sql);
 
         if (rs.next()) {
-            sql = "UPDATE " + id + " SET amount = amount + " + a + " WHERE chemical = '" + c + "'";
+            sql = "UPDATE "
+                    + clean(id) + " SET amount = amount + "
+                    + clean(a) + " WHERE chemical = '"
+                    + clean(c) + "'";
         } else {
-            sql = "INSERT INTO " + id + " (chemical, amount) VALUES('" + c + "', '" + a + "')";
+            sql = "INSERT INTO "
+                    + clean(id) + " (chemical, amount) VALUES('"
+                    + clean(c) + "', '"
+                    + clean(a) + "')";
         }
         updateChem(sql);
     }
@@ -380,7 +419,6 @@ public final class Pinwheel {
     }
 
     public static void refreshType() throws SQLException, FileNotFoundException {
-
         Scanner sc = new Scanner(new File("type.txt"));
         while (sc.hasNextLine()) {
             type.add(sc.nextLine());
@@ -392,7 +430,6 @@ public final class Pinwheel {
     }
 
     public static void refreshSupplier() throws SQLException {
-
         supplier = new ArrayList();
         sql = "SELECT DISTINCT sname FROM supplier";
         rs = queryCCDB(sql);
@@ -405,7 +442,6 @@ public final class Pinwheel {
     }
 
     public static void refreshChemicals() throws SQLException {
-
         chemicals = new ArrayList();
         sql = "SELECT DISTINCT chemical FROM chemicaltbl";
         rs = queryChem(sql);
@@ -425,7 +461,8 @@ public final class Pinwheel {
 
     public static String[] getSupplierData(String supplierid) throws SQLException {
         String[] data = new String[4];
-        String sql = "SELECT sname, tel, email, liason FROM supplier WHERE sname = '" + supplierid + "'";
+        String sql = "SELECT sname, tel, email, liason FROM supplier WHERE sname = '" 
+                + clean(supplierid) + "'";
         rs = queryCCDB(sql);
         rs.next();
         for (int i = 0; i < data.length; i++) {
@@ -491,26 +528,36 @@ public final class Pinwheel {
     }
 
     public static void insertGraphAt(String date, double sugar, double temp) throws SQLException {
-        sql = "SELECT * FROM " + data[0] + " WHERE date = '" + date + "'"; //if date already exists in table
+        sql = "SELECT * FROM " 
+                + data[0] + " WHERE date = '" 
+                + date + "'"; //if date already exists in table
         rsGraph = queryGraphDB(sql);
 
         if (rsGraph.next()) { //if date already exists
-            sql = "UPDATE " + data[0] + " SET balling = " + sugar + ", temperature = " + temp + " WHERE date = '" + date + "'"; //update
+            sql = "UPDATE " 
+                    + data[0] + " SET balling = " 
+                    + sugar + ", temperature = " 
+                    + temp + " WHERE date = '" 
+                    + date + "'"; //update
         } else {
-            sql = "INSERT INTO " + data[0] + " (date, balling, temperature) VALUES ('" + date + "', '" + sugar + "', '" + temp + "')"; //insert
+            sql = "INSERT INTO " 
+                    + data[0] + " (date, balling, temperature) VALUES ('" 
+                    + date + "', '" 
+                    + sugar + "', '" 
+                    + temp + "')"; //insert
         }
         updateGraphDB(sql);
     }
 
     public static void createGraph() {
-        System.out.println(data[0]);
-        sql = "CREATE TABLE " + data[0] + " (date TEXT(255), balling DECIMAL(5,2), temperature DECIMAL(5,2))";
+        sql = "CREATE TABLE " 
+                + data[0] + " (date TEXT(255), balling DECIMAL(5,2), temperature DECIMAL(5,2))";
         updateGraphDB(sql);
     }
 
     public static void createSpecGraph(String a) {
-        System.out.println(data[0]);
-        sql = "CREATE TABLE " + a + " (date TEXT(255), balling DECIMAL(5,2), temperature DECIMAL(5,2))";
+        sql = "CREATE TABLE " 
+                + clean(a) + " (date TEXT(255), balling DECIMAL(5,2), temperature DECIMAL(5,2))";
         updateGraphDB(sql);
     }
 
@@ -532,5 +579,14 @@ public final class Pinwheel {
         } catch (IOException ex) {
 
         }
+    }
+
+    public static String numEx(String s) {
+        return s.replaceAll("[^\\d.]", "");
+    }
+
+    public static String clean(String s) {
+//        return s.replaceAll("/\\*.*?\\*/", "");
+        return s.replace("'", "''");
     }
 }

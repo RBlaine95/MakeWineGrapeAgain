@@ -205,6 +205,7 @@
             <Property name="editable" type="boolean" value="false"/>
           </Properties>
           <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="colourOverrideTxtKeyPressed"/>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="colourOverrideTxtKeyReleased"/>
           </Events>
         </Component>
@@ -226,6 +227,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="massTxt">
           <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="massTxtKeyPressed"/>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="massTxtKeyReleased"/>
           </Events>
         </Component>
@@ -292,6 +294,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="yearTxt">
           <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="yearTxtKeyPressed"/>
             <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="yearTxtKeyReleased"/>
           </Events>
         </Component>

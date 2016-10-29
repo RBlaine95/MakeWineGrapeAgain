@@ -56,7 +56,6 @@ public class AddChemical extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
-        setMaximumSize(new java.awt.Dimension(300, 200));
         setMinimumSize(new java.awt.Dimension(300, 200));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -68,6 +67,15 @@ public class AddChemical extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel2.setText("Value");
+
+        valueTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                valueTxtKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                valueTxtKeyReleased(evt);
+            }
+        });
 
         cancelBtn.setText("Back");
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -167,6 +175,14 @@ public class AddChemical extends javax.swing.JFrame {
         c.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_okBtnActionPerformed
+
+    private void valueTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_valueTxtKeyPressed
+        valueTxt.setText(Pinwheel.numEx(valueTxt.getText()));
+    }//GEN-LAST:event_valueTxtKeyPressed
+
+    private void valueTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_valueTxtKeyReleased
+        valueTxt.setText(Pinwheel.numEx(valueTxt.getText()));
+    }//GEN-LAST:event_valueTxtKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;
