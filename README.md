@@ -1,4 +1,6 @@
-### **_Make Wine Grape Again is NOT YET ready for release. It is still in development._**
+### NOTE FROM DEVELOPERS
+Make Wine Grape Again is still in Beta testing.  
+We are actively making changes to the system.  
 
 ### What is Make Wine Grape Again (MWGA)?
 Rocco de Villiers from [Cape Crush](http://www.capecrush.co.za) contacted us to develop a system for him to use for his Wine Cellar. Matthew and Robert met with him as representatives of Team Se7en to discuss his ideas for the system.
@@ -17,6 +19,12 @@ During the meeting he mentioned that he would allow us to have all licensing and
 * Open Source
 * Scalable ⁽ᶰᵒᵗ ᵛᵉʳʸ ᵇᵘᵗ ʷᵉ'ʳᵉ ʷᵒʳᵏᶦᶰᵍ ᵒᶰ ᵗʰᵃᵗ⁾
 * Database Backup and Restore
+* Linux/Unix support is in Alpha
 
 ### Features Coming Soon
 * Keeping record of who withdrew how many bottles of which wine and when
+* Name wines
+* Track Tanks containing wine
+* View which chemicals were added before and after Fermentation
+* Efficiency
+* Full Linux/Unix Support
