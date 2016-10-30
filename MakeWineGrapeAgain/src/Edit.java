@@ -36,6 +36,10 @@ public class Edit extends javax.swing.JFrame {
         this.batch = data[0];
         this.selectedTxt.setText(batch);
 
+        if(data[3].equals("Storage")||data[3].equals("Bottling")){
+            this.chemBtn.setEnabled(false);
+        }
+        
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
