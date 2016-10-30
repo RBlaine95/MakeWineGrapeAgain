@@ -750,7 +750,7 @@ public class Blend extends javax.swing.JFrame {
                     Logger.getLogger(Blend.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
-                bid = "" + id;
+                bid = "Blend_" + id;
 
                 sql = "INSERT INTO blend (bid, winename, colour, volume, stage, fid1, pid1, fid2, pid2";
                 if (batch3Txt.getText().length() > 0) {
@@ -845,7 +845,7 @@ public class Blend extends javax.swing.JFrame {
                         }
                     }
                 }
-
+                this.dispose();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Total percentage does not equal 100%");
@@ -1237,6 +1237,7 @@ public class Blend extends javax.swing.JFrame {
                 amount = rs.getInt(2);
 
                 double newamount = amount * ((percent / 100) * Double.parseDouble(volTxt.getText()));
+                newamount = newamount/100;
                 Pinwheel.insertCustomChemicalAt(bid, chem, newamount + "");
                 newamount = -newamount;
                 Pinwheel.insertCustomChemicalAt(batch, chem, newamount + "");

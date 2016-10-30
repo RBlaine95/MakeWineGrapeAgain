@@ -291,7 +291,7 @@ public class Add extends javax.swing.JFrame {
 
     private void supplierBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierBoxActionPerformed
         if (this.supplierBox.getSelectedItem().equals("New Supplier...")) {
-            as = new AddSupplier();
+            as = new AddSupplier(this);
             as.setVisible(true);
             this.dispose();
         }
@@ -430,5 +430,9 @@ public void check() {
         this.colourBox.addItem("Override");
         this.typeBox.addItem("Override");
         this.supplierBox.addItem("New Supplier...");
+    }
+    public void setSupplier(String a) throws SQLException{
+        this.refresh();
+        this.supplierBox.setSelectedItem(a);
     }
 }
