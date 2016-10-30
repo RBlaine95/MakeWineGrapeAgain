@@ -20,3 +20,7 @@ During the meeting he mentioned that he would allow us to have all licensing and
 
 ### Features Coming Soon
 * Keeping record of who withdrew how many bottles of which wine and when
+* Name wines
+* Track Tanks containing wine
+* View which chemicals were added before and after Fermentation
+* Efficiency
