@@ -83,6 +83,12 @@ public class Update extends javax.swing.JFrame {
         massLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         massLbl.setText("New Mass");
 
+        stageBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                stageBoxActionPerformed(evt);
+            }
+        });
+
         massTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 massTxtActionPerformed(evt);
@@ -112,7 +118,7 @@ public class Update extends javax.swing.JFrame {
         });
 
         spillBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        spillBox.setText("Spillage");
+        spillBox.setText("Update Volume");
         spillBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 spillBoxActionPerformed(evt);
@@ -141,7 +147,7 @@ public class Update extends javax.swing.JFrame {
                     .addComponent(spillBox, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(massTxt)
                     .addComponent(okBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,13 +173,13 @@ public class Update extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 90, 350, 170);
+        jPanel1.setBounds(0, 90, 370, 170);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(-6, 0, 360, 310);
+        jLabel3.setBounds(-6, 0, 530, 370);
 
-        setSize(new java.awt.Dimension(366, 339));
+        setSize(new java.awt.Dimension(434, 341));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -253,6 +259,12 @@ public class Update extends javax.swing.JFrame {
     private void massTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_massTxtKeyPressed
         massTxt.setText(Pinwheel.numEx(massTxt.getText()));
     }//GEN-LAST:event_massTxtKeyPressed
+
+    private void stageBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stageBoxActionPerformed
+        if(stageBox.getSelectedItem().equals("Crushing")||stageBox.getSelectedItem().equals("Pressing")){
+            JOptionPane.showMessageDialog(null, "We strongly recommend you convert the mass to litres and enter the updated amount");
+        }
+    }//GEN-LAST:event_stageBoxActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

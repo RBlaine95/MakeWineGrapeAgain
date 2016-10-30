@@ -72,7 +72,7 @@ public final class Pinwheel {
         refreshColour();
         refreshSupplier();
         refreshType();
-
+        stages.add("Storage");
         stages.add("Crushing");
         stages.add("Fermentation");
         stages.add("Pressing");
@@ -80,7 +80,6 @@ public final class Pinwheel {
         stages.add("Blending");
         stages.add("Prep for Bottling");
         stages.add("Bottling");
-        stages.add("Storage");
 
         for (int i = 0; i < stages.size(); i++) {
             stagesAll.add(stages.get(i));
@@ -439,7 +438,6 @@ public final class Pinwheel {
         }
         sc.close();
     }
-    
 
     public static void refreshChemicals() throws SQLException, FileNotFoundException {
         Scanner sc = new Scanner(new File("chem.txt"));
@@ -447,7 +445,6 @@ public final class Pinwheel {
             chemicals.add(sc.nextLine());
         }
         sc.close();
-  
 
     }
 
@@ -564,6 +561,7 @@ public final class Pinwheel {
 
         }
     }
+
     public static void learnSupplier(String c) {
         try (FileWriter fw = new FileWriter("supp.txt", true);
                 BufferedWriter bw = new BufferedWriter(fw);
@@ -573,6 +571,7 @@ public final class Pinwheel {
 
         }
     }
+
     public static void learnChemical(String c) {
         try (FileWriter fw = new FileWriter("chem.txt", true);
                 BufferedWriter bw = new BufferedWriter(fw);
