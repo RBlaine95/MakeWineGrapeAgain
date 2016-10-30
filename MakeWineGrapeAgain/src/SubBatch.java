@@ -32,7 +32,8 @@ public class SubBatch extends javax.swing.JFrame {
         this.data = Pinwheel.getData();
         this.batch = this.data[0];
         this.selectedTxt.setText(batch);
-        this.subMassSlide.getModel().setMaximum(Integer.parseInt(this.data[4]));
+        System.out.println(data[4]);
+        this.subMassSlide.getModel().setMaximum((int) Double.parseDouble(this.data[4]));
         subMassSlide.getValue();
 
         this.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -169,8 +170,13 @@ public class SubBatch extends javax.swing.JFrame {
                     System.out.println(data[i]);
                 }
 
-                sql = "INSERT INTO subbatch (subbatchid, colour, type, stage, mass, supplierid ) VALUES ('" + subID + "', '" + this.data[1] + "', '" + this.data[2] + "', '" + Pinwheel.stageGetNo(stage)
-                        + "', " + subMass + ", '" + this.data[5] + "')"; //prep sub batch sql
+                sql = "INSERT INTO subbatch (subbatchid, colour, type, stage, mass, supplierid ) VALUES ('" 
+                        + subID + "', '" 
+                        + this.data[1] + "', '" 
+                        + this.data[2] + "', '" 
+                        + Pinwheel.stageGetNo(stage) + "', " 
+                        + subMass + ", '" 
+                        + this.data[5] + "')"; //prep sub batch sql
                 System.out.println(sql);
                 Pinwheel.updateCCDB(sql); //insert new sub batch
 

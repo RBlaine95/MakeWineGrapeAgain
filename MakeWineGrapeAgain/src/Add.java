@@ -97,7 +97,7 @@ public class Add extends javax.swing.JFrame {
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Stage");
 
-        stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
+        stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Storage", "Crushing", "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling" }));
 
         colourOverrideTxt.setEditable(false);
         colourOverrideTxt.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -117,7 +117,7 @@ public class Add extends javax.swing.JFrame {
         });
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        jLabel5.setText("Mass in Litres");
+        jLabel5.setText("Mass in KG");
 
         massTxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -338,7 +338,7 @@ public class Add extends javax.swing.JFrame {
 
             Pinwheel.insertBatch();
             Pinwheel.createChem();
-            Pinwheel.createGraph();
+            Pinwheel.createSpecGraph(temp[0]);
             this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(Add.class.getName()).log(Level.SEVERE, null, ex);
