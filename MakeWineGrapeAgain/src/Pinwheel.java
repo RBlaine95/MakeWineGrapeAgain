@@ -639,7 +639,7 @@ public final class Pinwheel {
                 String email = rs.getNString(3);
                 String liason = rs.getNString(4);
 
-                out.println("INSERT INTO supplier (snamne, tel, email, liason) VALUES('"
+                out.println("INSERT INTO supplier (sname, tel, email, liason) VALUES('"
                         + id + "', '" + tel + "', '" + email + "', '" + liason + "')");
             }
 
@@ -713,7 +713,7 @@ public final class Pinwheel {
                         String chem = rs1.getNString(1);
                         double mass = rs1.getDouble(2);
                         
-                        out.println("INSERT INTO " + id + " (chemical, value) VALUES('" + chem + "', " + mass + ")");
+                        out.println("INSERT INTO " + id + "tbl (chemical, value) VALUES('" + chem + "', " + mass + ")");
                     }
                 }
             }
@@ -756,11 +756,11 @@ public final class Pinwheel {
         while(sc.hasNextLine()){
             updateCCDB(sc.nextLine());
         }
-        sc = new Scanner(new File("chemdbbackup"));
+        sc = new Scanner(new File("chemdbbackup.txt"));
         while(sc.hasNextLine()){
             updateChem(sc.nextLine());
         }
-        sc = new Scanner(new File("graphdbbackup"));
+        sc = new Scanner(new File("graphdbbackup.txt"));
         while(sc.hasNextLine()){
             updateGraphDB(sc.nextLine());
         }

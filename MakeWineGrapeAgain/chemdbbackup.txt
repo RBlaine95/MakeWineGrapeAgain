@@ -16,9 +16,9 @@ INSERT INTO Blend_5 (chemical, amount) VALUES('Nitrogen', 450.0)
 INSERT INTO Blend_5 (chemical, amount) VALUES('Potasium', 1350.0)
 DROP TABLE chemicaltbl
 CREATE TABLE chemicaltbl (chemical TEXT(100), value FLOAT(15))
-INSERT INTO chemicaltbl (chemical, value) VALUES('Nitrogen', 5.0)
-INSERT INTO chemicaltbl (chemical, value) VALUES('Potasium', 500.0)
-INSERT INTO chemicaltbl (chemical, value) VALUES('Sodium', 100.0)
+INSERT INTO chemicaltbltbl (chemical, value) VALUES('Nitrogen', 5.0)
+INSERT INTO chemicaltbltbl (chemical, value) VALUES('Potasium', 500.0)
+INSERT INTO chemicaltbltbl (chemical, value) VALUES('Sodium', 100.0)
 DROP TABLE SH82ASD1
 CREATE TABLE SH82ASD1 (chemical TEXT(100), amount FLOAT(15))
 DROP TABLE SH82ASD1SB1

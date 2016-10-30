@@ -10,11 +10,6 @@ INSERT INTO subbatch (subbatchid, colour, type, stage, mass, supplierid) VALUES(
 INSERT INTO subbatch (subbatchid, colour, type, stage, mass, supplierid) VALUES('SH82ASD1SB4', 'shetwat', 'asdf', '0', 75.0, 'Herrty')
 DROP TABLE supplier
 CREATE TABLE supplier (sname TEXT(30), tel TEXT(10), email TEXT(50), liason TEXT(30))
-INSERT INTO supplier (snamne, tel, email, liason) VALUES('casin', 'pls', 'work', 'nao')
-INSERT INTO supplier (snamne, tel, email, liason) VALUES('Herrty', '1234', '4321', '1423')
-INSERT INTO supplier (snamne, tel, email, liason) VALUES('jerry jam', 'is', 'a ', 'cunt')
-INSERT INTO supplier (snamne, tel, email, liason) VALUES('Test', 'tester', 'thistest', 'isatest')
-INSERT INTO supplier (snamne, tel, email, liason) VALUES('Worksp ls', 'pls', 'workspls', 'yep')
 DROP TABLE blend
 CREATE TABLE blend (bid TEXT(50), winename TEXT(50), colour TEXT(30), volume FLOAT(15), stage TEXT(2), fid1 TEXT(15), pid1 FLOAT(15), fid2 TEXT(15), pid2 FLOAT(15), fid3 TEXT(15), pid3 FLOAT(15), fid4 TEXT(15), pid4 FLOAT(15),fid5 TEXT(15), pid5 FLOAT(15), fid6 TEXT(15), pid6 FLOAT(15), fid7 TEXT(15), pid7 FLOAT(15), fid8 TEXT(15), pid8 FLOAT(15), fid9 TEXT(15), pid9 FLOAT(15))
-INSERT INTO blend (bid, winename, colour, volume, stage, fid1, pid1, fid2, pid2, fid3, pid3, fid4, pid4, fid5, pid5, fid6, pid6, fid7, pid7, fid8, pid8, fid9, pid9) VALUES('Blend_0', 'Plswekr', 'shetwat', 20.0, '0', 'SH82ASD1SB1', 50.0, 'null', 0.0, 'SH82ASD1SB2', 50.0, 'null', 0.0, 'n/a', 0.0, 'null', 0.0, 'n/a', 0.0, 'null', 0.0, 'n/a', 0.0)
+INSERT INTO blend (bid, winename, colour, volume, stage, fid1, pid1, fid2, pid2, fid3, pid3, fid4, pid4, fid5, pid5, fid6, pid6, fid7, pid7, fid8, pid8, fid9, pid9) VALUES('Blend_0', 'Plswekr', 'shetwat', 20.0, '0', 'SH82ASD1SB1', 50.0, 'null', 0.0, 'null', 0.0, 'null', 0.0, 'null', 0.0, 'null', 0.0, 'null', 0.0, 'null', 0.0, 'SH82ASD1SB2', 50.0)
