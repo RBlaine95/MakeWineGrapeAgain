@@ -127,7 +127,7 @@ public class Login_UI extends javax.swing.JFrame {
 
             Scanner sc;
             try {
-                sc = new Scanner(new File("pass.txt"));
+                sc = new Scanner(new File("docs\\pass.txt"));
                 if (sc.hasNextLine()) {
 
                     if ((encryptedString).equals(sc.nextLine()) || true) {
