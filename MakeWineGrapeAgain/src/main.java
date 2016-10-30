@@ -274,7 +274,7 @@ public class main extends javax.swing.JFrame {
 
                 PrintWriter writer;
                 try {
-                    writer = new PrintWriter("pass.txt");
+                    writer = new PrintWriter("docs\\pass.txt");
                     writer.println(encryptedString);
                     writer.close();
                 } catch (FileNotFoundException ex) {
