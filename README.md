@@ -5,7 +5,8 @@ We are actively making changes to the system.
 ### What is Make Wine Grape Again (MWGA)?
 Rocco de Villiers from [Cape Crush](http://www.capecrush.co.za) contacted us to develop a system for him to use for his Wine Cellar. Matthew and Robert met with him as representatives of Team Se7en to discuss his ideas for the system.
 
-During the meeting he mentioned that he would allow us to have all licensing and ownership rights for the system, so we decided to make the system Open Source for easy future development for any developers interested in it. We also decided to make the program Free so that wine cellars that cannot afford expensive management systems may have the option of using our system for no charge.
+During the meeting he mentioned that he would allow us to have all licensing and ownership rights for the system, so we decided to make the system Open Source for easy future development for any developers interested in it.  
+We have also decided to design the system free to wine cellars that have a minimal budget for management systems so that they may have the opportunity of using our system at no charge.
 
 ### Features include:
 * Blending up to 9 wines together
