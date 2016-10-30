@@ -135,20 +135,20 @@ public final class Pinwheel {
     }
 
     public static void createChem() {
-        sql = "CREATE TABLE " 
+        sql = "CREATE TABLE "
                 + data[0] + " (chemical varchar(100), amount FLOAT(15))";
         updateChem(sql);
     }
 
     public static void createChem(String a) {
-        sql = "CREATE TABLE " 
+        sql = "CREATE TABLE "
                 + clean(a) + " (chemical varchar(100), amount FLOAT(15))";
         updateChem(sql);
     }
 
     public static void insertBatch() {
         data[3] = stageGetNo(data[3]) + "";
-        sql = "INSERT INTO batch (batchid, colour, type, stage, mass, supplierid) VALUES('" 
+        sql = "INSERT INTO batch (batchid, colour, type, stage, mass, supplierid) VALUES('"
                 + data[0] + "', '"
                 + data[1] + "', '"
                 + data[2] + "', '"
@@ -262,6 +262,7 @@ public final class Pinwheel {
         sql = "SELECT * FROM "
                 + clean(id) + " WHERE chemical = '"
                 + clean(c) + "'";
+
         rs = queryChem(sql);
 
         if (rs.next()) {
@@ -280,7 +281,6 @@ public final class Pinwheel {
 
     public static ResultSet queryChem(String sql) throws SQLException {
         sChem = connChem.createStatement();
-        System.out.println("Queries Chem");
         rsChem = sChem.executeQuery(sql);
         return rsChem;
     }
@@ -461,7 +461,7 @@ public final class Pinwheel {
 
     public static String[] getSupplierData(String supplierid) throws SQLException {
         String[] data = new String[4];
-        String sql = "SELECT sname, tel, email, liason FROM supplier WHERE sname = '" 
+        String sql = "SELECT sname, tel, email, liason FROM supplier WHERE sname = '"
                 + clean(supplierid) + "'";
         rs = queryCCDB(sql);
         rs.next();
@@ -528,35 +528,35 @@ public final class Pinwheel {
     }
 
     public static void insertGraphAt(String date, double sugar, double temp) throws SQLException {
-        sql = "SELECT * FROM " 
-                + data[0] + " WHERE date = '" 
+        sql = "SELECT * FROM "
+                + data[0] + " WHERE date = '"
                 + date + "'"; //if date already exists in table
         rsGraph = queryGraphDB(sql);
 
         if (rsGraph.next()) { //if date already exists
-            sql = "UPDATE " 
-                    + data[0] + " SET balling = " 
-                    + sugar + ", temperature = " 
-                    + temp + " WHERE date = '" 
+            sql = "UPDATE "
+                    + data[0] + " SET balling = "
+                    + sugar + ", temperature = "
+                    + temp + " WHERE date = '"
                     + date + "'"; //update
         } else {
-            sql = "INSERT INTO " 
-                    + data[0] + " (date, balling, temperature) VALUES ('" 
-                    + date + "', '" 
-                    + sugar + "', '" 
+            sql = "INSERT INTO "
+                    + data[0] + " (date, balling, temperature) VALUES ('"
+                    + date + "', '"
+                    + sugar + "', '"
                     + temp + "')"; //insert
         }
         updateGraphDB(sql);
     }
 
     public static void createGraph() {
-        sql = "CREATE TABLE " 
+        sql = "CREATE TABLE "
                 + data[0] + " (date TEXT(255), balling DECIMAL(5,2), temperature DECIMAL(5,2))";
         updateGraphDB(sql);
     }
 
     public static void createSpecGraph(String a) {
-        sql = "CREATE TABLE " 
+        sql = "CREATE TABLE "
                 + clean(a) + " (date TEXT(255), balling DECIMAL(5,2), temperature DECIMAL(5,2))";
         updateGraphDB(sql);
     }
@@ -588,5 +588,119 @@ public final class Pinwheel {
     public static String clean(String s) {
 //        return s.replaceAll("/\\*.*?\\*/", "");
         return s.replace("'", "''");
+    }
+
+    public static void backup() throws SQLException {
+//===================================================================================================================================CCDB
+//---------------------------------------------------------------------------------------------------------------------------BATCHES
+        sql = "SELECT batchid, colour, type, stage, mass, supplierid FROM batch";
+        try (FileWriter fw = new FileWriter("ccdbbackup.txt", true);
+                BufferedWriter bw = new BufferedWriter(fw);
+                PrintWriter out = new PrintWriter(bw)) {
+            out.println("CREATE TABLE batch (batchid TEXT(15), colour TEXT(15), type TEXT(25), stage TEXT(2), mass FLOAT(15), supplierid TEXT(30))");
+            rs = queryCCDB(sql);
+            while (rs.next()) {
+                String id = rs.getNString(1);
+                String colour = rs.getNString(2);
+                String type = rs.getNString(3);
+                String stage = rs.getNString(4);
+                double mass = rs.getDouble(5);
+                String supp = rs.getNString(6);
+                out.println("INSERT INTO batch (batchid, colour, type, stage, mass, supplierid) VALUES('"
+                        + id + "', '" + colour + "', '" + type + "', '" + stage + "', " + mass + ", '" + supp + "')");
+            }
+
+//---------------------------------------------------------------------------------------------------------------------------SUBBATCHES
+            sql = "SELECT subbatchid, colour, type, stage, mass, supplierid FROM subbatch";
+            out.println("CREATE TABLE subbatch (subbatchid TEXT(15), colour TEXT(15), type TEXT(25), stage TEXT(2), mass FLOAT(15), supplierid TEXT(30))");
+            rs = queryCCDB(sql);
+            while (rs.next()) {
+                String id = rs.getNString(1);
+                String colour = rs.getNString(2);
+                String type = rs.getNString(3);
+                String stage = rs.getNString(4);
+                double mass = rs.getDouble(5);
+                String supp = rs.getNString(6);
+                out.println("INSERT INTO subbatch (subbatchid, colour, type, stage, mass, supplierid) VALUES('"
+                        + id + "', '" + colour + "', '" + type + "', '" + stage + "', " + mass + ", '" + supp + "')");
+            }
+
+            //---------------------------------------------------------------------------------------------------------------------------SUPPLIERS
+            sql = "SELECT sname, tel, email, liason FROM supplier";
+            out.println("CREATE TABLE supplier (sname TEXT(30), tel TEXT(10), email TEXT(50), liason TEXT(30))");
+            rs = queryCCDB(sql);
+            while (rs.next()) {
+                String id = rs.getNString(1);
+                String tel = rs.getNString(2);
+                String email = rs.getNString(3);
+                String liason = rs.getNString(4);
+
+                out.println("INSERT INTO supplier (snamne, tel, email, liason) VALUES('"
+                        + id + "', '" + tel + "', '" + email + "', '" + liason + "')");
+            }
+
+//---------------------------------------------------------------------------------------------------------------------------BLENDS
+            sql = "SELECT bid, winename, colour, volume, stage, fid1, pid1, fid2, pid2, fid3, pid3, fid4, pid4, fid5, pid5, fid6, pid6, fid7, pid7, fid8, pid8, fid9, pid9 FROM blend";
+            out.println("CREATE TABLE blend (bid TEXT(50), winename TEXT(50), colour TEXT(30), volume FLOAT(15), stage TEXT(2), "
+                    + "fid1 TEXT(15), pid1 FLOAT(15), fid2 TEXT(15), pid2 FLOAT(15), fid3 TEXT(15), pid3 FLOAT(15), fid4 TEXT(15), pid4 FLOAT(15),"
+                    + "fid5 TEXT(15), pid5 FLOAT(15), fid6 TEXT(15), pid6 FLOAT(15), fid7 TEXT(15), pid7 FLOAT(15), fid8 TEXT(15), pid8 FLOAT(15), fid9 TEXT(15), pid9 FLOAT(15))");
+
+            rs = queryCCDB(sql);
+            while (rs.next()) {
+                String id = rs.getNString(1);
+                String name = rs.getNString(2);
+                String colour = rs.getNString(3);
+                double vol = rs.getDouble(4);
+                String stage = rs.getNString(5);
+                String[] fid = new String[9];
+                double[] pid = new double[9];
+
+                for (int i = 0; i < fid.length; i++) {
+                    if (i % 2 == 0) {
+                        fid[i] = rs.getNString(i + 6);
+                        System.out.println(6 + i);
+
+                        pid[i] = rs.getDouble(i + 7);
+                    }
+                }
+                String ready = "INSERT INTO blend (bid, winename, colour, volume, stage, fid1, pid1, fid2, pid2, fid3, pid3, fid4, pid4, fid5, pid5, fid6, pid6, fid7, pid7, fid8, pid8, fid9, pid9) VALUES('"
+                        + id + "', '" + name + "', '" + colour + "', " + vol + ", '" + stage + "', ";
+                for (int i = 0; i < fid.length - 1; i++) {
+                    ready += "'" + fid[i] + "', " + pid[i] + ", ";
+                }
+                ready += "'" + fid[8] + "', " + pid[8] + ")";
+                out.println(ready);
+            }
+            out.close();
+        } catch (IOException ex) {
+
+        }
+//===================================================================================================================================CHEMDB
+//---------------------------------------------------------------------------------------------------------------------------EVERYTHING 
+        
+        
+        
+        
+
+        rs = connChem.getMetaData().getTables(null, null, "%", null);
+        
+        
+        
+        try (FileWriter fw = new FileWriter("chemdbbackup.txt", true);
+                BufferedWriter bw = new BufferedWriter(fw);
+                PrintWriter out = new PrintWriter(bw)) {
+
+            
+            while (rs.next()) {
+                System.out.println("hasnext");
+                String id = rs.getString(3);
+                System.out.println(id);
+                //double mass = rs.getDouble(2);
+
+            }
+
+        } catch (IOException ex) {
+
+        }
     }
 }

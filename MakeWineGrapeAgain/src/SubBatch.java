@@ -4,6 +4,7 @@ import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -153,48 +154,52 @@ public class SubBatch extends javax.swing.JFrame {
         ResultSet rs;
 
         try {
-            rs = Pinwheel.queryCCDB("SELECT COUNT (batchid) FROM batch WHERE batchid LIKE '" + batch + "SB%'");
-            rs.next();
-            int count = rs.getInt(1);
-
-            subID += (count + 1) + "";
-            for (int i = 0; i < data.length; i++) {
-                System.out.println(data[i]);
-            }
-
-            sql = "INSERT INTO subbatch (subbatchid, colour, type, stage, mass, supplierid ) VALUES ('" + subID + "', '" + this.data[1] + "', '" + this.data[2] + "', '" + Pinwheel.stageGetNo(stage)
-                    + "', " + subMass + ", '" + this.data[5] + "')"; //prep sub batch sql
-            System.out.println(sql);
-            Pinwheel.updateCCDB(sql); //insert new sub batch
-
-            //update main batch's mass
             rs = Pinwheel.queryCCDB("SELECT mass FROM batch WHERE batchid = '" + batch + "'"); //get mass of batch
             rs.next();
-            double massT = Double.parseDouble(rs.getString(1));
+            double massT = rs.getInt(1);
 
-            //calculate new mass in Kg
-            sql = "UPDATE batch SET mass = " + (massT - subMass) + " WHERE batchid = '" + batch + "'";
-            Pinwheel.updateCCDB(sql); //update main batch
+            if (massT >= this.subMass) {
 
-            sql = "CREATE TABLE " + subID + " (chemical varchar(100), amount FLOAT(15))";
-            Pinwheel.updateChem(sql);
+                rs = Pinwheel.queryCCDB("SELECT COUNT (subbatchid) FROM subbatch WHERE subbatchid LIKE '" + batch + "SB%'");
+                rs.next();
+                int count = rs.getInt(1);
 
-            String sql = "SELECT * FROM " + batch;
-            double amount;
-            try {
-                rs = Pinwheel.queryChem(sql);
-                while (rs.next()) {
-                    String chem = rs.getNString(1);
-                    amount = rs.getInt(2);
-                    amount = amount * (subMass / massT / 100);
-                    Pinwheel.insertCustomChemicalAt(subID, chem, amount + "");
+                subID += (count + 1) + "";
+                for (int i = 0; i < data.length; i++) {
+                    System.out.println(data[i]);
                 }
-                Pinwheel.createSpecGraph(subID);
-                this.dispose();
-            } catch (SQLException ex) {
-                Logger.getLogger(Blend.class.getName()).log(Level.SEVERE, null, ex);
-            }
 
+                sql = "INSERT INTO subbatch (subbatchid, colour, type, stage, mass, supplierid ) VALUES ('" + subID + "', '" + this.data[1] + "', '" + this.data[2] + "', '" + Pinwheel.stageGetNo(stage)
+                        + "', " + subMass + ", '" + this.data[5] + "')"; //prep sub batch sql
+                System.out.println(sql);
+                Pinwheel.updateCCDB(sql); //insert new sub batch
+
+                //update main batch's mass
+                //calculate new mass in Kg
+                sql = "UPDATE batch SET mass = " + (massT - subMass) + " WHERE batchid = '" + batch + "'";
+                Pinwheel.updateCCDB(sql); //update main batch
+
+                sql = "CREATE TABLE " + subID + " (chemical varchar(100), amount FLOAT(15))";
+                Pinwheel.updateChem(sql);
+
+                String sql = "SELECT * FROM " + batch;
+                double amount;
+                try {
+                    rs = Pinwheel.queryChem(sql);
+                    while (rs.next()) {
+                        String chem = rs.getNString(1);
+                        amount = rs.getInt(2);
+                        amount = amount * (subMass / massT / 100);
+                        Pinwheel.insertCustomChemicalAt(subID, chem, amount + "");
+                    }
+                    Pinwheel.createSpecGraph(subID);
+                    this.dispose();
+                } catch (SQLException ex) {
+                    Logger.getLogger(Blend.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Not enough mass in batch");
+            }
         } catch (SQLException ex) {
             Logger.getLogger(SubBatch.class.getName()).log(Level.SEVERE, null, ex);
         }

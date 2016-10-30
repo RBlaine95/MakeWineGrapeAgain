@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  * @author Se7en
  */
 public class AddSupplier extends javax.swing.JFrame {
-
+private Add a;
     /**
      * Creates new form AddSupplier
      */
@@ -28,6 +28,11 @@ public class AddSupplier extends javax.swing.JFrame {
                 cancelBtn.doClick();
             }
         });
+    }
+    public AddSupplier(Add a) {
+        
+        initComponents();
+        this.a = a;
     }
 
     /**
@@ -209,7 +214,12 @@ public class AddSupplier extends javax.swing.JFrame {
             } catch (SQLException ex) {
                 Logger.getLogger(AddSupplier.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Add ad = new Add();
+            Add ad = a;
+            try {
+                ad.setSupplier(this.nameTxt.getText());
+            } catch (SQLException ex) {
+                Logger.getLogger(AddSupplier.class.getName()).log(Level.SEVERE, null, ex);
+            }
             ad.setVisible(true);
             this.dispose();
         }
