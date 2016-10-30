@@ -203,9 +203,9 @@ public class main extends javax.swing.JFrame {
         appNameLbl.setBounds(460, 550, 137, 17);
 
         versionNumLbl.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        versionNumLbl.setText("Version 0.07.03");
+        versionNumLbl.setText("Version 0.9");
         getContentPane().add(versionNumLbl);
-        versionNumLbl.setBounds(510, 570, 88, 17);
+        versionNumLbl.setBounds(510, 570, 63, 17);
 
         logoutBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         logoutBtn.setText("Logout");
