@@ -20,6 +20,13 @@ public class Prompt extends javax.swing.JFrame {
         this.data = Pinwheel.getData();
 
         this.txtLbl.setText("<html>" + this.txtLbl.getText() + "<br/>ID:" + this.data[0] + "</html>");
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                cancelBtn.doClick();
+            }
+        });
     }
 
     /**
@@ -40,6 +47,7 @@ public class Prompt extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("APPROVE?");
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         txtLbl.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N

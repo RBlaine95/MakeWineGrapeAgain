@@ -11,10 +11,9 @@ import javax.swing.table.DefaultTableModel;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
- * @author Matthew
+ * @author Se7en
  */
 public class ViewChems extends javax.swing.JFrame {
 
@@ -25,23 +24,30 @@ public class ViewChems extends javax.swing.JFrame {
         initComponents();
         String batch = Pinwheel.data[0];
         this.selectedTxt.setText(batch);
-         String sql = "SELECT * from " + batch;
-                try {
-                    ResultSet rs = Pinwheel.queryChem(sql);
-                    ArrayList<String> chem = new ArrayList();
-                    ArrayList<Double> amount = new ArrayList();
-                    int count = 0;
-                    while (rs.next()) {
-                        chem.add(rs.getNString(1));
-                        amount.add(rs.getDouble(2));
-                        String[] arr = {chem.get(count), amount.get(count) + ""};
-                        ((DefaultTableModel) this.chemTbl.getModel()).insertRow(count, arr);
-                        count++;
-                    }
+        String sql = "SELECT * from " + batch;
+        try {
+            ResultSet rs = Pinwheel.queryChem(sql);
+            ArrayList<String> chem = new ArrayList();
+            ArrayList<Double> amount = new ArrayList();
+            int count = 0;
+            while (rs.next()) {
+                chem.add(rs.getNString(1));
+                amount.add(rs.getDouble(2));
+                String[] arr = {chem.get(count), amount.get(count) + ""};
+                ((DefaultTableModel) this.chemTbl.getModel()).insertRow(count, arr);
+                count++;
+            }
 
-                } catch (SQLException ex) {
-                    Logger.getLogger(AdminEdit.class.getName()).log(Level.SEVERE, null, ex);
+            this.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                    backBtn.doClick();
                 }
+            });
+
+        } catch (SQLException ex) {
+            Logger.getLogger(AdminEdit.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -55,12 +61,14 @@ public class ViewChems extends javax.swing.JFrame {
 
         jLabel1 = new javax.swing.JLabel();
         selectedTxt = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         chemTbl = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("View Chemicals");
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -71,14 +79,14 @@ public class ViewChems extends javax.swing.JFrame {
         selectedTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         getContentPane().add(selectedTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 11, 310, -1));
 
-        jButton1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jButton1.setText("Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        backBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                backBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
+        getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
 
         chemTbl.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         chemTbl.setModel(new javax.swing.table.DefaultTableModel(
@@ -115,9 +123,9 @@ public class ViewChems extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_backBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -155,8 +163,8 @@ public class ViewChems extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JTable chemTbl;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

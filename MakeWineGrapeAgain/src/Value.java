@@ -2,7 +2,6 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.text.DecimalFormat;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -11,13 +10,14 @@ import java.util.logging.Logger;
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 /**
  *
- * @author Matthew
+ * @author Se7en
  */
 public class Value extends javax.swing.JFrame {
-DecimalFormat df = new DecimalFormat("0.00");
+
+    DecimalFormat df = new DecimalFormat("0.00");
+
     /**
      * Creates new form value
      */
@@ -25,6 +25,13 @@ DecimalFormat df = new DecimalFormat("0.00");
         initComponents();
         this.amountPerBottle.setText("750");
         this.selectedTxt.setText(Pinwheel.data[0]);
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                backBtn.doClick();
+            }
+        });
     }
 
     /**
@@ -54,7 +61,9 @@ DecimalFormat df = new DecimalFormat("0.00");
         backBtn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Value Calculator");
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -71,6 +80,9 @@ DecimalFormat df = new DecimalFormat("0.00");
 
         costPerBottle.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         costPerBottle.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                costPerBottleKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 costPerBottleKeyReleased(evt);
             }
@@ -79,6 +91,9 @@ DecimalFormat df = new DecimalFormat("0.00");
 
         costPerCork.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         costPerCork.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                costPerCorkKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 costPerCorkKeyReleased(evt);
             }
@@ -86,8 +101,8 @@ DecimalFormat df = new DecimalFormat("0.00");
         getContentPane().add(costPerCork, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 125, 70, -1));
 
         jLabel3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel3.setText("Cost per Cork");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 128, -1, -1));
+        jLabel3.setText("Cost per Cork/Screw cap");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel4.setText("After Bottling");
@@ -120,6 +135,9 @@ DecimalFormat df = new DecimalFormat("0.00");
 
         amountPerBottle.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         amountPerBottle.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                amountPerBottleKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 amountPerBottleKeyReleased(evt);
             }
@@ -165,16 +183,28 @@ DecimalFormat df = new DecimalFormat("0.00");
     }//GEN-LAST:event_backBtnActionPerformed
 
     private void costPerBottleKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_costPerBottleKeyReleased
-         this.costPerBottle.setText(this.costPerBottle.getText().replaceAll("[^\\d.]", ""));
+        costPerBottle.setText(Pinwheel.numEx(costPerBottle.getText()));
     }//GEN-LAST:event_costPerBottleKeyReleased
 
     private void costPerCorkKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_costPerCorkKeyReleased
-        this.costPerCork.setText(this.costPerCork.getText().replaceAll("[^\\d.]", ""));
+        costPerCork.setText(Pinwheel.numEx(costPerCork.getText()));
     }//GEN-LAST:event_costPerCorkKeyReleased
 
     private void amountPerBottleKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountPerBottleKeyReleased
-        this.amountPerBottle.setText(this.amountPerBottle.getText().replaceAll("[^\\d.]", ""));
+        amountPerBottle.setText(Pinwheel.numEx(amountPerBottle.getText()));
     }//GEN-LAST:event_amountPerBottleKeyReleased
+
+    private void costPerBottleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_costPerBottleKeyPressed
+        costPerBottle.setText(Pinwheel.numEx(costPerBottle.getText()));
+    }//GEN-LAST:event_costPerBottleKeyPressed
+
+    private void costPerCorkKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_costPerCorkKeyPressed
+        costPerCork.setText(Pinwheel.numEx(costPerCork.getText()));
+    }//GEN-LAST:event_costPerCorkKeyPressed
+
+    private void amountPerBottleKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountPerBottleKeyPressed
+        amountPerBottle.setText(Pinwheel.numEx(amountPerBottle.getText()));
+    }//GEN-LAST:event_amountPerBottleKeyPressed
 
     /**
      * @param args the command line arguments
@@ -241,7 +271,7 @@ private void recalculate() throws SQLException {
             double amount;
             String sql = "SELECT * FROM " + this.selectedTxt.getText();
             ResultSet rs = Pinwheel.queryChem(sql);
-            while(rs.next()){
+            while (rs.next()) {
                 System.out.println("found chem");
                 chemical = rs.getNString(1);
                 amount = rs.getDouble(2);
@@ -251,15 +281,15 @@ private void recalculate() throws SQLException {
                 rs1.next();
                 double value = rs1.getDouble(1);
                 System.out.println("Value:" + value);
-                chemvalue+=amount*value;
+                chemvalue += amount * value;
             }
             this.beforeBottling.setText(df.format(chemvalue) + "");
             double mass = Double.parseDouble(Pinwheel.data[4]);
-            int bottles = (int) (mass/apb);
-            double bottlevalue = (bottles*(cpb+cpc));
-            this.afterBottling.setText((df.format(chemvalue+bottlevalue)) + "");
-            
-            this.pricePerBottle.setText(df.format(Double.parseDouble(this.afterBottling.getText())/bottles) + "");
+            int bottles = (int) (mass / apb);
+            double bottlevalue = (bottles * (cpb + cpc));
+            this.afterBottling.setText((df.format(chemvalue + bottlevalue)) + "");
+
+            this.pricePerBottle.setText(df.format(Double.parseDouble(this.afterBottling.getText()) / bottles) + "");
         }
     }
 }

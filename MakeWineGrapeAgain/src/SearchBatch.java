@@ -44,20 +44,18 @@ public class SearchBatch extends javax.swing.JFrame {
                 batchTbl.getColumnModel().getColumn(3).setHeaderValue("Volume");
                 batchTbl.getColumnModel().getColumn(4).setHeaderValue("Stage");
                 batchTbl.getColumnModel().getColumn(5).setHeaderValue("Blend Of");
-                
+
                 this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColourAll().toArray()));
                 this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getTypeAll().toArray()));
                 this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStagesAll().toArray()));
-                
-                
-                
+
                 data = new String[6];
-                
+
                 this.batchLbl.setText("Blend Name");
                 this.supplierLbl.setText("");
-                
+
                 this.suppBox.setVisible(false);
-                
+
                 this.suppBox.setEnabled(false);
                 break;
             case "subbatch":
@@ -67,7 +65,7 @@ public class SearchBatch extends javax.swing.JFrame {
                 this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getTypeAll().toArray()));
                 this.suppBox.setModel(new DefaultComboBoxModel(Pinwheel.getSupplierAll().toArray()));
                 this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStagesAll().toArray()));
-                
+
                 data = new String[6];
                 break;
             case "batch":
@@ -129,6 +127,13 @@ public class SearchBatch extends javax.swing.JFrame {
 
                 break;
         }
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                backBtn.doClick();
+            }
+        });
     }
 
     public SearchBatch(boolean a, int i) {
@@ -158,7 +163,7 @@ public class SearchBatch extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         batchTbl = new javax.swing.JTable();
         jPanel1 = new javax.swing.JPanel();
-        exitBtn = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
         searchBtn = new javax.swing.JButton();
         selectBtn = new javax.swing.JButton();
         suppBox = new javax.swing.JComboBox();
@@ -179,6 +184,7 @@ public class SearchBatch extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Search Batches");
+        setResizable(false);
         getContentPane().setLayout(null);
 
         batchTbl.setModel(new javax.swing.table.DefaultTableModel(
@@ -222,10 +228,10 @@ public class SearchBatch extends javax.swing.JFrame {
         jPanel1.setOpaque(false);
         jPanel1.setPreferredSize(new java.awt.Dimension(1000, 270));
 
-        exitBtn.setText("Back");
-        exitBtn.addActionListener(new java.awt.event.ActionListener() {
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exitBtnActionPerformed(evt);
+                backBtnActionPerformed(evt);
             }
         });
 
@@ -305,7 +311,7 @@ public class SearchBatch extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(searchBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(exitBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(backBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
@@ -328,7 +334,7 @@ public class SearchBatch extends javax.swing.JFrame {
                             .addComponent(suppBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(selectBtn)
                             .addComponent(searchBtn)
-                            .addComponent(exitBtn)))
+                            .addComponent(backBtn)))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(typeLbl)
                         .addComponent(colourLbl)))
@@ -346,9 +352,9 @@ public class SearchBatch extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void exitBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitBtnActionPerformed
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         this.dispose();
-    }//GEN-LAST:event_exitBtnActionPerformed
+    }//GEN-LAST:event_backBtnActionPerformed
 
     private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
 
@@ -446,7 +452,7 @@ public class SearchBatch extends javax.swing.JFrame {
                     whered = true;
                     sql += " stage = '" + Pinwheel.stageGetNo(this.stage) + "'";
                 }
-               
+
                 try {
                     System.out.println(sql);
                     rs = Pinwheel.queryCCDB(sql);
@@ -457,10 +463,7 @@ public class SearchBatch extends javax.swing.JFrame {
                             list[i] = (rs.getString(i + 1));
                         }
                         list[3] = Pinwheel.stageGetWord(Integer.parseInt(list[3] + ""));
-                        
-                        
-                        
-                        
+
                         ((DefaultTableModel) this.batchTbl.getModel()).insertRow(count, list);
                         count++;
                     }
@@ -503,22 +506,22 @@ public class SearchBatch extends javax.swing.JFrame {
                     whered = true;
                     sql += " stage = '" + Pinwheel.stageGetNo(this.stage) + "'";
                 }
-                
+
                 try {
                     rs = Pinwheel.queryCCDB(sql);
                     int count = 0;
                     while (rs.next()) {
-                        for (int i = 0; i < list.length-1; i++) {
+                        for (int i = 0; i < list.length - 1; i++) {
                             list[i] = (rs.getString(i + 1));
                         }
                         String combine = "";
                         for (int i = 6; i < 14; i++) {
                             String buffer = rs.getNString(i);
-                            
-                            combine += (buffer == (null))?"":buffer + ", ";
+
+                            combine += (buffer == (null)) ? "" : buffer + ", ";
                         }
                         list[5] = combine;
-  
+
                         list[4] = Pinwheel.stageGetWord(Integer.parseInt(list[4] + ""));
                         ((DefaultTableModel) this.batchTbl.getModel()).insertRow(count, list);
                         count++;
@@ -527,7 +530,7 @@ public class SearchBatch extends javax.swing.JFrame {
                     Logger.getLogger(SearchBatch.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 break;
-                
+
             case "batch":
                 sql = "SELECT batchid, colour, type, stage, mass, supplierid FROM batch";
                 list = new Object[6];
@@ -647,12 +650,12 @@ public class SearchBatch extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JTextField batchIdTxt;
     private javax.swing.JLabel batchLbl;
     private javax.swing.JTable batchTbl;
     private javax.swing.JComboBox colourBox;
     private javax.swing.JLabel colourLbl;
-    private javax.swing.JButton exitBtn;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel6;

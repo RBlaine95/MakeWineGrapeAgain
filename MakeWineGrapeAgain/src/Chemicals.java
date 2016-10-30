@@ -22,17 +22,22 @@ public class Chemicals extends javax.swing.JFrame {
     /**
      * Creates new form Chemicals
      */
-
-
     public Chemicals() {
         initComponents();
         this.chemBox.setModel(new DefaultComboBoxModel(Pinwheel.getChemicals().toArray()));
-        
+
         this.chemBox.addItem("New Chemical...");
         this.data = Pinwheel.getData();
         this.batch = data[0];
 
         this.selectedTxt.setText(batch);
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                backBtn.doClick();
+            }
+        });
     }
 
     /**
@@ -56,6 +61,7 @@ public class Chemicals extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Chemical");
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -84,6 +90,14 @@ public class Chemicals extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 125, -1, -1));
 
         amountTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        amountTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                amountTxtKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                amountTxtKeyReleased(evt);
+            }
+        });
         getContentPane().add(amountTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 88, -1));
 
         chemBox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -126,12 +140,20 @@ public class Chemicals extends javax.swing.JFrame {
 
     private void chemBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chemBoxActionPerformed
         if (this.chemBox.getSelectedItem() == "New Chemical...") {
-                
-                AddChemical a = new AddChemical();
-                a.setVisible(true);
-                this.dispose();
+
+            AddChemical a = new AddChemical();
+            a.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_chemBoxActionPerformed
+
+    private void amountTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountTxtKeyPressed
+        amountTxt.setText(Pinwheel.numEx(amountTxt.getText()));
+    }//GEN-LAST:event_amountTxtKeyPressed
+
+    private void amountTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_amountTxtKeyReleased
+        amountTxt.setText(Pinwheel.numEx(amountTxt.getText()));
+    }//GEN-LAST:event_amountTxtKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amountTxt;

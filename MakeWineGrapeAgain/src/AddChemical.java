@@ -21,6 +21,13 @@ public class AddChemical extends javax.swing.JFrame {
      */
     public AddChemical() {
         initComponents();
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                cancelBtn.doClick();
+            }
+        });
     }
 
     /**
@@ -40,16 +47,17 @@ public class AddChemical extends javax.swing.JFrame {
         valueTxt = new javax.swing.JTextField();
         cancelBtn = new javax.swing.JButton();
         okBtn = new javax.swing.JButton();
-        jComboBox1 = new javax.swing.JComboBox<String>();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
         jLabel3.setText("jLabel3");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
         setMinimumSize(new java.awt.Dimension(300, 200));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setOpaque(false);
@@ -59,6 +67,15 @@ public class AddChemical extends javax.swing.JFrame {
 
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel2.setText("Value");
+
+        valueTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                valueTxtKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                valueTxtKeyReleased(evt);
+            }
+        });
 
         cancelBtn.setText("Back");
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +91,7 @@ public class AddChemical extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "g", "kg", "tonne" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "mg", "g", "kg", "tonne" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -146,7 +163,7 @@ public class AddChemical extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelBtnActionPerformed
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
-        String [] chem = {this.chemTxt.getText(), this.valueTxt.getText()};
+        String[] chem = {this.chemTxt.getText(), this.valueTxt.getText()};
         Pinwheel.setData(chem);
         Pinwheel.insertChemical();
         try {
@@ -158,6 +175,14 @@ public class AddChemical extends javax.swing.JFrame {
         c.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_okBtnActionPerformed
+
+    private void valueTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_valueTxtKeyPressed
+        valueTxt.setText(Pinwheel.numEx(valueTxt.getText()));
+    }//GEN-LAST:event_valueTxtKeyPressed
+
+    private void valueTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_valueTxtKeyReleased
+        valueTxt.setText(Pinwheel.numEx(valueTxt.getText()));
+    }//GEN-LAST:event_valueTxtKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;

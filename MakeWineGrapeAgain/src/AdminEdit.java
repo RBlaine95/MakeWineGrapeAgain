@@ -46,6 +46,13 @@ public class AdminEdit extends javax.swing.JFrame {
         }
         ((DefaultTableModel) this.batchTbl.getModel()).insertRow(0, data);
 
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                backBtn.doClick();
+            }
+        });
+        
     }
 
     /**
@@ -65,8 +72,9 @@ public class AdminEdit extends javax.swing.JFrame {
         backBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(673, 415));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         warningLbl.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N

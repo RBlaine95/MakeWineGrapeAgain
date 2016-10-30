@@ -10,7 +10,6 @@ import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;
@@ -75,6 +74,13 @@ public class GraphUI extends JFrame {
 
             plot.setRenderer(renderer);
 
+            this.addWindowListener(new java.awt.event.WindowAdapter() {
+                @Override
+                public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                    backBtn.doClick();
+                }
+            });
+
         } catch (SQLException ex) {
             Logger.getLogger(GraphUI.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -97,7 +103,7 @@ public class GraphUI extends JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setMaximumSize(new java.awt.Dimension(600, 600));
+        setTitle("Graph");
         setMinimumSize(new java.awt.Dimension(600, 600));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -164,7 +170,7 @@ public class GraphUI extends JFrame {
         fc.addChoosableFileFilter(new FileNameExtensionFilter("PNG (*.png)", "png"));
         fc.setAcceptAllFileFilterUsed(false);
         fc.showSaveDialog(null);
-        
+
         String path = fc.getSelectedFile().getAbsolutePath() + ".png";
         String filename = fc.getSelectedFile().getName() + ".png";
         File imageFile = new File(path);
@@ -276,12 +282,14 @@ public class GraphUI extends JFrame {
         dataset.addSeries(temp);
         return dataset;
     }
-    public void refesh(){
+
+    public void refesh() {
         GraphUI g = new GraphUI();
         g.setVisible(true);
         this.dispose();
     }
-    public void kill(){
+
+    public void kill() {
         this.dispose();
     }
 }

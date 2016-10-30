@@ -10,15 +10,18 @@
  */
 public class AdminMenu extends javax.swing.JFrame {
 
-
-
     /**
      * Creates new form AdminMenu
      */
-
     public AdminMenu() {
         initComponents();
-        
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                backBtn.doClick();
+            }
+        });
     }
 
     /**
@@ -36,16 +39,15 @@ public class AdminMenu extends javax.swing.JFrame {
         delSuppBtn = new javax.swing.JButton();
         delChemBtn = new javax.swing.JButton();
         delBatchBtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Administrator");
         setAlwaysOnTop(true);
-        setMaximumSize(new java.awt.Dimension(400, 300));
         setMinimumSize(new java.awt.Dimension(400, 300));
-        setPreferredSize(new java.awt.Dimension(300, 300));
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         editBatchBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -102,14 +104,14 @@ public class AdminMenu extends javax.swing.JFrame {
         });
         getContentPane().add(delBatchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 70, 140, -1));
 
-        jButton1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jButton1.setText("Back");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        backBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                backBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
+        getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel1.setText("ADMIN MENU");
@@ -156,7 +158,7 @@ public class AdminMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_delSuppBtnActionPerformed
 
     private void editChemBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editChemBtnActionPerformed
-       Pinwheel.setBounce("edit");
+        Pinwheel.setBounce("edit");
         Pinwheel.setSearchType("chemical");
         SearchBatch s = new SearchBatch();
         s.setVisible(true);
@@ -171,19 +173,19 @@ public class AdminMenu extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_editSuppBtnActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
         this.dispose();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_backBtnActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JButton delBatchBtn;
     private javax.swing.JButton delChemBtn;
     private javax.swing.JButton delSuppBtn;
     private javax.swing.JButton editBatchBtn;
     private javax.swing.JButton editChemBtn;
     private javax.swing.JButton editSuppBtn;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables

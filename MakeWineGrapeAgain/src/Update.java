@@ -29,6 +29,13 @@ public class Update extends javax.swing.JFrame {
         batch = data[0];
         this.stageBox.setSelectedIndex(Pinwheel.stageGetNo(data[3]));
         this.selectedTxt.setText(batch);
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                backBtn.doClick();
+            }
+        });
     }
 
     /**
@@ -55,6 +62,7 @@ public class Update extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Update Batch");
+        setResizable(false);
         getContentPane().setLayout(null);
 
         jLabel4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
@@ -81,6 +89,9 @@ public class Update extends javax.swing.JFrame {
             }
         });
         massTxt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                massTxtKeyPressed(evt);
+            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 massTxtKeyReleased(evt);
             }
@@ -195,10 +206,10 @@ public class Update extends javax.swing.JFrame {
             if (this.massTxt.getText().isEmpty()) {
                 switch (Pinwheel.getSearchType()) {
                     case "batch":
-                        sql = "UPDATE batch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedItem()+ "") + "' WHERE batchid = '" + data[0] + "'";
+                        sql = "UPDATE batch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedItem() + "") + "' WHERE batchid = '" + data[0] + "'";
                         break;
                     case "subbatch":
-                        sql = "UPDATE subbatch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedItem()+ "") + "' WHERE subbatchid = '" + data[0] + "'";
+                        sql = "UPDATE subbatch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedItem() + "") + "' WHERE subbatchid = '" + data[0] + "'";
                         break;
                     case "blend":
                         sql = "UPDATE blend SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedItem() + "") + "' WHERE bid = '" + data[0] + "'";
@@ -212,16 +223,19 @@ public class Update extends javax.swing.JFrame {
                 if (masscheck == JOptionPane.YES_OPTION) {
                     switch (Pinwheel.getSearchType()) {
                         case "batch":
-                            sql = "UPDATE batch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedIndex() + "") + "', mass = " + Double.parseDouble(this.massTxt.getText()) + " WHERE batchid = '" + data[0] + "'";
+                            sql = "UPDATE batch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedItem() + "") + "', mass = " + Double.parseDouble(this.massTxt.getText()) + " WHERE batchid = '" + data[0] + "'";
                             break;
                         case "subbatch":
-                            sql = "UPDATE subbatch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedIndex() + "") + "', mass = " + Double.parseDouble(this.massTxt.getText()) + " WHERE subbatchid = '" + data[0] + "'";
+                            sql = "UPDATE subbatch SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedItem() + "") + "', mass = " + Double.parseDouble(this.massTxt.getText()) + " WHERE subbatchid = '" + data[0] + "'";
                             break;
                         case "blend":
-                            sql = "UPDATE blend SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedIndex() + "") + "', mass = " + Double.parseDouble(this.massTxt.getText()) + " WHERE bid = '" + data[0] + "'";
+                            sql = "UPDATE blend SET stage = '" + Pinwheel.stageGetNo(this.stageBox.getSelectedItem() + "") + "', mass = " + Double.parseDouble(this.massTxt.getText()) + " WHERE bid = '" + data[0] + "'";
                             break;
                     }
                     Pinwheel.updateCCDB(sql);
+                    Pinwheel.updateBatch();
+
+                    this.dispose();
                 }
 
             }
@@ -233,8 +247,12 @@ public class Update extends javax.swing.JFrame {
     }//GEN-LAST:event_massTxtActionPerformed
 
     private void massTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_massTxtKeyReleased
-        this.massTxt.setText(this.massTxt.getText().replaceAll("[^\\d.]", ""));
+        massTxt.setText(Pinwheel.numEx(massTxt.getText()));
     }//GEN-LAST:event_massTxtKeyReleased
+
+    private void massTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_massTxtKeyPressed
+        massTxt.setText(Pinwheel.numEx(massTxt.getText()));
+    }//GEN-LAST:event_massTxtKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

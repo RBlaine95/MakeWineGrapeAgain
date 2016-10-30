@@ -12,7 +12,7 @@ import java.util.logging.Logger;
  */
 /**
  *
- * @author Robbie
+ * @author Se7en
  */
 public class UpdateGraph extends javax.swing.JFrame {
 
@@ -28,6 +28,13 @@ public class UpdateGraph extends javax.swing.JFrame {
         batchData = Pinwheel.getData();
         this.batch = batchData[0];
         idTxt.setText(batch);
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                backBtn.doClick();
+            }
+        });
     }
 
     public UpdateGraph(GraphUI gee) {
@@ -36,6 +43,13 @@ public class UpdateGraph extends javax.swing.JFrame {
         batchData = Pinwheel.getData();
         this.batch = batchData[0];
         idTxt.setText(batch);
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                backBtn.doClick();
+            }
+        });
     }
 
     /**
@@ -58,6 +72,8 @@ public class UpdateGraph extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Update Graph");
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -156,19 +172,19 @@ public class UpdateGraph extends javax.swing.JFrame {
     }//GEN-LAST:event_okBtnActionPerformed
 
     private void tempTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tempTxtKeyReleased
-        this.tempTxt.setText(this.tempTxt.getText().replaceAll("[^\\d.]", ""));
+        tempTxt.setText(Pinwheel.numEx(tempTxt.getText()));
     }//GEN-LAST:event_tempTxtKeyReleased
 
     private void tempTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tempTxtKeyPressed
-        this.tempTxt.setText(this.tempTxt.getText().replaceAll("[^\\d.]", ""));
+        tempTxt.setText(Pinwheel.numEx(tempTxt.getText()));
     }//GEN-LAST:event_tempTxtKeyPressed
 
     private void balTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_balTxtKeyPressed
-        this.balTxt.setText(this.balTxt.getText().replaceAll("[^\\d.]", ""));
+        balTxt.setText(Pinwheel.numEx(balTxt.getText()));
     }//GEN-LAST:event_balTxtKeyPressed
 
     private void balTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_balTxtKeyReleased
-        this.balTxt.setText(this.balTxt.getText().replaceAll("[^\\d.]", ""));
+        balTxt.setText(Pinwheel.numEx(balTxt.getText()));
     }//GEN-LAST:event_balTxtKeyReleased
 
     /**

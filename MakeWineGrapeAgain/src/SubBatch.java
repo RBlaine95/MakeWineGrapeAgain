@@ -33,6 +33,13 @@ public class SubBatch extends javax.swing.JFrame {
         this.selectedTxt.setText(batch);
         this.subMassSlide.getModel().setMaximum(Integer.parseInt(this.data[4]));
         subMassSlide.getValue();
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                backBtn.doClick();
+            }
+        });
     }
 
     /**
@@ -52,12 +59,13 @@ public class SubBatch extends javax.swing.JFrame {
         okBtn = new javax.swing.JButton();
         massTxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        stageBox = new javax.swing.JComboBox<String>();
+        stageBox = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Sub Batch");
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -119,7 +127,7 @@ public class SubBatch extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 134, -1, -1));
 
         stageBox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
+        stageBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
         getContentPane().add(stageBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 131, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -165,7 +173,6 @@ public class SubBatch extends javax.swing.JFrame {
             double massT = Double.parseDouble(rs.getString(1));
 
             //calculate new mass in Kg
-
             sql = "UPDATE batch SET mass = " + (massT - subMass) + " WHERE batchid = '" + batch + "'";
             Pinwheel.updateCCDB(sql); //update main batch
 
@@ -179,7 +186,7 @@ public class SubBatch extends javax.swing.JFrame {
                 while (rs.next()) {
                     String chem = rs.getNString(1);
                     amount = rs.getInt(2);
-                    amount = amount * (subMass/massT / 100);
+                    amount = amount * (subMass / massT / 100);
                     Pinwheel.insertCustomChemicalAt(subID, chem, amount + "");
                 }
                 Pinwheel.createSpecGraph(subID);

@@ -20,7 +20,7 @@ public class Edit extends javax.swing.JFrame {
      */
     public Edit() {
         initComponents();
-        switch(Pinwheel.getSearchType()){
+        switch (Pinwheel.getSearchType()) {
             case "batch":
                 this.blendBtn.setEnabled(false);
                 break;
@@ -35,6 +35,13 @@ public class Edit extends javax.swing.JFrame {
         data = Pinwheel.getData();
         this.batch = data[0];
         this.selectedTxt.setText(batch);
+
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                backBtn.doClick();
+            }
+        });
     }
 
     /**
@@ -200,7 +207,7 @@ public class Edit extends javax.swing.JFrame {
     private void viewChemicalsBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_viewChemicalsBtnActionPerformed
         ViewChems vc = new ViewChems();
         vc.setVisible(true);
-        
+
     }//GEN-LAST:event_viewChemicalsBtnActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
