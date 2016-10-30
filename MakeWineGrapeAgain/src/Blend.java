@@ -814,6 +814,7 @@ public class Blend extends javax.swing.JFrame {
 
                 String ID = (bid);
                 Pinwheel.createChem(ID);
+                Pinwheel.createSpecGraph(ID);
 
                 this.chem(ID, this.selectedTxt.getText(), Integer.parseInt(per1Txt.getText()));
                 this.chem(ID, this.batch2Txt.getText(), Integer.parseInt(per2Txt.getText()));
