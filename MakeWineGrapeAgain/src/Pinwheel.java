@@ -429,25 +429,25 @@ public final class Pinwheel {
         sc.close();
     }
 
-    public static void refreshSupplier() throws SQLException {
-        supplier = new ArrayList();
-        sql = "SELECT DISTINCT sname FROM supplier";
-        rs = queryCCDB(sql);
-        while (rs.next()) {
-            supplier.add(rs.getNString(1));
+    public static void refreshSupplier() throws SQLException, FileNotFoundException {
+        Scanner sc = new Scanner(new File("supp.txt"));
+        while (sc.hasNextLine()) {
+            supplier.add(sc.nextLine());
         }
-        for (int i = 0; i < supplier.size(); i++) {
-            supplierAll.add(supplier.get(i));
+        for (int i = 0; i < type.size(); i++) {
+            supplierAll.add(type.get(i));
         }
+        sc.close();
     }
+    
 
-    public static void refreshChemicals() throws SQLException {
-        chemicals = new ArrayList();
-        sql = "SELECT DISTINCT chemical FROM chemicaltbl";
-        rs = queryChem(sql);
-        while (rs.next()) {
-            chemicals.add(rs.getNString(1));
+    public static void refreshChemicals() throws SQLException, FileNotFoundException {
+        Scanner sc = new Scanner(new File("chem.txt"));
+        while (sc.hasNextLine()) {
+            chemicals.add(sc.nextLine());
         }
+        sc.close();
+  
 
     }
 
@@ -570,6 +570,24 @@ public final class Pinwheel {
 
         }
     }
+    public static void learnSupplier(String c) {
+        try (FileWriter fw = new FileWriter("supp.txt", true);
+                BufferedWriter bw = new BufferedWriter(fw);
+                PrintWriter out = new PrintWriter(bw)) {
+            out.println(c);
+        } catch (IOException ex) {
+
+        }
+    }
+    public static void learnChemical(String c) {
+        try (FileWriter fw = new FileWriter("chem.txt", true);
+                BufferedWriter bw = new BufferedWriter(fw);
+                PrintWriter out = new PrintWriter(bw)) {
+            out.println(c);
+        } catch (IOException ex) {
+
+        }
+    }
 
     public static void learnType(String c) {
         try (FileWriter fw = new FileWriter("type.txt", true);
@@ -593,12 +611,12 @@ public final class Pinwheel {
     public static void backup() throws SQLException {
 //===================================================================================================================================CCDB
 //---------------------------------------------------------------------------------------------------------------------------BATCHES
-        
+
         sql = "SELECT batchid, colour, type, stage, mass, supplierid FROM batch";
         try (FileWriter fw = new FileWriter("ccdbbackup.txt", true);
                 BufferedWriter bw = new BufferedWriter(fw);
                 PrintWriter out = new PrintWriter(bw)) {
-            out.println("DROP TABLE batch");
+            out.println("DROP TABLE batch" + " IF EXISTS");
             out.println("CREATE TABLE batch (batchid TEXT(15), colour TEXT(15), type TEXT(25), stage TEXT(2), mass FLOAT(15), supplierid TEXT(30))");
             rs = queryCCDB(sql);
             while (rs.next()) {
@@ -614,7 +632,7 @@ public final class Pinwheel {
 
 //---------------------------------------------------------------------------------------------------------------------------SUBBATCHES
             sql = "SELECT subbatchid, colour, type, stage, mass, supplierid FROM subbatch";
-            out.println("DROP TABLE subbatch");
+            out.println("DROP TABLE subbatch" + " IF EXISTS");
             out.println("CREATE TABLE subbatch (subbatchid TEXT(15), colour TEXT(15), type TEXT(25), stage TEXT(2), mass FLOAT(15), supplierid TEXT(30))");
             rs = queryCCDB(sql);
             while (rs.next()) {
@@ -630,7 +648,7 @@ public final class Pinwheel {
 
             //---------------------------------------------------------------------------------------------------------------------------SUPPLIERS
             sql = "SELECT sname, tel, email, liason FROM supplier";
-            out.println("DROP TABLE supplier");
+            out.println("DROP TABLE supplier" + " IF EXISTS");
             out.println("CREATE TABLE supplier (sname TEXT(30), tel TEXT(10), email TEXT(50), liason TEXT(30))");
             rs = queryCCDB(sql);
             while (rs.next()) {
@@ -644,7 +662,7 @@ public final class Pinwheel {
             }
 
 //---------------------------------------------------------------------------------------------------------------------------BLENDS
-            out.println("DROP TABLE blend");
+            out.println("DROP TABLE blend" + " IF EXISTS");
             sql = "SELECT bid, winename, colour, volume, stage, fid1, pid1, fid2, pid2, fid3, pid3, fid4, pid4, fid5, pid5, fid6, pid6, fid7, pid7, fid8, pid8, fid9, pid9 FROM blend";
             out.println("CREATE TABLE blend (bid TEXT(50), winename TEXT(50), colour TEXT(30), volume FLOAT(15), stage TEXT(2), "
                     + "fid1 TEXT(15), pid1 FLOAT(15), fid2 TEXT(15), pid2 FLOAT(15), fid3 TEXT(15), pid3 FLOAT(15), fid4 TEXT(15), pid4 FLOAT(15),"
@@ -692,7 +710,7 @@ public final class Pinwheel {
             while (rs.next()) {
                 String id = rs.getString(3);
                 if (!id.equals("chemicaltbl")) {
-                    out.println("DROP TABLE " + id);
+                    out.println("DROP TABLE " + id + " IF EXISTS");
                     sql = "CREATE TABLE " + id + " (chemical TEXT(100), amount FLOAT(15))";
 
                     out.println(sql);
@@ -704,15 +722,15 @@ public final class Pinwheel {
                         out.println("INSERT INTO " + id + " (chemical, amount) VALUES('" + chem + "', " + mass + ")");
                     }
                 } else {
-                    out.println("DROP TABLE " + id);
+                    out.println("DROP TABLE " + id + " IF EXISTS");
                     sql = "CREATE TABLE chemicaltbl (chemical TEXT(100), value FLOAT(15))";
                     out.println(sql);
-                    sql = "SELECT * FROM " + id;
+                    sql = "SELECT * FROM " + id + "tbl";
                     ResultSet rs1 = queryChem(sql);
                     while (rs1.next()) {
                         String chem = rs1.getNString(1);
                         double mass = rs1.getDouble(2);
-                        
+
                         out.println("INSERT INTO " + id + "tbl (chemical, value) VALUES('" + chem + "', " + mass + ")");
                     }
                 }
@@ -731,37 +749,38 @@ public final class Pinwheel {
 
             while (rs.next()) {
                 String id = rs.getString(3);
-              out.println("DROP TABLE " + id);
-                    sql = "CREATE TABLE " + id + " (date TEXT(255), balling FLOAT(15), temperature FLOAT(15))";
+                out.println("DROP TABLE " + id + " IF EXISTS");
+                sql = "CREATE TABLE " + id + " (date TEXT(255), balling FLOAT(15), temperature FLOAT(15))";
 
-                    out.println(sql);
-                    sql = "SELECT * FROM " + id;
-                    ResultSet rs1 = queryGraphDB(sql);
-                    while (rs1.next()) {
-                        String date = rs1.getNString(1);
-                        double balling = rs1.getDouble(2);
-                        double temp = rs1.getDouble(3);
-                        out.println("INSERT INTO " + id + " (chemical, amount) VALUES('" + date + "', " + balling + ", " + temp + ")");
-                    }
-                
+                out.println(sql);
+                sql = "SELECT * FROM " + id;
+                ResultSet rs1 = queryGraphDB(sql);
+                while (rs1.next()) {
+                    String date = rs1.getNString(1);
+                    double balling = rs1.getDouble(2);
+                    double temp = rs1.getDouble(3);
+                    out.println("INSERT INTO " + id + " (date, balling, temperature) VALUES('" + date + "', " + balling + ", " + temp + ")");
+                }
+
             }
 
         } catch (IOException ex) {
 
         }
     }
-    public static void restore() throws FileNotFoundException{
+
+    public static void restore() throws FileNotFoundException {
         //RESTORE BATCH
         Scanner sc = new Scanner(new File("ccdbbackup.txt"));
-        while(sc.hasNextLine()){
+        while (sc.hasNextLine()) {
             updateCCDB(sc.nextLine());
         }
         sc = new Scanner(new File("chemdbbackup.txt"));
-        while(sc.hasNextLine()){
+        while (sc.hasNextLine()) {
             updateChem(sc.nextLine());
         }
         sc = new Scanner(new File("graphdbbackup.txt"));
-        while(sc.hasNextLine()){
+        while (sc.hasNextLine()) {
             updateGraphDB(sc.nextLine());
         }
     }
