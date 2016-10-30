@@ -49,6 +49,9 @@ public final class Pinwheel {
     static String[] data;
     static String[] tempdataId = new String[9];
     static String[] tempdataMass = new String[9];
+    
+    static String bakDir;
+    static String bakDate;
 
     static String searchType;
     static String previousID;
@@ -94,7 +97,7 @@ public final class Pinwheel {
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
             System.out.println("Driver loaded");
 
-            String url = "jdbc:ucanaccess://ccdb.accdb";
+            String url = "jdbc:ucanaccess://docs\\ccdb.accdb";
             conn = DriverManager.getConnection(url);
 
             System.out.println("Database Connected - CCDB");
@@ -109,7 +112,7 @@ public final class Pinwheel {
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
             System.out.println("Driver loaded");
 
-            String url = "jdbc:ucanaccess://chemdb.accdb";
+            String url = "jdbc:ucanaccess://docs\\chemdb.accdb";
             connChem = DriverManager.getConnection(url);
             System.out.println("Database Connected - CHEMS");
 
@@ -124,7 +127,7 @@ public final class Pinwheel {
             Class.forName("net.ucanaccess.jdbc.UcanaccessDriver");
             System.out.println("Driver loaded");
 
-            String url = "jdbc:ucanaccess://graphdb.accdb";
+            String url = "jdbc:ucanaccess://docs\\graphdb.accdb";
             connGraph = DriverManager.getConnection(url);
 
             System.out.println("Database Connected - GRAPH");
@@ -407,7 +410,7 @@ public final class Pinwheel {
     }
 
     public static void refreshColour() throws SQLException, FileNotFoundException {
-        Scanner sc = new Scanner(new File("colour.txt"));
+        Scanner sc = new Scanner(new File("docs\\colour.txt"));
         while (sc.hasNextLine()) {
             colour.add(sc.nextLine());
         }
@@ -418,7 +421,7 @@ public final class Pinwheel {
     }
 
     public static void refreshType() throws SQLException, FileNotFoundException {
-        Scanner sc = new Scanner(new File("type.txt"));
+        Scanner sc = new Scanner(new File("docs\\type.txt"));
         while (sc.hasNextLine()) {
             type.add(sc.nextLine());
         }
@@ -429,7 +432,7 @@ public final class Pinwheel {
     }
 
     public static void refreshSupplier() throws SQLException, FileNotFoundException {
-        Scanner sc = new Scanner(new File("supp.txt"));
+        Scanner sc = new Scanner(new File("docs\\supp.txt"));
         while (sc.hasNextLine()) {
             supplier.add(sc.nextLine());
         }
@@ -440,7 +443,7 @@ public final class Pinwheel {
     }
 
     public static void refreshChemicals() throws SQLException, FileNotFoundException {
-        Scanner sc = new Scanner(new File("chem.txt"));
+        Scanner sc = new Scanner(new File("docs\\chem.txt"));
         while (sc.hasNextLine()) {
             chemicals.add(sc.nextLine());
         }
@@ -553,7 +556,7 @@ public final class Pinwheel {
     }
 
     public static void learnColour(String c) {
-        try (FileWriter fw = new FileWriter("colour.txt", true);
+        try (FileWriter fw = new FileWriter("docs\\colour.txt", true);
                 BufferedWriter bw = new BufferedWriter(fw);
                 PrintWriter out = new PrintWriter(bw)) {
             out.println(c);
@@ -563,7 +566,7 @@ public final class Pinwheel {
     }
 
     public static void learnSupplier(String c) {
-        try (FileWriter fw = new FileWriter("supp.txt", true);
+        try (FileWriter fw = new FileWriter("docs\\supp.txt", true);
                 BufferedWriter bw = new BufferedWriter(fw);
                 PrintWriter out = new PrintWriter(bw)) {
             out.println(c);
@@ -573,7 +576,7 @@ public final class Pinwheel {
     }
 
     public static void learnChemical(String c) {
-        try (FileWriter fw = new FileWriter("chem.txt", true);
+        try (FileWriter fw = new FileWriter("docs\\chem.txt", true);
                 BufferedWriter bw = new BufferedWriter(fw);
                 PrintWriter out = new PrintWriter(bw)) {
             out.println(c);
@@ -583,7 +586,7 @@ public final class Pinwheel {
     }
 
     public static void learnType(String c) {
-        try (FileWriter fw = new FileWriter("type.txt", true);
+        try (FileWriter fw = new FileWriter("docs\\type.txt", true);
                 BufferedWriter bw = new BufferedWriter(fw);
                 PrintWriter out = new PrintWriter(bw)) {
             out.println(c);
@@ -597,16 +600,15 @@ public final class Pinwheel {
     }
 
     public static String clean(String s) {
-//        return s.replaceAll("/\\*.*?\\*/", "");
         return s.replace("'", "''");
     }
 
-    public static void backup() throws SQLException {
+    public static void backup() throws SQLException {        
 //===================================================================================================================================CCDB
 //---------------------------------------------------------------------------------------------------------------------------BATCHES
 
         sql = "SELECT batchid, colour, type, stage, mass, supplierid FROM batch";
-        try (FileWriter fw = new FileWriter("ccdbbackup.txt", true);
+        try (FileWriter fw = new FileWriter("BAK\\CCDB-Backup.sql", false);
                 BufferedWriter bw = new BufferedWriter(fw);
                 PrintWriter out = new PrintWriter(bw)) {
             out.println("DROP TABLE batch" + " IF EXISTS");
@@ -696,7 +698,7 @@ public final class Pinwheel {
 
         rs = connChem.getMetaData().getTables(null, null, "%", null);
 
-        try (FileWriter fw = new FileWriter("chemdbbackup.txt", true);
+        try (FileWriter fw = new FileWriter("BAK\\ChemDB-Backup.sql", false);
                 BufferedWriter bw = new BufferedWriter(fw);
                 PrintWriter out = new PrintWriter(bw)) {
 
@@ -718,13 +720,13 @@ public final class Pinwheel {
                     out.println("DROP TABLE " + id + " IF EXISTS");
                     sql = "CREATE TABLE chemicaltbl (chemical TEXT(100), value FLOAT(15))";
                     out.println(sql);
-                    sql = "SELECT * FROM " + id + "tbl";
+                    sql = "SELECT * FROM " + id;
                     ResultSet rs1 = queryChem(sql);
                     while (rs1.next()) {
                         String chem = rs1.getNString(1);
                         double mass = rs1.getDouble(2);
 
-                        out.println("INSERT INTO " + id + "tbl (chemical, value) VALUES('" + chem + "', " + mass + ")");
+                        out.println("INSERT INTO " + id + " (chemical, value) VALUES('" + chem + "', " + mass + ")");
                     }
                 }
             }
@@ -736,7 +738,7 @@ public final class Pinwheel {
 //---------------------------------------------------------------------------------------------------------------------------EVERYTHING 
         rs = connGraph.getMetaData().getTables(null, null, "%", null);
 
-        try (FileWriter fw = new FileWriter("graphdbbackup.txt", true);
+        try (FileWriter fw = new FileWriter("BAK\\GraphDB-Backup.sql", false);
                 BufferedWriter bw = new BufferedWriter(fw);
                 PrintWriter out = new PrintWriter(bw)) {
 
@@ -764,15 +766,15 @@ public final class Pinwheel {
 
     public static void restore() throws FileNotFoundException {
         //RESTORE BATCH
-        Scanner sc = new Scanner(new File("ccdbbackup.txt"));
+        Scanner sc = new Scanner(new File("BAK\\CCDB-Backup.sql"));
         while (sc.hasNextLine()) {
             updateCCDB(sc.nextLine());
         }
-        sc = new Scanner(new File("chemdbbackup.txt"));
+        sc = new Scanner(new File("BAK\\ChemDB-Backup.sql"));
         while (sc.hasNextLine()) {
             updateChem(sc.nextLine());
         }
-        sc = new Scanner(new File("graphdbbackup.txt"));
+        sc = new Scanner(new File("BAK\\GraphDB-Backup.sql"));
         while (sc.hasNextLine()) {
             updateGraphDB(sc.nextLine());
         }

@@ -147,7 +147,7 @@ public class GraphUI extends JFrame {
         jLabel1.setMaximumSize(new java.awt.Dimension(600, 600));
         jLabel1.setMinimumSize(new java.awt.Dimension(600, 600));
         jLabel1.setPreferredSize(new java.awt.Dimension(600, 600));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 600));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 720, 690));
 
         pack();
         setLocationRelativeTo(null);
