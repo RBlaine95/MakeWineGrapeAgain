@@ -1,4 +1,5 @@
 
+import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -209,9 +210,10 @@ private Add a;
                     + "', '" + this.emailTxt.getText() + "', '" + this.liasonTxt.getText() + "')";
 
             Pinwheel.updateCCDB(sql);
+            Pinwheel.learnSupplier(this.nameTxt.getText());
             try {
                 Pinwheel.refreshSupplier();
-            } catch (SQLException ex) {
+            } catch (SQLException | FileNotFoundException ex) {
                 Logger.getLogger(AddSupplier.class.getName()).log(Level.SEVERE, null, ex);
             }
             Add ad = a;

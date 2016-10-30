@@ -24,13 +24,6 @@ public class Chemicals extends javax.swing.JFrame {
      */
     public Chemicals() {
         initComponents();
-        this.chemBox.setModel(new DefaultComboBoxModel(Pinwheel.getChemicals().toArray()));
-
-        this.chemBox.addItem("New Chemical...");
-        this.data = Pinwheel.getData();
-        this.batch = data[0];
-
-        this.selectedTxt.setText(batch);
 
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
@@ -62,6 +55,11 @@ public class Chemicals extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Add Chemical");
         setResizable(false);
+        addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                formComponentShown(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
@@ -120,6 +118,11 @@ public class Chemicals extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
+        jLabel4.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentShown(java.awt.event.ComponentEvent evt) {
+                jLabel4ComponentShown(evt);
+            }
+        });
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 310, 210));
 
         pack();
@@ -141,7 +144,7 @@ public class Chemicals extends javax.swing.JFrame {
     private void chemBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chemBoxActionPerformed
         if (this.chemBox.getSelectedItem() == "New Chemical...") {
 
-            AddChemical a = new AddChemical();
+            AddChemical a = new AddChemical(this);
             a.setVisible(true);
             this.dispose();
         }
@@ -155,6 +158,14 @@ public class Chemicals extends javax.swing.JFrame {
         amountTxt.setText(Pinwheel.numEx(amountTxt.getText()));
     }//GEN-LAST:event_amountTxtKeyReleased
 
+    private void jLabel4ComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jLabel4ComponentShown
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel4ComponentShown
+
+    private void formComponentShown(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentShown
+        this.refesh();
+    }//GEN-LAST:event_formComponentShown
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField amountTxt;
     private javax.swing.JButton backBtn;
@@ -166,4 +177,19 @@ public class Chemicals extends javax.swing.JFrame {
     private javax.swing.JButton okBtn;
     private javax.swing.JTextField selectedTxt;
     // End of variables declaration//GEN-END:variables
+public void setChemical(String a) throws SQLException {
+    this.refesh();
+        this.chemBox.setSelectedItem(a);
+    }
+
+    private void refesh() {
+        this.chemBox.setModel(new DefaultComboBoxModel(Pinwheel.getChemicals().toArray()));
+
+        this.chemBox.addItem("New Chemical...");
+        this.data = Pinwheel.getData();
+        this.batch = data[0];
+
+        this.selectedTxt.setText(batch);
+
+    }
 }
