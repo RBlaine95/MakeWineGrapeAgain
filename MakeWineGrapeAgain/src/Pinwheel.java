@@ -549,12 +549,6 @@ public final class Pinwheel {
         updateGraphDB(sql);
     }
 
-    public static void createGraph() {
-        sql = "CREATE TABLE "
-                + data[0] + " (date TEXT(255), balling DECIMAL(5,2), temperature DECIMAL(5,2))";
-        updateGraphDB(sql);
-    }
-
     public static void createSpecGraph(String a) {
         sql = "CREATE TABLE "
                 + clean(a) + " (date TEXT(255), balling DECIMAL(5,2), temperature DECIMAL(5,2))";

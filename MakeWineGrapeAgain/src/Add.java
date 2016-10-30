@@ -338,7 +338,7 @@ public class Add extends javax.swing.JFrame {
 
             Pinwheel.insertBatch();
             Pinwheel.createChem();
-            Pinwheel.createGraph();
+            Pinwheel.createSpecGraph(temp[0]);
             this.dispose();
         } catch (SQLException ex) {
             Logger.getLogger(Add.class.getName()).log(Level.SEVERE, null, ex);
