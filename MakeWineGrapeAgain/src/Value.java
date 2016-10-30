@@ -265,7 +265,7 @@ private void recalculate() throws SQLException {
         if (!costPerBottle.getText().isEmpty() && !costPerCork.getText().isEmpty() && !amountPerBottle.getText().isEmpty()) {
             double cpb = Double.parseDouble(costPerBottle.getText());
             double cpc = Double.parseDouble(costPerCork.getText());
-            double apb = Double.parseDouble(amountPerBottle.getText());
+            double apb = Double.parseDouble(amountPerBottle.getText())/1000;
             double chemvalue = 0;
             String chemical;
             double amount;
