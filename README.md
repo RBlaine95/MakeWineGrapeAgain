@@ -19,7 +19,6 @@ During the meeting he mentioned that he would allow us to have all licensing and
 * Open Source
 * Scalable ⁽ᶰᵒᵗ ᵛᵉʳʸ ᵇᵘᵗ ʷᵉ'ʳᵉ ʷᵒʳᵏᶦᶰᵍ ᵒᶰ ᵗʰᵃᵗ⁾
 * Database Backup and Restore
-* Linux/Unix support is in Alpha
 
 ### Features Coming Soon
 * Keeping record of who withdrew how many bottles of which wine and when
@@ -28,3 +27,4 @@ During the meeting he mentioned that he would allow us to have all licensing and
 * View which chemicals were added before and after Fermentation
 * Efficiency
 * Full Linux/Unix Support
+* Linux/Unix support is in Alpha
