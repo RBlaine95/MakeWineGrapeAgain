@@ -361,11 +361,11 @@ public class Add extends javax.swing.JFrame {
     }//GEN-LAST:event_massTxtKeyReleased
 
     private void typeOverrideTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_typeOverrideTxtKeyReleased
-        this.check();
+        this.typeCheck();
     }//GEN-LAST:event_typeOverrideTxtKeyReleased
 
     private void colourOverrideTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_colourOverrideTxtKeyReleased
-        this.check();
+        this.colourCheck();
     }//GEN-LAST:event_colourOverrideTxtKeyReleased
 
     private void yearTxtKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_yearTxtKeyReleased
@@ -423,15 +423,19 @@ public class Add extends javax.swing.JFrame {
 
     public void colourCheck() {
         colourRan = true;
+
         colourOverride = this.colourBox.getSelectedItem().equals("Override");
         colourbool = !this.colourOverrideTxt.getText().equals("");
+
         this.check();
     }
 
     public void typeCheck() {
         typeRan = true;
+
         typeOverride = this.typeBox.getSelectedItem().equals("Override");
         typebool = !this.typeOverrideTxt.getText().equals("");
+
         this.check();
     }
 
