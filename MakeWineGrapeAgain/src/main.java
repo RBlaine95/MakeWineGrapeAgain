@@ -2,8 +2,6 @@
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
@@ -274,7 +272,7 @@ public class main extends javax.swing.JFrame {
 
                 PrintWriter writer;
                 try {
-                    writer = new PrintWriter("pass.txt");
+                    writer = new PrintWriter("docs\\pass.txt");
                     writer.println(encryptedString);
                     writer.close();
                 } catch (FileNotFoundException ex) {

@@ -1,4 +1,5 @@
 
+import java.io.FileNotFoundException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -16,6 +17,8 @@ import javax.swing.DefaultComboBoxModel;
  */
 public class Add extends javax.swing.JFrame {
 
+    boolean colourRan = false;
+    boolean typeRan = false;
     boolean colourOverride, colourbool, typeOverride, typebool;
     AddSupplier as = null;
 
@@ -79,6 +82,11 @@ public class Add extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Colour");
 
+        colourBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                colourBoxItemStateChanged(evt);
+            }
+        });
         colourBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 colourBoxActionPerformed(evt);
@@ -268,7 +276,7 @@ public class Add extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void colourBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_colourBoxActionPerformed
-        this.check();
+        this.colourCheck();
         if (this.colourBox.getSelectedItem() == "Override") {
             this.colourOverrideTxt.setEditable(true);
             this.colourLbl.setEnabled(true);
@@ -279,7 +287,7 @@ public class Add extends javax.swing.JFrame {
     }//GEN-LAST:event_colourBoxActionPerformed
 
     private void typeBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_typeBoxActionPerformed
-        this.check();
+        this.typeCheck();
         if (this.typeBox.getSelectedItem() == "Override") {
             this.typeOverrideTxt.setEditable(true);
             this.typeLbl.setEnabled(true);
@@ -291,7 +299,7 @@ public class Add extends javax.swing.JFrame {
 
     private void supplierBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_supplierBoxActionPerformed
         if (this.supplierBox.getSelectedItem().equals("New Supplier...")) {
-            as = new AddSupplier(this);
+            as = new AddSupplier();
             as.setVisible(true);
             this.dispose();
         }
@@ -385,6 +393,10 @@ public class Add extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_colourOverrideTxtKeyPressed
 
+    private void colourBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_colourBoxItemStateChanged
+
+    }//GEN-LAST:event_colourBoxItemStateChanged
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton cancelBtn;
     private javax.swing.JComboBox colourBox;
@@ -408,19 +420,39 @@ public class Add extends javax.swing.JFrame {
     private javax.swing.JTextField typeOverrideTxt;
     private javax.swing.JTextField yearTxt;
     // End of variables declaration//GEN-END:variables
-public void check() {
+
+    public void colourCheck() {
+        colourRan = true;
         colourOverride = this.colourBox.getSelectedItem().equals("Override");
         colourbool = !this.colourOverrideTxt.getText().equals("");
+        this.check();
+    }
+
+    public void typeCheck() {
+        typeRan = true;
         typeOverride = this.typeBox.getSelectedItem().equals("Override");
         typebool = !this.typeOverrideTxt.getText().equals("");
-        if (!this.massTxt.getText().equals("") && !this.yearTxt.getText().equals("") && ((colourbool && colourOverride) || (!colourOverride)) && ((typebool && typeOverride) || (!typeOverride))) {
-            this.okBtn.setEnabled(true);
-        } else {
-            this.okBtn.setEnabled(false);
+        this.check();
+    }
+
+    public void check() {
+        if (colourRan && typeRan) {
+            if (!this.massTxt.getText().equals("") && !this.yearTxt.getText().equals("") && ((colourbool && colourOverride) || (!colourOverride)) && ((typebool && typeOverride) || (!typeOverride))) {
+                this.okBtn.setEnabled(true);
+            } else {
+                this.okBtn.setEnabled(false);
+            }
         }
     }
 
     public void refresh() throws SQLException {
+        try {
+            Pinwheel.refreshColour();
+            Pinwheel.refreshType();
+            Pinwheel.refreshSupplier();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Add.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColour().toArray()));
         this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getType().toArray()));
@@ -431,8 +463,11 @@ public void check() {
         this.typeBox.addItem("Override");
         this.supplierBox.addItem("New Supplier...");
     }
-    public void setSupplier(String a) throws SQLException{
+
+    public void setSupplier(String a) throws SQLException {
+        System.out.println("setssupp");
         this.refresh();
+        System.out.println("refesh");
         this.supplierBox.setSelectedItem(a);
     }
 }

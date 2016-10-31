@@ -61,6 +61,7 @@ private Add a;
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setAlwaysOnTop(true);
+        setMaximumSize(new java.awt.Dimension(300, 300));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -170,7 +171,7 @@ private Add a;
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(liasonTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancelBtn)
                     .addComponent(okBtn))
@@ -185,9 +186,12 @@ private Add a;
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
         jLabel6.setText("jLabel6");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 300, 300));
+        jLabel6.setMaximumSize(new java.awt.Dimension(300, 300));
+        jLabel6.setMinimumSize(new java.awt.Dimension(300, 300));
+        jLabel6.setPreferredSize(new java.awt.Dimension(300, 300));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 320, 320));
 
-        setSize(new java.awt.Dimension(316, 338));
+        setSize(new java.awt.Dimension(316, 339));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -216,7 +220,9 @@ private Add a;
             } catch (SQLException | FileNotFoundException ex) {
                 Logger.getLogger(AddSupplier.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Add ad = a;
+            
+            Add ad = new Add();
+            System.out.println("creats ");
             try {
                 ad.setSupplier(this.nameTxt.getText());
             } catch (SQLException ex) {
