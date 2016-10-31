@@ -411,6 +411,7 @@ public final class Pinwheel {
 
     public static void refreshColour() throws SQLException, FileNotFoundException {
         Scanner sc = new Scanner(new File("docs\\colour.txt"));
+        colour = new ArrayList();
         while (sc.hasNextLine()) {
             colour.add(sc.nextLine());
         }
@@ -422,6 +423,7 @@ public final class Pinwheel {
 
     public static void refreshType() throws SQLException, FileNotFoundException {
         Scanner sc = new Scanner(new File("docs\\type.txt"));
+        type = new ArrayList();
         while (sc.hasNextLine()) {
             type.add(sc.nextLine());
         }
@@ -433,6 +435,7 @@ public final class Pinwheel {
 
     public static void refreshSupplier() throws SQLException, FileNotFoundException {
         Scanner sc = new Scanner(new File("docs\\supp.txt"));
+        supplier = new ArrayList();
         while (sc.hasNextLine()) {
             supplier.add(sc.nextLine());
         }
@@ -444,6 +447,7 @@ public final class Pinwheel {
 
     public static void refreshChemicals() throws SQLException, FileNotFoundException {
         Scanner sc = new Scanner(new File("docs\\chem.txt"));
+        chemicals = new ArrayList();
         while (sc.hasNextLine()) {
             chemicals.add(sc.nextLine());
         }
