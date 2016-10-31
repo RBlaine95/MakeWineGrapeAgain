@@ -216,7 +216,9 @@ private Add a;
             } catch (SQLException | FileNotFoundException ex) {
                 Logger.getLogger(AddSupplier.class.getName()).log(Level.SEVERE, null, ex);
             }
-            Add ad = a;
+            
+            Add ad = new Add();
+            System.out.println("creats ");
             try {
                 ad.setSupplier(this.nameTxt.getText());
             } catch (SQLException ex) {
