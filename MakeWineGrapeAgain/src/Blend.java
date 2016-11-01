@@ -142,6 +142,9 @@ public class Blend extends javax.swing.JFrame {
         clear8 = new javax.swing.JButton();
         clear9 = new javax.swing.JButton();
         colBox = new javax.swing.JComboBox();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtArea = new javax.swing.JTextArea();
+        jLabel23 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -566,6 +569,15 @@ public class Blend extends javax.swing.JFrame {
         });
         getContentPane().add(colBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(566, 94, -1, -1));
 
+        txtArea.setColumns(20);
+        txtArea.setRows(5);
+        jScrollPane1.setViewportView(txtArea);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 330, -1, -1));
+
+        jLabel23.setText("Notes");
+        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, -1, -1));
+
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
         jLabel24.setText("jLabel24");
         getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 490));
@@ -778,7 +790,7 @@ public class Blend extends javax.swing.JFrame {
                         }
                     }
                 }
-                sql += ") VALUES('" + bid + "', '" + name + "', '" + colour + "', '" + volume + "', '" + Pinwheel.stageGetNo(stage)
+                sql += ", note) VALUES('" + bid + "', '" + name + "', '" + colour + "', '" + volume + "', '" + Pinwheel.stageGetNo(stage)
                         + "', '" + this.selectedTxt.getText() + "', '" + Integer.parseInt(this.per1Txt.getText()) + "', '" + this.batch2Txt.getText() + "', '"
                         + Integer.parseInt(this.per2Txt.getText()) + "'";
 
@@ -809,7 +821,7 @@ public class Blend extends javax.swing.JFrame {
                         }
                     }
                 }
-                sql += ")";
+                sql += ", '" + this.txtArea.getText() + "')";
                 Pinwheel.updateCCDB(sql);
 
                 String ID = (bid);
@@ -1117,6 +1129,7 @@ public class Blend extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -1125,6 +1138,7 @@ public class Blend extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameTxt;
     private javax.swing.JButton okBtn;
     private javax.swing.JTextField per1Txt;
@@ -1147,6 +1161,7 @@ public class Blend extends javax.swing.JFrame {
     private javax.swing.JButton select9Btn;
     private javax.swing.JTextField selectedTxt;
     private javax.swing.JComboBox stageBox;
+    private javax.swing.JTextArea txtArea;
     private javax.swing.JTextField volTxt;
     // End of variables declaration//GEN-END:variables
 

@@ -21,6 +21,7 @@ public class SearchBatch extends javax.swing.JFrame {
      * Creates new form SearchBatch
      */
     String batchid;
+    String note;
     String colour;
     String type;
     String stage;
@@ -49,7 +50,7 @@ public class SearchBatch extends javax.swing.JFrame {
                 this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getTypeAll().toArray()));
                 this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStagesAll().toArray()));
 
-                data = new String[6];
+                data = new String[7];
 
                 this.batchLbl.setText("Blend Name");
                 this.supplierLbl.setText("");
@@ -66,14 +67,14 @@ public class SearchBatch extends javax.swing.JFrame {
                 this.suppBox.setModel(new DefaultComboBoxModel(Pinwheel.getSupplierAll().toArray()));
                 this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStagesAll().toArray()));
 
-                data = new String[6];
+                data = new String[7];
                 break;
             case "batch":
                 this.colourBox.setModel(new DefaultComboBoxModel(Pinwheel.getColourAll().toArray()));
                 this.typeBox.setModel(new DefaultComboBoxModel(Pinwheel.getTypeAll().toArray()));
                 this.suppBox.setModel(new DefaultComboBoxModel(Pinwheel.getSupplierAll().toArray()));
                 this.stageBox.setModel(new DefaultComboBoxModel(Pinwheel.getStagesAll().toArray()));
-                data = new String[6];
+                data = new String[7];
                 break;
             case "supplier":
                 batchTbl.getColumnModel().getColumn(0).setHeaderValue("Supplier name");
@@ -176,6 +177,9 @@ public class SearchBatch extends javax.swing.JFrame {
         colourLbl = new javax.swing.JLabel();
         batchIdTxt = new javax.swing.JTextField();
         batchLbl = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        txtArea = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
 
         jLabel6.setText("Wine Type");
@@ -344,11 +348,23 @@ public class SearchBatch extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(240, 560, 680, 80);
 
+        txtArea.setEditable(false);
+        txtArea.setColumns(20);
+        txtArea.setRows(5);
+        jScrollPane2.setViewportView(txtArea);
+
+        getContentPane().add(jScrollPane2);
+        jScrollPane2.setBounds(1100, 60, 390, 350);
+
+        jLabel2.setText("Notes");
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(1100, 40, 33, 16);
+
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
-        jLabel1.setBounds(0, 0, 1090, 660);
+        jLabel1.setBounds(0, 0, 1560, 660);
 
-        setSize(new java.awt.Dimension(1101, 692));
+        setSize(new java.awt.Dimension(1572, 692));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -359,7 +375,14 @@ public class SearchBatch extends javax.swing.JFrame {
     private void selectBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectBtnActionPerformed
 
         for (int i = 0; i < data.length; i++) {
-            data[i] = (String) this.batchTbl.getValueAt(this.batchTbl.getSelectedRow(), i);
+            if (i < data.length-1) {
+                data[i] = (String) this.batchTbl.getValueAt(this.batchTbl.getSelectedRow(), i);
+
+            } else {
+                System.out.println("adds note");
+                data[i] = note;
+            }
+
         }
         if (this.temp) {
             Pinwheel.setSpecTempData(data[0], num);
@@ -639,6 +662,28 @@ public class SearchBatch extends javax.swing.JFrame {
 
     private void batchTblMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_batchTblMousePressed
         if (batchTbl.getSelectedRow() != -1) {
+            String id = (String) this.batchTbl.getValueAt(this.batchTbl.getSelectedRow(), 0);
+            String sql = "";
+            switch (Pinwheel.searchType) {
+                case "batch":
+                    sql = "SELECT note FROM batch WHERE batchid = '" + id + "'";
+                    break;
+                case "subbatch":
+                    sql = "SELECT note FROM subbatch WHERE subbatchid = '" + id + "'";
+                    break;
+                case "blend":
+                    sql = "SELECT note FROM blend WHERE bid = '" + id + "'";
+                    break;
+            }
+            try {
+                ResultSet rs = Pinwheel.queryCCDB(sql);
+                if (rs.next()) {
+                    this.note = rs.getNString(1);
+                    this.txtArea.setText(note);
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(SearchBatch.class.getName()).log(Level.SEVERE, null, ex);
+            }
             this.selectBtn.setEnabled(true);
         }
     }//GEN-LAST:event_batchTblMousePressed
@@ -658,15 +703,18 @@ public class SearchBatch extends javax.swing.JFrame {
     private javax.swing.JLabel colourLbl;
     private javax.swing.JComboBox jComboBox3;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton searchBtn;
     private javax.swing.JButton selectBtn;
     private javax.swing.JComboBox stageBox;
     private javax.swing.JLabel stageLbl;
     private javax.swing.JComboBox suppBox;
     private javax.swing.JLabel supplierLbl;
+    private javax.swing.JTextArea txtArea;
     private javax.swing.JComboBox typeBox;
     private javax.swing.JLabel typeLbl;
     // End of variables declaration//GEN-END:variables

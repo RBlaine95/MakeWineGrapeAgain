@@ -32,7 +32,7 @@ public class SubBatch extends javax.swing.JFrame {
         this.data = Pinwheel.getData();
         this.batch = this.data[0];
         this.selectedTxt.setText(batch);
-        System.out.println(data[4]);
+        this.txtArea.setText(data[6]);
         this.subMassSlide.getModel().setMaximum((int) Double.parseDouble(this.data[4]));
         subMassSlide.getValue();
 
@@ -61,8 +61,11 @@ public class SubBatch extends javax.swing.JFrame {
         okBtn = new javax.swing.JButton();
         massTxt = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        stageBox = new javax.swing.JComboBox<>();
+        stageBox = new javax.swing.JComboBox<String>();
         jLabel4 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtArea = new javax.swing.JTextArea();
+        jLabel6 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -85,7 +88,7 @@ public class SubBatch extends javax.swing.JFrame {
                 backBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(266, 200, -1, -1));
+        getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 380, -1, -1));
 
         subMassSlide.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         subMassSlide.setValue(0);
@@ -107,7 +110,7 @@ public class SubBatch extends javax.swing.JFrame {
                 okBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(okBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(331, 200, -1, -1));
+        getContentPane().add(okBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 380, -1, -1));
 
         massTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         massTxt.setText("0");
@@ -129,15 +132,24 @@ public class SubBatch extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 134, -1, -1));
 
         stageBox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        stageBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
+        stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
         getContentPane().add(stageBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 131, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel4.setText("KG");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 87, -1, -1));
 
+        txtArea.setColumns(20);
+        txtArea.setRows(5);
+        jScrollPane1.setViewportView(txtArea);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 410, 150));
+
+        jLabel6.setText("Notes");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
+
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 390, 240));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 430));
 
         pack();
         setLocationRelativeTo(null);
@@ -170,13 +182,13 @@ public class SubBatch extends javax.swing.JFrame {
                     System.out.println(data[i]);
                 }
 
-                sql = "INSERT INTO subbatch (subbatchid, colour, type, stage, mass, supplierid ) VALUES ('" 
+                sql = "INSERT INTO subbatch (subbatchid, colour, type, stage, mass, supplierid, note) VALUES ('" 
                         + subID + "', '" 
                         + this.data[1] + "', '" 
                         + this.data[2] + "', '" 
                         + Pinwheel.stageGetNo(stage) + "', " 
                         + subMass + ", '" 
-                        + this.data[5] + "')"; //prep sub batch sql
+                        + this.data[5] + "', '" + this.txtArea.getText() + "')"; //prep sub batch sql
                 System.out.println(sql);
                 Pinwheel.updateCCDB(sql); //insert new sub batch
 
@@ -231,10 +243,13 @@ public class SubBatch extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField massTxt;
     private javax.swing.JButton okBtn;
     private javax.swing.JTextField selectedTxt;
     private javax.swing.JComboBox<String> stageBox;
     private javax.swing.JSlider subMassSlide;
+    private javax.swing.JTextArea txtArea;
     // End of variables declaration//GEN-END:variables
 }
