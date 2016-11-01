@@ -104,12 +104,18 @@ public class GraphUI extends JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Graph");
+        setMaximizedBounds(new java.awt.Rectangle(0, 0, 600, 600));
+        setMaximumSize(new java.awt.Dimension(600, 600));
         setMinimumSize(new java.awt.Dimension(600, 600));
         setResizable(false);
+        setSize(new java.awt.Dimension(600, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanel1.setMaximumSize(new java.awt.Dimension(600, 550));
+        jPanel1.setMinimumSize(new java.awt.Dimension(600, 550));
+        jPanel1.setPreferredSize(new java.awt.Dimension(600, 550));
         jPanel1.setLayout(new java.awt.BorderLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -2, 600, 550));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 550));
 
         saveBtn.setText("Save Graph");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {

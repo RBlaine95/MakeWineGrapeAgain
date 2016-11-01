@@ -1,4 +1,5 @@
 
+import java.io.FileNotFoundException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -22,6 +23,17 @@ public class AddChemical extends javax.swing.JFrame {
     public AddChemical() {
         initComponents();
 
+        this.addWindowListener(new java.awt.event.WindowAdapter() {
+            @Override
+            public void windowClosing(java.awt.event.WindowEvent windowEvent) {
+                cancelBtn.doClick();
+            }
+        });
+    }
+
+    public AddChemical(Chemicals c) {
+        initComponents();
+        this.c = c;
         this.addWindowListener(new java.awt.event.WindowAdapter() {
             @Override
             public void windowClosing(java.awt.event.WindowEvent windowEvent) {
@@ -164,14 +176,24 @@ public class AddChemical extends javax.swing.JFrame {
 
     private void okBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_okBtnActionPerformed
         String[] chem = {this.chemTxt.getText(), this.valueTxt.getText()};
-        Pinwheel.setData(chem);
-        Pinwheel.insertChemical();
+        String sql = "INSERT INTO chemicaltbl (chemical, value) VALUES('" + chem[0] + "', '" + chem[1] + "')";
+        Pinwheel.updateChem(sql);
+        Pinwheel.learnChemical(chem[0]);
         try {
-            Pinwheel.refreshChemicals();
+            try {
+                Pinwheel.refreshChemicals();
+            } catch (FileNotFoundException ex) {
+                Logger.getLogger(AddChemical.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } catch (SQLException ex) {
             Logger.getLogger(AddChemical.class.getName()).log(Level.SEVERE, null, ex);
         }
-        c = new Chemicals();
+        try {
+            c.setChemical(chem[0]);
+        } catch (SQLException ex) {
+            Logger.getLogger(AddChemical.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         c.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_okBtnActionPerformed
