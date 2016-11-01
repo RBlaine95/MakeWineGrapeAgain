@@ -62,32 +62,32 @@ public class Chemicals extends javax.swing.JFrame {
         });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel1.setText("Selected:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(77, 14, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, -1));
 
         selectedTxt.setEditable(false);
-        selectedTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        getContentPane().add(selectedTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(132, 11, 91, -1));
+        selectedTxt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        getContentPane().add(selectedTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 10, 170, -1));
 
-        backBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        backBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(178, 169, -1, -1));
+        getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 160, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel2.setText("Chemicals");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 66, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel3.setText("Amount Added (mg)");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 125, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, -1));
 
-        amountTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        amountTxt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         amountTxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 amountTxtKeyPressed(evt);
@@ -98,23 +98,23 @@ public class Chemicals extends javax.swing.JFrame {
         });
         getContentPane().add(amountTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 120, 88, -1));
 
-        chemBox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        chemBox.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         chemBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         chemBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 chemBoxActionPerformed(evt);
             }
         });
-        getContentPane().add(chemBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 60, 88, -1));
+        getContentPane().add(chemBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 88, -1));
 
-        okBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        okBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         okBtn.setText("OK");
         okBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(okBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(251, 169, -1, -1));
+        getContentPane().add(okBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N

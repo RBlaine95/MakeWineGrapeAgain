@@ -79,377 +79,136 @@ public class Blend extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        selectedTxt = new javax.swing.JTextField();
-        backBtn = new javax.swing.JButton();
-        okBtn = new javax.swing.JButton();
-        batch2Txt = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        select2Btn = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        select3Btn = new javax.swing.JButton();
-        batch3Txt = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        select4Btn = new javax.swing.JButton();
-        batch4Txt = new javax.swing.JTextField();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        batch5Txt = new javax.swing.JTextField();
-        select5Btn = new javax.swing.JButton();
-        select6Btn = new javax.swing.JButton();
-        select7Btn = new javax.swing.JButton();
-        batch7Txt = new javax.swing.JTextField();
-        batch6Txt = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        batch8Txt = new javax.swing.JTextField();
-        select8Btn = new javax.swing.JButton();
-        select9Btn = new javax.swing.JButton();
-        batch9Txt = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        per1Txt = new javax.swing.JTextField();
-        per2Txt = new javax.swing.JTextField();
-        per4Txt = new javax.swing.JTextField();
-        per7Txt = new javax.swing.JTextField();
-        per5Txt = new javax.swing.JTextField();
-        per6Txt = new javax.swing.JTextField();
-        per8Txt = new javax.swing.JTextField();
-        per9Txt = new javax.swing.JTextField();
-        select1Btn = new javax.swing.JButton();
-        per3Txt = new javax.swing.JTextField();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        volTxt = new javax.swing.JTextField();
-        jLabel20 = new javax.swing.JLabel();
-        stageBox = new javax.swing.JComboBox();
-        jLabel21 = new javax.swing.JLabel();
-        colTxt = new javax.swing.JTextField();
-        jLabel22 = new javax.swing.JLabel();
-        nameTxt = new javax.swing.JTextField();
-        clear3 = new javax.swing.JButton();
-        clear4 = new javax.swing.JButton();
-        clear5 = new javax.swing.JButton();
-        clear6 = new javax.swing.JButton();
-        clear7 = new javax.swing.JButton();
-        clear8 = new javax.swing.JButton();
-        clear9 = new javax.swing.JButton();
-        colBox = new javax.swing.JComboBox();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtArea = new javax.swing.JTextArea();
         jLabel23 = new javax.swing.JLabel();
+        jLabel22 = new javax.swing.JLabel();
+        nameTxt = new javax.swing.JTextField();
+        stageBox = new javax.swing.JComboBox();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
+        colBox = new javax.swing.JComboBox();
+        colTxt = new javax.swing.JTextField();
+        jLabel19 = new javax.swing.JLabel();
+        volTxt = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        selectedTxt = new javax.swing.JTextField();
+        batch2Txt = new javax.swing.JTextField();
+        batch3Txt = new javax.swing.JTextField();
+        batch4Txt = new javax.swing.JTextField();
+        batch5Txt = new javax.swing.JTextField();
+        batch6Txt = new javax.swing.JTextField();
+        batch7Txt = new javax.swing.JTextField();
+        batch8Txt = new javax.swing.JTextField();
+        batch9Txt = new javax.swing.JTextField();
+        select1Btn = new javax.swing.JButton();
+        select2Btn = new javax.swing.JButton();
+        clear3 = new javax.swing.JButton();
+        select3Btn = new javax.swing.JButton();
+        clear4 = new javax.swing.JButton();
+        select4Btn = new javax.swing.JButton();
+        select5Btn = new javax.swing.JButton();
+        clear5 = new javax.swing.JButton();
+        clear6 = new javax.swing.JButton();
+        select6Btn = new javax.swing.JButton();
+        select7Btn = new javax.swing.JButton();
+        clear7 = new javax.swing.JButton();
+        clear8 = new javax.swing.JButton();
+        select8Btn = new javax.swing.JButton();
+        select9Btn = new javax.swing.JButton();
+        clear9 = new javax.swing.JButton();
+        jLabel17 = new javax.swing.JLabel();
+        per9Txt = new javax.swing.JTextField();
+        per8Txt = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        per7Txt = new javax.swing.JTextField();
+        jLabel15 = new javax.swing.JLabel();
+        per6Txt = new javax.swing.JTextField();
+        jLabel14 = new javax.swing.JLabel();
+        per5Txt = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        per4Txt = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        per3Txt = new javax.swing.JTextField();
+        jLabel18 = new javax.swing.JLabel();
+        per2Txt = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        per1Txt = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        backBtn = new javax.swing.JButton();
+        okBtn = new javax.swing.JButton();
         jLabel24 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Blend Batches");
+        setMinimumSize(new java.awt.Dimension(761, 473));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel1.setText("Batch 1");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, -1));
+        jPanel1.setOpaque(false);
 
-        selectedTxt.setEditable(false);
-        selectedTxt.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                selectedTxtActionPerformed(evt);
-            }
-        });
-        getContentPane().add(selectedTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 12, 91, -1));
+        txtArea.setColumns(20);
+        txtArea.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        txtArea.setLineWrap(true);
+        txtArea.setRows(5);
+        txtArea.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(txtArea);
 
-        backBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        backBtn.setText("Back");
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 449, -1, -1));
+        jLabel23.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel23.setText("Notes");
 
-        okBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        okBtn.setText("OK");
-        okBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                okBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(okBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(734, 449, -1, -1));
+        jLabel22.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel22.setText("Name");
 
-        batch2Txt.setEditable(false);
-        getContentPane().add(batch2Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 53, 91, -1));
-
-        jLabel2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel2.setText("Batch 2");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 56, -1, -1));
-
-        select2Btn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        select2Btn.setText("Select");
-        select2Btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                select2BtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(select2Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 52, -1, -1));
-
-        jLabel3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel3.setText("Percentage");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 15, -1, -1));
-
-        jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel4.setText("Percentage");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 55, -1, -1));
-
-        select3Btn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        select3Btn.setText("Select");
-        select3Btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                select3BtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(select3Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 93, -1, -1));
-
-        batch3Txt.setEditable(false);
-        getContentPane().add(batch3Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 94, 91, -1));
-
-        jLabel5.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel5.setText("Batch 3");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 97, -1, -1));
-
-        select4Btn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        select4Btn.setText("Select");
-        select4Btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                select4BtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(select4Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 136, -1, -1));
-
-        batch4Txt.setEditable(false);
-        getContentPane().add(batch4Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 137, 91, -1));
-
-        jLabel6.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel6.setText("Batch 4");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
-
-        jLabel7.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel7.setText("Batch 7");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 263, -1, -1));
-
-        jLabel8.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel8.setText("Batch 6");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 222, -1, -1));
-
-        jLabel9.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel9.setText("Batch 5");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 181, -1, -1));
-
-        batch5Txt.setEditable(false);
-        getContentPane().add(batch5Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 178, 91, -1));
-
-        select5Btn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        select5Btn.setText("Select");
-        select5Btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                select5BtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(select5Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 177, -1, -1));
-
-        select6Btn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        select6Btn.setText("Select");
-        select6Btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                select6BtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(select6Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 218, -1, -1));
-
-        select7Btn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        select7Btn.setText("Select");
-        select7Btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                select7BtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(select7Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 259, -1, -1));
-
-        batch7Txt.setEditable(false);
-        getContentPane().add(batch7Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 260, 91, -1));
-
-        batch6Txt.setEditable(false);
-        getContentPane().add(batch6Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 219, 91, -1));
-
-        jLabel11.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel11.setText("Batch 9");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 345, -1, -1));
-
-        jLabel12.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel12.setText("Batch 8");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 304, -1, -1));
-
-        batch8Txt.setEditable(false);
-        getContentPane().add(batch8Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 301, 91, -1));
-
-        select8Btn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        select8Btn.setText("Select");
-        select8Btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                select8BtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(select8Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 300, -1, -1));
-
-        select9Btn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        select9Btn.setText("Select");
-        select9Btn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                select9BtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(select9Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 341, -1, -1));
-
-        batch9Txt.setEditable(false);
-        getContentPane().add(batch9Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 342, 91, -1));
-
-        jLabel10.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel10.setText("Percentage");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 140, -1, -1));
-
-        jLabel13.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel13.setText("Percentage");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 181, -1, -1));
-
-        jLabel14.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel14.setText("Percentage");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 222, -1, -1));
-
-        jLabel15.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel15.setText("Percentage");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 263, -1, -1));
-
-        jLabel16.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel16.setText("Percentage");
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 304, -1, -1));
-
-        jLabel17.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel17.setText("Percentage");
-        getContentPane().add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 345, -1, -1));
-
-        per1Txt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                per1TxtKeyPressed(evt);
-            }
+        nameTxt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        nameTxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                per1TxtKeyReleased(evt);
+                nameTxtKeyReleased(evt);
             }
         });
-        getContentPane().add(per1Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 12, 50, -1));
 
-        per2Txt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                per2TxtKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                per2TxtKeyReleased(evt);
-            }
-        });
-        getContentPane().add(per2Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 55, 50, -1));
-
-        per4Txt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                per4TxtKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                per4TxtKeyReleased(evt);
-            }
-        });
-        getContentPane().add(per4Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 137, 50, -1));
-
-        per7Txt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                per7TxtKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                per7TxtKeyReleased(evt);
-            }
-        });
-        getContentPane().add(per7Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 260, 50, -1));
-
-        per5Txt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                per5TxtKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                per5TxtKeyReleased(evt);
-            }
-        });
-        getContentPane().add(per5Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 178, 50, -1));
-
-        per6Txt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                per6TxtKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                per6TxtKeyReleased(evt);
-            }
-        });
-        getContentPane().add(per6Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 219, 50, -1));
-
-        per8Txt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                per8TxtKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                per8TxtKeyReleased(evt);
-            }
-        });
-        getContentPane().add(per8Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 301, 50, -1));
-
-        per9Txt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                per9TxtKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                per9TxtKeyReleased(evt);
-            }
-        });
-        getContentPane().add(per9Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 342, 50, -1));
-
-        select1Btn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        select1Btn.setText("Select");
-        select1Btn.addActionListener(new java.awt.event.ActionListener() {
+        stageBox.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please Select", "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
+        stageBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                select1BtnActionPerformed(evt);
+                stageBoxActionPerformed(evt);
             }
         });
-        getContentPane().add(select1Btn, new org.netbeans.lib.awtextra.AbsoluteConstraints(179, 11, -1, -1));
 
-        per3Txt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                per3TxtKeyPressed(evt);
+        jLabel20.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel20.setText("Stage");
+
+        jLabel21.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel21.setText("Colour");
+
+        colBox.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        colBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        colBox.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                colBoxActionPerformed(evt);
             }
+        });
+
+        colTxt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        colTxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                per3TxtKeyReleased(evt);
+                colTxtKeyReleased(evt);
             }
         });
-        getContentPane().add(per3Txt, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 94, 50, -1));
 
-        jLabel18.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel18.setText("Percentage");
-        getContentPane().add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(321, 97, -1, -1));
-
-        jLabel19.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel19.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel19.setText("Volume");
-        getContentPane().add(jLabel19, new org.netbeans.lib.awtextra.AbsoluteConstraints(514, 15, -1, -1));
 
-        volTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        volTxt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         volTxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 volTxtKeyPressed(evt);
@@ -458,131 +217,647 @@ public class Blend extends javax.swing.JFrame {
                 volTxtKeyReleased(evt);
             }
         });
-        getContentPane().add(volTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(566, 12, 100, -1));
 
-        jLabel20.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel20.setText("Stage");
-        getContentPane().add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 181, -1, -1));
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel1.setText("Batch 1");
 
-        stageBox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Please Select", "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
-        stageBox.addActionListener(new java.awt.event.ActionListener() {
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel2.setText("Batch 2");
+
+        jLabel5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel5.setText("Batch 3");
+
+        jLabel6.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel6.setText("Batch 4");
+
+        jLabel9.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel9.setText("Batch 5");
+
+        jLabel8.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel8.setText("Batch 6");
+
+        jLabel7.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel7.setText("Batch 7");
+
+        jLabel12.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel12.setText("Batch 8");
+
+        jLabel11.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel11.setText("Batch 9");
+
+        selectedTxt.setEditable(false);
+        selectedTxt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        selectedTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                stageBoxActionPerformed(evt);
+                selectedTxtActionPerformed(evt);
             }
         });
-        getContentPane().add(stageBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(561, 178, -1, -1));
 
-        jLabel21.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel21.setText("Colour");
-        getContentPane().add(jLabel21, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 97, -1, -1));
+        batch2Txt.setEditable(false);
+        batch2Txt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
 
-        colTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        colTxt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                colTxtKeyReleased(evt);
+        batch3Txt.setEditable(false);
+        batch3Txt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+
+        batch4Txt.setEditable(false);
+        batch4Txt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+
+        batch5Txt.setEditable(false);
+        batch5Txt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+
+        batch6Txt.setEditable(false);
+        batch6Txt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+
+        batch7Txt.setEditable(false);
+        batch7Txt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+
+        batch8Txt.setEditable(false);
+        batch8Txt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+
+        batch9Txt.setEditable(false);
+        batch9Txt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+
+        select1Btn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        select1Btn.setText("Select");
+        select1Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                select1BtnActionPerformed(evt);
             }
         });
-        getContentPane().add(colTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(679, 94, 100, -1));
 
-        jLabel22.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel22.setText("Name");
-        getContentPane().add(jLabel22, new org.netbeans.lib.awtextra.AbsoluteConstraints(511, 263, -1, -1));
-
-        nameTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        nameTxt.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                nameTxtKeyReleased(evt);
+        select2Btn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        select2Btn.setText("Select");
+        select2Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                select2BtnActionPerformed(evt);
             }
         });
-        getContentPane().add(nameTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 260, 100, -1));
 
-        clear3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        clear3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         clear3.setText("Clear");
         clear3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clear3ActionPerformed(evt);
             }
         });
-        getContentPane().add(clear3, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 93, -1, -1));
 
-        clear4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        select3Btn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        select3Btn.setText("Select");
+        select3Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                select3BtnActionPerformed(evt);
+            }
+        });
+
+        clear4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         clear4.setText("Clear");
         clear4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clear4ActionPerformed(evt);
             }
         });
-        getContentPane().add(clear4, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 136, -1, -1));
 
-        clear5.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        select4Btn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        select4Btn.setText("Select");
+        select4Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                select4BtnActionPerformed(evt);
+            }
+        });
+
+        select5Btn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        select5Btn.setText("Select");
+        select5Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                select5BtnActionPerformed(evt);
+            }
+        });
+
+        clear5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         clear5.setText("Clear");
         clear5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clear5ActionPerformed(evt);
             }
         });
-        getContentPane().add(clear5, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 177, -1, -1));
 
-        clear6.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        clear6.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         clear6.setText("Clear");
         clear6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clear6ActionPerformed(evt);
             }
         });
-        getContentPane().add(clear6, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 218, -1, -1));
 
-        clear7.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        select6Btn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        select6Btn.setText("Select");
+        select6Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                select6BtnActionPerformed(evt);
+            }
+        });
+
+        select7Btn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        select7Btn.setText("Select");
+        select7Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                select7BtnActionPerformed(evt);
+            }
+        });
+
+        clear7.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         clear7.setText("Clear");
         clear7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clear7ActionPerformed(evt);
             }
         });
-        getContentPane().add(clear7, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 259, -1, -1));
 
-        clear8.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        clear8.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         clear8.setText("Clear");
         clear8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clear8ActionPerformed(evt);
             }
         });
-        getContentPane().add(clear8, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 300, -1, -1));
 
-        clear9.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        select8Btn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        select8Btn.setText("Select");
+        select8Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                select8BtnActionPerformed(evt);
+            }
+        });
+
+        select9Btn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        select9Btn.setText("Select");
+        select9Btn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                select9BtnActionPerformed(evt);
+            }
+        });
+
+        clear9.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         clear9.setText("Clear");
         clear9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 clear9ActionPerformed(evt);
             }
         });
-        getContentPane().add(clear9, new org.netbeans.lib.awtextra.AbsoluteConstraints(246, 341, -1, -1));
 
-        colBox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        colBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        colBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                colBoxActionPerformed(evt);
+        jLabel17.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel17.setText("Percentage");
+
+        per9Txt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        per9Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                per9TxtKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                per9TxtKeyReleased(evt);
             }
         });
-        getContentPane().add(colBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(566, 94, -1, -1));
 
-        txtArea.setColumns(20);
-        txtArea.setRows(5);
-        jScrollPane1.setViewportView(txtArea);
+        per8Txt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        per8Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                per8TxtKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                per8TxtKeyReleased(evt);
+            }
+        });
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 330, -1, -1));
+        jLabel16.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel16.setText("Percentage");
 
-        jLabel23.setText("Notes");
-        getContentPane().add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 310, -1, -1));
+        per7Txt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        per7Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                per7TxtKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                per7TxtKeyReleased(evt);
+            }
+        });
+
+        jLabel15.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel15.setText("Percentage");
+
+        per6Txt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        per6Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                per6TxtKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                per6TxtKeyReleased(evt);
+            }
+        });
+
+        jLabel14.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel14.setText("Percentage");
+
+        per5Txt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        per5Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                per5TxtKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                per5TxtKeyReleased(evt);
+            }
+        });
+
+        jLabel13.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel13.setText("Percentage");
+
+        per4Txt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        per4Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                per4TxtKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                per4TxtKeyReleased(evt);
+            }
+        });
+
+        jLabel10.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel10.setText("Percentage");
+
+        per3Txt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        per3Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                per3TxtKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                per3TxtKeyReleased(evt);
+            }
+        });
+
+        jLabel18.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel18.setText("Percentage");
+
+        per2Txt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        per2Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                per2TxtKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                per2TxtKeyReleased(evt);
+            }
+        });
+
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel4.setText("Percentage");
+
+        per1Txt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        per1Txt.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                per1TxtKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                per1TxtKeyReleased(evt);
+            }
+        });
+
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel3.setText("Percentage");
+
+        backBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        backBtn.setText("Back");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+
+        okBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        okBtn.setText("OK");
+        okBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                okBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(16, 16, 16)
+                                .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(select1Btn)
+                                .addGap(75, 75, 75)
+                                .addComponent(jLabel3)
+                                .addGap(7, 7, 7)
+                                .addComponent(per1Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(16, 16, 16)
+                                .addComponent(batch2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(select2Btn)
+                                .addGap(75, 75, 75)
+                                .addComponent(jLabel4)
+                                .addGap(7, 7, 7)
+                                .addComponent(per2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addGap(16, 16, 16)
+                                .addComponent(batch3Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(select3Btn)
+                                .addGap(0, 0, 0)
+                                .addComponent(clear3)
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel18)
+                                .addGap(7, 7, 7)
+                                .addComponent(per3Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(16, 16, 16)
+                                .addComponent(batch4Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(select4Btn)
+                                .addGap(0, 0, 0)
+                                .addComponent(clear4)
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel10)
+                                .addGap(7, 7, 7)
+                                .addComponent(per4Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addGap(16, 16, 16)
+                                .addComponent(batch5Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(select5Btn)
+                                .addGap(0, 0, 0)
+                                .addComponent(clear5)
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel13)
+                                .addGap(7, 7, 7)
+                                .addComponent(per5Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addGap(16, 16, 16)
+                                .addComponent(batch6Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(select6Btn)
+                                .addGap(0, 0, 0)
+                                .addComponent(clear6)
+                                .addGap(11, 11, 11)
+                                .addComponent(jLabel14)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(per6Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addGap(16, 16, 16)
+                                .addComponent(batch7Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(select7Btn)
+                                .addGap(0, 0, 0)
+                                .addComponent(clear7)
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel15)
+                                .addGap(7, 7, 7)
+                                .addComponent(per7Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addGap(16, 16, 16)
+                                .addComponent(batch8Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(select8Btn)
+                                .addGap(0, 0, 0)
+                                .addComponent(clear8)
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel16)
+                                .addGap(7, 7, 7)
+                                .addComponent(per8Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addGap(16, 16, 16)
+                                .addComponent(batch9Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(select9Btn)
+                                .addGap(0, 0, 0)
+                                .addComponent(clear9)
+                                .addGap(14, 14, 14)
+                                .addComponent(jLabel17)
+                                .addGap(7, 7, 7)
+                                .addComponent(per9Txt, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 44, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel20)
+                                .addGap(18, 18, 18)
+                                .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel22)
+                                .addGap(18, 18, 18)
+                                .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel23)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel21)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(colBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(colTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(volTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(okBtn)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(backBtn)
+                        .addGap(0, 0, Short.MAX_VALUE))))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel19)
+                    .addComponent(volTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel21)
+                    .addComponent(colBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(colTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(stageBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel20))
+                .addGap(54, 54, 54)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel22)
+                    .addComponent(nameTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(30, 30, 30)
+                .addComponent(jLabel23)
+                .addGap(3, 3, 3)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(okBtn)
+                .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(select1Btn)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel3))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(per1Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel2))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(batch2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(select2Btn)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(3, 3, 3)
+                        .addComponent(per2Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(15, 15, 15)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel5))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(batch3Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(select3Btn)
+                    .addComponent(clear3)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel18))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(per3Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel6))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(batch4Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(select4Btn)
+                    .addComponent(clear4)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel10))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(per4Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel9))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(batch5Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(select5Btn)
+                    .addComponent(clear5)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel13))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(per5Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel8))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(batch6Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(select6Btn)
+                    .addComponent(clear6)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(per6Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel14))))
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel7))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(batch7Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(select7Btn)
+                    .addComponent(clear7)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel15))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(per7Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel12))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(batch8Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(select8Btn)
+                    .addComponent(clear8)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel16))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(per8Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(16, 16, 16)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel11))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(batch9Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(select9Btn)
+                    .addComponent(clear9)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(4, 4, 4)
+                        .addComponent(jLabel17))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(per9Txt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(18, 18, 18)
+                .addComponent(backBtn)
+                .addContainerGap(51, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 720, 460));
 
         jLabel24.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
         jLabel24.setText("jLabel24");
-        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 860, 490));
+        getContentPane().add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 770, 480));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
@@ -1138,6 +1413,7 @@ public class Blend extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField nameTxt;
     private javax.swing.JButton okBtn;

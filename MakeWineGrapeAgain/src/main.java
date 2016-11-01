@@ -68,8 +68,8 @@ public class main extends javax.swing.JFrame {
         resetBtn = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        appNameLbl = new javax.swing.JLabel();
         versionNumLbl = new javax.swing.JLabel();
+        appNameLbl = new javax.swing.JLabel();
         logoutBtn = new javax.swing.JButton();
         bground = new javax.swing.JLabel();
 
@@ -79,7 +79,7 @@ public class main extends javax.swing.JFrame {
 
         jPanel2.setOpaque(false);
 
-        adminBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        adminBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         adminBtn.setText("Admin Control");
         adminBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -89,7 +89,7 @@ public class main extends javax.swing.JFrame {
 
         logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/MWGA_png_transparent.png"))); // NOI18N
 
-        searchBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        searchBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         searchBtn.setText("Search Batches");
         searchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -97,7 +97,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
-        addBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        addBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         addBtn.setText("Add New Batch");
         addBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -105,6 +105,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
+        jButton1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jButton1.setText("Search Sub-Batches");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,6 +113,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jButton2.setText("Search Blends");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -119,6 +121,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
+        resetBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         resetBtn.setText("Reset Password");
         resetBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -126,6 +129,7 @@ public class main extends javax.swing.JFrame {
             }
         });
 
+        jButton3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jButton3.setText("Backup");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,10 +137,25 @@ public class main extends javax.swing.JFrame {
             }
         });
 
+        jButton4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jButton4.setText("Restore");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
+            }
+        });
+
+        versionNumLbl.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        versionNumLbl.setText("Version 0.9");
+
+        appNameLbl.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        appNameLbl.setText("Make Wine Grape Again");
+
+        logoutBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        logoutBtn.setText("Logout");
+        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                logoutBtnActionPerformed(evt);
             }
         });
 
@@ -148,73 +167,59 @@ public class main extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(resetBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton4)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton3))
+                        .addComponent(logoutBtn)
+                        .addGap(343, 343, 343)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(appNameLbl, javax.swing.GroupLayout.DEFAULT_SIZE, 145, Short.MAX_VALUE)
+                            .addComponent(versionNumLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(0, 87, Short.MAX_VALUE)
                         .addComponent(logo)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(resetBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(addBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(searchBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(adminBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(18, 18, 18))
+                .addGap(33, 33, 33))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(187, 187, 187)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(106, 106, 106)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(logo)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(addBtn)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(searchBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(searchBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)))
-                .addGap(24, 24, 24)
-                .addComponent(adminBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(adminBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton4)
+                        .addGap(13, 13, 13)
+                        .addComponent(jButton3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(resetBtn)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 164, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(61, 61, 61)
-                        .addComponent(resetBtn))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton3)
-                            .addComponent(jButton4))))
-                .addContainerGap(85, Short.MAX_VALUE))
+                    .addComponent(logoutBtn, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                        .addComponent(appNameLbl)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(versionNumLbl)))
+                .addContainerGap())
         );
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(0, 0, 610, 600);
-
-        appNameLbl.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        appNameLbl.setText("Make Wine Grape Again");
-        getContentPane().add(appNameLbl);
-        appNameLbl.setBounds(460, 550, 137, 17);
-
-        versionNumLbl.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        versionNumLbl.setText("Version 0.9");
-        getContentPane().add(versionNumLbl);
-        versionNumLbl.setBounds(510, 570, 63, 17);
-
-        logoutBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        logoutBtn.setText("Logout");
-        logoutBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                logoutBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(logoutBtn);
-        logoutBtn.setBounds(10, 560, 69, 33);
 
         bground.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
         getContentPane().add(bground);

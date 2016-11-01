@@ -50,19 +50,19 @@ public class Prompt extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        txtLbl.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txtLbl.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         txtLbl.setText("Please enter the ID of the batch you are trying to edit/delete");
         getContentPane().add(txtLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(6, 10, -1, -1));
 
-        promptTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        promptTxt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         promptTxt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 promptTxtKeyReleased(evt);
             }
         });
-        getContentPane().add(promptTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 72, 333, 30));
+        getContentPane().add(promptTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 350, 30));
 
-        okBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        okBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         okBtn.setText("OK");
         okBtn.setEnabled(false);
         okBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -70,10 +70,10 @@ public class Prompt extends javax.swing.JFrame {
                 okBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(okBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(296, 110, -1, -1));
+        getContentPane().add(okBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 110, -1, -1));
         getContentPane().add(idLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(347, 31, 99, 57));
 
-        cancelBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        cancelBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         cancelBtn.setText("Cancel");
         cancelBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,9 +83,9 @@ public class Prompt extends javax.swing.JFrame {
         getContentPane().add(cancelBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 160));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 380, 190));
 
-        setSize(new java.awt.Dimension(366, 199));
+        setSize(new java.awt.Dimension(388, 202));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
