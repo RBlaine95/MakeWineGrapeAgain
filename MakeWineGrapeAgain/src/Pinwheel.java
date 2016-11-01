@@ -7,9 +7,16 @@
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -49,7 +56,7 @@ public final class Pinwheel {
     static String[] data;
     static String[] tempdataId = new String[9];
     static String[] tempdataMass = new String[9];
-    
+
     static String bakDir;
     static String bakDate;
 
@@ -150,13 +157,14 @@ public final class Pinwheel {
 
     public static void insertBatch() {
         data[3] = stageGetNo(data[3]) + "";
-        sql = "INSERT INTO batch (batchid, colour, type, stage, mass, supplierid) VALUES('"
+        sql = "INSERT INTO batch (batchid, colour, type, stage, mass, supplierid, note) VALUES('"
                 + data[0] + "', '"
                 + data[1] + "', '"
                 + data[2] + "', '"
                 + data[3] + "', '"
                 + data[4] + "', '"
-                + data[5] + "')";
+                + data[5] + "', '"
+                + data[6] + "')";
         updateCCDB(sql);
     }
 
@@ -607,16 +615,23 @@ public final class Pinwheel {
         return s.replace("'", "''");
     }
 
-    public static void backup() throws SQLException {        
+    public static void backup() throws SQLException, UnsupportedEncodingException, FileNotFoundException, IOException {
 //===================================================================================================================================CCDB
 //---------------------------------------------------------------------------------------------------------------------------BATCHES
+        File f = new File("BAK\\CCDB-Backup.sql");
+        if (!f.exists()) {
+            Writer writer = null;
+            writer = new BufferedWriter(new OutputStreamWriter(
+                    new FileOutputStream("BAK\\CCDB-Backup.sql"), "utf-8"));
+            writer.write("");
+        }
 
-        sql = "SELECT batchid, colour, type, stage, mass, supplierid FROM batch";
+        sql = "SELECT batchid, colour, type, stage, mass, supplierid, note FROM batch";
         try (FileWriter fw = new FileWriter("BAK\\CCDB-Backup.sql", false);
                 BufferedWriter bw = new BufferedWriter(fw);
                 PrintWriter out = new PrintWriter(bw)) {
             out.println("DROP TABLE batch" + " IF EXISTS");
-            out.println("CREATE TABLE batch (batchid TEXT(15), colour TEXT(15), type TEXT(25), stage TEXT(2), mass FLOAT(15), supplierid TEXT(30))");
+            out.println("CREATE TABLE batch (batchid TEXT(15), colour TEXT(15), type TEXT(25), stage TEXT(2), mass FLOAT(15), supplierid TEXT(30), note TEXT(300))");
             rs = queryCCDB(sql);
             while (rs.next()) {
                 String id = rs.getNString(1);
@@ -625,14 +640,15 @@ public final class Pinwheel {
                 String stage = rs.getNString(4);
                 double mass = rs.getDouble(5);
                 String supp = rs.getNString(6);
-                out.println("INSERT INTO batch (batchid, colour, type, stage, mass, supplierid) VALUES('"
-                        + id + "', '" + colour + "', '" + type + "', '" + stage + "', " + mass + ", '" + supp + "')");
+                String note = rs.getNString(7);
+                out.println("INSERT INTO batch (batchid, colour, type, stage, mass, supplierid, note) VALUES('"
+                        + id + "', '" + colour + "', '" + type + "', '" + stage + "', " + mass + ", '" + supp + "', '" + note + "')");
             }
 
 //---------------------------------------------------------------------------------------------------------------------------SUBBATCHES
-            sql = "SELECT subbatchid, colour, type, stage, mass, supplierid FROM subbatch";
+            sql = "SELECT subbatchid, colour, type, stage, mass, supplierid, note FROM subbatch";
             out.println("DROP TABLE subbatch" + " IF EXISTS");
-            out.println("CREATE TABLE subbatch (subbatchid TEXT(15), colour TEXT(15), type TEXT(25), stage TEXT(2), mass FLOAT(15), supplierid TEXT(30))");
+            out.println("CREATE TABLE subbatch (subbatchid TEXT(15), colour TEXT(15), type TEXT(25), stage TEXT(2), mass FLOAT(15), supplierid TEXT(30), note TEXT(300))");
             rs = queryCCDB(sql);
             while (rs.next()) {
                 String id = rs.getNString(1);
@@ -641,8 +657,9 @@ public final class Pinwheel {
                 String stage = rs.getNString(4);
                 double mass = rs.getDouble(5);
                 String supp = rs.getNString(6);
+                String note = rs.getNString("note");
                 out.println("INSERT INTO subbatch (subbatchid, colour, type, stage, mass, supplierid) VALUES('"
-                        + id + "', '" + colour + "', '" + type + "', '" + stage + "', " + mass + ", '" + supp + "')");
+                        + id + "', '" + colour + "', '" + type + "', '" + stage + "', " + mass + ", '" + supp + "', '" + note + "')");
             }
 
             //---------------------------------------------------------------------------------------------------------------------------SUPPLIERS
@@ -662,10 +679,10 @@ public final class Pinwheel {
 
 //---------------------------------------------------------------------------------------------------------------------------BLENDS
             out.println("DROP TABLE blend" + " IF EXISTS");
-            sql = "SELECT bid, winename, colour, volume, stage, fid1, pid1, fid2, pid2, fid3, pid3, fid4, pid4, fid5, pid5, fid6, pid6, fid7, pid7, fid8, pid8, fid9, pid9 FROM blend";
+            sql = "SELECT bid, winename, colour, volume, stage, fid1, pid1, fid2, pid2, fid3, pid3, fid4, pid4, fid5, pid5, fid6, pid6, fid7, pid7, fid8, pid8, fid9, pid9, note FROM blend";
             out.println("CREATE TABLE blend (bid TEXT(50), winename TEXT(50), colour TEXT(30), volume FLOAT(15), stage TEXT(2), "
                     + "fid1 TEXT(15), pid1 FLOAT(15), fid2 TEXT(15), pid2 FLOAT(15), fid3 TEXT(15), pid3 FLOAT(15), fid4 TEXT(15), pid4 FLOAT(15),"
-                    + "fid5 TEXT(15), pid5 FLOAT(15), fid6 TEXT(15), pid6 FLOAT(15), fid7 TEXT(15), pid7 FLOAT(15), fid8 TEXT(15), pid8 FLOAT(15), fid9 TEXT(15), pid9 FLOAT(15))");
+                    + "fid5 TEXT(15), pid5 FLOAT(15), fid6 TEXT(15), pid6 FLOAT(15), fid7 TEXT(15), pid7 FLOAT(15), fid8 TEXT(15), pid8 FLOAT(15), fid9 TEXT(15), pid9 FLOAT(15), note TEXT(300))");
 
             rs = queryCCDB(sql);
             while (rs.next()) {
@@ -685,12 +702,13 @@ public final class Pinwheel {
                         pid[i] = rs.getDouble(i + 7);
                     }
                 }
+                String note = rs.getNString("note");
                 String ready = "INSERT INTO blend (bid, winename, colour, volume, stage, fid1, pid1, fid2, pid2, fid3, pid3, fid4, pid4, fid5, pid5, fid6, pid6, fid7, pid7, fid8, pid8, fid9, pid9) VALUES('"
                         + id + "', '" + name + "', '" + colour + "', " + vol + ", '" + stage + "', ";
-                for (int i = 0; i < fid.length - 1; i++) {
+                for (int i = 0; i < fid.length; i++) {
                     ready += "'" + fid[i] + "', " + pid[i] + ", ";
                 }
-                ready += "'" + fid[8] + "', " + pid[8] + ")";
+                ready += "'" + note + "')";
                 out.println(ready);
             }
             out.close();
