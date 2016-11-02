@@ -105,10 +105,8 @@ public class GraphUI extends JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Graph");
         setMaximizedBounds(new java.awt.Rectangle(0, 0, 600, 600));
-        setMaximumSize(new java.awt.Dimension(600, 600));
         setMinimumSize(new java.awt.Dimension(600, 600));
         setResizable(false);
-        setSize(new java.awt.Dimension(600, 600));
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setMaximumSize(new java.awt.Dimension(600, 550));
@@ -117,6 +115,7 @@ public class GraphUI extends JFrame {
         jPanel1.setLayout(new java.awt.BorderLayout());
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 550));
 
+        saveBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         saveBtn.setText("Save Graph");
         saveBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -125,6 +124,7 @@ public class GraphUI extends JFrame {
         });
         getContentPane().add(saveBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(168, 566, -1, -1));
 
+        refreshBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         refreshBtn.setText("Refresh Graph");
         refreshBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -133,6 +133,7 @@ public class GraphUI extends JFrame {
         });
         getContentPane().add(refreshBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 566, -1, -1));
 
+        updateBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         updateBtn.setText("Update Graph");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -141,6 +142,7 @@ public class GraphUI extends JFrame {
         });
         getContentPane().add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(313, 566, -1, -1));
 
+        backBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -153,7 +155,7 @@ public class GraphUI extends JFrame {
         jLabel1.setMaximumSize(new java.awt.Dimension(600, 600));
         jLabel1.setMinimumSize(new java.awt.Dimension(600, 600));
         jLabel1.setPreferredSize(new java.awt.Dimension(600, 600));
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 600));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 610));
 
         pack();
         setLocationRelativeTo(null);

@@ -71,15 +71,15 @@ public class ViewChems extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel1.setText("Selected:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 14, -1, -1));
 
         selectedTxt.setEditable(false);
-        selectedTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        selectedTxt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         getContentPane().add(selectedTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 11, 310, -1));
 
-        backBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        backBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,7 +88,7 @@ public class ViewChems extends javax.swing.JFrame {
         });
         getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, -1, -1));
 
-        chemTbl.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        chemTbl.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         chemTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

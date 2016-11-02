@@ -43,21 +43,22 @@ public class Value extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         selectedTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         costPerBottle = new javax.swing.JTextField();
         costPerCork = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        afterBottling = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        beforeBottling = new javax.swing.JTextField();
-        calculateBtn = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         amountPerBottle = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
+        afterBottling = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
         pricePerBottle = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        beforeBottling = new javax.swing.JTextField();
+        calculateBtn = new javax.swing.JButton();
         backBtn = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
 
@@ -66,17 +67,16 @@ public class Value extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jPanel1.setOpaque(false);
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel1.setText("Selected:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(166, 17, -1, -1));
 
         selectedTxt.setEditable(false);
         selectedTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        getContentPane().add(selectedTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(236, 11, 238, -1));
 
-        jLabel2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel2.setText("Cost per Bottle");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(56, 87, -1, -1));
 
         costPerBottle.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         costPerBottle.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -87,7 +87,6 @@ public class Value extends javax.swing.JFrame {
                 costPerBottleKeyReleased(evt);
             }
         });
-        getContentPane().add(costPerBottle, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 84, 70, -1));
 
         costPerCork.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         costPerCork.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -98,40 +97,12 @@ public class Value extends javax.swing.JFrame {
                 costPerCorkKeyReleased(evt);
             }
         });
-        getContentPane().add(costPerCork, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 125, 70, -1));
 
-        jLabel3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel3.setText("Cost per Cork/Screw cap");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 130, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel4.setText("After Bottling");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(293, 128, -1, -1));
-
-        afterBottling.setEditable(false);
-        afterBottling.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        getContentPane().add(afterBottling, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 125, 80, -1));
-
-        jLabel5.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel5.setText("Before Bottling");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(284, 87, -1, -1));
-
-        beforeBottling.setEditable(false);
-        beforeBottling.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        getContentPane().add(beforeBottling, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 84, 80, -1));
-
-        calculateBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        calculateBtn.setText("Calculate");
-        calculateBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                calculateBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(calculateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(406, 231, -1, -1));
-
-        jLabel9.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel9.setText("Amount (ml) per bottle");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(11, 169, -1, -1));
 
         amountPerBottle.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         amountPerBottle.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -142,29 +113,136 @@ public class Value extends javax.swing.JFrame {
                 amountPerBottleKeyReleased(evt);
             }
         });
-        getContentPane().add(amountPerBottle, new org.netbeans.lib.awtextra.AbsoluteConstraints(158, 166, 70, -1));
 
-        jLabel10.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel10.setText("Price Per Bottle");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(288, 169, -1, -1));
+
+        afterBottling.setEditable(false);
+        afterBottling.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel4.setText("After Bottling");
 
         pricePerBottle.setEditable(false);
         pricePerBottle.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        getContentPane().add(pricePerBottle, new org.netbeans.lib.awtextra.AbsoluteConstraints(394, 166, 80, -1));
 
-        backBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel5.setText("Before Bottling");
+
+        beforeBottling.setEditable(false);
+        beforeBottling.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+
+        calculateBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        calculateBtn.setText("Calculate");
+        calculateBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                calculateBtnActionPerformed(evt);
+            }
+        });
+
+        backBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 231, -1, -1));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(backBtn)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(calculateBtn))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(amountPerBottle))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                        .addGap(153, 153, 153)
+                                        .addComponent(costPerCork, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(32, 32, 32)
+                                .addComponent(jLabel10)
+                                .addGap(21, 21, 21)
+                                .addComponent(pricePerBottle, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addGap(9, 9, 9)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(selectedTxt))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(costPerBottle, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(32, 32, 32)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel4)
+                                            .addComponent(jLabel5))
+                                        .addGap(21, 21, 21)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(afterBottling, javax.swing.GroupLayout.DEFAULT_SIZE, 80, Short.MAX_VALUE)
+                                            .addComponent(beforeBottling))))))))
+                .addGap(0, 10, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel5)
+                        .addComponent(costPerBottle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(beforeBottling, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(costPerCork, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel3)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel4))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addComponent(afterBottling, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel9)
+                        .addComponent(amountPerBottle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel10)
+                    .addComponent(pricePerBottle, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(47, 47, 47)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(backBtn)
+                    .addComponent(calculateBtn))
+                .addGap(0, 10, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 480, 250));
 
         jLabel6.setFont(new java.awt.Font("Calibri", 0, 11)); // NOI18N
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
         jLabel6.setText("jLabel6");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 270));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 280));
 
         pack();
         setLocationRelativeTo(null);
@@ -258,6 +336,7 @@ public class Value extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField pricePerBottle;
     private javax.swing.JTextField selectedTxt;
     // End of variables declaration//GEN-END:variables

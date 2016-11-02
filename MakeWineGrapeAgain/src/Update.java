@@ -65,30 +65,33 @@ public class Update extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(null);
 
-        jLabel4.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel4.setText("Update Batch");
         getContentPane().add(jLabel4);
-        jLabel4.setBounds(120, 30, 110, 23);
+        jLabel4.setBounds(140, 30, 140, 30);
 
         jPanel1.setOpaque(false);
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel1.setText("Selected:");
 
         selectedTxt.setEditable(false);
+        selectedTxt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel2.setText("Stage:");
 
-        massLbl.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        massLbl.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         massLbl.setText("New Mass");
 
+        stageBox.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         stageBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 stageBoxActionPerformed(evt);
             }
         });
 
+        massTxt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         massTxt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 massTxtActionPerformed(evt);
@@ -103,6 +106,7 @@ public class Update extends javax.swing.JFrame {
             }
         });
 
+        okBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         okBtn.setText("Update");
         okBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -110,6 +114,7 @@ public class Update extends javax.swing.JFrame {
             }
         });
 
+        backBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -117,7 +122,7 @@ public class Update extends javax.swing.JFrame {
             }
         });
 
-        spillBox.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        spillBox.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         spillBox.setText("Update Volume");
         spillBox.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -173,13 +178,13 @@ public class Update extends javax.swing.JFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 90, 370, 170);
+        jPanel1.setBounds(0, 70, 370, 170);
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
         getContentPane().add(jLabel3);
-        jLabel3.setBounds(-6, 0, 530, 370);
+        jLabel3.setBounds(-6, 0, 430, 260);
 
-        setSize(new java.awt.Dimension(434, 341));
+        setSize(new java.awt.Dimension(424, 283));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

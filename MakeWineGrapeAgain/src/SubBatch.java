@@ -73,22 +73,22 @@ public class SubBatch extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel1.setText("Selected:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 14, -1, -1));
 
         selectedTxt.setEditable(false);
         selectedTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        getContentPane().add(selectedTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 11, 210, -1));
+        getContentPane().add(selectedTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(172, 11, 240, -1));
 
-        backBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        backBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 backBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 380, -1, -1));
+        getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 380, -1, -1));
 
         subMassSlide.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         subMassSlide.setValue(0);
@@ -97,20 +97,20 @@ public class SubBatch extends javax.swing.JFrame {
                 subMassSlideStateChanged(evt);
             }
         });
-        getContentPane().add(subMassSlide, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 52, 256, -1));
+        getContentPane().add(subMassSlide, new org.netbeans.lib.awtextra.AbsoluteConstraints(124, 52, 290, -1));
 
-        jLabel2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel2.setText("Mass of Sub Batch");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 55, -1, 20));
 
-        okBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        okBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         okBtn.setText("OK");
         okBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 okBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(okBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 380, -1, -1));
+        getContentPane().add(okBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, -1, -1));
 
         massTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         massTxt.setText("0");
@@ -127,29 +127,33 @@ public class SubBatch extends javax.swing.JFrame {
         });
         getContentPane().add(massTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 84, 72, -1));
 
-        jLabel3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel3.setText("Stage");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 134, -1, -1));
 
-        stageBox.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        stageBox.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         stageBox.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Fermentation", "Pressed", "Maturation", "Blending", "Prep for Bottling", "Bottling", "Storage" }));
         getContentPane().add(stageBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 131, -1, -1));
 
-        jLabel4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel4.setText("KG");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(291, 87, -1, -1));
 
         txtArea.setColumns(20);
+        txtArea.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        txtArea.setLineWrap(true);
         txtArea.setRows(5);
+        txtArea.setWrapStyleWord(true);
         jScrollPane1.setViewportView(txtArea);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 410, 150));
 
+        jLabel6.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jLabel6.setText("Notes");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, -1));
 
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 900, 430));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 430));
 
         pack();
         setLocationRelativeTo(null);

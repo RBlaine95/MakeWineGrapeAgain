@@ -57,118 +57,171 @@ public class Edit extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        blendBtn = new javax.swing.JButton();
-        updateBtn = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         selectedTxt = new javax.swing.JTextField();
-        chemBtn = new javax.swing.JButton();
+        blendBtn = new javax.swing.JButton();
+        updateBtn = new javax.swing.JButton();
         subBatchBtn = new javax.swing.JButton();
-        backBtn = new javax.swing.JButton();
-        graphBtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         viewChemicalsBtn = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
+        chemBtn = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        graphBtn = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Edit Batch");
-        setMaximumSize(new java.awt.Dimension(370, 275));
-        setMinimumSize(new java.awt.Dimension(370, 275));
-        setPreferredSize(new java.awt.Dimension(370, 275));
+        setMaximumSize(new java.awt.Dimension(400, 300));
+        setMinimumSize(new java.awt.Dimension(400, 300));
+        setPreferredSize(new java.awt.Dimension(400, 300));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        blendBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jPanel1.setMaximumSize(new java.awt.Dimension(380, 241));
+        jPanel1.setMinimumSize(new java.awt.Dimension(380, 241));
+        jPanel1.setOpaque(false);
+
+        jLabel1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jLabel1.setText("Selected:");
+
+        selectedTxt.setEditable(false);
+        selectedTxt.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+
+        blendBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         blendBtn.setText("Create Blend");
         blendBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 blendBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(blendBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, 129, -1));
 
-        updateBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        updateBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         updateBtn.setText("Update Batch/Blend");
         updateBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 updateBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(updateBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 50, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jLabel1.setText("Selected:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 10, -1, 20));
-
-        selectedTxt.setEditable(false);
-        selectedTxt.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        getContentPane().add(selectedTxt, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 5, 220, 30));
-
-        chemBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        chemBtn.setText("Add Chemicals");
-        chemBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chemBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(chemBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 130, 147, -1));
-
-        subBatchBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        subBatchBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         subBatchBtn.setText("Create Sub-Batch");
         subBatchBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 subBatchBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(subBatchBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
-        backBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        backBtn.setText("Close");
-        backBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                backBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(backBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, -1, -1));
-
-        graphBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        graphBtn.setText("Graph Tools");
-        graphBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                graphBtnActionPerformed(evt);
-            }
-        });
-        getContentPane().add(graphBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 170, 147, -1));
-
-        jButton1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jButton1.setText("Value Calculator");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 130, 129, -1));
-
-        viewChemicalsBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        viewChemicalsBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         viewChemicalsBtn.setText("View Chemicals");
         viewChemicalsBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 viewChemicalsBtnActionPerformed(evt);
             }
         });
-        getContentPane().add(viewChemicalsBtn, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 90, 147, -1));
 
-        jButton2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        jButton1.setText("Value Calculator");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        chemBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        chemBtn.setText("Add Chemicals");
+        chemBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chemBtnActionPerformed(evt);
+            }
+        });
+
+        jButton2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         jButton2.setText("Delete Selected");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 129, -1));
+
+        graphBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        graphBtn.setText("Graph Tools");
+        graphBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                graphBtnActionPerformed(evt);
+            }
+        });
+
+        backBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
+        backBtn.setText("Close");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(19, 24, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(18, 18, 18)
+                        .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 258, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(blendBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(subBatchBtn))
+                        .addGap(42, 42, 42)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(chemBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(viewChemicalsBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(graphBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(updateBtn))))
+                .addGap(26, 26, 26))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(149, 149, 149)
+                .addComponent(backBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(selectedTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(subBatchBtn)
+                    .addComponent(updateBtn))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(blendBtn)
+                    .addComponent(chemBtn))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(viewChemicalsBtn)
+                    .addComponent(jButton2))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(graphBtn)
+                    .addComponent(jButton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(backBtn)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 380, 270));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagery/WoodNew.jpg"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 370, 260));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 280));
 
         pack();
         setLocationRelativeTo(null);
@@ -230,6 +283,7 @@ public class Edit extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField selectedTxt;
     private javax.swing.JButton subBatchBtn;
     private javax.swing.JButton updateBtn;
