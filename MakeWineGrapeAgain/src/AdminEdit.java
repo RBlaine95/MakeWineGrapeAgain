@@ -77,14 +77,14 @@ public class AdminEdit extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        warningLbl.setFont(new java.awt.Font("Calibri", 1, 18)); // NOI18N
+        warningLbl.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         warningLbl.setForeground(new java.awt.Color(200, 0, 0));
         warningLbl.setText("WARNING: Changing these may corrupt the database");
         getContentPane().add(warningLbl, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 20, -1, -1));
 
         jPanel1.setOpaque(false);
 
-        batchTbl.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        batchTbl.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         batchTbl.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -104,7 +104,7 @@ public class AdminEdit extends javax.swing.JFrame {
         batchTbl.getTableHeader().setReorderingAllowed(false);
         jScrollPane3.setViewportView(batchTbl);
 
-        okBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        okBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         okBtn.setText("OK");
         okBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -112,7 +112,7 @@ public class AdminEdit extends javax.swing.JFrame {
             }
         });
 
-        backBtn.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
+        backBtn.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
         backBtn.setText("Back");
         backBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
