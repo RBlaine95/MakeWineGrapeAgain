@@ -28,4 +28,3 @@ We have also decided to design the system free to wine cellars that have a minim
 * View which chemicals were added before and after Fermentation
 * Efficiency
 * Full Linux/Unix Support
-* Linux/Unix support is in Alpha
