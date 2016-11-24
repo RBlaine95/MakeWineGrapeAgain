@@ -2,6 +2,8 @@
 Make Wine Grape Again is still in Beta testing.  
 We are actively making changes to the system.  
 
+_**We will be tenporarily halting releases for MWGA due to the fact that if we modify the Database Structure (e.g.: Add a field to a tabble) it renderes old versions of the database unusable and updating the database would mean wiping your old database.**_
+
 ### What is Make Wine Grape Again (MWGA)?
 Rocco de Villiers from [Cape Crush](http://www.capecrush.co.za) contacted us to develop a system for him to use for his Wine Cellar. Matthew and Robert met with him as representatives of Team Se7en to discuss his ideas for the system.
 
