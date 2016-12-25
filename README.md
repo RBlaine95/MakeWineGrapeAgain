@@ -30,3 +30,10 @@ We have also decided to design the system free to wine cellars that have a minim
 * View which chemicals were added before and after Fermentation
 * Efficiency
 * Full Linux/Unix Support
+
+### JRebel Install
+To use the new JRebel Dev function:
+* Go to [MyJRebel](https://my.jrebel.com) and sign up for a Social Account (It's free, just link your FB/Twitter to JRebel)
+* Install JRebel on Netbeans or IntelliJ IDEA and activate it with your activation code given to you by JRebel
+
+JRebel will let you do live updates to the program while it's running. This means that if you find a bug, you can edit the code and it'll update, rather than having to close the program, edit the code, recompile/rebuild, retest, etc.
